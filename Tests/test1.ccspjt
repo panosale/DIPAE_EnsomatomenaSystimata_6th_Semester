@@ -1,0 +1,19 @@
+[PROJECT]
+Target=test1.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.011
+Compiler=PCH
+[Target Data]
+FileList=test1.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[test1.c]
+Type=4
+[mru-list]
+1=test1.c
+[Opened Files]
+1=test1.c
+2=
+[Units]
+Count=1
+1=test1 (main)

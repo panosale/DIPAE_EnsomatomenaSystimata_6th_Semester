@@ -1,0 +1,19 @@
+[PROJECT]
+Target=askisi2_3.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.011
+Compiler=PCH
+[Target Data]
+FileList=askisi2_3.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[askisi2_3.c]
+Type=4
+[mru-list]
+1=askisi2_3.c
+[Opened Files]
+1=askisi2_3.c
+2=
+[Units]
+Count=1
+1=askisi2_3 (main)

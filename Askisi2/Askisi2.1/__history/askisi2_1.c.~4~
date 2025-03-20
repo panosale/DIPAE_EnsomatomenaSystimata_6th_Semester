@@ -1,0 +1,29 @@
+#include <main_.h>
+
+#use standard_io ( A )
+#use standard_io ( B )
+#use standard_io ( C )
+#byte PORTA =0xF80
+#byte PORTB =0xF81
+#byte PORTC =0xF82
+#byte PORTD =0xF83
+#byte PORTE =0xF84
+
+
+void main() {
+   set_tris_b(0x00); // Ορισμός του PORTB σαν έξοδο  
+   set_tris_d(0xff); // Ορισμός του PORTD σαν είσοδο
+   
+   while (TRUE) {
+      if (!input_state(PIN_D7)) { // Έναρξη προγράμματος
+         if (input_state(PIN_D0)) { // Η πόρτα του κάδου είναι κλειστή
+            delay_ms(2000);
+            output_high(PIN_B1); // ’νοιγμα βαλβίδας νερού
+            while (!input_state(PIN_D1)) { // Γέμισε ο κάδος με νερό
+               output_low(PIN_B1);                           
+            }
+         }
+      }
+   }
+}
+ 

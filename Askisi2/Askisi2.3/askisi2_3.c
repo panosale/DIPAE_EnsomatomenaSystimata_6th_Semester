@@ -1,0 +1,44 @@
+// ΔΙΠΑΕ - Ενσωματωμένα Συστήματα - 6ο Εξάμηνο
+// Αλευρόπουλος Παναγιώτης - ΑΜ: 2022005
+// ’σκηση 2.3
+#include <main_.h>
+
+#use standard_io ( A )
+#use standard_io ( B )
+#use standard_io ( C )
+#byte PORTA =0xF80
+#byte PORTB =0xF81
+#byte PORTC =0xF82
+#byte PORTD =0xF83
+#byte PORTE =0xF84
+
+int checkDigits(int n) { // Συνάρτηση ελέγχου του πλήθους των 1 στην παράμετρο n 
+   int i, tmp = 0;
+   int digit1 = 1;
+     for(i = 0; i < 8; i++) {
+        if ((((digit1<<i) & n)>>i) == 1){
+           tmp++;
+       }
+     }
+   return tmp; // Επιστροφή του πλήθους των 1 στην παράμετρο n
+}
+
+void main()
+{
+   set_tris_b(0x00); // Ορίζουμε τη θύρα B σαν ΕΞΟΔΟ (0)
+   set_tris_d(0xff); // Ορίζουμε τη θύρα D σαν ΕΙΣΟΔΟ (1)
+   int logical1 = 0;
+   while(TRUE) {   
+      logical1 = checkDigits(PORTD);
+      if (logical1 % 2 == 0) { // Αν ο αριθμός των 1 είναι ζυγός...
+         output_high(PIN_B0); // ... ανάβει το LSB του PIN_B0
+         output_low(PIN_B1); // ... σβήνει το LSB του PIN_B1
+      }
+      else { // Αν ο αριθμός των 1 είναι μονός...
+         output_low(PIN_B0); // ... σβήνει το LSB του PIN_B0
+         output_high(PIN_B1); // ... ανάβει το LSB του PIN_B1
+      }
+   }
+}
+
+

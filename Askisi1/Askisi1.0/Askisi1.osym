@@ -1,0 +1,42 @@
+_RETURN_
+CCP_1
+CCP_1_LOW
+CCP_1_HIGH
+CCP_2
+CCP_2_LOW
+CCP_2_HIGH
+PSP_DATA
+C1OUT
+C2OUT
+PORTA
+PORTB
+PORTC
+PORTD
+PORTE
+
+Project Directory:
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSistimata_6th_Term\Askisi1\
+
+Project Files:
+    Askisi1.c                                               [11-Μαρ-25 00:17  CRC=1CE12175]
+    C:\Program Files (x86)\PICC\devices\main_.h             [21-Μαρ-20 13:55  CRC=51CBC36F]
+    C:\Program Files (x86)\PICC\devices\18F4550.h           [09-Αυγ-13 15:40  CRC=A157EDDE]
+
+Source signature=B15CC0A0
+
+Units:
+    Askisi1 (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+    Output file:    Relocatable
+
+Output Files:
+    Errors:      Askisi1.err
+    Object:      Askisi1.o
+    Symbols:     Askisi1.osym

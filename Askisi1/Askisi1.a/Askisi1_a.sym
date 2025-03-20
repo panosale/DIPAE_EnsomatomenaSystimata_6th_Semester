@@ -1,0 +1,84 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004-005 strtok.save
+006-019 MAIN.patronymo
+01A     MAIN.mikos_patronymou
+01B     MAIN.tmp_portd
+01C     MAIN.logical1
+01D-01E strlen.s
+01D     checkDigits.n
+01D     MAIN.@SCRATCH1
+01E     checkDigits.i
+01F-020 strlen.sc
+01F     checkDigits.tmp
+020     checkDigits.digit1
+021     strlen.@SCRATCH1
+021     checkDigits.@SCRATCH1
+F80     PORTA
+F81     PORTB
+F82     PORTC
+F83     PORTD
+F83     PSP_DATA
+F84     PORTE
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  strlen
+000038  checkDigits
+000080  MAIN
+000080  @cinit1
+000090  @cinit2
+
+Project Directory:
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSistimata_6th_Term\Askisi1.a\
+
+Project Files:
+    Askisi1_a.c                                             [13-Μαρ-25 00:24  CRC=309D9FC4]
+    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 13:55  CRC=51CBC36F]
+    C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 15:40  CRC=A157EDDE]
+    C:\Program Files (x86)\PICC\Drivers\string.h            [14-Ιουλ-11 10:13  CRC=23EDEC8F]
+    C:\Program Files (x86)\PICC\Drivers\stddef.h            [16-Ιουλ-10 09:27  CRC=897CEC6C]
+    C:\Program Files (x86)\PICC\Drivers\ctype.h             [03-Ιαν-08 13:55  CRC=2D1F019F]
+
+Source signature=2B6A2D4A
+
+Units:
+    Askisi1_a (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   Askisi1_a.xsym
+    Errors:      Askisi1_a.err
+    Ext Symbols: Askisi1_a.esym
+    INHX32:      Askisi1_a.hex
+    Symbols:     Askisi1_a.sym
+    List:        Askisi1_a.lst
+    Debug/COFF:  Askisi1_a.cof
+    Project:     Askisi1_a.ccspjt
+    Call Tree:   Askisi1_a.tre
+    Statistics:  Askisi1_a.STA

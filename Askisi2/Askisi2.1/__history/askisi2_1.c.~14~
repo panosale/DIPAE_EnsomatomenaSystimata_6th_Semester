@@ -1,0 +1,43 @@
+#include <main_.h>
+
+#use standard_io ( A )
+#use standard_io ( B )
+#use standard_io ( C )
+#byte PORTA =0xF80
+#byte PORTB =0xF81
+#byte PORTC =0xF82
+#byte PORTD =0xF83
+#byte PORTE =0xF84
+
+
+void main() {
+   set_tris_b(0x00); // Ορισμός του PORTB σαν έξοδο.
+   set_tris_d(0xff); // Ορισμός του PORTD σαν είσοδο.
+   int i;   
+   while (TRUE) {
+      while (!input(PIN_D7)) {} // Αναμονή έναρξης προγράμματος.
+      if (input(PIN_D0)) { // Η πόρτα του κάδου είναι κλειστή.
+         delay_ms(2000);
+         output_high(PIN_B1); // ’νοιγμα βαλβίδας νερού.
+         while (input(PIN_D1)) { // Γέμισε ο κάδος με νερό.
+            output_low(PIN_B1); // Κλείσιμο βαλβίδας νερού.
+            delay_ms(2000); // Μετά από 2 δευτερόλεπτα...
+            output_high(PIN_B2); // ...ανάβει η αντίσταση θέρμανσης νερού
+            delay_ms(3000); // Μετά από 3 δευτερόλεπτα...         
+            for (i = 0; i < 10; i++) { // ...αρχίζει να κινείται ο κάδος...
+               output_high(PIN_B3); // Κίνηση κάδου αριστερά.
+               output_high(PIN_B4); // Κίνηση κάδου αριστερά.
+               delay_ms(3000); // Μετά από 3 δευτερόλεπτα...
+               output_low(PIN_B3); // Κίνηση κάδου δεξιά.
+               output_low(PIN_B4); // Κίνηση κάδου δεξιά.
+            } // ... μετά από 10 δευτερόλεπτα σταματάει η κίνηση του κάδου.
+            output_low(PIN_B2); // Σβήνει η αντίσταση θέρμανσης νερού.
+            delay_ms(3000); // Μετά από 3 δευτερόλεπτα...
+            output_high(PIN_B5); // ...ενεργοποίηση αντλίας νερού εξόδου.
+            delay_ms(5000); // Μετά από 5 δευτερόλεπτα...
+            output_low(PIN_B5); // ...απενεργοποίηση αντλίας νερού εξόδου.
+         }
+      }
+   }
+}
+ 

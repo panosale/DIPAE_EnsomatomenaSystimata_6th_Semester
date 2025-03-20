@@ -1,0 +1,73 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+005     MAIN.logical1
+006     checkDigits.n
+006     MAIN.@SCRATCH1
+007     checkDigits.i
+008     checkDigits.tmp
+009     checkDigits.digit1
+00A     checkDigits.@SCRATCH1
+F80     PORTA
+F81     PORTB
+F82     PORTC
+F83     PORTD
+F83     PSP_DATA
+F84     PORTE
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  checkDigits
+00004C  MAIN
+00004C  @cinit1
+00005C  @cinit2
+
+Project Directory:
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSistimata_6th_Term\Askisi2.3\
+
+Project Files:
+    askisi2_3.c                                             [17-Μαρ-25 20:53  CRC=2E26B6E4]
+    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 13:55  CRC=51CBC36F]
+    C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 15:40  CRC=A157EDDE]
+
+Source signature=C2A2560F
+
+Units:
+    askisi2_3 (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   askisi2_3.xsym
+    Errors:      askisi2_3.err
+    Ext Symbols: askisi2_3.esym
+    INHX32:      askisi2_3.hex
+    Symbols:     askisi2_3.sym
+    List:        askisi2_3.lst
+    Debug/COFF:  askisi2_3.cof
+    Project:     askisi2_3.ccspjt
+    Call Tree:   askisi2_3.tre
+    Statistics:  askisi2_3.STA

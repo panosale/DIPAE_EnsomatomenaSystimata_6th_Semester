@@ -1,0 +1,201 @@
+CCS PCH C Compiler, Version 5.011, 5967               17-Μαρ-25 20:53
+
+               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSistimata_6th_Term\Askisi2.3\askisi2_3.lst
+
+               ROM used:   140 bytes (0%)
+                           Largest free fragment is 32628
+               RAM used:   5 (0%) at main() level
+                           10 (0%) worst case
+               Stack used: 1 locations
+               Stack size: 31
+
+*
+0000:  GOTO   004C
+.................... // ΔΙΠΑΕ - Ενσωματωμένα Συστήματα - 6ο Εξάμηνο 
+.................... // Αλευρόπουλος Παναγιώτης - ΑΜ: 2022005 
+.................... // ’σκηση 2.3 
+.................... #include <main_.h> 
+.................... #include <18F4550.h> 
+.................... //////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #device adc=10 
+....................  
+.................... #FUSES NOWDT                     //No Watch Dog Timer 
+.................... #FUSES WDT32768                    //Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES HSPLL                     //High Speed Crystal/Resonator with PLL enabled 
+.................... #FUSES NOPROTECT                 //Code not protected from reading 
+.................... #FUSES BROWNOUT                //No brownout reset 
+.................... //#FUSES BORV20                    //Brownout reset at 2.0V 
+.................... #FUSES NOPUT                     //No Power Up Timer 
+.................... #FUSES NOCPD                     //No EE protection 
+.................... #FUSES STVREN                    //Stack full/underflow will cause reset 
+.................... #FUSES NODEBUG                   //No Debug mode for ICD 
+.................... #FUSES NOLVP                     //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOWRT                     //Program memory not write protected 
+.................... #FUSES NOWRTD                    //Data EEPROM not write protected 
+.................... #FUSES NOIESO                      //Internal External Switch Over mode enabled 
+.................... #FUSES NOFCMEN                     //Fail-safe clock monitor enabled 
+.................... #FUSES NOPBADEN                 ///PORTB pins are configured as analog input channels on RESET 
+.................... #FUSES NOWRTC                    //configuration not registers write protected 
+.................... #FUSES NOWRTB                    //Boot block not write protected 
+.................... #FUSES NOEBTR                    //Memory not protected from table reads 
+.................... #FUSES NOEBTRB                   //Boot block not protected from table reads 
+.................... #FUSES NOCPB                     //No Boot Block code protection 
+.................... #FUSES MCLR                      //Master Clear pin enabled 
+.................... #FUSES NOLPT1OSC                   //Timer1 configured for low-power operation 
+.................... #FUSES NOXINST                   //Extended set extension and Indexed Addressing mode disabled (Legacy mode) 
+.................... #FUSES PLL5                      //Divide By 12(48MHz oscillator input) 
+.................... #FUSES CPUDIV1                   //System Clock by 2 
+.................... #FUSES USBDIV                    //USB clock source comes from PLL divide by 2 
+.................... #FUSES VREGEN                    //USB voltage regulator enabled 
+.................... //#FUSES ICPRT                     //ICPRT enabled 
+.................... #FUSES WRTB 
+.................... #FUSES NOICPRT  
+.................... #FUSES NOLPT1OSC 
+.................... #FUSES CCP2B3  
+.................... #FUSES NOCPB 
+.................... #FUSES NOCPD 
+.................... #FUSES NOWRTC 
+.................... #FUSES NOWRTD 
+.................... #FUSES NOEBTR 
+.................... #FUSES NOEBTRB               
+....................  
+.................... /* systm clock is 48 MHz */ 
+.................... #use delay(clock=48000000,RESTART_WDT) 
+.................... /* --- BEGIN: changes required for bootloader ------------------------------ */ 
+....................  
+.................... /* ------------------------------------------------------------------------- */ 
+.................... /* map reset vector and interrupt vector                                     */ 
+.................... /* 0x000-0x7FF is used by the bootloader. The bootloader maps the original   */ 
+.................... /* reset vecotr (0x000) to 0x800 and the reset vector (0x008) to 0x800.      */ 
+.................... /* ------------------------------------------------------------------------- */ 
+.................... //#build (reset=0x800, interrupt=0x808) 
+....................  
+.................... /* ------------------------------------------------------------------------- */ 
+.................... /* reserve boot block area                                                   */ 
+.................... /* This memory range is used by the bootloader, so the application must not  */ 
+.................... /* use this area.                                                            */ 
+.................... /* ------------------------------------------------------------------------- */ 
+.................... //#org 0, 0x7FF {} 
+....................  
+.................... /* --- END: changes required for bootloader -------------------------------- */ 
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+.................... #use standard_io ( A ) 
+.................... #use standard_io ( B ) 
+.................... #use standard_io ( C ) 
+.................... #byte PORTA =0xF80 
+.................... #byte PORTB =0xF81 
+.................... #byte PORTC =0xF82 
+.................... #byte PORTD =0xF83 
+.................... #byte PORTE =0xF84 
+....................  
+.................... int checkDigits(int n) { // Συνάρτηση ελέγχου του πλήθους των 1 στην παράμετρο n  
+0004:  CLRF   08
+0006:  MOVLW  01
+0008:  MOVWF  09
+....................    int i, tmp = 0; 
+....................    int digit1 = 1; 
+....................      for(i = 0; i < 8; i++) { 
+000A:  CLRF   07
+000C:  MOVF   07,W
+000E:  SUBLW  07
+0010:  BNC   0044
+....................         if ((((digit1<<i) & n)>>i) == 1){ 
+0012:  MOVFF  09,00
+0016:  MOVF   07,W
+0018:  MOVWF  01
+001A:  BZ    0024
+001C:  BCF    FD8.0
+001E:  RLCF   00,F
+0020:  DECFSZ 01,F
+0022:  BRA    001C
+0024:  MOVF   00,W
+0026:  ANDWF  06,W
+0028:  MOVWF  00
+002A:  MOVF   07,W
+002C:  MOVWF  01
+002E:  BZ    0038
+0030:  BCF    FD8.0
+0032:  RRCF   00,F
+0034:  DECFSZ 01,F
+0036:  BRA    0030
+0038:  MOVF   00,W
+003A:  SUBLW  01
+003C:  BNZ   0040
+....................            tmp++; 
+003E:  INCF   08,F
+....................        } 
+0040:  INCF   07,F
+0042:  BRA    000C
+....................      } 
+....................    return tmp; // Επιστροφή του πλήθους των 1 στην παράμετρο n 
+0044:  MOVFF  08,01
+0048:  GOTO   006C (RETURN)
+.................... } 
+....................  
+.................... void main() 
+004C:  CLRF   FF8
+004E:  BCF    FD0.7
+0050:  MOVF   FC1,W
+0052:  ANDLW  C0
+0054:  IORLW  0F
+0056:  MOVWF  FC1
+0058:  MOVLW  07
+005A:  MOVWF  FB4
+.................... { 
+....................    set_tris_b(0x00); // Ορίζουμε τη θύρα B σαν ΕΞΟΔΟ (0) 
+005C:  MOVLW  00
+005E:  MOVWF  F93
+....................    set_tris_d(0xff); // Ορίζουμε τη θύρα D σαν ΕΙΣΟΔΟ (1) 
+0060:  MOVLW  FF
+0062:  MOVWF  F95
+....................    int logical1 = 0; 
+0064:  CLRF   05
+....................    while(TRUE) {    
+....................       logical1 = checkDigits(PORTD); 
+0066:  MOVFF  F83,06
+006A:  BRA    0004
+006C:  MOVFF  01,05
+....................       if (logical1 % 2 == 0) { // Αν ο αριθμός των 1 είναι ζυγός... 
+0070:  MOVF   05,W
+0072:  ANDLW  01
+0074:  BNZ   0080
+....................          output_high(PIN_B0); // ... ανάβει το LSB του PIN_B0 
+0076:  BCF    F93.0
+0078:  BSF    F8A.0
+....................          output_low(PIN_B1); // ... σβήνει το LSB του PIN_B1 
+007A:  BCF    F93.1
+007C:  BCF    F8A.1
+....................       } 
+007E:  BRA    0088
+....................       else { // Αν ο αριθμός των 1 είναι μονός... 
+....................          output_low(PIN_B0); // ... σβήνει το LSB του PIN_B0 
+0080:  BCF    F93.0
+0082:  BCF    F8A.0
+....................          output_high(PIN_B1); // ... ανάβει το LSB του PIN_B1 
+0084:  BCF    F93.1
+0086:  BSF    F8A.1
+....................       } 
+0088:  BRA    0066
+....................    } 
+.................... } 
+....................  
+008A:  SLEEP 
+....................  
+
+Configuration Fuses:
+   Word  1: 0E24   PLL5 CPUDIV1 USBDIV HSPLL NOFCMEN NOIESO
+   Word  2: 1E3F   NOPUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8000   CCP2B3 NOPBADEN NOLPT1OSC MCLR
+   Word  4: 0081   STVREN NOLVP ICSP1 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: A00F   NOWRT NOWRTC WRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

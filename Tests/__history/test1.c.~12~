@@ -1,0 +1,23 @@
+#include <main_.h>
+
+#use standard_io ( A )
+#use standard_io ( B )
+#use standard_io ( C )
+#byte PORTA =0xF80
+#byte PORTB =0xF81
+#byte PORTC =0xF82
+#byte PORTD =0xF83
+#byte PORTE =0xF84
+
+void main() {
+   set_tris_b(0x00);
+   while (TRUE) {
+      output_toggle(PIN_B0);
+      output_toggle(!PIN_B1);
+      output_toggle(PIN_B2);
+      output_toggle(PIN_B4);
+      output_toggle(PIN_B6);
+      delay_ms(1000);
+   }
+}
+

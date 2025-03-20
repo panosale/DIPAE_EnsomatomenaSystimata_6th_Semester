@@ -1,0 +1,31 @@
+include <main.h>
+// Ερώτηση 6
+main(void) {
+   short PORTB = 0x81; // int1
+   int s = 2;
+   while (s>1) {
+      int i;
+      for (i=1; i<10;i+1) {
+         PORTB=i;
+      }
+   }
+//    int i;
+//    printf("Hello, World!\n");
+// Ερώτηση 4
+//    const int a=10;
+//    int b;
+//    int c;
+//    c=b>a;
+// Ερώτηση 5
+//   int a=0;
+//   int b=2;
+//   short PORTB = 0x81; // Ο τύπος πρέπει να γίνει short
+//   float c;
+//    for (c=1; c<=10; c++) {
+//        a = b+c;
+//        b = a;
+//        PORTB = c;
+//    }
+   
+}
+

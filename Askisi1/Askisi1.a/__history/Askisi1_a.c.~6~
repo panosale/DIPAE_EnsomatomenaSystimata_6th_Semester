@@ -1,0 +1,38 @@
+// ΔΙΠΑΕ - Ενσωματωμένα Συστήματα - 6ο Εξάμηνο
+// Αλευρόπουλος Παναγιώτης - ΑΜ: 2022005
+// ’σκηση 1.α
+#include <main_.h>
+#include <string.h>
+
+#use standard_io(A)
+#use standard_io(B)
+#use standard_io(C)
+#byte PORTA=0xF80
+#byte PORTB=0xF81
+#byte PORTC=0xF82
+#byte PORTD=0xF83
+#byte PORTE=0xF84
+
+void main()
+{
+   set_tris_b(0x00);
+   set_tris_d(0xff);
+   
+   char patronymo[20] = "Vasilios";
+   int mikos_patronymou = strlen(patronymo);
+   while(TRUE) {
+      int tmp_portd;
+      int logical1 = 0;
+      int i;
+      int d = 1;
+      tmp_portd = PORTD;
+      tmp_portd = tmp_portd + mikos_patronymou;
+      for(i=0; i<8; i++) {
+         if ((((d<<i) & tmp_portd)>>i)== 1){
+         logical1++;
+         }
+      }
+   PORTB = ~ logical1%2;
+   }
+}
+
