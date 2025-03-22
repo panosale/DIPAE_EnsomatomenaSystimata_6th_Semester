@@ -13,11 +13,11 @@ Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   43    28 100  askisi2_1.c
+   44    28 100  askisi2_1.c
    67     0   0  C:\Program Files (x86)\PICC\Devices\main_.h
   821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
 ----- -----
-  931    28 Total
+  932    28 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -28,14 +28,14 @@ Page ROM  %  RAM   Vol Diff  Functions:
 Program metrics:
     Functions               1
     Statements              28
-    Comments                181
+    Comments                188
     Volume (V)              649
     Difficulty (D)          4.6
     Effort to implement (E) 2995
     Time to implement (T)   3 minutes
     Est Delivered Bugs (B)  0
     Cyclomatic Complexity   2
-    Maintainability (MI)    129
+    Maintainability (MI)    117
 
  Segment     Used  Free
 -----------  ----  ----

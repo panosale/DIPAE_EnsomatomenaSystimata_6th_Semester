@@ -1,6 +1,6 @@
-CCS PCH C Compiler, Version 5.011, 5967               17-Μαρ-25 00:10
+CCS PCH C Compiler, Version 5.011, 5967               22-Μαρ-25 00:08
 
-               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSistimata_6th_Term\Askisi2.1\askisi2_1.lst
+               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi2\Askisi2.1\askisi2_1.lst
 
                ROM used:   224 bytes (1%)
                            Largest free fragment is 32544
@@ -11,6 +11,9 @@ CCS PCH C Compiler, Version 5.011, 5967               17-Μαρ-25 00:10
 
 *
 0000:  GOTO   0030
+.................... // ΔΙΠΑΕ - Ενσωματωμένα Συστήματα - 6ο Εξάμηνο 
+.................... // Αλευρόπουλος Παναγιώτης - ΑΜ: 2022005 
+.................... // ’σκηση 2.1 
 .................... #include <main_.h> 
 .................... #include <18F4550.h> 
 .................... //////// Standard Header file for the PIC18F4550 device //////////////// 
@@ -183,24 +186,22 @@ CCS PCH C Compiler, Version 5.011, 5967               17-Μαρ-25 00:10
 0092:  MOVF   05,W
 0094:  SUBLW  09
 0096:  BNC   00B2
-....................                output_toggle(PIN_B3); // Κίνηση κάδου αριστερά. 
+....................                output_toggle(PIN_B3); // Κίνηση κάδου αριστερά-δεξιά. 
 0098:  BCF    F93.3
 009A:  BTG    F8A.3
-....................                output_toggle(PIN_B4); // Κίνηση κάδου αριστερά. 
-009C:  BCF    F93.4
-009E:  BTG    F8A.4
 ....................                delay_ms(3000); // Μετά από 3 δευτερόλεπτα... 
-00A0:  MOVLW  0C
-00A2:  MOVWF  06
-00A4:  MOVLW  FA
-00A6:  MOVWF  07
-00A8:  RCALL  0004
-00AA:  DECFSZ 06,F
-00AC:  BRA    00A4
+009C:  MOVLW  0C
+009E:  MOVWF  06
+00A0:  MOVLW  FA
+00A2:  MOVWF  07
+00A4:  RCALL  0004
+00A6:  DECFSZ 06,F
+00A8:  BRA    00A0
+....................                output_toggle(PIN_B4); // Κίνηση κάδου αριστερά-δεξιά. 
+00AA:  BCF    F93.4
+00AC:  BTG    F8A.4
 00AE:  INCF   05,F
 00B0:  BRA    0092
-.................... //               output_low(PIN_B3); // Κίνηση κάδου δεξιά. 
-.................... //               output_low(PIN_B4); // Κίνηση κάδου δεξιά. 
 ....................             } // ... μετά από 10 δευτερόλεπτα σταματάει η κίνηση του κάδου. 
 ....................             output_low(PIN_B2); // Σβήνει η αντίσταση θέρμανσης νερού. 
 00B2:  BCF    F93.2

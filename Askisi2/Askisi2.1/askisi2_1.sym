@@ -33,14 +33,14 @@ ROM Allocation:
 000040  @cinit2
 
 Project Directory:
-    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSistimata_6th_Term\Askisi2.1\
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi2\Askisi2.1\
 
 Project Files:
-    askisi2_1.c                                             [17-Ìבס-25 00:10  CRC=24761C88]
+    askisi2_1.c                                             [22-Ìבס-25 00:08  CRC=DE0A784D]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Ìבס-20 13:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Áץד-13 15:40  CRC=A157EDDE]
 
-Source signature=B8F1BBB3
+Source signature=72861778
 
 Units:
     askisi2_1 (main)
