@@ -13,8 +13,8 @@
 #byte PORTD =0xF83 // Orismos ton thiron me ti thesi tous sti mnimi
 #byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi
 
-const int8 changed_0_to_1 = 100;
-const int16 changed_1_to_0 = 500;
+const int changed_0_to_1 = 100;
+const int changed_1_to_0 = 1000;
 
 // Dilosi global metavliton
 byte last = 0;
@@ -37,7 +37,7 @@ void main()
          }
          else {
             PORTD = PORTD ^ 0x10;
-            delay_ms(changed_0_to_1);
+            delay_ms(changed_1_to_0);
          }
       }
       if ((changed_bit ^ 0x20) == 0) { // Egine allagi tou RB5
@@ -47,7 +47,7 @@ void main()
          }
          else {
             PORTD = PORTD ^ 0x20;
-            delay_ms(changed_0_to_1);
+            delay_ms(changed_1_to_0);
          }
       }
       if ((changed_bit ^ 0x40) == 0) { // Egine allagi tou RB6
@@ -57,7 +57,7 @@ void main()
          }
          else {
             PORTD = PORTD ^ 0x40;
-            delay_ms(changed_0_to_1);
+            delay_ms(changed_1_to_0);
          }
       }
       if ((changed_bit ^ 0x80) == 0) { // Egine allagi tou RB7
@@ -67,7 +67,7 @@ void main()
          }
          else {
             PORTD = PORTD ^ 0x80;
-            delay_ms(changed_0_to_1);
+            delay_ms(changed_1_to_0);
          }
       }
    }

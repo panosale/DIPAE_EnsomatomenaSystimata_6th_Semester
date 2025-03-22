@@ -14,7 +14,7 @@
 #byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi
 
 const int8 changed_0_to_1 = 100;
-const int16 changed_1_to_0 = 500;
+const int16 changed_1_to_0 = 1000;
 
 // Dilosi global metavliton
 byte last = 0;

@@ -43,10 +43,10 @@ FBE     CCP_1
 FBF     CCP_1_HIGH
 FE1-FE2 @READ_PACKED_MEMORY.P1
 FE1-FE2 @WRITE_PACKED_MEMORY.P2
-FE9-FEA @WRITE_PROGRAM_MEMORY.P1
-FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
 FE9-FEA @READ_PROGRAM_MEMORY.P3
-FE9-FEA @WRITE_PACKED_MEMORY.P4
+FE9-FEA @READ_PACKED_MEMORY.P4
 FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
 FF6-FF8 @READ_PROGRAM_MEMORY.P2
 
@@ -54,19 +54,19 @@ ROM Allocation:
 000096  rb
 000116  init
 00012C  @delay_ms1
-000158  main
 000158  @cinit1
+000158  main
 000172  @cinit2
 
 Project Directory:
     F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi3\TestInterrupts2\
 
 Project Files:
-    testint2.c                                              [22-Ìבס-25 21:49  CRC=87F25115]
+    testint2.c                                              [22-Ìבס-25 23:03  CRC=4F5BF0A7]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Ìבס-20 13:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Áץד-13 15:40  CRC=A157EDDE]
 
-Source signature=1C6DF040
+Source signature=E3D78FD2
 
 Units:
     testint2 (main)

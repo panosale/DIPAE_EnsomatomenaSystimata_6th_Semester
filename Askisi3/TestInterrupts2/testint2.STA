@@ -13,11 +13,11 @@ Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  132    79 100  testint2.c
+  135    79 100  testint2.c
    67     0   0  C:\Program Files (x86)\PICC\Devices\main_.h
   821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
 ----- -----
- 1020    79 Total
+ 1023    79 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------

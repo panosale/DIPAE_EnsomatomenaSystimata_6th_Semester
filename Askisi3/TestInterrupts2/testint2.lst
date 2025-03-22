@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:51
+CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 23:03
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi3\TestInterrupts2\testint2.lst
 
@@ -161,6 +161,9 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:51
 .................... #byte PORTD =0xF83 // Orismos ton thiron me ti thesi tous sti mnimi 
 .................... #byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi 
 ....................  
+.................... const int8 changed_0_to_1 = 100; 
+.................... const int16 changed_1_to_0 = 500; 
+....................  
 .................... // Dilosi global metavliton 
 .................... byte last = 0; 
 .................... byte old = 0; 
@@ -199,7 +202,7 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:51
 ....................             PORTD = PORTD ^ 0x10; 
 017E:  MOVLW  10
 0180:  XORWF  F83,F
-....................             delay_ms(500); 
+....................             delay_ms(changed_1_to_0); 
 0182:  MOVLW  02
 0184:  MOVWF  1A
 0186:  MOVLW  FA
@@ -213,7 +216,7 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:51
 ....................             PORTD = PORTD ^ 0x10; 
 0192:  MOVLW  10
 0194:  XORWF  F83,F
-....................             delay_ms(100); 
+....................             delay_ms(changed_0_to_1); 
 0196:  MOVLW  64
 0198:  MOVWF  1B
 019A:  RCALL  012C
@@ -229,7 +232,7 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:51
 ....................             PORTD = PORTD ^ 0x20; 
 01A6:  MOVLW  20
 01A8:  XORWF  F83,F
-....................             delay_ms(500); 
+....................             delay_ms(changed_1_to_0); 
 01AA:  MOVLW  02
 01AC:  MOVWF  1A
 01AE:  MOVLW  FA
@@ -243,7 +246,7 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:51
 ....................             PORTD = PORTD ^ 0x20; 
 01BA:  MOVLW  20
 01BC:  XORWF  F83,F
-....................             delay_ms(100); 
+....................             delay_ms(changed_0_to_1); 
 01BE:  MOVLW  64
 01C0:  MOVWF  1B
 01C2:  RCALL  012C
@@ -259,7 +262,7 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:51
 ....................             PORTD = PORTD ^ 0x40; 
 01CE:  MOVLW  40
 01D0:  XORWF  F83,F
-....................             delay_ms(500); 
+....................             delay_ms(changed_1_to_0); 
 01D2:  MOVLW  02
 01D4:  MOVWF  1A
 01D6:  MOVLW  FA
@@ -273,7 +276,7 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:51
 ....................             PORTD = PORTD ^ 0x40; 
 01E2:  MOVLW  40
 01E4:  XORWF  F83,F
-....................             delay_ms(100); 
+....................             delay_ms(changed_0_to_1); 
 01E6:  MOVLW  64
 01E8:  MOVWF  1B
 01EA:  RCALL  012C
@@ -289,7 +292,7 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:51
 ....................             PORTD = PORTD ^ 0x80; 
 01F6:  MOVLW  80
 01F8:  XORWF  F83,F
-....................             delay_ms(500); 
+....................             delay_ms(changed_1_to_0); 
 01FA:  MOVLW  02
 01FC:  MOVWF  1A
 01FE:  MOVLW  FA
@@ -303,7 +306,7 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:51
 ....................             PORTD = PORTD ^ 0x80; 
 020A:  MOVLW  80
 020C:  XORWF  F83,F
-....................             delay_ms(100); 
+....................             delay_ms(changed_0_to_1); 
 020E:  MOVLW  64
 0210:  MOVWF  1B
 0212:  RCALL  012C
