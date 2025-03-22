@@ -1,0 +1,126 @@
+// DIPAE - Enosmatomena Systimata - 6o Eksamino
+// AM: 2022005
+// Askisi 2.2
+#include <main_.h>
+
+#use standard_io ( A )
+#use standard_io ( B )
+#use standard_io ( C )
+#byte PORTA =0xF80
+#byte PORTB =0xF81
+#byte PORTC =0xF82
+#byte PORTD =0xF83
+#byte PORTE =0xF84
+
+void main()
+{
+   set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
+   set_tris_d(0xff); // Orismos tou PORTD san eisodo (1)
+   const int16 default_delay = 300;
+   int8 tmp_portd = 0b11110000;
+   int8 i, j;
+   while (TRUE) {
+      if (input_change_d()) {
+         tmp_portd = 0b11110000;
+         tmp_portd = tmp_portd & PORTD;
+         tmp_portd /= 16;
+         for (i = 0; i < tmp_portd; i++) {
+            PORTB = 1;
+            //output_high(PIN_B0);
+            for (j = 1; j < 8; j++) {
+               delay_ms(default_delay);
+               PORTB = PORTB * 2;
+            }
+            for (j = 8; j > 1; j--) {
+               delay_ms(default_delay);
+               PORTB = PORTB / 2;
+            }
+            PORTB = 0;
+            //output_low(PIN_B0);
+         }
+
+/*            output_high(PIN_B0);
+            delay_ms(default_delay);
+            output_low(PIN_B0);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B1);
+            delay_ms(default_delay);
+            output_low(PIN_B1);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B2);
+            delay_ms(default_delay);
+            output_low(PIN_B2);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B3);
+            delay_ms(default_delay);
+            output_low(PIN_B3);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B4);
+            delay_ms(default_delay);
+            output_low(PIN_B4);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B5);
+            delay_ms(default_delay);
+            output_low(PIN_B5);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B6);
+            delay_ms(default_delay);
+            output_low(PIN_B6);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B7);
+            delay_ms(default_delay);
+            output_low(PIN_B7);
+            delay_ms(default_delay);
+   
+         
+            output_high(PIN_B7);
+            delay_ms(default_delay);
+            output_low(PIN_B7);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B6);
+            delay_ms(default_delay);
+            output_low(PIN_B6);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B5);
+            delay_ms(default_delay);
+            output_low(PIN_B5);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B4);
+            delay_ms(default_delay);
+            output_low(PIN_B4);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B3);
+            delay_ms(default_delay);
+            output_low(PIN_B3);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B2);
+            delay_ms(default_delay);
+            output_low(PIN_B2);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B1);
+            delay_ms(default_delay);
+            output_low(PIN_B1);
+            delay_ms(default_delay);
+   
+            output_high(PIN_B0);
+            delay_ms(default_delay);
+            output_low(PIN_B0);
+            delay_ms(default_delay);
+*/         
+      }   
+   }
+}   
+

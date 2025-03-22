@@ -24,10 +24,8 @@ void main()
          tmp_portd = 0b11110000;
          tmp_portd = tmp_portd & PORTD;
          tmp_portd /= 16;
-         if (tmp_portd > 0) {
-            PORTB = 1;
-            delay_ms(default_delay);
-         }
+         PORTB = 1;
+         delay_ms(default_delay);
          for (i = 0; i < tmp_portd; i++) {
             for (j = 1; j < 8; j++) {
                delay_ms(default_delay);

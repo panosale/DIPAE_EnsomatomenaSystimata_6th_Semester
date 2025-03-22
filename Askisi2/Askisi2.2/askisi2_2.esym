@@ -1,8 +1,9 @@
-D G "__PCH__" 0 0 ""5.011""
-D G "__DEVICE__" 0 0 ""
-D G "__DATE__" 0 0 ""20-Μαρ-25""
-D G "__TIME__" 0 0 ""22:46:48"" "ΔΙΠΑΕ - Ενσωματωμένα Συστήματα - 6ο Εξάμηνο"
-c L "set_tris_a" 0 0 2 "FUNCTION"
+d G "INT_USB" 2 818 "0x00A020"
+D G "__PCH__" 0 49 ""5.011""
+D G "__DEVICE__" 0 49 "4550"
+D G "__DATE__" 0 49 ""22-Μαρ-25""
+D G "__TIME__" 0 49 ""19:24:42"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
+c L "set_tris_a" 0 17 2 "FUNCTION"
 c L "set_tris_a" 2 1 22 "FUNCTION"
 v L "value" 2 36 "int8" `54 
 f B "set_tris_a" 2 36 "void(int8 value)" `53 
@@ -907,7 +908,9 @@ C L "main" 0 17 1 "FUNCTION"
 C L "main" 0 17 1 "FUNCTION"
 V L "default_delay" 0 19 "int16" `642 
 V L "tmp_portd" 0 20 "int8" `644 
-V L "i" 0 22 "int8" `645 
+V L "i" 0 21 "int8" `645 
+V L "j" 0 21 "int8" `646 
+C L "main" 0 17 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

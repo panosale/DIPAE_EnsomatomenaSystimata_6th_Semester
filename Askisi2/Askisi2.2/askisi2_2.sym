@@ -6,7 +6,9 @@
 004     @CHANGE_D
 005     main.tmp_portd
 006     main.i
-007     @delay_ms1.P1
+007     main.j
+008     main.@SCRATCH1
+009     @delay_ms1.P1
 F80     PORTA
 F81     PORTB
 F82     PORTC
@@ -15,18 +17,18 @@ F83     PSP_DATA
 F84     PORTE
 FB4.6   C1OUT
 FB4.7   C2OUT
-FBB     CCP_2
 FBB     CCP_2_LOW
+FBB     CCP_2
 FBC     CCP_2_HIGH
-FBE     CCP_1
 FBE     CCP_1_LOW
+FBE     CCP_1
 FBF     CCP_1_HIGH
 FE1-FE2 @READ_PACKED_MEMORY.P1
 FE1-FE2 @WRITE_PACKED_MEMORY.P2
 FE9-FEA @WRITE_PROGRAM_MEMORY.P1
-FE9-FEA @WRITE_PACKED_MEMORY.P2
-FE9-FEA @READ_PACKED_MEMORY.P3
-FE9-FEA @READ_PROGRAM_MEMORY.P4
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
 FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
 FF6-FF8 @READ_PROGRAM_MEMORY.P2
 
@@ -40,11 +42,11 @@ Project Directory:
     F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi2\Askisi2.2\
 
 Project Files:
-    askisi2_2.c                                             [20-Ìבס-25 22:35  CRC=77EDA07C]
+    askisi2_2.c                                             [22-Ìבס-25 19:24  CRC=54AB49D8]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Ìבס-20 13:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Áץד-13 15:40  CRC=A157EDDE]
 
-Source signature=0C693FA7
+Source signature=E926E903
 
 Units:
     askisi2_2 (main)

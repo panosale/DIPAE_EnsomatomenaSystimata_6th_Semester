@@ -1,19 +1,19 @@
-CCS PCH C Compiler, Version 5.011, 5967               20-Μαρ-25 22:46
+CCS PCH C Compiler, Version 5.011, 5967               22-Μαρ-25 19:24
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi2\Askisi2.2\askisi2_2.lst
 
-               ROM used:   450 bytes (1%)
-                           Largest free fragment is 32318
-               RAM used:   5 (0%) at main() level
-                           8 (0%) worst case
+               ROM used:   232 bytes (1%)
+                           Largest free fragment is 32536
+               RAM used:   6 (0%) at main() level
+                           10 (0%) worst case
                Stack used: 1 locations
                Stack size: 31
 
 *
 0000:  GOTO   0030
-.................... // ΔΙΠΑΕ - Ενσωματωμένα Συστήματα - 6ο Εξάμηνο 
-.................... // Αλευρόπουλος Παναγιώτης - ΑΜ: 2022005 
-.................... // ’σκηση 2.2 
+.................... // DIPAE - Enosmatomena Systimata - 6o Eksamino 
+.................... // AM: 2022005 
+.................... // Askisi 2.2 
 .................... #include <main_.h> 
 .................... #include <18F4550.h> 
 .................... //////// Standard Header file for the PIC18F4550 device //////////////// 
@@ -66,7 +66,7 @@ CCS PCH C Compiler, Version 5.011, 5967               20-Μαρ-25 22:46
 .................... /* systm clock is 48 MHz */ 
 .................... #use delay(clock=48000000,RESTART_WDT) 
 0004:  CLRF   FEA
-0006:  MOVLW  07
+0006:  MOVLW  09
 0008:  MOVWF  FE9
 000A:  MOVF   FEF,W
 000C:  BZ    002E
@@ -130,18 +130,18 @@ CCS PCH C Compiler, Version 5.011, 5967               20-Μαρ-25 22:46
 003E:  MOVLW  07
 0040:  MOVWF  FB4
 .................... { 
-....................    set_tris_b(0x00); // Ορίζουμε τη θύρα B σαν ΕΞΟΔΟ (0) 
+....................    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0) 
 0042:  MOVLW  00
 0044:  MOVWF  F93
-....................    set_tris_d(0xff); // Ορίζουμε τη θύρα D σαν ΕΙΣΟΔΟ (1) 
+....................    set_tris_d(0xff); // Orismos tou PORTD san eisodo (1) 
 0046:  MOVLW  FF
 0048:  MOVWF  F95
-....................    const int16 default_delay = 100; 
+....................    const int16 default_delay = 300; 
 ....................    int8 tmp_portd = 0b11110000; 
+....................    int8 i, j; 
 004A:  MOVLW  F0
 004C:  MOVWF  05
 ....................    while (TRUE) { 
-....................       int8 i; 
 ....................       if (input_change_d()) { 
 004E:  MOVFF  F83,00
 0052:  MOVF   04,W
@@ -149,273 +149,100 @@ CCS PCH C Compiler, Version 5.011, 5967               20-Μαρ-25 22:46
 0056:  MOVWF  01
 0058:  MOVFF  F83,04
 005C:  MOVF   01,W
-005E:  BTFSC  FD8.2
-0060:  BRA    01BE
+005E:  BZ    00E4
 ....................          tmp_portd = 0b11110000; 
-0062:  MOVLW  F0
-0064:  MOVWF  05
+0060:  MOVLW  F0
+0062:  MOVWF  05
 ....................          tmp_portd = tmp_portd & PORTD; 
-0066:  MOVF   F83,W
-0068:  ANDWF  05,F
+0064:  MOVF   F83,W
+0066:  ANDWF  05,F
 ....................          tmp_portd /= 16; 
-006A:  SWAPF  05,F
-006C:  MOVLW  0F
-006E:  ANDWF  05,F
-....................          for (i = 0; i < tmp_portd; i++) { 
-0070:  CLRF   06
-0072:  MOVF   05,W
-0074:  SUBWF  06,W
-0076:  BTFSC  FD8.0
-0078:  BRA    01BE
-....................             output_high(PIN_B0); 
-007A:  BCF    F93.0
-007C:  BSF    F8A.0
+0068:  SWAPF  05,F
+006A:  MOVLW  0F
+006C:  ANDWF  05,F
+....................          if (tmp_portd > 0) { 
+006E:  MOVF   05,F
+0070:  BZ    0084
+....................             PORTB = 1; 
+0072:  MOVLW  01
+0074:  MOVWF  F81
 ....................             delay_ms(default_delay); 
-007E:  MOVLW  64
-0080:  MOVWF  07
-0082:  RCALL  0004
-....................             output_low(PIN_B0); 
-0084:  BCF    F93.0
-0086:  BCF    F8A.0
-....................             delay_ms(default_delay); 
-0088:  MOVLW  64
-008A:  MOVWF  07
-008C:  RCALL  0004
-....................     
-....................             output_high(PIN_B1); 
-008E:  BCF    F93.1
-0090:  BSF    F8A.1
-....................             delay_ms(default_delay); 
-0092:  MOVLW  64
-0094:  MOVWF  07
-0096:  RCALL  0004
-....................             output_low(PIN_B1); 
-0098:  BCF    F93.1
-009A:  BCF    F8A.1
-....................             delay_ms(default_delay); 
-009C:  MOVLW  64
-009E:  MOVWF  07
-00A0:  RCALL  0004
-....................     
-....................             output_high(PIN_B2); 
-00A2:  BCF    F93.2
-00A4:  BSF    F8A.2
-....................             delay_ms(default_delay); 
-00A6:  MOVLW  64
-00A8:  MOVWF  07
-00AA:  RCALL  0004
-....................             output_low(PIN_B2); 
-00AC:  BCF    F93.2
-00AE:  BCF    F8A.2
-....................             delay_ms(default_delay); 
-00B0:  MOVLW  64
-00B2:  MOVWF  07
-00B4:  RCALL  0004
-....................     
-....................             output_high(PIN_B3); 
-00B6:  BCF    F93.3
-00B8:  BSF    F8A.3
-....................             delay_ms(default_delay); 
-00BA:  MOVLW  64
-00BC:  MOVWF  07
-00BE:  RCALL  0004
-....................             output_low(PIN_B3); 
-00C0:  BCF    F93.3
-00C2:  BCF    F8A.3
-....................             delay_ms(default_delay); 
-00C4:  MOVLW  64
-00C6:  MOVWF  07
-00C8:  RCALL  0004
-....................     
-....................             output_high(PIN_B4); 
-00CA:  BCF    F93.4
-00CC:  BSF    F8A.4
-....................             delay_ms(default_delay); 
-00CE:  MOVLW  64
-00D0:  MOVWF  07
-00D2:  RCALL  0004
-....................             output_low(PIN_B4); 
-00D4:  BCF    F93.4
-00D6:  BCF    F8A.4
-....................             delay_ms(default_delay); 
-00D8:  MOVLW  64
-00DA:  MOVWF  07
-00DC:  RCALL  0004
-....................     
-....................             output_high(PIN_B5); 
-00DE:  BCF    F93.5
-00E0:  BSF    F8A.5
-....................             delay_ms(default_delay); 
-00E2:  MOVLW  64
-00E4:  MOVWF  07
-00E6:  RCALL  0004
-....................             output_low(PIN_B5); 
-00E8:  BCF    F93.5
-00EA:  BCF    F8A.5
-....................             delay_ms(default_delay); 
-00EC:  MOVLW  64
-00EE:  MOVWF  07
-00F0:  RCALL  0004
-....................     
-....................             output_high(PIN_B6); 
-00F2:  BCF    F93.6
-00F4:  BSF    F8A.6
-....................             delay_ms(default_delay); 
-00F6:  MOVLW  64
-00F8:  MOVWF  07
-00FA:  RCALL  0004
-....................             output_low(PIN_B6); 
-00FC:  BCF    F93.6
-00FE:  BCF    F8A.6
-....................             delay_ms(default_delay); 
-0100:  MOVLW  64
-0102:  MOVWF  07
-0104:  RCALL  0004
-....................     
-....................             output_high(PIN_B7); 
-0106:  BCF    F93.7
-0108:  BSF    F8A.7
-....................             delay_ms(default_delay); 
-010A:  MOVLW  64
-010C:  MOVWF  07
-010E:  RCALL  0004
-....................             output_low(PIN_B7); 
-0110:  BCF    F93.7
-0112:  BCF    F8A.7
-....................             delay_ms(default_delay); 
-0114:  MOVLW  64
-0116:  MOVWF  07
-0118:  RCALL  0004
-....................     
-....................           
-....................             output_high(PIN_B7); 
-011A:  BCF    F93.7
-011C:  BSF    F8A.7
-....................             delay_ms(default_delay); 
-011E:  MOVLW  64
-0120:  MOVWF  07
-0122:  RCALL  0004
-....................             output_low(PIN_B7); 
-0124:  BCF    F93.7
-0126:  BCF    F8A.7
-....................             delay_ms(default_delay); 
-0128:  MOVLW  64
-012A:  MOVWF  07
-012C:  RCALL  0004
-....................     
-....................             output_high(PIN_B6); 
-012E:  BCF    F93.6
-0130:  BSF    F8A.6
-....................             delay_ms(default_delay); 
-0132:  MOVLW  64
-0134:  MOVWF  07
-0136:  RCALL  0004
-....................             output_low(PIN_B6); 
-0138:  BCF    F93.6
-013A:  BCF    F8A.6
-....................             delay_ms(default_delay); 
-013C:  MOVLW  64
-013E:  MOVWF  07
-0140:  RCALL  0004
-....................     
-....................             output_high(PIN_B5); 
-0142:  BCF    F93.5
-0144:  BSF    F8A.5
-....................             delay_ms(default_delay); 
-0146:  MOVLW  64
-0148:  MOVWF  07
-014A:  RCALL  0004
-....................             output_low(PIN_B5); 
-014C:  BCF    F93.5
-014E:  BCF    F8A.5
-....................             delay_ms(default_delay); 
-0150:  MOVLW  64
-0152:  MOVWF  07
-0154:  RCALL  0004
-....................     
-....................             output_high(PIN_B4); 
-0156:  BCF    F93.4
-0158:  BSF    F8A.4
-....................             delay_ms(default_delay); 
-015A:  MOVLW  64
-015C:  MOVWF  07
-015E:  RCALL  0004
-....................             output_low(PIN_B4); 
-0160:  BCF    F93.4
-0162:  BCF    F8A.4
-....................             delay_ms(default_delay); 
-0164:  MOVLW  64
-0166:  MOVWF  07
-0168:  RCALL  0004
-....................     
-....................             output_high(PIN_B3); 
-016A:  BCF    F93.3
-016C:  BSF    F8A.3
-....................             delay_ms(default_delay); 
-016E:  MOVLW  64
-0170:  MOVWF  07
-0172:  RCALL  0004
-....................             output_low(PIN_B3); 
-0174:  BCF    F93.3
-0176:  BCF    F8A.3
-....................             delay_ms(default_delay); 
-0178:  MOVLW  64
-017A:  MOVWF  07
-017C:  RCALL  0004
-....................     
-....................             output_high(PIN_B2); 
-017E:  BCF    F93.2
-0180:  BSF    F8A.2
-....................             delay_ms(default_delay); 
-0182:  MOVLW  64
-0184:  MOVWF  07
-0186:  RCALL  0004
-....................             output_low(PIN_B2); 
-0188:  BCF    F93.2
-018A:  BCF    F8A.2
-....................             delay_ms(default_delay); 
-018C:  MOVLW  64
-018E:  MOVWF  07
-0190:  RCALL  0004
-....................     
-....................             output_high(PIN_B1); 
-0192:  BCF    F93.1
-0194:  BSF    F8A.1
-....................             delay_ms(default_delay); 
-0196:  MOVLW  64
-0198:  MOVWF  07
-019A:  RCALL  0004
-....................             output_low(PIN_B1); 
-019C:  BCF    F93.1
-019E:  BCF    F8A.1
-....................             delay_ms(default_delay); 
-01A0:  MOVLW  64
-01A2:  MOVWF  07
-01A4:  RCALL  0004
-....................     
-....................             output_high(PIN_B0); 
-01A6:  BCF    F93.0
-01A8:  BSF    F8A.0
-....................             delay_ms(default_delay); 
-01AA:  MOVLW  64
-01AC:  MOVWF  07
-01AE:  RCALL  0004
-....................             output_low(PIN_B0); 
-01B0:  BCF    F93.0
-01B2:  BCF    F8A.0
-....................             delay_ms(default_delay); 
-01B4:  MOVLW  64
-01B6:  MOVWF  07
-01B8:  RCALL  0004
-01BA:  INCF   06,F
-01BC:  BRA    0072
+0076:  MOVLW  02
+0078:  MOVWF  08
+007A:  MOVLW  96
+007C:  MOVWF  09
+007E:  RCALL  0004
+0080:  DECFSZ 08,F
+0082:  BRA    007A
 ....................          } 
+....................          for (i = 0; i < tmp_portd; i++) { 
+0084:  CLRF   06
+0086:  MOVF   05,W
+0088:  SUBWF  06,W
+008A:  BC    00D4
+....................             for (j = 1; j < 8; j++) { 
+008C:  MOVLW  01
+008E:  MOVWF  07
+0090:  MOVF   07,W
+0092:  SUBLW  07
+0094:  BNC   00AC
+....................                delay_ms(default_delay); 
+0096:  MOVLW  02
+0098:  MOVWF  08
+009A:  MOVLW  96
+009C:  MOVWF  09
+009E:  RCALL  0004
+00A0:  DECFSZ 08,F
+00A2:  BRA    009A
+....................                PORTB = PORTB * 2; 
+00A4:  BCF    FD8.0
+00A6:  RLCF   F81,F
+00A8:  INCF   07,F
+00AA:  BRA    0090
+....................             } 
+....................             for (j = 8; j > 1; j--) { 
+00AC:  MOVLW  08
+00AE:  MOVWF  07
+00B0:  MOVF   07,W
+00B2:  SUBLW  01
+00B4:  BC    00CC
+....................                delay_ms(default_delay); 
+00B6:  MOVLW  02
+00B8:  MOVWF  08
+00BA:  MOVLW  96
+00BC:  MOVWF  09
+00BE:  RCALL  0004
+00C0:  DECFSZ 08,F
+00C2:  BRA    00BA
+....................                PORTB = PORTB / 2; 
+00C4:  BCF    FD8.0
+00C6:  RRCF   F81,F
+00C8:  DECF   07,F
+00CA:  BRA    00B0
+....................             } 
+....................             PORTB = 1; 
+00CC:  MOVLW  01
+00CE:  MOVWF  F81
+00D0:  INCF   06,F
+00D2:  BRA    0086
+....................             //output_low(PIN_B0); 
+....................          } 
+....................          delay_ms(default_delay); 
+00D4:  MOVLW  02
+00D6:  MOVWF  08
+00D8:  MOVLW  96
+00DA:  MOVWF  09
+00DC:  RCALL  0004
+00DE:  DECFSZ 08,F
+00E0:  BRA    00D8
+....................          PORTB = 0; 
+00E2:  CLRF   F81
 ....................       }    
-01BE:  BRA    004E
+00E4:  BRA    004E
 ....................    } 
 .................... }    
 ....................  
-01C0:  SLEEP 
+00E6:  SLEEP 
 
 Configuration Fuses:
    Word  1: 0E24   PLL5 CPUDIV1 USBDIV HSPLL NOFCMEN NOIESO
