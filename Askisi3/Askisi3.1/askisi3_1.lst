@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 23:50
+CCS PCH C Compiler, Version 5.011, 5967               23-Ìבס-25 00:30
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi3\Askisi3.1\askisi3_1.lst
 
-               ROM used:   260 bytes (1%)
-                           Largest free fragment is 32504
+               ROM used:   262 bytes (1%)
+                           Largest free fragment is 32502
                RAM used:   23 (1%) at main() level
                            24 (1%) worst case
                Stack used: 2 locations (1 in main + 1 for interrupts)
                Stack size: 31
 
 *
-0000:  GOTO   00EE
+0000:  GOTO   00F0
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -147,31 +147,32 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 23:50
 ....................  
 .................... // Dilosi sinartiseon 
 .................... void ext_int1(void); 
+.................... void ext_int2(void); 
 .................... void init(void); 
 ....................  
 .................... void main() 
 *
-00EE:  CLRF   FF8
-00F0:  BCF    FD0.7
-00F2:  BSF    07.7
-00F4:  CLRF   16
-00F6:  MOVF   FC1,W
-00F8:  ANDLW  C0
-00FA:  IORLW  0F
-00FC:  MOVWF  FC1
-00FE:  MOVLW  07
-0100:  MOVWF  FB4
+00F0:  CLRF   FF8
+00F2:  BCF    FD0.7
+00F4:  BSF    07.7
+00F6:  CLRF   16
+00F8:  MOVF   FC1,W
+00FA:  ANDLW  C0
+00FC:  IORLW  0F
+00FE:  MOVWF  FC1
+0100:  MOVLW  07
+0102:  MOVWF  FB4
 .................... { 
 ....................    init(); 
-0102:  BRA    00D4
+0104:  BRA    00D4
 ....................    while (TRUE) { 
-0104:  BRA    0104
+0106:  BRA    0106
 ....................    } 
 .................... } 
 ....................  
 .................... #INT_EXT1 // Diakopi me megali proteraiotita 
 .................... void ext_int1(void) { 
-0106:  SLEEP 
+0108:  SLEEP 
 ....................    if (bit_test(PORTB, 7) == 1) 
 *
 00A2:  BTFSS  F81.7
@@ -219,18 +220,19 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 23:50
 00DC:  CLRF   16
 ....................    PORTD = counter; 
 00DE:  MOVFF  16,F83
+....................    port_b_pullups(TRUE); 
+00E2:  BCF    FF1.7
 ....................    // DEN XREIAZONTAI TA PARAKATO? GIATI? 
-.................... //   port_b_pullups(TRUE); 
 .................... //   ext_int_edge(1, H_TO_L); 
 .................... //   ext_int_edge(2, H_TO_L); 
 ....................    enable_interrupts(INT_EXT1); // Energopoiisi eksoterikis diakopis RB1 
-00E2:  BSF    FF0.3
+00E4:  BSF    FF0.3
 ....................    enable_interrupts(INT_EXT2); // Energopoiisi eksoterikis diakopis RB2 
-00E4:  BSF    FF0.4
+00E6:  BSF    FF0.4
 ....................    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon 
-00E6:  MOVLW  C0
-00E8:  IORWF  FF2,F
-00EA:  GOTO   0104 (RETURN)
+00E8:  MOVLW  C0
+00EA:  IORWF  FF2,F
+00EC:  GOTO   0106 (RETURN)
 .................... } 
 ....................  
 ....................  

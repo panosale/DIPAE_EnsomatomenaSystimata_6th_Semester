@@ -1,8 +1,8 @@
-d G "INT_USB" 2 818 "0x00A020"
-D G "__PCH__" 0 62 ""5.011""
-D G "__DEVICE__" 0 62 "4550"
-D G "__DATE__" 0 62 ""22-Ìבס-25""
-D G "__TIME__" 0 62 ""23:50:57"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
+C L "init" 0 10 1 "FUNCTION"
+D G "__PCH__" 0 63 ""5.011""
+D G "__DEVICE__" 0 63 "4550"
+D G "__DATE__" 0 63 ""23-Ìבס-25""
+D G "__TIME__" 0 63 ""00:30:57"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
 c L "set_tris_a" 0 10 3 "FUNCTION"
 c L "set_tris_a" 2 1 22 "FUNCTION"
 v L "value" 2 36 "int8" `54 
@@ -911,14 +911,15 @@ C L "jump_to_irs" 0 10 2 "FUNCTION"
 V G "counter" 0 17 "int8" `639 
 C L "jump_to_irs" 0 10 1 "FUNCTION"
 f G "ext_int1" 0 20 "void()" `640 
-f G "init" 0 21 "void()" `641 
-F G "main" 0 24 "void()" `642 
-F G "ext_int1" 0 31 "void()" `640 
-F G "ext_int2" 0 39 "void()" `645 
-F G "init" 0 46 "void()" `641 
+f G "ext_int2" 0 21 "void()" `641 
+f G "init" 0 22 "void()" `642 
+F G "main" 0 25 "void()" `643 
+F G "ext_int1" 0 32 "void()" `640 
+F G "ext_int2" 0 40 "void()" `641 
+F G "init" 0 47 "void()" `642 
 C L "init" 0 10 1 "FUNCTION"
 C L "init" 0 10 1 "FUNCTION"
-C L "init" 0 10 4 "FUNCTION"
+C L "init" 0 10 3 "FUNCTION"
 C L "init" 0 10 1 "FUNCTION"
 C L "init" 0 10 1 "FUNCTION"
 F B "reset_cpu" 0 0

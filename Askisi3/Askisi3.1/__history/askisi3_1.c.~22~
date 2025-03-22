@@ -18,7 +18,6 @@ int8 counter = 0;
 
 // Dilosi sinartiseon
 void ext_int1(void);
-void ext_int2(void);
 void init(void);
 
 void main()
@@ -49,8 +48,8 @@ void init(void) {
    set_tris_d(0x00); // Orismos tou PORTD san eksodo (0)
    counter = 0;
    PORTD = counter;
-   port_b_pullups(TRUE);
    // DEN XREIAZONTAI TA PARAKATO? GIATI?
+//   port_b_pullups(TRUE);
 //   ext_int_edge(1, H_TO_L);
 //   ext_int_edge(2, H_TO_L);
    enable_interrupts(INT_EXT1); // Energopoiisi eksoterikis diakopis RB1
