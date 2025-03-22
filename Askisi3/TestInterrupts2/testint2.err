@@ -1,0 +1,2 @@
+*** Error 159 "testint2.c" Line 74(8,48): Invalid interrupt directive  requires #DEVICE HIGH_INTS=TRUE
+*** Error 12 "testint2.c" Line 87(12,19): Undefined identifier   counter
