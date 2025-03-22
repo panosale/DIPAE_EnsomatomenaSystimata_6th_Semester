@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.011, 5967               22-Μαρ-25 00:08
+CCS PCH C Compiler, Version 5.011, 5967               22-Μαρ-25 10:40
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi2\Askisi2.1\askisi2_1.lst
 
@@ -11,9 +11,9 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Μαρ-25 00:08
 
 *
 0000:  GOTO   0030
-.................... // ΔΙΠΑΕ - Ενσωματωμένα Συστήματα - 6ο Εξάμηνο 
-.................... // Αλευρόπουλος Παναγιώτης - ΑΜ: 2022005 
-.................... // ’σκηση 2.1 
+.................... // DIPAE - Enosmatomena Systimata - 6o Eksamino 
+.................... // AM: 2022005 
+.................... // Askisi 2.1 
 .................... #include <main_.h> 
 .................... #include <18F4550.h> 
 .................... //////// Standard Header file for the PIC18F4550 device //////////////// 
@@ -126,15 +126,15 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Μαρ-25 00:08
 003A:  MOVWF  FC1
 003C:  MOVLW  07
 003E:  MOVWF  FB4
-....................    set_tris_b(0x00); // Ορισμός του PORTB σαν έξοδο. 
+....................    set_tris_b(0x00); // Orismos tou PORTB san eksodo. 
 0040:  MOVLW  00
 0042:  MOVWF  F93
-....................    set_tris_d(0xff); // Ορισμός του PORTD σαν είσοδο. 
+....................    set_tris_d(0xff); // Orismos tou PORTD san eisodo. 
 0044:  MOVLW  FF
 0046:  MOVWF  F95
 ....................    int i;    
 ....................    while (TRUE) { 
-....................       while (input_state(PIN_D7)) { // Αναμονή έναρξης προγράμματος. 
+....................       while (input_state(PIN_D7)) { // Anamoni enarksis tou programmatos. 
 0048:  BTFSS  F83.7
 004A:  BRA    0052
 ....................          output_b(0x00); 
@@ -142,7 +142,7 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Μαρ-25 00:08
 004E:  CLRF   F8A
 0050:  BRA    0048
 ....................       }  
-....................       if (input_state(PIN_D0)) { // Η πόρτα του κάδου είναι κλειστή. 
+....................       if (input_state(PIN_D0)) { // I porta tou kadou einai kleisti. 
 0052:  BTFSS  F83.0
 0054:  BRA    00DC
 ....................          delay_ms(2000); 
@@ -153,16 +153,16 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Μαρ-25 00:08
 005E:  RCALL  0004
 0060:  DECFSZ 06,F
 0062:  BRA    005A
-....................          output_high(PIN_B1); // ’νοιγμα βαλβίδας νερού. 
+....................          output_high(PIN_B1); // Anoigma valvidas nerou. 
 0064:  BCF    F93.1
 0066:  BSF    F8A.1
-....................          while (!input_state(PIN_D1)) { // Γέμισε ο κάδος με νερό. 
+....................          while (!input_state(PIN_D1)) { // Gemise o kados me nero. 
 0068:  BTFSC  F83.1
 006A:  BRA    00DC
-....................             output_low(PIN_B1); // Κλείσιμο βαλβίδας νερού. 
+....................             output_low(PIN_B1); // Kleisimo valvidas nerou. 
 006C:  BCF    F93.1
 006E:  BCF    F8A.1
-....................             delay_ms(2000); // Μετά από 2 δευτερόλεπτα... 
+....................             delay_ms(2000); // Meta apo 2 defterolepta... 
 0070:  MOVLW  08
 0072:  MOVWF  06
 0074:  MOVLW  FA
@@ -170,10 +170,10 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Μαρ-25 00:08
 0078:  RCALL  0004
 007A:  DECFSZ 06,F
 007C:  BRA    0074
-....................             output_high(PIN_B2); // ...ανάβει η αντίσταση θέρμανσης νερού 
+....................             output_high(PIN_B2); // ...anavei i antistasi thermansis nerou 
 007E:  BCF    F93.2
 0080:  BSF    F8A.2
-....................             delay_ms(3000); // Μετά από 3 δευτερόλεπτα...          
+....................             delay_ms(3000); // Meta apo 3 defterolepta.          
 0082:  MOVLW  0C
 0084:  MOVWF  06
 0086:  MOVLW  FA
@@ -181,15 +181,15 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Μαρ-25 00:08
 008A:  RCALL  0004
 008C:  DECFSZ 06,F
 008E:  BRA    0086
-....................             for (i = 0; i < 10; i++) { // ...αρχίζει να κινείται ο κάδος... 
+....................             for (i = 0; i < 10; i++) { // ...arxhizei na kineitai o kados... 
 0090:  CLRF   05
 0092:  MOVF   05,W
 0094:  SUBLW  09
 0096:  BNC   00B2
-....................                output_toggle(PIN_B3); // Κίνηση κάδου αριστερά-δεξιά. 
+....................                output_toggle(PIN_B3); // Kinisi kadou aristera-deksia 
 0098:  BCF    F93.3
 009A:  BTG    F8A.3
-....................                delay_ms(3000); // Μετά από 3 δευτερόλεπτα... 
+....................                delay_ms(3000); // Meta apo 3 defterolepta.... 
 009C:  MOVLW  0C
 009E:  MOVWF  06
 00A0:  MOVLW  FA
@@ -197,16 +197,16 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Μαρ-25 00:08
 00A4:  RCALL  0004
 00A6:  DECFSZ 06,F
 00A8:  BRA    00A0
-....................                output_toggle(PIN_B4); // Κίνηση κάδου αριστερά-δεξιά. 
+....................                output_toggle(PIN_B4); // Kinisi kadou aristera-deksia 
 00AA:  BCF    F93.4
 00AC:  BTG    F8A.4
 00AE:  INCF   05,F
 00B0:  BRA    0092
-....................             } // ... μετά από 10 δευτερόλεπτα σταματάει η κίνηση του κάδου. 
-....................             output_low(PIN_B2); // Σβήνει η αντίσταση θέρμανσης νερού. 
+....................             } // ... meta apo 10 defterolepta stamataei i kinisi tou kadou. 
+....................             output_low(PIN_B2); // Svinei i antistasi thermansis tou nerou. 
 00B2:  BCF    F93.2
 00B4:  BCF    F8A.2
-....................             delay_ms(3000); // Μετά από 3 δευτερόλεπτα... 
+....................             delay_ms(3000); // Meta apo 3 defterolepta.... 
 00B6:  MOVLW  0C
 00B8:  MOVWF  06
 00BA:  MOVLW  FA
@@ -214,10 +214,10 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Μαρ-25 00:08
 00BE:  RCALL  0004
 00C0:  DECFSZ 06,F
 00C2:  BRA    00BA
-....................             output_high(PIN_B5); // ...ενεργοποίηση αντλίας νερού εξόδου. 
+....................             output_high(PIN_B5); // ...energopoiisi antlias nerou eksodou. 
 00C4:  BCF    F93.5
 00C6:  BSF    F8A.5
-....................             delay_ms(5000); // Μετά από 5 δευτερόλεπτα... 
+....................             delay_ms(5000); // Meta apo 5 defterolepta.... 
 00C8:  MOVLW  14
 00CA:  MOVWF  06
 00CC:  MOVLW  FA
@@ -225,7 +225,7 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Μαρ-25 00:08
 00D0:  RCALL  0004
 00D2:  DECFSZ 06,F
 00D4:  BRA    00CC
-....................             output_low(PIN_B5); // ...απενεργοποίηση αντλίας νερού εξόδου. 
+....................             output_low(PIN_B5); // ...apenergopoiisi antlias nerou eksodou. 
 00D6:  BCF    F93.5
 00D8:  BCF    F8A.5
 00DA:  BRA    0068

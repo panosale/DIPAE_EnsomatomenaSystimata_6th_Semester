@@ -30,12 +30,12 @@ void main() {
                output_toggle(PIN_B3); // Kinisi kadou aristera-deksia
                delay_ms(3000); // Meta apo 3 defterolepta....
                output_toggle(PIN_B4); // Kinisi kadou aristera-deksia
-            } // ... meta apo 10 defterolepta stamataei i kinisi tou kadou.
-            output_low(PIN_B2); // Svinei i antistasi thermansis tou nerou.
-            delay_ms(3000); // Meta apo 3 defterolepta....
-            output_high(PIN_B5); // ...energopoiisi antlias nerou eksodou.
-            delay_ms(5000); // Meta apo 5 defterolepta....
-            output_low(PIN_B5); // ...apenergopoiisi antlias nerou eksodou.
+            } // ... μετά από 10 δευτερόλεπτα σταματάει η κίνηση του κάδου.
+            output_low(PIN_B2); // Σβήνει η αντίσταση θέρμανσης νερού.
+            delay_ms(3000); // Μετά από 3 δευτερόλεπτα...
+            output_high(PIN_B5); // ...ενεργοποίηση αντλίας νερού εξόδου.
+            delay_ms(5000); // Μετά από 5 δευτερόλεπτα...
+            output_low(PIN_B5); // ...απενεργοποίηση αντλίας νερού εξόδου.
          }
       }
    }
