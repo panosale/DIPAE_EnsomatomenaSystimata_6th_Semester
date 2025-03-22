@@ -1,0 +1,65 @@
+// DIPAE - Enosmatomena Systimata - 6o Eksamino
+// Alevropoulos Panagiotis
+// AM: 2022005
+// Askisi 3.3
+#include <main_.h>
+
+#use standard_io (A) // Standard Eisodoi & Eksodoi
+#use standard_io (B) // Standard Eisodoi & Eksodoi
+#use standard_io (C) // Standard Eisodoi & Eksodoi
+#byte PORTA =0xF80 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTB =0xF81 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTC =0xF82 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTD =0xF83 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi
+
+// Dilosi global metavliton
+int1 go = 0;
+int delay;
+
+// Dilosi sinartiseon
+void ext_int1(void);
+void init(void);
+
+void main()
+{
+   init();
+   while (TRUE) {
+      if (go) {
+//   int8 tmp = input_d();
+         PORTD = !PORTD;
+         delay_ms(delay);      
+      }
+   }
+}
+
+#INT_EXT // Diakopi me megali proteraiotita
+void ext_int(void) {
+   go = 1;
+   delay = 500;
+   
+   
+}
+
+#INT_EXT2 // Diakopi me megali proteraiotita
+void ext_int2(void) {
+   go = 1;
+   delay = 50;
+   
+}
+
+void init(void) {
+   set_tris_b(0xff); // Orismos tou PORTB san eisodo (1)
+   set_tris_d(0x00); // Orismos tou PORTD san eksodo (0)
+   PORTD = 0;
+   delay = 0;
+   // DEN XREIAZONTAI TA PARAKATO? GIATI?
+   port_b_pullups(TRUE);
+//   ext_int_edge(1, H_TO_L);
+//   ext_int_edge(2, H_TO_L);
+   enable_interrupts(INT_EXT); // Energopoiisi eksoterikis diakopis RB0
+   enable_interrupts(INT_EXT2); // Energopoiisi eksoterikis diakopis RB2
+   enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
+}
+
+

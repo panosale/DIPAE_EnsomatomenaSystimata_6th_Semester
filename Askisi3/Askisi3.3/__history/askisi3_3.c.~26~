@@ -1,0 +1,51 @@
+#include <main_.h>
+#use standard_io(A)
+#use standard_io(B)
+#use standard_io(C)
+#byte PORTA=0xF80
+#byte PORTB=0xF81
+#byte PORTC=0xF82
+#byte PORTD=0xF83
+#byte PORTE=0xF84
+
+int time,flag = 0;
+void init (void);
+void ext_int(void);
+void ext_int2(void);
+
+void main()
+{
+init();
+ 
+ while (1){            //  Εκτέλεσε συνεχώς ότι υπάρχει από το άγκιστρο και              //   κάτω
+              if (flag == 1){
+              PORTD = 255;
+               delay_ms(time);
+               PORTD = 0;
+               delay_ms(time);
+               }   
+           }
+}
+#INT_EXT 
+void ext_int(void){
+              flag = 1;
+               time = 125;
+                                 
+}
+#INT_EXT2 
+void ext_int2(void){
+            flag = 1;
+             time = 50;
+}                 
+void init (void){
+            set_tris_b(0xff);     // Καθορισμός της πόρτας Β ως είσοδος
+            set_tris_d(0x00);      //  Καθορισμός της πόρτας D ως έξοδος
+            flag = 0;
+            PORTD = 0;
+         port_b_pullups(TRUE); 
+            ext_int_edge(0, H_TO_L);
+            ext_int_edge(2, H_TO_L);
+            enable_interrupts(INT_EXT);  
+            enable_interrupts(INT_EXT2);
+            enable_interrupts(GLOBAL);    
+}       
