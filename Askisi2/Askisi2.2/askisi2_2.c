@@ -1,6 +1,6 @@
-// ΔΙΠΑΕ - Ενσωματωμένα Συστήματα - 6ο Εξάμηνο
-// Αλευρόπουλος Παναγιώτης - ΑΜ: 2022005
-// ’σκηση 2.2
+// DIPAE - Enosmatomena Systimata - 6o Eksamino
+// AM: 2022005
+// Askisi 2.2
 #include <main_.h>
 
 #use standard_io ( A )
@@ -14,8 +14,8 @@
 
 void main()
 {
-   set_tris_b(0x00); // Ορίζουμε τη θύρα B σαν ΕΞΟΔΟ (0)
-   set_tris_d(0xff); // Ορίζουμε τη θύρα D σαν ΕΙΣΟΔΟ (1)
+   set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
+   set_tris_d(0xff); // Orismos tou PORTD san eisodo (1)
    const int16 default_delay = 100;
    int8 tmp_portd = 0b11110000;
    while (TRUE) {
