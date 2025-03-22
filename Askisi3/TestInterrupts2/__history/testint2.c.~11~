@@ -71,7 +71,7 @@ void main()
 }   
 
 // Ylopoiisi synartiseon
-#INT_RB //HIGH // Diakopi me megali proteraiotita
+#INT_RB HIGH // Diakopi me megali proteraiotita
 void rb(void) {
    last = PORTB ^ old;
    old = PORTB;
@@ -124,8 +124,9 @@ void rb(void) {
 void init(void) {
    set_tris_b(0xff); // Orismos tou PORTB san eisodo (1)
    set_tris_d(0x00); // Orismos tou PORTD san eksodo (0)
-   PORTD = 0;
+   PORTD = counter;
    port_b_pullups(TRUE);
-   enable_interrupts(INT_RB); // Energopoiisi eksoterikis diakopis RB0
+   ext_int_edge(0, H_TO_L);
+   enable_interrupts(INT_EXT); // Energopoiisi eksoterikis diakopis RB0
    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
 }

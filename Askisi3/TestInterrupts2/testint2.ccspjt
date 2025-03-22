@@ -11,9 +11,9 @@ Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers
 Type=4
 [mru-list]
 1=testint2.c
-[Units]
-Count=1
-1=testint2 (main)
 [Opened Files]
 1=testint2.c
 2=
+[Units]
+Count=1
+1=testint2 (main)

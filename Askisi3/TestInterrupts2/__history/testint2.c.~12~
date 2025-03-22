@@ -71,7 +71,7 @@ void main()
 }   
 
 // Ylopoiisi synartiseon
-#INT_RB //HIGH // Diakopi me megali proteraiotita
+#INT_RB HIGH // Diakopi me megali proteraiotita
 void rb(void) {
    last = PORTB ^ old;
    old = PORTB;

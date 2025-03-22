@@ -71,13 +71,13 @@ void main()
 }   
 
 // Ylopoiisi synartiseon
-#INT_RB //HIGH // Diakopi me megali proteraiotita
+#INT_RB HIGH // Diakopi me megali proteraiotita
 void rb(void) {
    last = PORTB ^ old;
    old = PORTB;
    if (bit_test(last, 4) && !bit_test(old, 4)) {
    // Ean exei ginei allagi sto RB4 kai to anastrofo tis trexousa katastasis...
-   // ...tou einai 1 tote allagi tou RB4 apo 1 se 0
+   // ...tou einai 1 tote allagi tou RB4 apo 0 se 1
       changed_bit = 0x10;
       state_p = 0; //Allagi apo 1 se 0
    }
@@ -86,46 +86,15 @@ void rb(void) {
       state_p = 1; //Allagi apo 0 se 1
    }
 
-   if (bit_test(last, 5) && !bit_test(old, 5)) {
-   // Ean exei ginei allagi sto RB5 kai to anastrofo tis trexousa katastasis...
-   // ...tou einai 1 tote allagi tou RB5 apo 1 se 0
-      changed_bit = 0x20;
-      state_p = 0; //Allagi apo 1 se 0
-   }
-   if (bit_test(last, 5) && bit_test(old, 5)) {
-      changed_bit = 0x20;
-      state_p = 1; //Allagi apo 0 se 1
-   }
-
-   if (bit_test(last, 6) && !bit_test(old, 6)) {
-   // Ean exei ginei allagi sto RB6 kai to anastrofo tis trexousa katastasis...
-   // ...tou einai 1 tote allagi tou RB6 apo 1 se 0
-      changed_bit = 0x40;
-      state_p = 0; //Allagi apo 1 se 0
-   }
-   if (bit_test(last, 6) && bit_test(old, 6)) {
-      changed_bit = 0x40;
-      state_p = 1; //Allagi apo 0 se 1
-   }
-
-   if (bit_test(last, 7) && !bit_test(old, 7)) {
-   // Ean exei ginei allagi sto RB7 kai to anastrofo tis trexousa katastasis...
-   // ...tou einai 1 tote allagi tou RB7 apo 1 se 0
-      changed_bit = 0x80;
-      state_p = 0; //Allagi apo 1 se 0
-   }
-   if (bit_test(last, 7) && bit_test(old, 7)) {
-      changed_bit = 0x80;
-      state_p = 1; //Allagi apo 0 se 1
-   }
 
 }
 
 void init(void) {
    set_tris_b(0xff); // Orismos tou PORTB san eisodo (1)
    set_tris_d(0x00); // Orismos tou PORTD san eksodo (0)
-   PORTD = 0;
+   PORTD = counter;
    port_b_pullups(TRUE);
-   enable_interrupts(INT_RB); // Energopoiisi eksoterikis diakopis RB0
+   ext_int_edge(0, H_TO_L);
+   enable_interrupts(INT_EXT); // Energopoiisi eksoterikis diakopis RB0
    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
 }

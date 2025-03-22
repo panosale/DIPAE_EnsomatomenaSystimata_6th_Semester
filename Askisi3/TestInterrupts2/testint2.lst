@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:20
+CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:51
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi3\TestInterrupts2\testint2.lst
 
-               ROM used:   280 bytes (1%)
-                           Largest free fragment is 32484
-               RAM used:   23 (1%) at main() level
-                           25 (1%) worst case
-               Stack used: 3 locations (1 in main + 2 for interrupts)
+               ROM used:   532 bytes (2%)
+                           Largest free fragment is 32232
+               RAM used:   27 (1%) at main() level
+                           28 (1%) worst case
+               Stack used: 2 locations (1 in main + 1 for interrupts)
                Stack size: 31
 
 *
-0000:  GOTO   0100
+0000:  GOTO   0158
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -29,10 +29,10 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:20
 003C:  MOVFF  01,0F
 0040:  MOVFF  02,10
 0044:  MOVFF  03,11
-0048:  BTFSS  FF2.4
+0048:  BTFSS  FF2.3
 004A:  GOTO   0054
-004E:  BTFSC  FF2.1
-0050:  GOTO   00C4
+004E:  BTFSC  FF2.0
+0050:  GOTO   0096
 0054:  MOVFF  0E,00
 0058:  MOVFF  0F,01
 005C:  MOVFF  10,02
@@ -106,28 +106,29 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:20
 ....................  
 .................... /* systm clock is 48 MHz */ 
 .................... #use delay(clock=48000000,RESTART_WDT) 
-0096:  CLRF   FEA
-0098:  MOVLW  18
-009A:  MOVWF  FE9
-009C:  MOVF   FEF,W
-009E:  BZ    00C0
-00A0:  MOVLW  0F
-00A2:  MOVWF  01
-00A4:  MOVLW  BF
-00A6:  MOVWF  00
-00A8:  CLRWDT
-00AA:  DECFSZ 00,F
-00AC:  BRA    00A8
-00AE:  DECFSZ 01,F
-00B0:  BRA    00A4
-00B2:  MOVLW  8F
-00B4:  MOVWF  00
-00B6:  DECFSZ 00,F
-00B8:  BRA    00B6
-00BA:  CLRWDT
-00BC:  DECFSZ FEF,F
-00BE:  BRA    00A0
-00C0:  GOTO   00DC (RETURN)
+*
+012C:  CLRF   FEA
+012E:  MOVLW  1B
+0130:  MOVWF  FE9
+0132:  MOVF   FEF,W
+0134:  BZ    0156
+0136:  MOVLW  0F
+0138:  MOVWF  01
+013A:  MOVLW  BF
+013C:  MOVWF  00
+013E:  CLRWDT
+0140:  DECFSZ 00,F
+0142:  BRA    013E
+0144:  DECFSZ 01,F
+0146:  BRA    013A
+0148:  MOVLW  8F
+014A:  MOVWF  00
+014C:  DECFSZ 00,F
+014E:  BRA    014C
+0150:  CLRWDT
+0152:  DECFSZ FEF,F
+0154:  BRA    0136
+0156:  RETURN 0
 .................... /* --- BEGIN: changes required for bootloader ------------------------------ */ 
 ....................  
 .................... /* ------------------------------------------------------------------------- */ 
@@ -161,80 +162,289 @@ CCS PCH C Compiler, Version 5.011, 5967               22-Ìבס-25 21:20
 .................... #byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi 
 ....................  
 .................... // Dilosi global metavliton 
-.................... int8 counter = 0x30; 
+.................... byte last = 0; 
+.................... byte old = 0; 
+.................... byte changed_bit = 0; 
+.................... int1 state_p = 0; 
 ....................  
 .................... // Dilosi sinartiseon 
-.................... void ext_int0(void); 
+.................... void rb(void); 
 .................... void init(void); 
 ....................  
 .................... void main() 
-*
-0100:  CLRF   FF8
-0102:  BCF    FD0.7
-0104:  BSF    07.7
-0106:  MOVLW  30
-0108:  MOVWF  16
-010A:  MOVF   FC1,W
-010C:  ANDLW  C0
-010E:  IORLW  0F
-0110:  MOVWF  FC1
-0112:  MOVLW  07
-0114:  MOVWF  FB4
+0158:  CLRF   FF8
+015A:  BCF    FD0.7
+015C:  BSF    07.7
+015E:  CLRF   16
+0160:  CLRF   17
+0162:  CLRF   18
+0164:  BCF    19.0
+0166:  MOVF   FC1,W
+0168:  ANDLW  C0
+016A:  IORLW  0F
+016C:  MOVWF  FC1
+016E:  MOVLW  07
+0170:  MOVWF  FB4
 .................... { 
 ....................    init(); 
-0116:  BRA    00E6
+0172:  BRA    0116
 ....................    while (TRUE) { 
-0118:  BRA    0118
-....................  
+....................       if ((changed_bit ^ 0x10) == 0) { // Egine allagi tou RB4 
+0174:  MOVF   18,W
+0176:  XORLW  10
+0178:  BNZ   019C
+....................          if (state_p) { 
+017A:  BTFSS  19.0
+017C:  BRA    0192
+....................             PORTD = PORTD ^ 0x10; 
+017E:  MOVLW  10
+0180:  XORWF  F83,F
+....................             delay_ms(500); 
+0182:  MOVLW  02
+0184:  MOVWF  1A
+0186:  MOVLW  FA
+0188:  MOVWF  1B
+018A:  RCALL  012C
+018C:  DECFSZ 1A,F
+018E:  BRA    0186
+....................          } 
+0190:  BRA    019C
+....................          else { 
+....................             PORTD = PORTD ^ 0x10; 
+0192:  MOVLW  10
+0194:  XORWF  F83,F
+....................             delay_ms(100); 
+0196:  MOVLW  64
+0198:  MOVWF  1B
+019A:  RCALL  012C
+....................          } 
+....................       } 
+....................       if ((changed_bit ^ 0x20) == 0) { // Egine allagi tou RB5 
+019C:  MOVF   18,W
+019E:  XORLW  20
+01A0:  BNZ   01C4
+....................          if (state_p) { 
+01A2:  BTFSS  19.0
+01A4:  BRA    01BA
+....................             PORTD = PORTD ^ 0x20; 
+01A6:  MOVLW  20
+01A8:  XORWF  F83,F
+....................             delay_ms(500); 
+01AA:  MOVLW  02
+01AC:  MOVWF  1A
+01AE:  MOVLW  FA
+01B0:  MOVWF  1B
+01B2:  RCALL  012C
+01B4:  DECFSZ 1A,F
+01B6:  BRA    01AE
+....................          } 
+01B8:  BRA    01C4
+....................          else { 
+....................             PORTD = PORTD ^ 0x20; 
+01BA:  MOVLW  20
+01BC:  XORWF  F83,F
+....................             delay_ms(100); 
+01BE:  MOVLW  64
+01C0:  MOVWF  1B
+01C2:  RCALL  012C
+....................          } 
+....................       } 
+....................       if ((changed_bit ^ 0x40) == 0) { // Egine allagi tou RB6 
+01C4:  MOVF   18,W
+01C6:  XORLW  40
+01C8:  BNZ   01EC
+....................          if (state_p) { 
+01CA:  BTFSS  19.0
+01CC:  BRA    01E2
+....................             PORTD = PORTD ^ 0x40; 
+01CE:  MOVLW  40
+01D0:  XORWF  F83,F
+....................             delay_ms(500); 
+01D2:  MOVLW  02
+01D4:  MOVWF  1A
+01D6:  MOVLW  FA
+01D8:  MOVWF  1B
+01DA:  RCALL  012C
+01DC:  DECFSZ 1A,F
+01DE:  BRA    01D6
+....................          } 
+01E0:  BRA    01EC
+....................          else { 
+....................             PORTD = PORTD ^ 0x40; 
+01E2:  MOVLW  40
+01E4:  XORWF  F83,F
+....................             delay_ms(100); 
+01E6:  MOVLW  64
+01E8:  MOVWF  1B
+01EA:  RCALL  012C
+....................          } 
+....................       } 
+....................       if ((changed_bit ^ 0x80) == 0) { // Egine allagi tou RB7 
+01EC:  MOVF   18,W
+01EE:  XORLW  80
+01F0:  BNZ   0214
+....................          if (state_p) { 
+01F2:  BTFSS  19.0
+01F4:  BRA    020A
+....................             PORTD = PORTD ^ 0x80; 
+01F6:  MOVLW  80
+01F8:  XORWF  F83,F
+....................             delay_ms(500); 
+01FA:  MOVLW  02
+01FC:  MOVWF  1A
+01FE:  MOVLW  FA
+0200:  MOVWF  1B
+0202:  RCALL  012C
+0204:  DECFSZ 1A,F
+0206:  BRA    01FE
+....................          } 
+0208:  BRA    0214
+....................          else { 
+....................             PORTD = PORTD ^ 0x80; 
+020A:  MOVLW  80
+020C:  XORWF  F83,F
+....................             delay_ms(100); 
+020E:  MOVLW  64
+0210:  MOVWF  1B
+0212:  RCALL  012C
+....................          } 
+....................       } 
+0214:  BRA    0174
 ....................    } 
 .................... }    
 ....................  
 .................... // Ylopoiisi synartiseon 
-.................... #INT_EXT // Diakopi me megali proteraiotita 
-.................... void ext_int0(void) { 
-011A:  SLEEP 
-....................    counter--; 
+.................... #INT_RB //HIGH // Diakopi me megali proteraiotita 
+.................... void rb(void) { 
+0216:  SLEEP 
+....................    last = PORTB ^ old; 
 *
-00C4:  DECF   16,F
-....................    if (counter == 0) 
-00C6:  MOVF   16,F
-00C8:  BNZ   00CE
-....................       counter = 0x30; 
-00CA:  MOVLW  30
-00CC:  MOVWF  16
-....................    PORTD = counter; 
-00CE:  MOVFF  16,F83
-....................    delay_ms(300); // Gia na apofygoume tis anapidiseis tou diakopti 
-00D2:  MOVLW  02
-00D4:  MOVWF  17
-00D6:  MOVLW  96
-00D8:  MOVWF  18
-00DA:  BRA    0096
-00DC:  DECFSZ 17,F
-00DE:  BRA    00D6
-00E0:  BCF    FF2.1
-00E2:  GOTO   0054
+0096:  MOVF   F81,W
+0098:  XORWF  17,W
+009A:  MOVWF  16
+....................    old = PORTB; 
+009C:  MOVFF  F81,17
+....................    if (bit_test(last, 4) && !bit_test(old, 4)) { 
+00A0:  BTFSS  16.4
+00A2:  BRA    00AE
+00A4:  BTFSC  17.4
+00A6:  BRA    00AE
+....................    // Ean exei ginei allagi sto RB4 kai to anastrofo tis trexousa katastasis... 
+....................    // ...tou einai 1 tote allagi tou RB4 apo 1 se 0 
+....................       changed_bit = 0x10; 
+00A8:  MOVLW  10
+00AA:  MOVWF  18
+....................       state_p = 0; //Allagi apo 1 se 0 
+00AC:  BCF    19.0
+....................    } 
+....................    if (bit_test(last, 4) && bit_test(old, 4)) { 
+00AE:  BTFSS  16.4
+00B0:  BRA    00BC
+00B2:  BTFSS  17.4
+00B4:  BRA    00BC
+....................       changed_bit = 0x10; 
+00B6:  MOVLW  10
+00B8:  MOVWF  18
+....................       state_p = 1; //Allagi apo 0 se 1 
+00BA:  BSF    19.0
+....................    } 
+....................  
+....................    if (bit_test(last, 5) && !bit_test(old, 5)) { 
+00BC:  BTFSS  16.5
+00BE:  BRA    00CA
+00C0:  BTFSC  17.5
+00C2:  BRA    00CA
+....................    // Ean exei ginei allagi sto RB5 kai to anastrofo tis trexousa katastasis... 
+....................    // ...tou einai 1 tote allagi tou RB5 apo 1 se 0 
+....................       changed_bit = 0x20; 
+00C4:  MOVLW  20
+00C6:  MOVWF  18
+....................       state_p = 0; //Allagi apo 1 se 0 
+00C8:  BCF    19.0
+....................    } 
+....................    if (bit_test(last, 5) && bit_test(old, 5)) { 
+00CA:  BTFSS  16.5
+00CC:  BRA    00D8
+00CE:  BTFSS  17.5
+00D0:  BRA    00D8
+....................       changed_bit = 0x20; 
+00D2:  MOVLW  20
+00D4:  MOVWF  18
+....................       state_p = 1; //Allagi apo 0 se 1 
+00D6:  BSF    19.0
+....................    } 
+....................  
+....................    if (bit_test(last, 6) && !bit_test(old, 6)) { 
+00D8:  BTFSS  16.6
+00DA:  BRA    00E6
+00DC:  BTFSC  17.6
+00DE:  BRA    00E6
+....................    // Ean exei ginei allagi sto RB6 kai to anastrofo tis trexousa katastasis... 
+....................    // ...tou einai 1 tote allagi tou RB6 apo 1 se 0 
+....................       changed_bit = 0x40; 
+00E0:  MOVLW  40
+00E2:  MOVWF  18
+....................       state_p = 0; //Allagi apo 1 se 0 
+00E4:  BCF    19.0
+....................    } 
+....................    if (bit_test(last, 6) && bit_test(old, 6)) { 
+00E6:  BTFSS  16.6
+00E8:  BRA    00F4
+00EA:  BTFSS  17.6
+00EC:  BRA    00F4
+....................       changed_bit = 0x40; 
+00EE:  MOVLW  40
+00F0:  MOVWF  18
+....................       state_p = 1; //Allagi apo 0 se 1 
+00F2:  BSF    19.0
+....................    } 
+....................  
+....................    if (bit_test(last, 7) && !bit_test(old, 7)) { 
+00F4:  BTFSS  16.7
+00F6:  BRA    0102
+00F8:  BTFSC  17.7
+00FA:  BRA    0102
+....................    // Ean exei ginei allagi sto RB7 kai to anastrofo tis trexousa katastasis... 
+....................    // ...tou einai 1 tote allagi tou RB7 apo 1 se 0 
+....................       changed_bit = 0x80; 
+00FC:  MOVLW  80
+00FE:  MOVWF  18
+....................       state_p = 0; //Allagi apo 1 se 0 
+0100:  BCF    19.0
+....................    } 
+....................    if (bit_test(last, 7) && bit_test(old, 7)) { 
+0102:  BTFSS  16.7
+0104:  BRA    0110
+0106:  BTFSS  17.7
+0108:  BRA    0110
+....................       changed_bit = 0x80; 
+010A:  MOVLW  80
+010C:  MOVWF  18
+....................       state_p = 1; //Allagi apo 0 se 1 
+010E:  BSF    19.0
+....................    } 
+....................  
+0110:  BCF    FF2.0
+0112:  GOTO   0054
 .................... } 
 ....................  
 .................... void init(void) { 
 ....................    set_tris_b(0xff); // Orismos tou PORTB san eisodo (1) 
-00E6:  MOVLW  FF
-00E8:  MOVWF  F93
+0116:  MOVLW  FF
+0118:  MOVWF  F93
 ....................    set_tris_d(0x00); // Orismos tou PORTD san eksodo (0) 
-00EA:  MOVLW  00
-00EC:  MOVWF  F95
-....................    PORTD = counter; 
-00EE:  MOVFF  16,F83
+011A:  MOVLW  00
+011C:  MOVWF  F95
+....................    PORTD = 0; 
+011E:  CLRF   F83
 ....................    port_b_pullups(TRUE); 
-00F2:  BCF    FF1.7
-....................    ext_int_edge(0, H_TO_L); 
-00F4:  BCF    FF1.6
-....................    enable_interrupts(INT_EXT); // Energopoiisi eksoterikis diakopis RB0 
-00F6:  BSF    FF2.4
+0120:  BCF    FF1.7
+....................    enable_interrupts(INT_RB); // Energopoiisi eksoterikis diakopis RB0 
+0122:  BSF    FF2.3
 ....................    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon 
-00F8:  MOVLW  C0
-00FA:  IORWF  FF2,F
-00FC:  GOTO   0118 (RETURN)
+0124:  MOVLW  C0
+0126:  IORWF  FF2,F
+0128:  GOTO   0174 (RETURN)
 .................... } 
 
 Configuration Fuses:
