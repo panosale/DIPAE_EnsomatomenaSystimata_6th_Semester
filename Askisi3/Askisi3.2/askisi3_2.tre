@@ -1,0 +1,8 @@
+ÀÄAskisi3
+   ÃÄmain  0/32  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÀÄinit  0/34  Ram=0
+   ÃÄext_int2  0/50  Ram=1
+   ³  ÃÄ@delay_ms1  0/44  Ram=1
+   ³  ÀÄ@delay_ms1  0/44  Ram=1
+   ÀÄrb  0/128  Ram=0
