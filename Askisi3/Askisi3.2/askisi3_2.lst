@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.011, 5967               28-Ìבס-25 00:08
+CCS PCH C Compiler, Version 5.011, 5967               29-Ìבס-25 01:15
 
-               Filename:   D:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi3\Askisi3.2\askisi3_2.lst
+               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi3\Askisi3.2\askisi3_2.lst
 
-               ROM used:   446 bytes (1%)
-                           Largest free fragment is 32318
+               ROM used:   428 bytes (1%)
+                           Largest free fragment is 32336
                RAM used:   26 (1%) at main() level
                            28 (1%) worst case
                Stack used: 3 locations (1 in main + 2 for interrupts)
                Stack size: 31
 
 *
-0000:  GOTO   01A2
+0000:  GOTO   0190
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -32,11 +32,11 @@ CCS PCH C Compiler, Version 5.011, 5967               28-Ìבס-25 00:08
 0048:  BTFSS  FF0.4
 004A:  GOTO   0054
 004E:  BTFSC  FF0.1
-0050:  GOTO   00CE
+0050:  GOTO   00A2
 0054:  BTFSS  FF2.3
 0056:  GOTO   0060
 005A:  BTFSC  FF2.0
-005C:  GOTO   0100
+005C:  GOTO   00DA
 0060:  MOVFF  0E,00
 0064:  MOVFF  0F,01
 0068:  MOVFF  10,02
@@ -110,28 +110,29 @@ CCS PCH C Compiler, Version 5.011, 5967               28-Ìבס-25 00:08
 ....................  
 .................... /* systm clock is 48 MHz */ 
 .................... #use delay(clock=48000000,RESTART_WDT) 
-00A2:  CLRF   FEA
-00A4:  MOVLW  1B
-00A6:  MOVWF  FE9
-00A8:  MOVF   FEF,W
-00AA:  BZ    00CC
-00AC:  MOVLW  0F
-00AE:  MOVWF  01
-00B0:  MOVLW  BF
-00B2:  MOVWF  00
-00B4:  CLRWDT
-00B6:  DECFSZ 00,F
-00B8:  BRA    00B4
-00BA:  DECFSZ 01,F
-00BC:  BRA    00B0
-00BE:  MOVLW  8F
-00C0:  MOVWF  00
+*
+00AE:  CLRF   FEA
+00B0:  MOVLW  1B
+00B2:  MOVWF  FE9
+00B4:  MOVF   FEF,W
+00B6:  BZ    00D8
+00B8:  MOVLW  0F
+00BA:  MOVWF  01
+00BC:  MOVLW  BF
+00BE:  MOVWF  00
+00C0:  CLRWDT
 00C2:  DECFSZ 00,F
-00C4:  BRA    00C2
-00C6:  CLRWDT
-00C8:  DECFSZ FEF,F
-00CA:  BRA    00AC
-00CC:  RETURN 0
+00C4:  BRA    00C0
+00C6:  DECFSZ 01,F
+00C8:  BRA    00BC
+00CA:  MOVLW  8F
+00CC:  MOVWF  00
+00CE:  DECFSZ 00,F
+00D0:  BRA    00CE
+00D2:  CLRWDT
+00D4:  DECFSZ FEF,F
+00D6:  BRA    00B8
+00D8:  RETURN 0
 .................... /* --- BEGIN: changes required for bootloader ------------------------------ */ 
 ....................  
 .................... /* ------------------------------------------------------------------------- */ 
@@ -181,197 +182,201 @@ CCS PCH C Compiler, Version 5.011, 5967               28-Ìבס-25 00:08
 ....................  
 .................... void main() 
 *
-01A2:  CLRF   FF8
-01A4:  BCF    FD0.7
-01A6:  BSF    07.7
-01A8:  CLRF   16
-01AA:  CLRF   17
-01AC:  CLRF   18
-01AE:  BCF    19.0
-01B0:  MOVF   FC1,W
-01B2:  ANDLW  C0
-01B4:  IORLW  0F
-01B6:  MOVWF  FC1
-01B8:  MOVLW  07
-01BA:  MOVWF  FB4
+0190:  CLRF   FF8
+0192:  BCF    FD0.7
+0194:  BSF    07.7
+0196:  CLRF   16
+0198:  CLRF   17
+019A:  CLRF   18
+019C:  BCF    19.0
+019E:  MOVF   FC1,W
+01A0:  ANDLW  C0
+01A2:  IORLW  0F
+01A4:  MOVWF  FC1
+01A6:  MOVLW  07
+01A8:  MOVWF  FB4
 .................... { 
 ....................    init(); 
-01BC:  BRA    0180
+01AA:  BRA    0176
 ....................    while (TRUE) { 
-01BE:  BRA    01BE
+01AC:  BRA    01AC
 ....................    } 
 .................... }    
 ....................  
 .................... // Ylopoiisi synartiseon 
 .................... #INT_EXT2 // Diakopi me megali proteraiotita 
 .................... void ext_int2(void) { 
-01C0:  SLEEP 
-....................    delay_ms(delay_before_alarm); // Kathisterisi 4 sec nexri na xtipisei o synagermos // LOGO TOU DELAY DEN PAIZEI SOSTA H ALLAGI TOU RB2 ANAMESA STA 4sec 
+01AE:  SLEEP 
+....................    armed = !bit_test(PORTB, 2); 
 *
-00CE:  MOVLW  10
-00D0:  MOVWF  1A
-00D2:  MOVLW  FA
-00D4:  MOVWF  1B
-00D6:  RCALL  00A2
-00D8:  DECFSZ 1A,F
-00DA:  BRA    00D2
-....................    if (armed && !bit_test(PORTB, 2)) { // An o synagermos einai oplismenos kai to RB2 einai 0... 
-00DC:  BTFSS  19.0
-00DE:  BRA    00FA
-00E0:  BTFSC  F81.2
-00E2:  BRA    00FA
-....................       PORTD = PORTD ^ alarm_led;  //... tote xtypaei gia... 
-00E4:  MOVLW  02
-00E6:  XORWF  F83,F
-....................       delay_ms(sound_alarm); //... 5 sec... 
-00E8:  MOVLW  14
-00EA:  MOVWF  1A
-00EC:  MOVLW  FA
-00EE:  MOVWF  1B
-00F0:  RCALL  00A2
-00F2:  DECFSZ 1A,F
-00F4:  BRA    00EC
-....................       PORTD = PORTD ^ alarm_led; //... kai stamataei. 
-00F6:  MOVLW  02
-00F8:  XORWF  F83,F
-....................    } 
+00A2:  BCF    19.0
+00A4:  BTFSS  F81.2
+00A6:  BSF    19.0
+.................... //   if (!bit_test(PORTB, 2)) 
+.................... //      armed = 1; 
+.................... //   else 
+.................... //      armed = 0; 
+.................... //   if (!bit_test(PORTB, 2)) { // An o synagermos einai oplismenos kai to RB2 einai 0... 
+.................... //      delay_ms(delay_before_alarm); // Kathisterisi 4 sec nexri na xtipisei o synagermos // LOGO TOU DELAY DEN PAIZEI SOSTA H ALLAGI TOU RB2 ANAMESA STA 4sec 
+.................... //      PORTD = PORTD ^ alarm_led;  //... tote xtypaei gia... 
+.................... //      delay_ms(sound_alarm); //... 5 sec... 
+.................... //      PORTD = PORTD ^ alarm_led; //... kai stamataei. 
+.................... //   } 
 .................... } 
 ....................  
 ....................  
-00FA:  BCF    FF0.1
-00FC:  GOTO   0060
+00A8:  BCF    FF0.1
+00AA:  GOTO   0060
 .................... #INT_RB //HIGH // Diakopi me megali proteraiotita 
 .................... void rb(void) { 
 ....................    last = PORTB ^ old; 
-0100:  MOVF   F81,W
-0102:  XORWF  17,W
-0104:  MOVWF  16
+*
+00DA:  MOVF   F81,W
+00DC:  XORWF  17,W
+00DE:  MOVWF  16
 ....................    old = PORTB; 
-0106:  MOVFF  F81,17
+00E0:  MOVFF  F81,17
 ....................    if (bit_test(last, 4) && !bit_test(old, 4)) { // Egine allagi ston aisthitira RB4 
-010A:  BTFSS  16.4
-010C:  BRA    0116
-010E:  BTFSC  17.4
-0110:  BRA    0116
+00E4:  BTFSS  16.4
+00E6:  BRA    00F0
+00E8:  BTFSC  17.4
+00EA:  BRA    00F0
 ....................       changed_bit = 0x10; 
-0112:  MOVLW  10
-0114:  MOVWF  18
+00EC:  MOVLW  10
+00EE:  MOVWF  18
 ....................    } 
 ....................    if (bit_test(last, 4) && bit_test(old, 4)) { 
-0116:  BTFSS  16.4
-0118:  BRA    0122
-011A:  BTFSS  17.4
-011C:  BRA    0122
+00F0:  BTFSS  16.4
+00F2:  BRA    00FC
+00F4:  BTFSS  17.4
+00F6:  BRA    00FC
 ....................       changed_bit = 0x10; 
-011E:  MOVLW  10
-0120:  MOVWF  18
+00F8:  MOVLW  10
+00FA:  MOVWF  18
 ....................    } 
 ....................  
 ....................    if (bit_test(last, 5) && !bit_test(old, 5)) { // Egine allagi ston aisthitira RB5 
-0122:  BTFSS  16.5
-0124:  BRA    012E
-0126:  BTFSC  17.5
-0128:  BRA    012E
+00FC:  BTFSS  16.5
+00FE:  BRA    0108
+0100:  BTFSC  17.5
+0102:  BRA    0108
 ....................       changed_bit = 0x20; 
-012A:  MOVLW  20
-012C:  MOVWF  18
+0104:  MOVLW  20
+0106:  MOVWF  18
 ....................    } 
 ....................    if (bit_test(last, 5) && bit_test(old, 5)) { 
-012E:  BTFSS  16.5
-0130:  BRA    013A
-0132:  BTFSS  17.5
-0134:  BRA    013A
+0108:  BTFSS  16.5
+010A:  BRA    0114
+010C:  BTFSS  17.5
+010E:  BRA    0114
 ....................       changed_bit = 0x20; 
-0136:  MOVLW  20
-0138:  MOVWF  18
+0110:  MOVLW  20
+0112:  MOVWF  18
 ....................    } 
 ....................  
 ....................    if (bit_test(last, 6) && !bit_test(old, 6)) { // Egine allagi ston aisthitira RB6 
-013A:  BTFSS  16.6
-013C:  BRA    0146
-013E:  BTFSC  17.6
-0140:  BRA    0146
+0114:  BTFSS  16.6
+0116:  BRA    0120
+0118:  BTFSC  17.6
+011A:  BRA    0120
 ....................       changed_bit = 0x40; 
-0142:  MOVLW  40
-0144:  MOVWF  18
+011C:  MOVLW  40
+011E:  MOVWF  18
 ....................    } 
 ....................    if (bit_test(last, 6) && bit_test(old, 6)) { 
-0146:  BTFSS  16.6
-0148:  BRA    0152
-014A:  BTFSS  17.6
-014C:  BRA    0152
+0120:  BTFSS  16.6
+0122:  BRA    012C
+0124:  BTFSS  17.6
+0126:  BRA    012C
 ....................       changed_bit = 0x40; 
-014E:  MOVLW  40
-0150:  MOVWF  18
+0128:  MOVLW  40
+012A:  MOVWF  18
 ....................    } 
 ....................  
 ....................    if (bit_test(last, 7) && !bit_test(old, 7)) { // Egine allagi ston aisthitira RB7 
-0152:  BTFSS  16.7
-0154:  BRA    015E
-0156:  BTFSC  17.7
-0158:  BRA    015E
+012C:  BTFSS  16.7
+012E:  BRA    0138
+0130:  BTFSC  17.7
+0132:  BRA    0138
 ....................       changed_bit = 0x80; 
-015A:  MOVLW  80
-015C:  MOVWF  18
+0134:  MOVLW  80
+0136:  MOVWF  18
 ....................    } 
 ....................    if (bit_test(last, 7) && bit_test(old, 7)) { 
-015E:  BTFSS  16.7
-0160:  BRA    016A
-0162:  BTFSS  17.7
-0164:  BRA    016A
+0138:  BTFSS  16.7
+013A:  BRA    0144
+013C:  BTFSS  17.7
+013E:  BRA    0144
 ....................       changed_bit = 0x80; 
-0166:  MOVLW  80
-0168:  MOVWF  18
+0140:  MOVLW  80
+0142:  MOVWF  18
 ....................    } 
 ....................     
 ....................    PORTD = PORTD ^ changed_bit; // Anavoun ta led ton aisthitiron ydragryrou analoga me tous diakoptes RB4 eos RB7 
-016A:  MOVF   18,W
-016C:  XORWF  F83,F
-....................    if (PORTD == 0xF0) // An einai ernergopoiimenoi kai oi 4 aisthitires tote o synagermos mporei na energopoiithei 
-016E:  MOVF   F83,W
-0170:  SUBLW  F0
-0172:  BNZ   0178
-....................       armed = 1; 
-0174:  BSF    19.0
-0176:  BRA    017A
-....................    else 
-....................       armed = 0; 
-0178:  BCF    19.0
-017A:  BCF    FF2.0
-017C:  GOTO   0060
+0144:  MOVF   18,W
+0146:  XORWF  F83,F
+....................    if (armed) { // An o synagermos einai oplismenos kai to RB2 einai 0... 
+0148:  BTFSS  19.0
+014A:  BRA    0170
+....................       delay_ms(delay_before_alarm); // Kathisterisi 4 sec nexri na xtipisei o synagermos // LOGO TOU DELAY DEN PAIZEI SOSTA H ALLAGI TOU RB2 ANAMESA STA 4sec 
+014C:  MOVLW  10
+014E:  MOVWF  1A
+0150:  MOVLW  FA
+0152:  MOVWF  1B
+0154:  RCALL  00AE
+0156:  DECFSZ 1A,F
+0158:  BRA    0150
+....................       PORTD = PORTD ^ alarm_led;  //... tote xtypaei gia... 
+015A:  MOVLW  02
+015C:  XORWF  F83,F
+....................       delay_ms(sound_alarm); //... 5 sec... 
+015E:  MOVLW  14
+0160:  MOVWF  1A
+0162:  MOVLW  FA
+0164:  MOVWF  1B
+0166:  RCALL  00AE
+0168:  DECFSZ 1A,F
+016A:  BRA    0162
+....................       PORTD = PORTD ^ alarm_led; //... kai stamataei. 
+016C:  MOVLW  02
+016E:  XORWF  F83,F
+....................    } 
+....................     
+.................... //   if (PORTD == 0xF0) // An einai ernergopoiimenoi kai oi 4 aisthitires tote o synagermos mporei na energopoiithei 
+.................... //      armed = 1; 
+.................... //   else 
+.................... //      armed = 0; 
+0170:  BCF    FF2.0
+0172:  GOTO   0060
 .................... } 
 ....................  
 .................... void init(void) { 
 ....................    set_tris_b(0xff); // Orismos tou PORTB san eisodo (1) 
-0180:  MOVLW  FF
-0182:  MOVWF  F93
+0176:  MOVLW  FF
+0178:  MOVWF  F93
 ....................    set_tris_d(0x00); // Orismos tou PORTD san eksodo (0) 
-0184:  MOVLW  00
-0186:  MOVWF  F95
+017A:  MOVLW  00
+017C:  MOVWF  F95
 ....................    PORTD = 0; 
-0188:  CLRF   F83
+017E:  CLRF   F83
 ....................    port_b_pullups(TRUE); 
-018A:  BCF    FF1.7
+0180:  BCF    FF1.7
 ....................    ext_int_edge(2, H_TO_L); 
-018C:  BCF    FF1.4
+0182:  BCF    FF1.4
 ....................  
-....................    ext_int_edge(4, L_TO_H); 
-018E:  BSF    FF1.2
-....................    ext_int_edge(5, L_TO_H); 
-0190:  BSF    FF1.1
-....................    ext_int_edge(6, L_TO_H); 
-0192:  BSF    FF1.0
-....................    ext_int_edge(7, L_TO_H); 
-0194:  BSF    FF0.7
+.................... //   ext_int_edge(4, L_TO_H); 
+.................... //   ext_int_edge(5, L_TO_H); 
+.................... //   ext_int_edge(6, L_TO_H); 
+.................... //   ext_int_edge(7, L_TO_H); 
 ....................     
 ....................    enable_interrupts(INT_EXT2); // Energopoiisi eksoterikis diakopis RB2 
-0196:  BSF    FF0.4
+0184:  BSF    FF0.4
 ....................    enable_interrupts(INT_RB); // Energopoiisi eksoterikis diakopon RB4 eos RB7 
-0198:  BSF    FF2.3
+0186:  BSF    FF2.3
 ....................    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon 
-019A:  MOVLW  C0
-019C:  IORWF  FF2,F
-019E:  GOTO   01BE (RETURN)
+0188:  MOVLW  C0
+018A:  IORWF  FF2,F
+018C:  GOTO   01AC (RETURN)
 .................... } 
 
 Configuration Fuses:

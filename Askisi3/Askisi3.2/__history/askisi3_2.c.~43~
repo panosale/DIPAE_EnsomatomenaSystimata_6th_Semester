@@ -38,11 +38,10 @@ void main()
 // Ylopoiisi synartiseon
 #INT_EXT2 // Diakopi me megali proteraiotita
 void ext_int2(void) {
-   armed = !bit_test(PORTB, 2);
-//   if (!bit_test(PORTB, 2))
-//      armed = 1;
-//   else
-//      armed = 0;
+   if (!bit_test(PORTB, 2))
+      armed = 1;
+   else
+      armed = 0;
 //   if (!bit_test(PORTB, 2)) { // An o synagermos einai oplismenos kai to RB2 einai 0...
 //      delay_ms(delay_before_alarm); // Kathisterisi 4 sec nexri na xtipisei o synagermos // LOGO TOU DELAY DEN PAIZEI SOSTA H ALLAGI TOU RB2 ANAMESA STA 4sec
 //      PORTD = PORTD ^ alarm_led;  //... tote xtypaei gia...

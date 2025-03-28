@@ -25,7 +25,7 @@
 017     old
 018     changed_bit
 019.0   armed
-01A     ext_int2.@SCRATCH1
+01A     rb.@SCRATCH1
 01B     @delay_ms1.P1
 F80     PORTA
 F81     PORTB
@@ -51,23 +51,23 @@ FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
 FF6-FF8 @READ_PROGRAM_MEMORY.P2
 
 ROM Allocation:
-0000A2  @delay_ms1
-0000CE  ext_int2
-000100  rb
-000180  init
-0001A2  main
-0001A2  @cinit1
-0001BC  @cinit2
+0000A2  ext_int2
+0000AE  @delay_ms1
+0000DA  rb
+000176  init
+000190  main
+000190  @cinit1
+0001AA  @cinit2
 
 Project Directory:
-    D:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi3\Askisi3.2\
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi3\Askisi3.2\
 
 Project Files:
-    askisi3_2.c                                             [28-Ìבס-25 00:08  CRC=5DB8B59E]
-    main_.h                                                 [23-Ìבס-25 12:44  CRC=51CBC36F]
+    askisi3_2.c                                             [29-Ìבס-25 01:02  CRC=00EA5EB1]
+    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Ìבס-20 13:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Áץד-13 15:40  CRC=A157EDDE]
 
-Source signature=F23454C9
+Source signature=9565FDDC
 
 Units:
     askisi3_2 (main)

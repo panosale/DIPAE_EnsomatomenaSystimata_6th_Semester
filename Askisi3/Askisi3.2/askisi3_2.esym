@@ -1,9 +1,8 @@
-C L "init" 0 10 1 "FUNCTION"
-D G "__PCH__" 0 106 ""5.011""
-D G "__DEVICE__" 0 106 "4550"
-D G "__DATE__" 0 106 ""28-Ìבס-25""
-D G "__TIME__" 0 106 ""00:08:30"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
-c L "set_tris_a" 0 10 3 "FUNCTION"
+D G "__PCH__" 0 0 ""5.011""
+D G "__DEVICE__" 0 0 ""
+D G "__DATE__" 0 0 ""29-Ìבס-25""
+D G "__TIME__" 0 0 ""01:15:00"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
+c L "set_tris_a" 0 0 3 "FUNCTION"
 c L "set_tris_a" 2 1 22 "FUNCTION"
 v L "value" 2 36 "int8" `54 
 f B "set_tris_a" 2 36 "void(int8 value)" `53 
@@ -925,21 +924,23 @@ f G "init" 0 29 "void()" `651
 F G "main" 0 32 "void()" `652 
 C L "ext_int2" 0 10 1 "FUNCTION"
 F G "ext_int2" 0 40 "void()" `649 
-C L "ext_int2" 0 10 1 "FUNCTION"
-C L "ext_int2" 0 10 1 "FUNCTION"
-C L "ext_int2" 0 10 1 "FUNCTION"
-C L "ext_int2" 0 10 1 "FUNCTION"
-C L "ext_int2" 0 10 1 "FUNCTION"
-F G "rb" 0 51 "void()" `650 
+C L "ext_int2" 0 10 9 "FUNCTION"
+F G "rb" 0 56 "void()" `650 
 C L "rb" 0 10 1 "FUNCTION"
 C L "rb" 0 10 1 "FUNCTION"
 C L "rb" 0 10 1 "FUNCTION"
 C L "rb" 0 10 1 "FUNCTION"
 C L "rb" 0 10 1 "FUNCTION"
 C L "rb" 0 10 1 "FUNCTION"
-F G "init" 0 89 "void()" `651 
+C L "rb" 0 10 1 "FUNCTION"
+C L "rb" 0 10 1 "FUNCTION"
+C L "rb" 0 10 1 "FUNCTION"
+C L "rb" 0 10 1 "FUNCTION"
+C L "rb" 0 10 4 "FUNCTION"
+F G "init" 0 101 "void()" `651 
 C L "init" 0 10 1 "FUNCTION"
 C L "init" 0 10 1 "FUNCTION"
+C L "init" 0 10 4 "FUNCTION"
 C L "init" 0 10 1 "FUNCTION"
 C L "init" 0 10 1 "FUNCTION"
 F B "reset_cpu" 0 0
