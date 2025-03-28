@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.011, 5967               23-Ìבס-25 00:27
+CCS PCH C Compiler, Version 5.011, 5967               29-Ìבס-25 00:48
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi3\Askisi3.3\askisi3_3.lst
 
-               ROM used:   302 bytes (1%)
-                           Largest free fragment is 32462
-               RAM used:   24 (1%) at main() level
+               ROM used:   300 bytes (1%)
+                           Largest free fragment is 32464
+               RAM used:   25 (1%) at main() level
                            25 (1%) worst case
                Stack used: 2 locations (1 in main + 1 for interrupts)
                Stack size: 31
 
 *
-0000:  GOTO   0106
+0000:  GOTO   0102
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -58,7 +58,7 @@ CCS PCH C Compiler, Version 5.011, 5967               23-Ìבס-25 00:27
 .................... // DIPAE - Enosmatomena Systimata - 6o Eksamino 
 .................... // Alevropoulos Panagiotis 
 .................... // AM: 2022005 
-.................... // Askisi 3.3 
+.................... // Askisi 3.3 - Veltiomeni ekdosi. Me allagi tou PORTB_1 diakoptei tin ektelesi tou link ton led 
 .................... #include <main_.h> 
 .................... #include <18F4550.h> 
 .................... //////// Standard Header file for the PIC18F4550 device //////////////// 
@@ -111,28 +111,28 @@ CCS PCH C Compiler, Version 5.011, 5967               23-Ìבס-25 00:27
 .................... /* systm clock is 48 MHz */ 
 .................... #use delay(clock=48000000,RESTART_WDT) 
 *
-00DA:  CLRF   FEA
-00DC:  MOVLW  18
-00DE:  MOVWF  FE9
-00E0:  MOVF   FEF,W
-00E2:  BZ    0104
-00E4:  MOVLW  0F
-00E6:  MOVWF  01
-00E8:  MOVLW  BF
-00EA:  MOVWF  00
-00EC:  CLRWDT
-00EE:  DECFSZ 00,F
-00F0:  BRA    00EC
-00F2:  DECFSZ 01,F
-00F4:  BRA    00E8
-00F6:  MOVLW  8F
-00F8:  MOVWF  00
-00FA:  DECFSZ 00,F
-00FC:  BRA    00FA
-00FE:  CLRWDT
-0100:  DECFSZ FEF,F
-0102:  BRA    00E4
-0104:  RETURN 0
+00D6:  CLRF   FEA
+00D8:  MOVLW  18
+00DA:  MOVWF  FE9
+00DC:  MOVF   FEF,W
+00DE:  BZ    0100
+00E0:  MOVLW  0F
+00E2:  MOVWF  01
+00E4:  MOVLW  BF
+00E6:  MOVWF  00
+00E8:  CLRWDT
+00EA:  DECFSZ 00,F
+00EC:  BRA    00E8
+00EE:  DECFSZ 01,F
+00F0:  BRA    00E4
+00F2:  MOVLW  8F
+00F4:  MOVWF  00
+00F6:  DECFSZ 00,F
+00F8:  BRA    00F6
+00FA:  CLRWDT
+00FC:  DECFSZ FEF,F
+00FE:  BRA    00E0
+0100:  RETURN 0
 .................... /* --- BEGIN: changes required for bootloader ------------------------------ */ 
 ....................  
 .................... /* ------------------------------------------------------------------------- */ 
@@ -166,56 +166,63 @@ CCS PCH C Compiler, Version 5.011, 5967               23-Ìבס-25 00:27
 .................... #byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi 
 ....................  
 .................... // Dilosi global metavliton 
-.................... int1 go; 
+.................... int1 go = 0; 
 .................... int8 delay; 
 ....................  
 .................... // Dilosi sinartiseon 
 .................... void init(void); 
 .................... void ext_int(void); 
+.................... //void ext_int1(void); // Veltiomeni ekdosi. Me allagi tou PORTB_1 diakoptei tin ektelesi tou blink ton led 
 .................... void ext_int2(void); 
 ....................  
 .................... void main() 
-0106:  CLRF   FF8
-0108:  BCF    FD0.7
-010A:  BSF    07.7
-010C:  MOVF   FC1,W
-010E:  ANDLW  C0
-0110:  IORLW  0F
-0112:  MOVWF  FC1
-0114:  MOVLW  07
-0116:  MOVWF  FB4
+0102:  CLRF   FF8
+0104:  BCF    FD0.7
+0106:  BSF    07.7
+0108:  BCF    16.0
+010A:  MOVF   FC1,W
+010C:  ANDLW  C0
+010E:  IORLW  0F
+0110:  MOVWF  FC1
+0112:  MOVLW  07
+0114:  MOVWF  FB4
 .................... { 
 ....................    init(); 
-0118:  BRA    00BA
+0116:  BRA    00BA
 ....................    while (TRUE) { 
-....................       if (go) { 
-011A:  BTFSS  16.0
-011C:  BRA    012E
+....................       if (go == 1) {  
+0118:  BTFSS  16.0
+011A:  BRA    012C
 ....................          PORTD = 0xff; 
-011E:  SETF   F83
+011C:  SETF   F83
 ....................          delay_ms(delay);       
-0120:  MOVFF  17,18
-0124:  RCALL  00DA
+011E:  MOVFF  17,18
+0122:  RCALL  00D6
 ....................          PORTD = 0x00; 
-0126:  CLRF   F83
+0124:  CLRF   F83
 ....................          delay_ms(delay);       
-0128:  MOVFF  17,18
-012C:  RCALL  00DA
+0126:  MOVFF  17,18
+012A:  RCALL  00D6
 ....................       } 
-012E:  BRA    011A
+012C:  BRA    0118
 ....................    } 
 .................... } 
 ....................  
 .................... #INT_EXT // Diakopi me megali proteraiotita 
 .................... void ext_int(void) { 
-0130:  SLEEP 
+012E:  SLEEP 
 ....................    go = 1; 
 *
 00A2:  BSF    16.0
-....................    delay = 125; 
+....................    delay = 125; // 4 Hz 
 00A4:  MOVLW  7D
 00A6:  MOVWF  17
 .................... } 
+....................  
+.................... //#INT_EXT1 // Diakopi me megali proteraiotita 
+.................... //void ext_int1(void) { // Veltiomeni ekdosi. Me allagi tou PORTB_1 diakoptei tin ektelesi tou blink ton led 
+.................... //   go = !go;  
+.................... //} 
 ....................  
 00A8:  BCF    FF2.1
 00AA:  GOTO   0060
@@ -223,7 +230,7 @@ CCS PCH C Compiler, Version 5.011, 5967               23-Ìבס-25 00:27
 .................... void ext_int2(void) { 
 ....................    go = 1; 
 00AE:  BSF    16.0
-....................    delay = 50; 
+....................    delay = 50; // 10 Hz 
 00B0:  MOVLW  32
 00B2:  MOVWF  17
 00B4:  BCF    FF0.1
@@ -245,18 +252,18 @@ CCS PCH C Compiler, Version 5.011, 5967               23-Ìבס-25 00:27
 00C6:  CLRF   F83
 ....................    port_b_pullups(TRUE); 
 00C8:  BCF    FF1.7
-....................    ext_int_edge(0, H_TO_L); 
-00CA:  BCF    FF1.6
-....................    ext_int_edge(2, H_TO_L); 
-00CC:  BCF    FF1.4
+.................... //   ext_int_edge(0, H_TO_L); 
+.................... //   ext_int_edge(1, H_TO_L); // Veltiomeni ekdosi. Me allagi tou PORTB_1 diakoptei tin ektelesi tou blink ton led 
+.................... //   ext_int_edge(2, H_TO_L); 
 ....................    enable_interrupts(INT_EXT); // Energopoiisi eksoterikis diakopis RB0 
-00CE:  BSF    FF2.4
+00CA:  BSF    FF2.4
+.................... //   enable_interrupts(INT_EXT1); // Energopoiisi eksoterikis diakopis RB1 
 ....................    enable_interrupts(INT_EXT2); // Energopoiisi eksoterikis diakopis RB2 
-00D0:  BSF    FF0.4
+00CC:  BSF    FF0.4
 ....................    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon 
-00D2:  MOVLW  C0
-00D4:  IORWF  FF2,F
-00D6:  GOTO   011A (RETURN)
+00CE:  MOVLW  C0
+00D0:  IORWF  FF2,F
+00D2:  GOTO   0118 (RETURN)
 .................... } 
 ....................  
 ....................  

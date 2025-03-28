@@ -20,7 +20,7 @@ int8 delay;
 // Dilosi sinartiseon
 void init(void);
 void ext_int(void);
-//void ext_int1(void); // Veltiomeni ekdosi. Me allagi tou PORTB_1 diakoptei tin ektelesi tou blink ton led
+void ext_int1(void); // Veltiomeni ekdosi. Me allagi tou PORTB_1 diakoptei tin ektelesi tou blink ton led
 void ext_int2(void);
 
 void main()
@@ -38,18 +38,18 @@ void main()
 
 #INT_EXT // Diakopi me megali proteraiotita
 void ext_int(void) {
-   go = 1;
+//   go = 1;
    delay = 125; // 4 Hz
 }
 
-//#INT_EXT1 // Diakopi me megali proteraiotita
-//void ext_int1(void) { // Veltiomeni ekdosi. Me allagi tou PORTB_1 diakoptei tin ektelesi tou blink ton led
-//   go = !go; 
-//}
+#INT_EXT1 // Diakopi me megali proteraiotita
+void ext_int1(void) { // Veltiomeni ekdosi. Me allagi tou PORTB_1 diakoptei tin ektelesi tou blink ton led
+   go = !go; 
+}
 
 #INT_EXT2 // Diakopi me megali proteraiotita
 void ext_int2(void) {
-   go = 1;
+//   go = 1;
    delay = 50; // 10 Hz
 }
 
@@ -60,11 +60,11 @@ void init(void) {
    delay = 0;
    PORTD = 0;
    port_b_pullups(TRUE);
-//   ext_int_edge(0, H_TO_L);
-//   ext_int_edge(1, H_TO_L); // Veltiomeni ekdosi. Me allagi tou PORTB_1 diakoptei tin ektelesi tou blink ton led
-//   ext_int_edge(2, H_TO_L);
+   ext_int_edge(0, H_TO_L);
+   ext_int_edge(1, H_TO_L); // Veltiomeni ekdosi. Me allagi tou PORTB_1 diakoptei tin ektelesi tou blink ton led
+   ext_int_edge(2, H_TO_L);
    enable_interrupts(INT_EXT); // Energopoiisi eksoterikis diakopis RB0
-//   enable_interrupts(INT_EXT1); // Energopoiisi eksoterikis diakopis RB1
+   enable_interrupts(INT_EXT1); // Energopoiisi eksoterikis diakopis RB1
    enable_interrupts(INT_EXT2); // Energopoiisi eksoterikis diakopis RB2
    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
 }

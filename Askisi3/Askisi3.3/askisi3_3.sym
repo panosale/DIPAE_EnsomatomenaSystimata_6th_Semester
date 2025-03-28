@@ -24,6 +24,7 @@
 016.0   go
 017     delay
 018     @delay_ms1.P1
+018     main.@SCRATCH1
 F80     PORTA
 F81     PORTB
 F82     PORTC
@@ -51,20 +52,20 @@ ROM Allocation:
 0000A2  ext_int
 0000AE  ext_int2
 0000BA  init
-0000DA  @delay_ms1
-000106  main
-000106  @cinit1
-000118  @cinit2
+0000D6  @delay_ms1
+000102  main
+000102  @cinit1
+000116  @cinit2
 
 Project Directory:
     F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi3\Askisi3.3\
 
 Project Files:
-    askisi3_3.c                                             [23-Ìבס-25 00:27  CRC=0090E559]
+    askisi3_3.c                                             [29-Ìבס-25 00:48  CRC=4416794E]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Ìבס-20 13:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Áץד-13 15:40  CRC=A157EDDE]
 
-Source signature=950C8484
+Source signature=D8921879
 
 Units:
     askisi3_3 (main)

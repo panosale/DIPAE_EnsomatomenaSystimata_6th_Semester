@@ -1,8 +1,8 @@
 C L "init" 0 10 1 "FUNCTION"
-D G "__PCH__" 0 66 ""5.011""
-D G "__DEVICE__" 0 66 "4550"
-D G "__DATE__" 0 66 ""23-Ìבס-25""
-D G "__TIME__" 0 66 ""00:27:13"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
+D G "__PCH__" 0 74 ""5.011""
+D G "__DEVICE__" 0 74 "4550"
+D G "__DATE__" 0 74 ""29-Ìבס-25""
+D G "__TIME__" 0 74 ""00:48:52"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
 c L "set_tris_a" 0 10 3 "FUNCTION"
 c L "set_tris_a" 2 1 22 "FUNCTION"
 v L "value" 2 36 "int8" `54 
@@ -911,15 +911,19 @@ C L "jump_to_irs" 0 10 2 "FUNCTION"
 V G "go" 0 17 "int1" `639 
 V G "delay" 0 18 "int8" `640  "Dilosi sinartiseon"
 f G "init" 0 21 "void()" `641 
-f G "ext_int" 0 22 "void()" `642 
-f G "ext_int2" 0 23 "void()" `643 
-F G "main" 0 26 "void()" `644 
-F G "ext_int" 0 39 "void()" `642 
-F G "ext_int2" 0 45 "void()" `643 
-F G "init" 0 50 "void()" `641 
+f G "ext_int" 0 22 "void()" `642  "void ext_int1(void); // Veltiomeni ekdosi. Me allagi tou PORTB_1 diakoptei tin ektelesi tou blink ton led"
+f G "ext_int2" 0 24 "void()" `643 
+F G "main" 0 27 "void()" `644 
+F G "ext_int" 0 40 "void()" `642 
+C L "ext_int" 0 10 1 "FUNCTION"
+C L "ext_int2" 0 10 3 "FUNCTION"
+F G "ext_int2" 0 51 "void()" `643 
+C L "ext_int2" 0 10 1 "FUNCTION"
+F G "init" 0 56 "void()" `641 
 C L "init" 0 10 1 "FUNCTION"
 C L "init" 0 10 1 "FUNCTION"
-C L "init" 0 10 1 "FUNCTION"
+C L "init" 0 10 3 "FUNCTION"
+C L "init" 0 10 2 "FUNCTION"
 C L "init" 0 10 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
