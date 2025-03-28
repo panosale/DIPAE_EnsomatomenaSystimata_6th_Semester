@@ -19,7 +19,7 @@ const int8 alarm_led = 0x2; // Led pou anavei oso xtypaei o synagermos
 
 // Dilosi global metavliton
 byte last = 0;
-byte old = 0;
+byte old= 0;
 byte changed_bit = 0;
 int1 armed = 0;
 
@@ -38,7 +38,7 @@ void main()
 // Ylopoiisi synartiseon
 #INT_EXT2 // Diakopi me megali proteraiotita
 void ext_int2(void) {
-   delay_ms(delay_before_alarm); // Kathisterisi 4 sec nexri na xtipisei o synagermos // LOGO TOU DELAY DEN PAIZEI SOSTA H ALLAGI TOU RB2 ANAMESA STA 4sec
+   delay_ms(delay_before_alarm); // Kathisterisi 4 sec nexri na xtipisei o synagermos
    if (armed && !bit_test(PORTB, 2)) { // An o synagermos einai oplismenos kai to RB2 einai 0...
       PORTD = PORTD ^ alarm_led;  //... tote xtypaei gia...
       delay_ms(sound_alarm); //... 5 sec...
@@ -92,12 +92,6 @@ void init(void) {
    PORTD = 0;
    port_b_pullups(TRUE);
    ext_int_edge(2, H_TO_L);
-
-   ext_int_edge(4, L_TO_H);
-   ext_int_edge(5, L_TO_H);
-   ext_int_edge(6, L_TO_H);
-   ext_int_edge(7, L_TO_H);
-   
    enable_interrupts(INT_EXT2); // Energopoiisi eksoterikis diakopis RB2
    enable_interrupts(INT_RB); // Energopoiisi eksoterikis diakopon RB4 eos RB7
    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon

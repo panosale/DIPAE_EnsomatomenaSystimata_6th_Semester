@@ -1,0 +1,150 @@
+// DIPAE - Enosmatomena Systimata - 6o Eksamino
+// Alevropoulos Panagiotis
+// AM: 2022005
+// Askisi 3.2
+#include <main_.h>
+
+#use standard_io (A) // Standard Eisodoi & Eksodoi
+#use standard_io (B) // Standard Eisodoi & Eksodoi
+#use standard_io (C) // Standard Eisodoi & Eksodoi
+#byte PORTA =0xF80 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTB =0xF81 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTC =0xF82 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTD =0xF83 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi
+
+const int8 changed_0_to_1 = 100;
+const int16 sound_alarm = 500;
+//const int16 changed_1_to_0 = 500;
+
+// Dilosi global metavliton
+byte last = 0;
+byte old = 0;
+byte changed_bit = 0;
+int1 state_p = 0;
+
+// Dilosi sinartiseon
+void ext_int2(void);
+void rb(void);
+void init(void);
+
+void main()
+{
+   init();
+   while (TRUE) {
+      if (bit_test(PORTB, 2)) {
+/*
+         if ((changed_bit ^ 0x10) == 0) { // Egine allagi tou RB4
+            if (state_p) {
+               PORTD = PORTD ^ 0x10;
+               //delay_ms(changed_1_to_0);
+            }
+            else {
+               PORTD = PORTD ^ 0x10;
+               //delay_ms(changed_0_to_1);
+            }
+         }
+         if ((changed_bit ^ 0x20) == 0) { // Egine allagi tou RB5
+            if (state_p) {
+               PORTD = PORTD ^ 0x20;
+               //delay_ms(changed_1_to_0);
+            }
+            else {
+               PORTD = PORTD ^ 0x20;
+               //delay_ms(changed_0_to_1);
+            }
+         }
+         if ((changed_bit ^ 0x40) == 0) { // Egine allagi tou RB6
+            if (state_p) {
+               PORTD = PORTD ^ 0x40;
+               //delay_ms(changed_1_to_0);
+            }
+            else {
+               PORTD = PORTD ^ 0x40;
+               //delay_ms(changed_0_to_1);
+            }
+         }
+         if ((changed_bit ^ 0x80) == 0) { // Egine allagi tou RB7
+            if (state_p) {
+               PORTD = PORTD ^ 0x80;
+               //delay_ms(changed_1_to_0);
+            }
+            else {
+               PORTD = PORTD ^ 0x80;
+               //delay_ms(changed_0_to_1);
+            }
+         }
+         */
+      }
+   }
+}   
+
+// Ylopoiisi synartiseon
+#INT_EXT2 // Diakopi me megali proteraiotita
+void ext_int2(void) {
+//   if (state_p)) {
+      PORTD = PORTD ^ 0x1;      
+//   }
+}
+
+
+#INT_RB //HIGH // Diakopi me megali proteraiotita
+void rb(void) {
+   last = PORTB ^ old;
+   old = PORTB;
+   if (bit_test(last, 4) && !bit_test(old, 4)) {
+   // Ean exei ginei allagi sto RB4 kai to anastrofo tis trexousa katastasis...
+   // ...tou einai 1 tote allagi tou RB4 apo 1 se 0
+      changed_bit = 0x10;
+      state_p = 0; //Allagi apo 1 se 0
+   }
+   if (bit_test(last, 4) && bit_test(old, 4)) {
+      changed_bit = 0x10;
+      state_p = 1; //Allagi apo 0 se 1
+   }
+
+   if (bit_test(last, 5) && !bit_test(old, 5)) {
+   // Ean exei ginei allagi sto RB5 kai to anastrofo tis trexousa katastasis...
+   // ...tou einai 1 tote allagi tou RB5 apo 1 se 0
+      changed_bit = 0x20;
+      state_p = 0; //Allagi apo 1 se 0
+   }
+   if (bit_test(last, 5) && bit_test(old, 5)) {
+      changed_bit = 0x20;
+      state_p = 1; //Allagi apo 0 se 1
+   }
+
+   if (bit_test(last, 6) && !bit_test(old, 6)) {
+   // Ean exei ginei allagi sto RB6 kai to anastrofo tis trexousa katastasis...
+   // ...tou einai 1 tote allagi tou RB6 apo 1 se 0
+      changed_bit = 0x40;
+      state_p = 0; //Allagi apo 1 se 0
+   }
+   if (bit_test(last, 6) && bit_test(old, 6)) {
+      changed_bit = 0x40;
+      state_p = 1; //Allagi apo 0 se 1
+   }
+
+   if (bit_test(last, 7) && !bit_test(old, 7)) {
+   // Ean exei ginei allagi sto RB7 kai to anastrofo tis trexousa katastasis...
+   // ...tou einai 1 tote allagi tou RB7 apo 1 se 0
+      changed_bit = 0x80;
+      state_p = 0; //Allagi apo 1 se 0
+   }
+   if (bit_test(last, 7) && bit_test(old, 7)) {
+      changed_bit = 0x80;
+      state_p = 1; //Allagi apo 0 se 1
+   }
+   PORTD = PORTD ^ changed_bit; // Anavoun ta led ton aisthitiron ydragryrou
+}
+
+void init(void) {
+   set_tris_b(0xff); // Orismos tou PORTB san eisodo (1)
+   set_tris_d(0x00); // Orismos tou PORTD san eksodo (0)
+   PORTD = 0;
+   port_b_pullups(TRUE);
+   //ext_int_edge(2, H_TO_L);
+   enable_interrupts(INT_EXT2); // Energopoiisi eksoterikis diakopis RB1
+   enable_interrupts(INT_RB); // Energopoiisi eksoterikis diakopon RB4 eos RB7
+   enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
+}
