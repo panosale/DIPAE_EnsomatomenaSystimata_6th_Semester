@@ -39,7 +39,7 @@ void main()
 #INT_EXT // Diakopi me megali proteraiotita
 void ext_int(void) {
    go = 1;
-   delay = 125; // Imiperiodos gia ta 4 Hz
+   delay = 125; // 4 Hz
 }
 
 //#INT_EXT1 // Diakopi me megali proteraiotita
@@ -50,7 +50,7 @@ void ext_int(void) {
 #INT_EXT2 // Diakopi me megali proteraiotita
 void ext_int2(void) {
    go = 1;
-   delay = 50; // Imiperiodos gia ta 10 Hz
+   delay = 50; // 10 Hz
 }
 
 void init(void) {
