@@ -1,0 +1,50 @@
+
+ROM used:   254/32768 (1%)
+            254/32768 (1%) including unused fragments
+
+            0.3 Average locations per line
+            10.6 Average locations per statement
+
+RAM used:   23/2048 (1%) at main() level
+            23/2048 (1%) worst case
+
+Stack used: 2 worst case (1 in main + 1 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   75    24 100  TestTimer2.c
+   67     0   0  C:\Program Files (x86)\PICC\Devices\main_.h
+  821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
+----- -----
+  963    24 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     26   5    0    27  1.0  main
+0     32   6    0   235  4.5  ext_int
+0     10   2    0    25  1.2  timer0_int
+0     28   6    0   183  2.3  init
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               4
+    Statements              24
+    Comments                189
+    Volume (V)              644
+    Difficulty (D)          9.5
+    Effort to implement (E) 6144
+    Time to implement (T)   6 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    68
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-000A0   154  0  
+000A2-07FFE    96  32510  
+
+
+

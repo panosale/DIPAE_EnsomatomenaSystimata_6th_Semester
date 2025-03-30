@@ -1,0 +1,50 @@
+// DIPAE - Enosmatomena Systimata - 6o Eksamino
+// Alevropoulos Panagiotis
+// AM: 2022005
+// Askisi 4 - Test timer
+#include <main_.h>
+
+#use standard_io (A) // Standard Eisodoi & Eksodoi
+#use standard_io (B) // Standard Eisodoi & Eksodoi
+#use standard_io (C) // Standard Eisodoi & Eksodoi
+#byte PORTA =0xF80 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTB =0xF81 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTC =0xF82 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTD =0xF83 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi
+
+// Dilosi sinartiseon eksipiretisis
+void timer0_int(void);
+void ext_int(void);
+void init(void);
+
+void main()
+{
+   init();
+   while (TRUE) {
+   }
+}   
+
+#INT_EXT
+void ext_int(void) {
+   int8 timer_value = 0;
+     
+//   PORTD = PORTD ^ get_timer0(); 
+}
+
+#INT_TIMER0
+void timer0_int(void) {
+   PORTD = PORTD ^ get_timer0();
+}
+
+void init(void) {
+   set_tris_b(0xff); // Orismos tou PORTB san eisodo (0)
+   set_tris_d(0x00); // Orismos tou PORTD san eksodo (1)
+   
+   //SETUP_TIMER_0();
+   enable_interrupts(INT_TIMER0);
+//   port_b_pullups(TRUE);
+//   ext_int_edge(1, H_TO_L);
+//   enable_interrupts(INT_EXT); // Energopoiisi eksoterikis diakopis RB0
+   enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
+}

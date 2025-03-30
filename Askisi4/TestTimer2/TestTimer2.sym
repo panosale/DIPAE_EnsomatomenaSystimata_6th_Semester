@@ -1,0 +1,87 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016.0   previous_L_TO_H
+F80     PORTA
+F81     PORTB
+F82     PORTC
+F83     PORTD
+F83     PSP_DATA
+F84     PORTE
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+0000A2  ext_int
+0000C2  timer0_int
+0000CC  init
+0000E8  main
+0000E8  @cinit1
+0000FC  @cinit2
+
+Project Directory:
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi4\TestTimer2\
+
+Project Files:
+    TestTimer2.c                                            [30-Μαρ-25 01:13  CRC=57FC47E8]
+    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 13:55  CRC=51CBC36F]
+    C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 15:40  CRC=A157EDDE]
+
+Source signature=EC77E713
+
+Units:
+    TestTimer2 (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   TestTimer2.xsym
+    Errors:      TestTimer2.err
+    Ext Symbols: TestTimer2.esym
+    INHX32:      TestTimer2.hex
+    Symbols:     TestTimer2.sym
+    List:        TestTimer2.lst
+    Debug/COFF:  TestTimer2.cof
+    Project:     TestTimer2.ccspjt
+    Call Tree:   TestTimer2.tre
+    Statistics:  TestTimer2.STA

@@ -1,0 +1,16 @@
+[PROJECT]
+Target=TestTimer2.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.011
+Compiler=PCH
+[Target Data]
+FileList=TestTimer2.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[TestTimer2.c]
+Type=4
+[mru-list]
+1=TestTimer2.c
+[Units]
+Count=1
+1=TestTimer2 (main)

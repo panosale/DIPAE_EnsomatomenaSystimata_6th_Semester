@@ -53,7 +53,7 @@ void init() {
    	set_tris_b(0xff); // Orismos tou PORTB san eisodo (1)
 	set_tris_d(0x00); // Orismos tou PORTD san eksodo (0)
 	port_b_pullups(TRUE);
-	ext_int_edge(0, L_TO_H);
+	ext_int_edge(0, L_TO_H); // Gia na mporoume na allazoume to metopo kata tin ektelesi tiw routinas eksiporetisis prepei to interrupt afto na ksekinaei apo L_TO_H
 	ext_int_edge(1, L_TO_H);
 	ext_int_edge(2, H_TO_L);
 	enable_interrupts(INT_EXT);
