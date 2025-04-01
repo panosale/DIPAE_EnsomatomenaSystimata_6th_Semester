@@ -27,6 +27,8 @@ int8 RB5_counter = RB5_init_val_counter; // Led on RB5 counter
 int8 RB4_counter = RB4_init_val_counter; // Led on RB4 counter
 int8 RB3_counter = RB3_init_val_counter; // Led on RB3 counter
 
+int8 tmp = 256;
+
 // Dilosi sinartiseon eksipiretisis
 void timer0_int(void);
 void ext_int1(void);
@@ -42,6 +44,13 @@ void main()
 #INT_TIMER0
 void timer0_int(void) {
    set_timer0(timer_start_value);
+   tmp--;
+   if (tmp == 1) {
+      PORTB = tmp;
+      tmp = 256;
+   }
+   //PORTB = PORTB ^ 0b10000000;
+   /*
    // Led on RB7 flashing
    RB7_counter--;
    if (RB7_counter == 0) {
@@ -73,6 +82,7 @@ void timer0_int(void) {
       RB3_counter = RB3_init_val_counter;
    }
    
+   */
 }
 
 void init(void) {

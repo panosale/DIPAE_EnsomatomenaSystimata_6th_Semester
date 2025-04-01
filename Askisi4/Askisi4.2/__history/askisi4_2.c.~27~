@@ -19,13 +19,15 @@ const int8 RB6_init_val_counter = 5;
 const int8 RB5_init_val_counter = 10;
 const int8 RB4_init_val_counter = 20;
 const int8 RB3_init_val_counter = 80;
-const int16 timer_start_value = 0; // Orismos arxikis timis timer0;
+const int16 timer_start_value = 18661; // Orismos arxikis timis timer0;
 
 int8 RB7_counter = RB7_init_val_counter; // Led on RB7 counter
 int8 RB6_counter = RB6_init_val_counter; // Led on RB6 counter
 int8 RB5_counter = RB5_init_val_counter; // Led on RB5 counter
 int8 RB4_counter = RB4_init_val_counter; // Led on RB4 counter
 int8 RB3_counter = RB3_init_val_counter; // Led on RB3 counter
+
+int8 tmp = 256;
 
 // Dilosi sinartiseon eksipiretisis
 void timer0_int(void);
@@ -42,6 +44,12 @@ void main()
 #INT_TIMER0
 void timer0_int(void) {
    set_timer0(timer_start_value);
+   tmp--;
+   PORTB = tmp;
+   if (tmp == 0)
+      tmp = 256;
+   //PORTB = PORTB ^ 0b10000000;
+   /*
    // Led on RB7 flashing
    RB7_counter--;
    if (RB7_counter == 0) {
@@ -73,11 +81,12 @@ void timer0_int(void) {
       RB3_counter = RB3_init_val_counter;
    }
    
+   */
 }
 
 void init(void) {
    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
-   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_2);
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1);
    set_timer0(timer_start_value);
    enable_interrupts(INT_TIMER0);
    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon

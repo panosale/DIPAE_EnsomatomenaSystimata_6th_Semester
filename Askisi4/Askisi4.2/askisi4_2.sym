@@ -21,12 +21,11 @@
 013     @INTERRUPT_AREA
 014     @INTERRUPT_AREA
 015     @INTERRUPT_AREA
-016-017 timer_start_value
-018     RB7_counter
-019     RB6_counter
-01A     RB5_counter
-01B     RB4_counter
-01C     RB3_counter
+016     RB7_counter
+017     RB6_counter
+018     RB5_counter
+019     RB4_counter
+01A     RB3_counter
 F80     PORTA
 F81     PORTB
 F82     PORTC
@@ -35,37 +34,37 @@ F83     PSP_DATA
 F84     PORTE
 FB4.6   C1OUT
 FB4.7   C2OUT
-FBB     CCP_2
 FBB     CCP_2_LOW
+FBB     CCP_2
 FBC     CCP_2_HIGH
-FBE     CCP_1_LOW
 FBE     CCP_1
+FBE     CCP_1_LOW
 FBF     CCP_1_HIGH
-FE1-FE2 @READ_PACKED_MEMORY.P1
-FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
 FE9-FEA @READ_PROGRAM_MEMORY.P1
-FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P2
 FE9-FEA @READ_PACKED_MEMORY.P3
-FE9-FEA @WRITE_PACKED_MEMORY.P4
-FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
-FF6-FF8 @READ_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
 
 ROM Allocation:
 000096  timer0_int
-0000EA  init
-000104  main
-000104  @cinit1
-000132  @cinit2
+0000E6  init
+0000FC  main
+0000FC  @cinit1
+000122  @cinit2
 
 Project Directory:
     F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi4\Askisi4.2\
 
 Project Files:
-    askisi4_2.c                                             [02-Απρ-25 00:01  CRC=804B7EF3]
+    askisi4_2.c                                             [02-Απρ-25 00:29  CRC=42B7CDBC]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 14:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 16:40  CRC=A157EDDE]
 
-Source signature=14C71E1E
+Source signature=D7336CE7
 
 Units:
     askisi4_2 (main)

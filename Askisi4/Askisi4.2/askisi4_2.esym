@@ -1,8 +1,8 @@
-d G "INT_USB" 2 818 "0x00A020"
-D G "__PCH__" 0 86 ""5.011""
-D G "__DEVICE__" 0 86 "4550"
-D G "__DATE__" 0 86 ""02-Απρ-25""
-D G "__TIME__" 0 86 ""00:01:37"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
+C L "init" 0 11 1 "FUNCTION"
+D G "__PCH__" 0 96 ""5.011""
+D G "__DEVICE__" 0 96 "4550"
+D G "__DATE__" 0 96 ""02-Απρ-25""
+D G "__TIME__" 0 96 ""00:29:07"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
 c L "set_tris_a" 0 11 3 "FUNCTION"
 c L "set_tris_a" 2 1 22 "FUNCTION"
 v L "value" 2 36 "int8" `54 
@@ -913,29 +913,29 @@ V G "RB6_init_val_counter" 0 18 "int8" `641
 V G "RB5_init_val_counter" 0 19 "int8" `643 
 V G "RB4_init_val_counter" 0 20 "int8" `645 
 V G "RB3_init_val_counter" 0 21 "int8" `647 
-V G "timer_start_value" 0 23 "int16" `649 
+V G "timer_start_value" 0 22 "int16" `649 
 C L "jump_to_irs" 0 11 1 "FUNCTION"
-V G "RB7_counter" 0 24 "int8" `650 
+V G "RB7_counter" 0 24 "int8" `651 
 C L "jump_to_irs" 0 11 1 "FUNCTION"
-V G "RB6_counter" 0 25 "int8" `651 
+V G "RB6_counter" 0 25 "int8" `652 
 C L "jump_to_irs" 0 11 1 "FUNCTION"
-V G "RB5_counter" 0 26 "int8" `652 
+V G "RB5_counter" 0 26 "int8" `653 
 C L "jump_to_irs" 0 11 1 "FUNCTION"
-V G "RB4_counter" 0 27 "int8" `653 
+V G "RB4_counter" 0 27 "int8" `654 
 C L "jump_to_irs" 0 11 1 "FUNCTION"
-V G "RB3_counter" 0 28 "int8" `654 
+V G "RB3_counter" 0 28 "int8" `655 
 C L "jump_to_irs" 0 11 2 "FUNCTION"
-f G "timer0_int" 0 31 "void()" `655 
-f G "ext_int1" 0 32 "void()" `656 
-f G "init" 0 33 "void()" `657 
-F G "main" 0 36 "void()" `658 
-F G "timer0_int" 0 43 "void()" `655 
+f G "timer0_int" 0 31 "void()" `656 
+f G "ext_int1" 0 32 "void()" `657 
+f G "init" 0 33 "void()" `658 
+F G "main" 0 36 "void()" `659 
+F G "timer0_int" 0 43 "void()" `656 
 C L "timer0_int" 0 11 1 "FUNCTION"
 C L "timer0_int" 0 11 1 "FUNCTION"
 C L "timer0_int" 0 11 1 "FUNCTION"
 C L "timer0_int" 0 11 1 "FUNCTION"
 C L "timer0_int" 0 11 1 "FUNCTION"
-F G "init" 0 77 "void()" `657 
+F G "init" 0 78 "void()" `658 
 C L "init" 0 11 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
