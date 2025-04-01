@@ -14,6 +14,15 @@
 #byte PORTD =0xF83 // Orismos ton thiron me ti thesi tous sti mnimi
 #byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi
 
+#define Toggle_Led0 PORTD^=0x1; // Antrisotrfi tou bit RD0
+#define Toggle_Led1 PORTD^=0x2; // Antrisotrfi tou bit RD1
+#define Toggle_Led2 PORTD^=0x4; // Antrisotrfi tou bit RD2
+#define Toggle_Led3 PORTD^=0x8; // Antrisotrfi tou bit RD3
+#define Toggle_Led4 PORTD^=0x10; // Antrisotrfi tou bit RD4
+#define Toggle_Led5 PORTD^=0x20; // Antrisotrfi tou bit RD5
+#define Toggle_Led6 PORTD^=0x40; // Antrisotrfi tou bit RD6
+#define Toggle_Led7 PORTD^=0x80; // Antrisotrfi tou bit RD7
+
 const int8 RB7_init_val_counter = 2;
 const int8 RB6_init_val_counter = 5;
 const int8 RB5_init_val_counter = 10;
@@ -75,9 +84,14 @@ void timer0_int(void) {
 }
 
 void init(void) {
-   set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
-   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_32);
+   set_tris_b(0x00); // Orismos ton 4 MSB tou PORTB san eksodo (0) kai ton 4 LSB tou san eisodo (1)
+//   PORTB = 0x00;
+   port_b_pullups(TRUE);
+//   ext_int_edge(1, L_TO_H); // Gia na mporoume na allazoume to metopo kata tin ektelesi tiw routinas eksiporetisis prepei to interrupt afto na ksekinaei apo L_TO_H 
+//   ext_int_edge(1, H_TO_L); 
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_128);
    set_timer0(timer_start_value);
    enable_interrupts(INT_TIMER0);
+//   enable_interrupts(INT_EXT1); // Energopoiisi eksoterikis diakopis RB1
    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
 }

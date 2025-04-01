@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.011, 5967               01-Απρ-25 23:59
+CCS PCH C Compiler, Version 5.011, 5967               02-Απρ-25 00:01
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi4\Askisi4.2\askisi4_2.lst
 
-               ROM used:   310 bytes (1%)
-                           Largest free fragment is 32454
+               ROM used:   308 bytes (1%)
+                           Largest free fragment is 32456
                RAM used:   29 (1%) at main() level
                            29 (1%) worst case
                Stack used: 2 locations (1 in main + 1 for interrupts)
                Stack size: 31
 
 *
-0000:  GOTO   0106
+0000:  GOTO   0104
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -139,15 +139,6 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Απρ-25 23:59
 .................... #byte PORTD =0xF83 // Orismos ton thiron me ti thesi tous sti mnimi 
 .................... #byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi 
 ....................  
-.................... #define Toggle_Led0 PORTD^=0x1; // Antrisotrfi tou bit RD0 
-.................... #define Toggle_Led1 PORTD^=0x2; // Antrisotrfi tou bit RD1 
-.................... #define Toggle_Led2 PORTD^=0x4; // Antrisotrfi tou bit RD2 
-.................... #define Toggle_Led3 PORTD^=0x8; // Antrisotrfi tou bit RD3 
-.................... #define Toggle_Led4 PORTD^=0x10; // Antrisotrfi tou bit RD4 
-.................... #define Toggle_Led5 PORTD^=0x20; // Antrisotrfi tou bit RD5 
-.................... #define Toggle_Led6 PORTD^=0x40; // Antrisotrfi tou bit RD6 
-.................... #define Toggle_Led7 PORTD^=0x80; // Antrisotrfi tou bit RD7 
-....................  
 .................... const int8 RB7_init_val_counter = 2; 
 .................... const int8 RB6_init_val_counter = 5; 
 .................... const int8 RB5_init_val_counter = 10; 
@@ -168,40 +159,40 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Απρ-25 23:59
 ....................  
 .................... void main() 
 *
-0106:  CLRF   FF8
-0108:  BCF    FD0.7
-010A:  BSF    07.7
-010C:  MOVLW  DB
-010E:  MOVWF  17
-0110:  MOVLW  61
-0112:  MOVWF  16
-0114:  MOVLW  02
-0116:  MOVWF  18
-0118:  MOVLW  05
-011A:  MOVWF  19
-011C:  MOVLW  0A
-011E:  MOVWF  1A
-0120:  MOVLW  14
-0122:  MOVWF  1B
-0124:  MOVLW  50
-0126:  MOVWF  1C
-0128:  MOVF   FC1,W
-012A:  ANDLW  C0
-012C:  IORLW  0F
-012E:  MOVWF  FC1
-0130:  MOVLW  07
-0132:  MOVWF  FB4
+0104:  CLRF   FF8
+0106:  BCF    FD0.7
+0108:  BSF    07.7
+010A:  MOVLW  DB
+010C:  MOVWF  17
+010E:  MOVLW  61
+0110:  MOVWF  16
+0112:  MOVLW  02
+0114:  MOVWF  18
+0116:  MOVLW  05
+0118:  MOVWF  19
+011A:  MOVLW  0A
+011C:  MOVWF  1A
+011E:  MOVLW  14
+0120:  MOVWF  1B
+0122:  MOVLW  50
+0124:  MOVWF  1C
+0126:  MOVF   FC1,W
+0128:  ANDLW  C0
+012A:  IORLW  0F
+012C:  MOVWF  FC1
+012E:  MOVLW  07
+0130:  MOVWF  FB4
 .................... { 
 ....................    init(); 
-0134:  BRA    00EA
+0132:  BRA    00EA
 ....................    while (TRUE) { 
-0136:  BRA    0136
+0134:  BRA    0134
 ....................    } 
 .................... }    
 ....................  
 .................... #INT_TIMER0 
 .................... void timer0_int(void) { 
-0138:  SLEEP 
+0136:  SLEEP 
 ....................    set_timer0(timer_start_value); 
 *
 0096:  MOVFF  17,FD7
@@ -276,27 +267,21 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Απρ-25 23:59
 .................... } 
 ....................  
 .................... void init(void) { 
-....................    set_tris_b(0x00); // Orismos ton 4 MSB tou PORTB san eksodo (0) kai ton 4 LSB tou san eisodo (1) 
+....................    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0) 
 00EA:  MOVLW  00
 00EC:  MOVWF  F93
-.................... //   PORTB = 0x00; 
-....................    port_b_pullups(TRUE); 
-00EE:  BCF    FF1.7
-.................... //   ext_int_edge(1, L_TO_H); // Gia na mporoume na allazoume to metopo kata tin ektelesi tiw routinas eksiporetisis prepei to interrupt afto na ksekinaei apo L_TO_H  
-.................... //   ext_int_edge(1, H_TO_L);  
-....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_128); 
-00F0:  MOVLW  86
-00F2:  MOVWF  FD5
+....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_32); 
+00EE:  MOVLW  84
+00F0:  MOVWF  FD5
 ....................    set_timer0(timer_start_value); 
-00F4:  MOVFF  17,FD7
-00F8:  MOVFF  16,FD6
+00F2:  MOVFF  17,FD7
+00F6:  MOVFF  16,FD6
 ....................    enable_interrupts(INT_TIMER0); 
-00FC:  BSF    FF2.5
-.................... //   enable_interrupts(INT_EXT1); // Energopoiisi eksoterikis diakopis RB1 
+00FA:  BSF    FF2.5
 ....................    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon 
-00FE:  MOVLW  C0
-0100:  IORWF  FF2,F
-0102:  GOTO   0136 (RETURN)
+00FC:  MOVLW  C0
+00FE:  IORWF  FF2,F
+0100:  GOTO   0134 (RETURN)
 .................... } 
 
 Configuration Fuses:
