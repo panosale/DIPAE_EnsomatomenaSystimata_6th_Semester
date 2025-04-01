@@ -1,0 +1,54 @@
+#include <main_.h>
+#use standard_io ( A )  
+#use standard_io ( B )
+#use standard_io ( C )
+#byte PORTA         =0xF80 
+#byte PORTB         =0xF81
+#byte PORTC         =0xF82
+#byte PORTD         =0xF83
+#byte PORTE         =0xF84
+int8 flag = 0;
+int8 counter = 0;
+int8 counter1 = 5;
+int8 counter2 = 10;
+void ext_int1(void);
+void timer0_int(void);
+void init (void);
+void main(){
+init();
+while(true){}
+}
+#INT_EXT1 
+void ext_int1(void){
+    flag = 1;   
+    }
+#INT_TIMER0
+void timer0_int(void){
+set_timer0(56161);
+counter--;
+if ((flag == 0) && (counter == 0)){
+PORTB = PORTB & 0b00010000;
+PORTB = PORTB ^ 0b00010000;
+counter = counter1;
+}
+if ((flag == 1) && (counter == 0)){
+PORTB = PORTB & 0b10000000;
+PORTB = PORTB ^ 0b10000000;
+counter = counter2;
+}
+}
+void init(void){
+set_tris_b(0x0f);
+PORTB=0x00;
+flag = 0;
+counter = 10;
+counter2 = 5;
+counter1 = 10;
+port_b_pullups(TRUE); 
+ext_int_edge(1, H_TO_L);
+SETUP_TIMER_0(T0_INTERNAL| T0_DIV_32);
+set_timer0(56161);
+enable_interrupts(INT_EXT1);
+enable_interrupts(INT_TIMER0);
+enable_interrupts(GLOBAL);
+}
