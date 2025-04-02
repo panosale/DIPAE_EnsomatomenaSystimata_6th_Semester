@@ -1,0 +1,65 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+F80     PORTA
+F81     PORTB
+F82     PORTC
+F83     PSP_DATA
+F83     PORTD
+F84     PORTE
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  main
+000004  @cinit1
+000014  @cinit2
+
+Project Directory:
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi4\Erotisis\A\
+
+Project Files:
+    A.c                                                     [02-Απρ-25 23:38  CRC=13CF065D]
+    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 14:55  CRC=51CBC36F]
+    C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 16:40  CRC=A157EDDE]
+
+Source signature=A84AA588
+
+Units:
+    A (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   A.xsym
+    Errors:      A.err
+    Ext Symbols: A.esym
+    INHX32:      A.hex
+    Symbols:     A.sym
+    List:        A.lst
+    Debug/COFF:  A.cof
+    Project:     A.ccspjt
+    Call Tree:   A.tre
+    Statistics:  A.STA
