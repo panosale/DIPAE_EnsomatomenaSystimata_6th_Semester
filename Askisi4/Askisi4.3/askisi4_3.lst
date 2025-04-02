@@ -1,0 +1,284 @@
+CCS PCH C Compiler, Version 5.011, 5967               02-Απρ-25 23:19
+
+               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi4\Askisi4.3\askisi4_3.lst
+
+               ROM used:   276 bytes (1%)
+                           Largest free fragment is 32488
+               RAM used:   24 (1%) at main() level
+                           24 (1%) worst case
+               Stack used: 2 locations (1 in main + 1 for interrupts)
+               Stack size: 31
+
+*
+0000:  GOTO   0100
+*
+0008:  MOVWF  04
+000A:  MOVFF  FD8,05
+000E:  MOVFF  FE0,06
+0012:  MOVLB  0
+0014:  MOVFF  FE9,0C
+0018:  MOVFF  FEA,07
+001C:  MOVFF  FE1,08
+0020:  MOVFF  FE2,09
+0024:  MOVFF  FD9,0A
+0028:  MOVFF  FDA,0B
+002C:  MOVFF  FF3,12
+0030:  MOVFF  FF4,13
+0034:  MOVFF  FFA,14
+0038:  MOVFF  00,0E
+003C:  MOVFF  01,0F
+0040:  MOVFF  02,10
+0044:  MOVFF  03,11
+0048:  BTFSS  FF2.5
+004A:  GOTO   0054
+004E:  BTFSC  FF2.2
+0050:  GOTO   0096
+0054:  MOVFF  0E,00
+0058:  MOVFF  0F,01
+005C:  MOVFF  10,02
+0060:  MOVFF  11,03
+0064:  MOVFF  0C,FE9
+0068:  MOVFF  07,FEA
+006C:  BSF    07.7
+006E:  MOVFF  08,FE1
+0072:  MOVFF  09,FE2
+0076:  MOVFF  0A,FD9
+007A:  MOVFF  0B,FDA
+007E:  MOVFF  12,FF3
+0082:  MOVFF  13,FF4
+0086:  MOVFF  14,FFA
+008A:  MOVF   04,W
+008C:  MOVFF  06,FE0
+0090:  MOVFF  05,FD8
+0094:  RETFIE 0
+.................... // DIPAE - Enosmatomena Systimata - 6o Eksamino 
+.................... // Alevropoulos Panagiotis 
+.................... // AM: 2022005 
+.................... // Askisi 4.3 
+.................... #include <main_.h> 
+.................... #include <18F4550.h> 
+.................... //////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... #device PIC18F4550 
+....................  
+.................... #list 
+....................  
+.................... #device adc=10 
+....................  
+.................... #FUSES NOWDT                     //No Watch Dog Timer 
+.................... #FUSES WDT32768                    //Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES HSPLL                     //High Speed Crystal/Resonator with PLL enabled 
+.................... #FUSES NOPROTECT                 //Code not protected from reading 
+.................... #FUSES BROWNOUT                //No brownout reset 
+.................... //#FUSES BORV20                    //Brownout reset at 2.0V 
+.................... #FUSES NOPUT                     //No Power Up Timer 
+.................... #FUSES NOCPD                     //No EE protection 
+.................... #FUSES STVREN                    //Stack full/underflow will cause reset 
+.................... #FUSES NODEBUG                   //No Debug mode for ICD 
+.................... #FUSES NOLVP                     //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOWRT                     //Program memory not write protected 
+.................... #FUSES NOWRTD                    //Data EEPROM not write protected 
+.................... #FUSES NOIESO                      //Internal External Switch Over mode enabled 
+.................... #FUSES NOFCMEN                     //Fail-safe clock monitor enabled 
+.................... #FUSES NOPBADEN                 ///PORTB pins are configured as analog input channels on RESET 
+.................... #FUSES NOWRTC                    //configuration not registers write protected 
+.................... #FUSES NOWRTB                    //Boot block not write protected 
+.................... #FUSES NOEBTR                    //Memory not protected from table reads 
+.................... #FUSES NOEBTRB                   //Boot block not protected from table reads 
+.................... #FUSES NOCPB                     //No Boot Block code protection 
+.................... #FUSES MCLR                      //Master Clear pin enabled 
+.................... #FUSES NOLPT1OSC                   //Timer1 configured for low-power operation 
+.................... #FUSES NOXINST                   //Extended set extension and Indexed Addressing mode disabled (Legacy mode) 
+.................... #FUSES PLL5                      //Divide By 12(48MHz oscillator input) 
+.................... #FUSES CPUDIV1                   //System Clock by 2 
+.................... #FUSES USBDIV                    //USB clock source comes from PLL divide by 2 
+.................... #FUSES VREGEN                    //USB voltage regulator enabled 
+.................... //#FUSES ICPRT                     //ICPRT enabled 
+.................... #FUSES WRTB 
+.................... #FUSES NOICPRT  
+.................... #FUSES NOLPT1OSC 
+.................... #FUSES CCP2B3  
+.................... #FUSES NOCPB 
+.................... #FUSES NOCPD 
+.................... #FUSES NOWRTC 
+.................... #FUSES NOWRTD 
+.................... #FUSES NOEBTR 
+.................... #FUSES NOEBTRB               
+....................  
+.................... /* systm clock is 48 MHz */ 
+.................... #use delay(clock=48000000,RESTART_WDT) 
+.................... /* --- BEGIN: changes required for bootloader ------------------------------ */ 
+....................  
+.................... /* ------------------------------------------------------------------------- */ 
+.................... /* map reset vector and interrupt vector                                     */ 
+.................... /* 0x000-0x7FF is used by the bootloader. The bootloader maps the original   */ 
+.................... /* reset vecotr (0x000) to 0x800 and the reset vector (0x008) to 0x800.      */ 
+.................... /* ------------------------------------------------------------------------- */ 
+.................... //#build (reset=0x800, interrupt=0x808) 
+....................  
+.................... /* ------------------------------------------------------------------------- */ 
+.................... /* reserve boot block area                                                   */ 
+.................... /* This memory range is used by the bootloader, so the application must not  */ 
+.................... /* use this area.                                                            */ 
+.................... /* ------------------------------------------------------------------------- */ 
+.................... //#org 0, 0x7FF {} 
+....................  
+.................... /* --- END: changes required for bootloader -------------------------------- */ 
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+.................... #use standard_io (A) // Standard Eisodoi & Eksodoi 
+.................... #use standard_io (B) // Standard Eisodoi & Eksodoi 
+.................... #use standard_io (C) // Standard Eisodoi & Eksodoi 
+....................  
+.................... #byte PORTA =0xF80 // Orismos ton thiron me ti thesi tous sti mnimi 
+.................... #byte PORTB =0xF81 // Orismos ton thiron me ti thesi tous sti mnimi 
+.................... #byte PORTC =0xF82 // Orismos ton thiron me ti thesi tous sti mnimi 
+.................... #byte PORTD =0xF83 // Orismos ton thiron me ti thesi tous sti mnimi 
+.................... #byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi 
+....................  
+.................... #define SwitchOFF_MSB_Leds PORTB&=0x0f; // Apenergopoiisi ton LSB bits tou PORTB 
+.................... #define SwitchOFF_LSB_Leds PORTB&=0xf0; // Apenergopoiisi ton LSB bits tou PORTB 
+.................... #define Toggle_LSB_Leds PORTB^=0x0f; // Antrisotrfi ton LSB bits tou PORTB 
+.................... #define Toggle_MSB_Leds PORTB^=0xf0; // Antrisotrfi ton MSB bits tou PORTB 
+....................  
+.................... //#define Toggle_Led0 PORTB^=0x1; // Antrisotrfi tou bit RB0 
+.................... //#define Toggle_Led1 PORTB^=0x2; // Antrisotrfi tou bit RB1 
+.................... //#define Toggle_Led2 PORTB^=0x4; // Antrisotrfi tou bit RB2 
+.................... //#define Toggle_Led3 PORTB^=0x8; // Antrisotrfi tou bit RB3 
+.................... //#define Toggle_Led4 PORTB^=0x10; // Antrisotrfi tou bit RB4 
+.................... //#define Toggle_Led5 PORTB^=0x20; // Antrisotrfi tou bit RB5 
+.................... //#define Toggle_Led6 PORTB^=0x40; // Antrisotrfi tou bit RB6 
+.................... //#define Toggle_Led7 PORTB^=0x80; // Antrisotrfi tou bit RB7 
+....................  
+....................  
+.................... const int16 timer_start_value = 56161; // Orismos arxikis timis timer0; 
+.................... const int8 counter1_interval = 2; 
+.................... const int8 counter2_interval = 5; 
+....................  
+.................... int8 counter1, counter2; 
+....................  
+.................... // Dilosi sinartiseon eksipiretisis 
+.................... void timer0_int(void); 
+.................... void init(void); 
+....................  
+.................... void main() 
+*
+0100:  CLRF   FF8
+0102:  BCF    FD0.7
+0104:  BSF    07.7
+0106:  MOVF   FC1,W
+0108:  ANDLW  C0
+010A:  IORLW  0F
+010C:  MOVWF  FC1
+010E:  MOVLW  07
+0110:  MOVWF  FB4
+.................... { 
+....................    init(); 
+0112:  BRA    00D8
+....................    while (TRUE) { 
+0114:  BRA    0114
+....................    } 
+.................... }    
+....................  
+.................... #INT_TIMER0 
+.................... void timer0_int(void) { 
+0116:  SLEEP 
+....................    set_timer0(timer_start_value); 
+*
+0096:  MOVLW  DB
+0098:  MOVWF  FD7
+009A:  MOVLW  61
+009C:  MOVWF  FD6
+....................    if (!bit_test(PORTD, 1)) { 
+009E:  BTFSC  F83.1
+00A0:  BRA    00B2
+....................       counter1--; 
+00A2:  DECF   16,F
+....................       if (counter1 == 0) { 
+00A4:  MOVF   16,F
+00A6:  BNZ   00B2
+....................          Toggle_MSB_Leds; 
+00A8:  MOVLW  F0
+00AA:  XORWF  F81,F
+....................          SwitchOFF_LSB_Leds; 
+00AC:  ANDWF  F81,F
+....................          counter1 = counter1_interval; 
+00AE:  MOVLW  02
+00B0:  MOVWF  16
+....................       } 
+....................    } 
+....................    if (!bit_test(PORTD, 0)) { 
+00B2:  BTFSC  F83.0
+00B4:  BRA    00D2
+....................       counter1--;    
+00B6:  DECF   16,F
+....................       if (counter1 == 0) { 
+00B8:  MOVF   16,F
+00BA:  BNZ   00C4
+....................          Toggle_MSB_Leds; 
+00BC:  MOVLW  F0
+00BE:  XORWF  F81,F
+....................          counter1 = counter1_interval; 
+00C0:  MOVLW  02
+00C2:  MOVWF  16
+....................       } 
+....................       counter2--;    
+00C4:  DECF   17,F
+....................       if (counter2 == 0) { 
+00C6:  MOVF   17,F
+00C8:  BNZ   00D2
+....................          Toggle_LSB_Leds; 
+00CA:  MOVLW  0F
+00CC:  XORWF  F81,F
+....................          counter2 = counter2_interval; 
+00CE:  MOVLW  05
+00D0:  MOVWF  17
+....................       } 
+....................    } 
+....................     
+00D2:  BCF    FF2.2
+00D4:  GOTO   0054
+.................... } 
+....................  
+.................... void init(void) { 
+....................    set_tris_b(0x00); // Orismos ton tou PORTB san eksodo (0) 
+00D8:  MOVLW  00
+00DA:  MOVWF  F93
+....................    set_tris_d(0xff); // Orismos ton tou PORTD san eisodo (1) 
+00DC:  MOVLW  FF
+00DE:  MOVWF  F95
+....................    PORTB = 0x00; 
+00E0:  CLRF   F81
+....................    counter1 = counter1_interval; 
+00E2:  MOVLW  02
+00E4:  MOVWF  16
+....................    counter2 = counter2_interval; 
+00E6:  MOVLW  05
+00E8:  MOVWF  17
+....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_64); 
+00EA:  MOVLW  85
+00EC:  MOVWF  FD5
+....................    set_timer0(timer_start_value); 
+00EE:  MOVLW  DB
+00F0:  MOVWF  FD7
+00F2:  MOVLW  61
+00F4:  MOVWF  FD6
+....................    enable_interrupts(INT_TIMER0); 
+00F6:  BSF    FF2.5
+....................    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon 
+00F8:  MOVLW  C0
+00FA:  IORWF  FF2,F
+00FC:  GOTO   0114 (RETURN)
+.................... } 
+
+Configuration Fuses:
+   Word  1: 0E24   PLL5 CPUDIV1 USBDIV HSPLL NOFCMEN NOIESO
+   Word  2: 1E3F   NOPUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8000   CCP2B3 NOPBADEN NOLPT1OSC MCLR
+   Word  4: 0081   STVREN NOLVP ICSP1 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: A00F   NOWRT NOWRTC WRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

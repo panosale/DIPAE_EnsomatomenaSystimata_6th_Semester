@@ -1,7 +1,7 @@
 // DIPAE - Enosmatomena Systimata - 6o Eksamino
 // Alevropoulos Panagiotis
 // AM: 2022005
-// Askisi 4 - Test timer
+// Askisi 4.2
 #include <main_.h>
 
 #use standard_io (A) // Standard Eisodoi & Eksodoi
@@ -19,7 +19,7 @@ const int8 RB6_init_val_counter = 5;
 const int8 RB5_init_val_counter = 10;
 const int8 RB4_init_val_counter = 20;
 const int8 RB3_init_val_counter = 80;
-const int16 timer_start_value = 0; // Orismos arxikis timis timer0;
+const int16 timer_start_value = 56161; // Orismos arxikis timis timer0;
 
 int8 RB7_counter = RB7_init_val_counter; // Led on RB7 counter
 int8 RB6_counter = RB6_init_val_counter; // Led on RB6 counter
@@ -77,7 +77,7 @@ void timer0_int(void) {
 
 void init(void) {
    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
-   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_2);
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_32);
    set_timer0(timer_start_value);
    enable_interrupts(INT_TIMER0);
    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon

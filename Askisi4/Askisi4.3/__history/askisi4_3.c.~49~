@@ -1,0 +1,90 @@
+// DIPAE - Enosmatomena Systimata - 6o Eksamino
+// Alevropoulos Panagiotis
+// AM: 2022005
+// Askisi 4.3
+#include <main_.h>
+
+#use standard_io (A) // Standard Eisodoi & Eksodoi
+#use standard_io (B) // Standard Eisodoi & Eksodoi
+#use standard_io (C) // Standard Eisodoi & Eksodoi
+
+#byte PORTA =0xF80 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTB =0xF81 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTC =0xF82 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTD =0xF83 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi
+
+#define SwitchOFF_MSB_Leds PORTB&=0xf; // Apenergopoiisi ton LSB bits tou PORTB
+#define SwitchOFF_LSB_Leds PORTB&=0xf0; // Apenergopoiisi ton LSB bits tou PORTB
+#define Toggle_LSB_Leds PORTB^=0xf; // Antrisotrfi ton LSB bits tou PORTB
+#define Toggle_MSB_Leds PORTB^=0xf0; // Antrisotrfi ton MSB bits tou PORTB
+
+//#define Toggle_Led0 PORTB^=0x1; // Antrisotrfi tou bit RB0
+//#define Toggle_Led1 PORTB^=0x2; // Antrisotrfi tou bit RB1
+//#define Toggle_Led2 PORTB^=0x4; // Antrisotrfi tou bit RB2
+//#define Toggle_Led3 PORTB^=0x8; // Antrisotrfi tou bit RB3
+//#define Toggle_Led4 PORTB^=0x10; // Antrisotrfi tou bit RB4
+//#define Toggle_Led5 PORTB^=0x20; // Antrisotrfi tou bit RB5
+//#define Toggle_Led6 PORTB^=0x40; // Antrisotrfi tou bit RB6
+//#define Toggle_Led7 PORTB^=0x80; // Antrisotrfi tou bit RB7
+
+
+const int16 timer_start_value = 56161; // Orismos arxikis timis timer0;
+const int8 counter1_interval = 2;
+const int8 counter2_interval = 5;
+
+int8 counter1, counter2;
+
+// Dilosi sinartiseon eksipiretisis
+void timer0_int(void);
+void init(void);
+
+void main()
+{
+   init();
+   while (TRUE) {
+   }
+}   
+
+#INT_TIMER0
+void timer0_int(void) {
+   set_timer0(timer_start_value);
+   if (!bit_test(PORTD, 1)) {
+      counter1--;
+      if (counter1 == 0) {
+//         PORTB = PORTB & 0xf0;
+//         PORTB = PORTB ^ 0xf0;         
+//         Toggle_MSB_Leds;
+         SwitchOFF_MSB_Leds;
+
+         SwitchOFF_LSB_Leds;
+         counter1 = counter1_interval;
+      }
+   }
+   if (!bit_test(PORTD, 0)) {
+      counter1--;   
+      if (counter1 == 0) {
+         Toggle_MSB_Leds;
+         counter1 = counter1_interval;
+      }
+      counter2--;   
+      if (counter2 == 0) {
+         Toggle_LSB_Leds;
+         SwitchOFF_MSB_Leds;
+         counter2 = counter2_interval;
+      }
+   }
+   
+}
+
+void init(void) {
+   set_tris_b(0x00); // Orismos ton tou PORTB san eksodo (0)
+   set_tris_d(0xff); // Orismos ton tou PORTD san eisodo (1)
+   PORTB = 0x00;
+   counter1 = counter1_interval;
+   counter2 = counter2_interval;
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_64);
+   set_timer0(timer_start_value);
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
+}

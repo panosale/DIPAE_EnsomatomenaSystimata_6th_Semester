@@ -14,6 +14,25 @@
 #byte PORTD =0xF83 // Orismos ton thiron me ti thesi tous sti mnimi
 #byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi
 
+//#define SwitchOFF_MSB_Leds PORTB&=0x0f; // Apenergopoiisi ton LSB bits tou PORTB
+//#define SwitchOFF_LSB_Leds PORTB&=0xf0; // Apenergopoiisi ton LSB bits tou PORTB
+//#define Toggle_LSB_Leds PORTB^=0x0f; // Antrisotrfi ton LSB bits tou PORTB
+//#define Toggle_MSB_Leds PORTB^=0xf0; // Antrisotrfi ton MSB bits tou PORTB
+
+//#define Toggle_Led0 PORTB^=0x1; // Antrisotrfi tou bit RB0
+//#define Toggle_Led1 PORTB^=0x2; // Antrisotrfi tou bit RB1
+//#define Toggle_Led2 PORTB^=0x4; // Antrisotrfi tou bit RB2
+//#define Toggle_Led3 PORTB^=0x8; // Antrisotrfi tou bit RB3
+//#define Toggle_Led4 PORTB^=0x10; // Antrisotrfi tou bit RB4
+//#define Toggle_Led5 PORTB^=0x20; // Antrisotrfi tou bit RB5
+//#define Toggle_Led6 PORTB^=0x40; // Antrisotrfi tou bit RB6
+//#define Toggle_Led7 PORTB^=0x80; // Antrisotrfi tou bit RB7
+
+#define SwitchOFF_MSB_Leds PORTD&=0x0f; // Apenergopoiisi ton LSB bits tou PORTD
+#define SwitchOFF_LSB_Leds PORTD&=0xf0; // Apenergopoiisi ton LSB bits tou PORTD
+#define Toggle_LSB_Leds PORTD^=0x0f; // Antrisotrfi ton LSB bits tou PORTD
+#define Toggle_MSB_Leds PORTD^=0xf0; // Antrisotrfi ton MSB bits tou PORTD
+
 #define Toggle_Led0 PORTD^=0x1; // Antrisotrfi tou bit RD0
 #define Toggle_Led1 PORTD^=0x2; // Antrisotrfi tou bit RD1
 #define Toggle_Led2 PORTD^=0x4; // Antrisotrfi tou bit RD2

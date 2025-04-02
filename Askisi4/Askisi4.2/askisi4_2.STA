@@ -1,9 +1,9 @@
 
-ROM used:   292/32768 (1%)
-            292/32768 (1%) including unused fragments
+ROM used:   300/32768 (1%)
+            300/32768 (1%) including unused fragments
 
             0.3 Average locations per line
-            8.6 Average locations per statement
+            8.8 Average locations per statement
 
 RAM used:   27/2048 (1%) at main() level
             27/2048 (1%) worst case
@@ -21,9 +21,9 @@ Lines Stmts  %   Files
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
-0     44   8    0    27  1.0  main
-0     80  14    0   584  3.8  timer0_int
-0     22   4    0   104  1.7  init
+0     44   7    0    27  1.0  main
+0     84  14    0   584  3.8  timer0_int
+0     26   4    0   104  1.7  init
  Inline         0             @cinit1
 
 Program metrics:
@@ -43,7 +43,7 @@ Program metrics:
 00000-00002     4  0  
 00004-00006     0  4  
 00008-00094   142  0  
-00096-07FFE   146  32472  
+00096-07FFE   154  32464  
 
 
 

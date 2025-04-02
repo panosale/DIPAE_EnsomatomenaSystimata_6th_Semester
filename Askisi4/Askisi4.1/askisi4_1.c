@@ -1,7 +1,7 @@
 // DIPAE - Enosmatomena Systimata - 6o Eksamino
 // Alevropoulos Panagiotis
 // AM: 2022005
-// Askisi 4 - Test timer
+// Askisi 4.1
 #include <main_.h>
 
 #use standard_io (A) // Standard Eisodoi & Eksodoi

@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.011, 5967               02-Απρ-25 00:29
+CCS PCH C Compiler, Version 5.011, 5967               02-Απρ-25 23:22
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi4\Askisi4.2\askisi4_2.lst
 
-               ROM used:   292 bytes (1%)
-                           Largest free fragment is 32472
+               ROM used:   300 bytes (1%)
+                           Largest free fragment is 32464
                RAM used:   27 (1%) at main() level
                            27 (1%) worst case
                Stack used: 2 locations (1 in main + 1 for interrupts)
                Stack size: 31
 
 *
-0000:  GOTO   00FC
+0000:  GOTO   0104
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -54,7 +54,7 @@ CCS PCH C Compiler, Version 5.011, 5967               02-Απρ-25 00:29
 .................... // DIPAE - Enosmatomena Systimata - 6o Eksamino 
 .................... // Alevropoulos Panagiotis 
 .................... // AM: 2022005 
-.................... // Askisi 4 - Test timer 
+.................... // Askisi 4.2 
 .................... #include <main_.h> 
 .................... #include <18F4550.h> 
 .................... //////// Standard Header file for the PIC18F4550 device //////////////// 
@@ -144,7 +144,7 @@ CCS PCH C Compiler, Version 5.011, 5967               02-Απρ-25 00:29
 .................... const int8 RB5_init_val_counter = 10; 
 .................... const int8 RB4_init_val_counter = 20; 
 .................... const int8 RB3_init_val_counter = 80; 
-.................... const int16 timer_start_value = 0; // Orismos arxikis timis timer0; 
+.................... const int16 timer_start_value = 56161; // Orismos arxikis timis timer0; 
 ....................  
 .................... int8 RB7_counter = RB7_init_val_counter; // Led on RB7 counter 
 .................... int8 RB6_counter = RB6_init_val_counter; // Led on RB6 counter 
@@ -159,126 +159,130 @@ CCS PCH C Compiler, Version 5.011, 5967               02-Απρ-25 00:29
 ....................  
 .................... void main() 
 *
-00FC:  CLRF   FF8
-00FE:  BCF    FD0.7
-0100:  BSF    07.7
-0102:  MOVLW  02
-0104:  MOVWF  16
-0106:  MOVLW  05
-0108:  MOVWF  17
-010A:  MOVLW  0A
-010C:  MOVWF  18
-010E:  MOVLW  14
-0110:  MOVWF  19
-0112:  MOVLW  50
-0114:  MOVWF  1A
-0116:  MOVF   FC1,W
-0118:  ANDLW  C0
-011A:  IORLW  0F
-011C:  MOVWF  FC1
-011E:  MOVLW  07
-0120:  MOVWF  FB4
+0104:  CLRF   FF8
+0106:  BCF    FD0.7
+0108:  BSF    07.7
+010A:  MOVLW  02
+010C:  MOVWF  16
+010E:  MOVLW  05
+0110:  MOVWF  17
+0112:  MOVLW  0A
+0114:  MOVWF  18
+0116:  MOVLW  14
+0118:  MOVWF  19
+011A:  MOVLW  50
+011C:  MOVWF  1A
+011E:  MOVF   FC1,W
+0120:  ANDLW  C0
+0122:  IORLW  0F
+0124:  MOVWF  FC1
+0126:  MOVLW  07
+0128:  MOVWF  FB4
 .................... { 
 ....................    init(); 
-0122:  BRA    00E6
+012A:  BRA    00EA
 ....................    while (TRUE) { 
-0124:  BRA    0124
+012C:  BRA    012C
 ....................    } 
 .................... }    
 ....................  
 .................... #INT_TIMER0 
 .................... void timer0_int(void) { 
-0126:  SLEEP 
+012E:  SLEEP 
 ....................    set_timer0(timer_start_value); 
 *
-0096:  CLRF   FD7
-0098:  CLRF   FD6
+0096:  MOVLW  DB
+0098:  MOVWF  FD7
+009A:  MOVLW  61
+009C:  MOVWF  FD6
 ....................    // Led on RB7 flashing 
 ....................    RB7_counter--; 
-009A:  DECF   16,F
+009E:  DECF   16,F
 ....................    if (RB7_counter == 0) { 
-009C:  MOVF   16,F
-009E:  BNZ   00A8
+00A0:  MOVF   16,F
+00A2:  BNZ   00AC
 ....................       PORTB = PORTB ^ 0b10000000; 
-00A0:  MOVLW  80
-00A2:  XORWF  F81,F
+00A4:  MOVLW  80
+00A6:  XORWF  F81,F
 ....................       RB7_counter = RB7_init_val_counter; 
-00A4:  MOVLW  02
-00A6:  MOVWF  16
+00A8:  MOVLW  02
+00AA:  MOVWF  16
 ....................    } 
 ....................    // Led on RB6 flashing 
 ....................    RB6_counter--; 
-00A8:  DECF   17,F
+00AC:  DECF   17,F
 ....................    if (RB6_counter == 0) { 
-00AA:  MOVF   17,F
-00AC:  BNZ   00B6
+00AE:  MOVF   17,F
+00B0:  BNZ   00BA
 ....................       PORTB = PORTB ^ 0b01000000; 
-00AE:  MOVLW  40
-00B0:  XORWF  F81,F
+00B2:  MOVLW  40
+00B4:  XORWF  F81,F
 ....................       RB6_counter = RB6_init_val_counter; 
-00B2:  MOVLW  05
-00B4:  MOVWF  17
+00B6:  MOVLW  05
+00B8:  MOVWF  17
 ....................    } 
 ....................    // Led on RB5 flashing 
 ....................    RB5_counter--; 
-00B6:  DECF   18,F
+00BA:  DECF   18,F
 ....................    if (RB5_counter == 0) { 
-00B8:  MOVF   18,F
-00BA:  BNZ   00C4
+00BC:  MOVF   18,F
+00BE:  BNZ   00C8
 ....................       PORTB = PORTB ^ 0b00100000; 
-00BC:  MOVLW  20
-00BE:  XORWF  F81,F
+00C0:  MOVLW  20
+00C2:  XORWF  F81,F
 ....................       RB5_counter = RB5_init_val_counter; 
-00C0:  MOVLW  0A
-00C2:  MOVWF  18
+00C4:  MOVLW  0A
+00C6:  MOVWF  18
 ....................    } 
 ....................    // Led on RB4 flashing 
 ....................    RB4_counter--; 
-00C4:  DECF   19,F
+00C8:  DECF   19,F
 ....................    if (RB4_counter == 0) { 
-00C6:  MOVF   19,F
-00C8:  BNZ   00D2
+00CA:  MOVF   19,F
+00CC:  BNZ   00D6
 ....................       PORTB = PORTB ^ 0b00010000; 
-00CA:  MOVLW  10
-00CC:  XORWF  F81,F
+00CE:  MOVLW  10
+00D0:  XORWF  F81,F
 ....................       RB4_counter = RB4_init_val_counter; 
-00CE:  MOVLW  14
-00D0:  MOVWF  19
+00D2:  MOVLW  14
+00D4:  MOVWF  19
 ....................    } 
 ....................    // Led on RB3 flashing 
 ....................    RB3_counter--; 
-00D2:  DECF   1A,F
+00D6:  DECF   1A,F
 ....................    if (RB3_counter == 0) { 
-00D4:  MOVF   1A,F
-00D6:  BNZ   00E0
+00D8:  MOVF   1A,F
+00DA:  BNZ   00E4
 ....................       PORTB = PORTB ^ 0b00001000; 
-00D8:  MOVLW  08
-00DA:  XORWF  F81,F
+00DC:  MOVLW  08
+00DE:  XORWF  F81,F
 ....................       RB3_counter = RB3_init_val_counter; 
-00DC:  MOVLW  50
-00DE:  MOVWF  1A
+00E0:  MOVLW  50
+00E2:  MOVWF  1A
 ....................    } 
 ....................     
-00E0:  BCF    FF2.2
-00E2:  GOTO   0054
+00E4:  BCF    FF2.2
+00E6:  GOTO   0054
 .................... } 
 ....................  
 .................... void init(void) { 
 ....................    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0) 
-00E6:  MOVLW  00
-00E8:  MOVWF  F93
-....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_2); 
-00EA:  MOVLW  80
-00EC:  MOVWF  FD5
+00EA:  MOVLW  00
+00EC:  MOVWF  F93
+....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_32); 
+00EE:  MOVLW  84
+00F0:  MOVWF  FD5
 ....................    set_timer0(timer_start_value); 
-00EE:  CLRF   FD7
-00F0:  CLRF   FD6
+00F2:  MOVLW  DB
+00F4:  MOVWF  FD7
+00F6:  MOVLW  61
+00F8:  MOVWF  FD6
 ....................    enable_interrupts(INT_TIMER0); 
-00F2:  BSF    FF2.5
+00FA:  BSF    FF2.5
 ....................    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon 
-00F4:  MOVLW  C0
-00F6:  IORWF  FF2,F
-00F8:  GOTO   0124 (RETURN)
+00FC:  MOVLW  C0
+00FE:  IORWF  FF2,F
+0100:  GOTO   012C (RETURN)
 .................... } 
 
 Configuration Fuses:
