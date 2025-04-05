@@ -51,9 +51,9 @@ void timer0_int(void) {
    set_timer0(timer_start_value);
    if (!bit_test(PORTD, 1)) {
       counter1--;
-      SwitchOFF_LSB_Leds;
       if (counter1 == 0) {
          Toggle_MSB_Leds;
+         SwitchOFF_LSB_Leds;
          counter1 = counter1_interval;
       }
    }

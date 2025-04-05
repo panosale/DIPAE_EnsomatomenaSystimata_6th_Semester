@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.011, 5967               02-Απρ-25 23:19
+CCS PCH C Compiler, Version 5.011, 5967               05-Απρ-25 12:26
 
-               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi4\Askisi4.3\askisi4_3.lst
+               Filename:   D:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi4\Askisi4.3\askisi4_3.lst
 
-               ROM used:   276 bytes (1%)
-                           Largest free fragment is 32488
+               ROM used:   278 bytes (1%)
+                           Largest free fragment is 32486
                RAM used:   24 (1%) at main() level
                            24 (1%) worst case
                Stack used: 2 locations (1 in main + 1 for interrupts)
                Stack size: 31
 
 *
-0000:  GOTO   0100
+0000:  GOTO   0102
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -166,26 +166,26 @@ CCS PCH C Compiler, Version 5.011, 5967               02-Απρ-25 23:19
 ....................  
 .................... void main() 
 *
-0100:  CLRF   FF8
-0102:  BCF    FD0.7
-0104:  BSF    07.7
-0106:  MOVF   FC1,W
-0108:  ANDLW  C0
-010A:  IORLW  0F
-010C:  MOVWF  FC1
-010E:  MOVLW  07
-0110:  MOVWF  FB4
+0102:  CLRF   FF8
+0104:  BCF    FD0.7
+0106:  BSF    07.7
+0108:  MOVF   FC1,W
+010A:  ANDLW  C0
+010C:  IORLW  0F
+010E:  MOVWF  FC1
+0110:  MOVLW  07
+0112:  MOVWF  FB4
 .................... { 
 ....................    init(); 
-0112:  BRA    00D8
+0114:  BRA    00DA
 ....................    while (TRUE) { 
-0114:  BRA    0114
+0116:  BRA    0116
 ....................    } 
 .................... }    
 ....................  
 .................... #INT_TIMER0 
 .................... void timer0_int(void) { 
-0116:  SLEEP 
+0118:  SLEEP 
 ....................    set_timer0(timer_start_value); 
 *
 0096:  MOVLW  DB
@@ -194,84 +194,85 @@ CCS PCH C Compiler, Version 5.011, 5967               02-Απρ-25 23:19
 009C:  MOVWF  FD6
 ....................    if (!bit_test(PORTD, 1)) { 
 009E:  BTFSC  F83.1
-00A0:  BRA    00B2
+00A0:  BRA    00B4
 ....................       counter1--; 
 00A2:  DECF   16,F
+....................       SwitchOFF_LSB_Leds; 
+00A4:  MOVLW  F0
+00A6:  ANDWF  F81,F
 ....................       if (counter1 == 0) { 
-00A4:  MOVF   16,F
-00A6:  BNZ   00B2
+00A8:  MOVF   16,F
+00AA:  BNZ   00B4
 ....................          Toggle_MSB_Leds; 
-00A8:  MOVLW  F0
-00AA:  XORWF  F81,F
-....................          SwitchOFF_LSB_Leds; 
-00AC:  ANDWF  F81,F
+00AC:  MOVLW  F0
+00AE:  XORWF  F81,F
 ....................          counter1 = counter1_interval; 
-00AE:  MOVLW  02
-00B0:  MOVWF  16
+00B0:  MOVLW  02
+00B2:  MOVWF  16
 ....................       } 
 ....................    } 
 ....................    if (!bit_test(PORTD, 0)) { 
-00B2:  BTFSC  F83.0
-00B4:  BRA    00D2
+00B4:  BTFSC  F83.0
+00B6:  BRA    00D4
 ....................       counter1--;    
-00B6:  DECF   16,F
+00B8:  DECF   16,F
 ....................       if (counter1 == 0) { 
-00B8:  MOVF   16,F
-00BA:  BNZ   00C4
+00BA:  MOVF   16,F
+00BC:  BNZ   00C6
 ....................          Toggle_MSB_Leds; 
-00BC:  MOVLW  F0
-00BE:  XORWF  F81,F
+00BE:  MOVLW  F0
+00C0:  XORWF  F81,F
 ....................          counter1 = counter1_interval; 
-00C0:  MOVLW  02
-00C2:  MOVWF  16
+00C2:  MOVLW  02
+00C4:  MOVWF  16
 ....................       } 
 ....................       counter2--;    
-00C4:  DECF   17,F
+00C6:  DECF   17,F
 ....................       if (counter2 == 0) { 
-00C6:  MOVF   17,F
-00C8:  BNZ   00D2
+00C8:  MOVF   17,F
+00CA:  BNZ   00D4
 ....................          Toggle_LSB_Leds; 
-00CA:  MOVLW  0F
-00CC:  XORWF  F81,F
+00CC:  MOVLW  0F
+00CE:  XORWF  F81,F
 ....................          counter2 = counter2_interval; 
-00CE:  MOVLW  05
-00D0:  MOVWF  17
+00D0:  MOVLW  05
+00D2:  MOVWF  17
 ....................       } 
 ....................    } 
 ....................     
-00D2:  BCF    FF2.2
-00D4:  GOTO   0054
+00D4:  BCF    FF2.2
+00D6:  GOTO   0054
 .................... } 
 ....................  
 .................... void init(void) { 
 ....................    set_tris_b(0x00); // Orismos ton tou PORTB san eksodo (0) 
-00D8:  MOVLW  00
-00DA:  MOVWF  F93
+00DA:  MOVLW  00
+00DC:  MOVWF  F93
 ....................    set_tris_d(0xff); // Orismos ton tou PORTD san eisodo (1) 
-00DC:  MOVLW  FF
-00DE:  MOVWF  F95
+00DE:  MOVLW  FF
+00E0:  MOVWF  F95
 ....................    PORTB = 0x00; 
-00E0:  CLRF   F81
+00E2:  CLRF   F81
 ....................    counter1 = counter1_interval; 
-00E2:  MOVLW  02
-00E4:  MOVWF  16
+00E4:  MOVLW  02
+00E6:  MOVWF  16
 ....................    counter2 = counter2_interval; 
-00E6:  MOVLW  05
-00E8:  MOVWF  17
+00E8:  MOVLW  05
+00EA:  MOVWF  17
 ....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_64); 
-00EA:  MOVLW  85
-00EC:  MOVWF  FD5
+00EC:  MOVLW  85
+00EE:  MOVWF  FD5
 ....................    set_timer0(timer_start_value); 
-00EE:  MOVLW  DB
-00F0:  MOVWF  FD7
-00F2:  MOVLW  61
-00F4:  MOVWF  FD6
+00F0:  MOVLW  DB
+00F2:  MOVWF  FD7
+00F4:  MOVLW  61
+00F6:  MOVWF  FD6
 ....................    enable_interrupts(INT_TIMER0); 
-00F6:  BSF    FF2.5
+00F8:  BSF    FF2.5
 ....................    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon 
-00F8:  MOVLW  C0
-00FA:  IORWF  FF2,F
-00FC:  GOTO   0114 (RETURN)
+00FA:  MOVLW  C0
+00FC:  IORWF  FF2,F
+00FE:  GOTO   0116 (RETURN)
 .................... } 
 
 Configuration Fuses:

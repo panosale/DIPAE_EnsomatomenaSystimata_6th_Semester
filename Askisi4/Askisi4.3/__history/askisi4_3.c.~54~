@@ -29,7 +29,7 @@
 //#define Toggle_Led7 PORTB^=0x80; // Antrisotrfi tou bit RB7
 
 
-const int16 timer_start_value = 56161; // Orismos arxikis timis timer0;
+const int16 timer_start_value = 46786; // Orismos arxikis timis timer0;
 const int8 counter1_interval = 2;
 const int8 counter2_interval = 5;
 
