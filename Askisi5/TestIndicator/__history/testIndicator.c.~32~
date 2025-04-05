@@ -1,0 +1,70 @@
+// DIPAE - Enosmatomena Systimata - 6o Eksamino
+// Alevropoulos Panagiotis
+// AM: 2022005
+// Askisi: Test endeikti 8 tomeon
+#include <main_.h> // Gia ektelesi se Proteus
+//#include <main.h> // Gia ektelesi se PIC
+
+#use standard_io (A) // Standard Eisodoi & Eksodoi
+#use standard_io (B) // Standard Eisodoi & Eksodoi
+#use standard_io (C) // Standard Eisodoi & Eksodoi
+#byte PORTA =0xF80 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTB =0xF81 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTC =0xF82 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTD =0xF83 // Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi
+
+int8 digitsTable[] = {0x3f, // 0b00111111 -> 0
+                      0x06, // 0b00000110 -> 1
+                      0x5b, // 0b01011011 -> 2
+                      0x4f, // 0b01001111 -> 3
+                      0x66, // 0b01100110 -> 4
+                      0x6d, // 0b01101101 -> 5
+                      0x7d, // 0b01111101 -> 6
+                      0x07, // 0b00000111 -> 7
+                      0x7f, // 0b01111111 -> 8
+                      0x6f, // 0b01101111 -> 9
+                      0x77, // 0b01110111 -> A
+                      0x7c, // 0b01111100 -> b
+                      0x39, // 0b00111001 -> C
+                      0x5e, // 0b01011110 -> d
+                      0x79, // 0b01111001 -> E
+                      0x71, // 0b01110001 -> F
+                      0x80}; // 0b10000000 -> Dot Point
+                      
+int i = 0;
+// Dilosi sinartiseon eksipiretisis
+void timer0_int(void);
+void init(void);
+
+void main()
+{
+   output_high(PIN_C2);
+ 
+   while (TRUE) {
+      for (int i=0; ; i++) {
+      }
+   }
+}   
+
+#INT_TIMER0
+void timer0_int(void) {
+   PORTB = 0;
+   PORTB = digitsTable[i];
+   delay_ms(50);
+   if (i < sizeof(digitsTable))
+      i++
+   else
+      i = 0;
+}
+
+void init(void) {
+   set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
+   set_tris_c(0x2); // Orismos tou PORTBC PIN2 san eksodo (1) gia ti geiosi tou Endeikti
+   set_tris_d(0xff); // Orismos tou PORTD san eisodo (1)
+   
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_128);
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
+}
+

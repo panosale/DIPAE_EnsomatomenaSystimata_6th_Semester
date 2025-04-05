@@ -1,0 +1,19 @@
+[PROJECT]
+Target=testIndicator.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.011
+Compiler=PCH
+[Target Data]
+FileList=testIndicator.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[testIndicator.c]
+Type=4
+[mru-list]
+1=testIndicator.c
+[Opened Files]
+1=testIndicator.c
+2=
+[Units]
+Count=1
+1=testIndicator (main)

@@ -1,6 +1,6 @@
 
-ROM used:   276/32768 (1%)
-            276/32768 (1%) including unused fragments
+ROM used:   278/32768 (1%)
+            278/32768 (1%) including unused fragments
 
             0.3 Average locations per line
             7.5 Average locations per statement
@@ -14,7 +14,7 @@ Stack size: 31
 Lines Stmts  %   Files
 ----- ----- ---  -----
    86    37 100  askisi4_3.c
-   67     0   0  C:\Program Files (x86)\PICC\Devices\main_.h
+   67     0   0  main_.h
   821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
 ----- -----
   974    37 Total
@@ -22,7 +22,7 @@ Lines Stmts  %   Files
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
 0     24   4    0    27  1.0  main
-0     66  12    0   461  5.2  timer0_int
+0     68  12    0   461  5.2  timer0_int
 0     40   7    0   195  2.3  init
  Inline         0             @cinit1
 
@@ -43,7 +43,7 @@ Program metrics:
 00000-00002     4  0  
 00004-00006     0  4  
 00008-00094   142  0  
-00096-07FFE   130  32488  
+00096-07FFE   132  32486  
 
 
 
