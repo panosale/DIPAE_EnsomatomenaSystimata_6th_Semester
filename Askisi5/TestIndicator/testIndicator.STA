@@ -1,0 +1,49 @@
+
+ROM used:   324/32768 (1%)
+            324/32768 (1%) including unused fragments
+
+            0.3 Average locations per line
+            19.1 Average locations per statement
+
+RAM used:   40/2048 (2%) at main() level
+            40/2048 (2%) worst case
+
+Stack used: 2 worst case (1 in main + 1 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   72    17 100  testIndicator.c
+   67     0   0  main_.h
+  821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
+----- -----
+  960    17 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     94  15    0    27  1.0  main
+0     46   7    0   162  4.8  timer0_int
+0     38   6    0   170  1.8  init
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               3
+    Statements              17
+    Comments                200
+    Volume (V)              473
+    Difficulty (D)          7.9
+    Effort to implement (E) 3723
+    Time to implement (T)   3 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    121
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-00094   142  0  
+00096-07FFE   178  32440  
+
+
+
