@@ -1,0 +1,133 @@
+// DIPAE - Enosmatomena Systimata - 6o Eksamino
+// Alevropoulos Panagiotis
+// AM: 2022005
+// Askisi: 5.1
+#include <main_.h> // Gia ektelesi se Proteus
+//#include <main.h> // Gia ektelesi se PIC
+
+// Standard Eisodoi & Eksodoi
+#use standard_io (A)
+#use standard_io (B)
+#use standard_io (C)
+
+// Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTA =0xF80
+#byte PORTB =0xF81
+#byte PORTC =0xF82
+#byte PORTD =0xF83
+#byte PORTE =0xF84
+
+const int16 timer_start_value = 5536; // Orismos arxikis timis timer0;
+
+int8 des = 0;
+int16 seconds = 300;
+int16 counter = 200;
+int1 flag1 = 0;
+int1 flag2 = 0;
+int8 aux_counter = 5;
+int8 var_counter = 5;
+int16 temp_var = 0;
+
+// Dilosi pinaka katastaseon Endeikti 7 tomeon koinis kathodou
+int8 table[16] = {0x3f, // 0b00111111 -> 0
+                  0x06, // 0b00000110 -> 1
+                  0x5b, // 0b01011011 -> 2
+                  0x4f, // 0b01001111 -> 3
+                  0x66, // 0b01100110 -> 4
+                  0x6d, // 0b01101101 -> 5
+                  0x7d, // 0b01111101 -> 6
+                  0x07, // 0b00000111 -> 7
+                  0x7f, // 0b01111111 -> 8
+                  0x6f, // 0b01101111 -> 9
+                  0x77, // 0b01110111 -> A
+                  0x7c, // 0b01111100 -> b
+                  0x39, // 0b00111001 -> C
+                  0x5e, // 0b01011110 -> d
+                  0x79, // 0b01111001 -> E
+                  0x71}; // 0b01110001 -> F
+
+// Dilosi pinaka tranzistor gia energopoiisis tou PORTC
+int8 dig[3] = {1, 2, 4};
+
+// Dilosi sinartiseon eksipiretisis
+void timer0_int(void);
+void init(void);
+
+void main() {
+   init();
+   while (TRUE) {
+      if (bit_test(PORTD,1)== 1){
+         flag1 = 1; 
+      }
+      else {
+         flag1 = 0;
+      }
+      if (bit_test(PORTD,3) == 0) {
+         seconds = 300; 
+      }
+      if (bit_test(PORTD,0) == 0) {
+         temp_var = seconds;
+      }
+   }
+}   
+
+#INT_TIMER0
+void timer0_int(void) {
+   int16 mon, dec, eka;
+   counter--; // Kathe 200 * 5msec = 1sec
+   if ((counter == 0)) {
+      counter = 200;//200
+      if ((flag1 == 0) && (flag2 == 0)) {
+         seconds--; // Μειώνει κάθε 1 sec
+      }            
+      if ((seconds == 280) && (aux_counter > 0)){
+         seconds = 280;
+         aux_counter--;
+         flag2 = 1;
+      }  
+      if (aux_counter == 0) {
+         var_counter--;
+         seconds = temp_var;
+      }
+      if (var_counter == 0) { 
+         aux_counter = 5;
+         var_counter = 5;
+         flag2 = 0;
+         seconds = 300;
+      }                  
+                                                    
+   }                   
+                     
+   eka = (int8) (seconds / 100);
+   dec = (int8) ((seconds - (100 * eka)) / 10);
+   mon = (int8) (seconds - (100 * eka) - (10 * dec));
+   set_timer0(5536); // αρχική τιμή του μετρητή
+   des = ++des%3;
+   PORTC = dig[des];
+   if (des==0) {
+      PORTB = table[mon];
+   }   
+   if (des==1){
+      PORTB = table[dec];
+   }            
+   if (des==2) {
+      PORTB = table[eka];
+   }
+}
+
+void init(void) {
+   set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
+   set_tris_c(0x00); // Orismos tou PORTBC PIN2 san eksodo (1) gia ti geiosi tou Endeikti
+   PORTB = 0;
+   PORTC = 0;
+   counter = 200; // Arxikopoiisi tou counter
+   seconds = 300; // Arxikopoiisi tou metriti xronou
+   aux_counter = 5;
+   var_counter = 5;
+   des = 0; // Arxikopoiisi tis epilogis psifiou
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1);
+   set_timer0(timer_start_value);
+   enable_interrupts(INT_TIMER0);
+   enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
+}
+
