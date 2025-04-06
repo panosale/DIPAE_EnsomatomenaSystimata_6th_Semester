@@ -1,7 +1,7 @@
 ÀÄAskisi5
    ÃÄmain  0/164  Ram=1
    ³  ÃÄ@cinit1  (Inline)  Ram=0
-   ³  ÀÄinit  0/54  Ram=0
+   ³  ÀÄinit  0/58  Ram=0
    ÀÄtimer0_int  0/350  Ram=8
       ÃÄ@DIV1616  0/66  Ram=5
       ÃÄ@MUL1616  0/30  Ram=5

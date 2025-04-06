@@ -1,9 +1,9 @@
 
-ROM used:   852/32768 (3%)
-            852/32768 (3%) including unused fragments
+ROM used:   856/32768 (3%)
+            856/32768 (3%) including unused fragments
 
             0.8 Average locations per line
-            13.3 Average locations per statement
+            13.2 Average locations per statement
 
 RAM used:   52/2048 (3%) at main() level
             65/2048 (3%) worst case
@@ -13,40 +13,40 @@ Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  134    64 100  askisi5_1.c
+  135    65 100  askisi5_1.c
    67     0   0  main_.h
   821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
 ----- -----
- 1022    64 Total
+ 1023    65 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
 0    164  10    1   288  4.1  main
-0    350  21    8  1255  8.0  timer0_int
+0    350  20    8  1255  8.0  timer0_int
 0     66   4    5             @DIV1616
 0     30   2    5             @MUL1616
 0     42   2    3             @DIV88
-0     54   3    0   292  2.3  init
+0     58   3    0   318  2.3  init
  Inline         0             @cinit1
 
 Program metrics:
     Functions               3
-    Statements              64
-    Comments                204
-    Volume (V)              2252
+    Statements              65
+    Comments                205
+    Volume (V)              2287
     Difficulty (D)          14.1
-    Effort to implement (E) 31808
-    Time to implement (T)   29 minutes
+    Effort to implement (E) 32329
+    Time to implement (T)   30 minutes
     Est Delivered Bugs (B)  0
     Cyclomatic Complexity   11
-    Maintainability (MI)    97
+    Maintainability (MI)    98
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
 00004-00006     0  4  
 00008-00094   142  0  
-00096-07FFE   706  31912  
+00096-07FFE   710  31908  
 
 
 
