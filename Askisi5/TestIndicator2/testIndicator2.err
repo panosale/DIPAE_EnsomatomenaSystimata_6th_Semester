@@ -1,3 +1,4 @@
+>>> Warning 202 "testIndicator2.c" Line 17(13,30): Variable never used:   timer_start_value
       Memory usage:   ROM=2%      RAM=2% - 3%
-      0 Errors,  0 Warnings.
+      0 Errors,  1 Warnings.
 Build Successful.

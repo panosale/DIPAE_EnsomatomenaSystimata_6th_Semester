@@ -1,6 +1,6 @@
-CCS PCH C Compiler, Version 5.011, 5967               05-Απρ-25 21:48
+CCS PCH C Compiler, Version 5.011, 5967               08-Απρ-25 22:31
 
-               Filename:   D:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\TestIndicator2\testIndicator2.lst
+               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\TestIndicator2\testIndicator2.lst
 
                ROM used:   722 bytes (2%)
                            Largest free fragment is 32042
@@ -296,7 +296,7 @@ CCS PCH C Compiler, Version 5.011, 5967               05-Απρ-25 21:48
 .................... #INT_TIMER0 
 .................... void timer0_int(void) { 
 02D4:  SLEEP 
-....................    int16 mon, dek, eka; 
+....................    int16 mon, dec, eka; 
 ....................    counter--; // Kathe 200 * 5msec = 1sec 
 *
 0120:  DECF   19,F
@@ -308,7 +308,7 @@ CCS PCH C Compiler, Version 5.011, 5967               05-Απρ-25 21:48
 0128:  INCF   17,F
 012A:  BTFSC  FD8.2
 012C:  INCF   18,F
-....................       counter = 200; //rxiki timi tou counter 
+....................       counter = 200; // Arxiki timi tou counter 
 012E:  MOVLW  C8
 0130:  MOVWF  19
 ....................       if (seconds > 999) { 
@@ -333,7 +333,7 @@ CCS PCH C Compiler, Version 5.011, 5967               05-Απρ-25 21:48
 0154:  RCALL  0096
 0156:  MOVFF  02,32
 015A:  MOVFF  01,31
-....................       dek = (int8) ((seconds - (100 * eka)) / 10); // ... ton dekadon... 
+....................       dec = (int8) ((seconds - (100 * eka)) / 10); // ... ton dekadon... 
 015E:  CLRF   36
 0160:  MOVLW  64
 0162:  MOVWF  35
@@ -355,7 +355,7 @@ CCS PCH C Compiler, Version 5.011, 5967               05-Απρ-25 21:48
 018A:  RCALL  0096
 018C:  MOVFF  02,30
 0190:  MOVFF  01,2F
-....................       mon = (int8) (seconds - (100 * eka) - (10 * dek)); // ... ton monadon. 
+....................       mon = (int8) (seconds - (100 * eka) - (10 * dec)); // ... ton monadon. 
 0194:  CLRF   36
 0196:  MOVLW  64
 0198:  MOVWF  35
@@ -383,7 +383,7 @@ CCS PCH C Compiler, Version 5.011, 5967               05-Απρ-25 21:48
 01CE:  MOVF   00,W
 01D0:  CLRF   2E
 01D2:  MOVWF  2D
-....................       set_timer0(timer_start_value); // Arxikopoiisi tou timer0; 
+....................       set_timer0(5536); // Arxikopoiisi tou timer0; 
 01D4:  MOVLW  15
 01D6:  MOVWF  FD7
 01D8:  MOVLW  A0
@@ -418,7 +418,7 @@ CCS PCH C Compiler, Version 5.011, 5967               05-Απρ-25 21:48
 ....................       if (des == 1) 
 0212:  DECFSZ 16,W
 0214:  BRA    0226
-....................          PORTB = table[dek]; // Deikse tis dekades 
+....................          PORTB = table[dec]; // Deikse tis dekades 
 0216:  MOVLW  1A
 0218:  ADDWF  2F,W
 021A:  MOVWF  FE9
@@ -447,7 +447,7 @@ CCS PCH C Compiler, Version 5.011, 5967               05-Απρ-25 21:48
 ....................    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0) 
 0242:  MOVLW  00
 0244:  MOVWF  F93
-....................    set_tris_c(0x00); // Orismos tou PORTBC PIN2 san eksodo (1) gia ti geiosi tou Endeikti 
+....................    set_tris_c(0x00); // Orismos tou PORTBC san eksodo (0) 
 0246:  MOVWF  F94
 ....................    PORTB = 0; 
 0248:  CLRF   F81
@@ -464,7 +464,7 @@ CCS PCH C Compiler, Version 5.011, 5967               05-Απρ-25 21:48
 ....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1); 
 0256:  MOVLW  88
 0258:  MOVWF  FD5
-....................    set_timer0(timer_start_value); 
+....................    set_timer0(5536); 
 025A:  MOVLW  15
 025C:  MOVWF  FD7
 025E:  MOVLW  A0

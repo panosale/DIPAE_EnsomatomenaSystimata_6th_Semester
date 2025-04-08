@@ -52,24 +52,24 @@ void main()
 
 #INT_TIMER0
 void timer0_int(void) {
-   int16 mon, dec, eka;
+   int16 mon, dek, eka;
    counter--; // Kathe 200 * 5msec = 1sec
    if (counter == 0) {
       seconds++; // Afksani timi 1 kathe 1 sec
-      counter = 200; // Arxiki timi tou counter
+      counter = 200; //rxiki timi tou counter
       if (seconds > 999) {
          seconds = 0;
       }
       eka = (int8) (seconds / 100); // Ypologismos ekatontadon tou metriti...
-      dec = (int8) ((seconds - (100 * eka)) / 10); // ... ton dekadon...
-      mon = (int8) (seconds - (100 * eka) - (10 * dec)); // ... ton monadon.
+      dek = (int8) ((seconds - (100 * eka)) / 10); // ... ton dekadon...
+      mon = (int8) (seconds - (100 * eka) - (10 * dek)); // ... ton monadon.
       set_timer0(timer_start_value); // Arxikopoiisi tou timer0;
       des = ++des % 3;
       PORTC = dig[des];
       if (des == 0)
          PORTB = table[mon]; // Deikse tis monades
       if (des == 1)
-         PORTB = table[dec]; // Deikse tis dekades
+         PORTB = table[dek]; // Deikse tis dekades
       if (des == 2)
          PORTB = table[eka]; // Deikse tis ekatonades
    }
@@ -77,7 +77,7 @@ void timer0_int(void) {
 
 void init(void) {
    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
-   set_tris_c(0x00); // Orismos tou PORTBC san eksodo (0)
+   set_tris_c(0x00); // Orismos tou PORTBC PIN2 san eksodo (1) gia ti geiosi tou Endeikti
    PORTB = 0;
    PORTC = 0;
    counter = 200; // Arxikopoiisi tou counter

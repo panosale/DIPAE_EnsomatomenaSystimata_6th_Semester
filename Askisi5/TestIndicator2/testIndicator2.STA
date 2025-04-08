@@ -14,7 +14,7 @@ Stack size: 31
 Lines Stmts  %   Files
 ----- ----- ---  -----
    92    34 100  testIndicator2.c
-   67     0   0  main_.h
+   67     0   0  C:\Program Files (x86)\PICC\Devices\main_.h
   821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
 ----- -----
   980    34 Total
@@ -23,23 +23,23 @@ Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
 0    106   7    0    27  1.0  main
 0    290  20    8   778  7.5  timer0_int
-0     66   5    5   149  2.2  @DIV1616
-0     30   2    5   149  2.2  @MUL1616
-0     42   3    3   149  2.2  @DIV88
+0     66   5    5             @DIV1616
+0     30   2    5             @MUL1616
+0     42   3    3             @DIV88
 0     42   3    0   243  2.3  init
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               6
+    Functions               3
     Statements              34
     Comments                212
-    Volume (V)              2125
-    Difficulty (D)          18.0
-    Effort to implement (E) 38189
-    Time to implement (T)   35 minutes
+    Volume (V)              1262
+    Difficulty (D)          10.9
+    Effort to implement (E) 13780
+    Time to implement (T)   13 minutes
     Est Delivered Bugs (B)  0
     Cyclomatic Complexity   5
-    Maintainability (MI)    123
+    Maintainability (MI)    122
 
  Segment     Used  Free
 -----------  ----  ----

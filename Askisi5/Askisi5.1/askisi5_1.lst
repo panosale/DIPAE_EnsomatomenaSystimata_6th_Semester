@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.011, 5967               06-Απρ-25 16:47
+CCS PCH C Compiler, Version 5.011, 5967               08-Απρ-25 23:14
 
-               Filename:   D:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.1\askisi5_1.lst
+               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.1\askisi5_1.lst
 
-               ROM used:   856 bytes (3%)
-                           Largest free fragment is 31908
+               ROM used:   868 bytes (3%)
+                           Largest free fragment is 31896
                RAM used:   52 (3%) at main() level
                            65 (3%) worst case
                Stack used: 3 locations (1 in main + 2 for interrupts)
                Stack size: 31
 
 *
-0000:  GOTO   02B8
+0000:  GOTO   02C0
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -123,7 +123,7 @@ CCS PCH C Compiler, Version 5.011, 5967               06-Απρ-25 16:47
 0116:  RLCF   01,F
 0118:  DECFSZ 3C,F
 011A:  BRA    010A
-011C:  GOTO   0224 (RETURN)
+011C:  GOTO   0228 (RETURN)
 ....................  
 .................... #list 
 ....................  
@@ -245,105 +245,108 @@ CCS PCH C Compiler, Version 5.011, 5967               06-Απρ-25 16:47
 ....................  
 .................... void main() { 
 *
-02B8:  CLRF   FF8
-02BA:  BCF    FD0.7
-02BC:  BSF    07.7
-02BE:  CLRF   16
-02C0:  MOVLW  01
-02C2:  MOVWF  18
-02C4:  MOVLW  2C
-02C6:  MOVWF  17
-02C8:  CLRF   1A
-02CA:  MOVLW  C8
-02CC:  MOVWF  19
-02CE:  BCF    1B.0
-02D0:  BCF    1B.1
-02D2:  MOVLW  05
-02D4:  MOVWF  1C
-02D6:  MOVWF  1D
-02D8:  CLRF   1F
-02DA:  CLRF   1E
-02DC:  MOVF   FC1,W
-02DE:  ANDLW  C0
-02E0:  IORLW  0F
-02E2:  MOVWF  FC1
-02E4:  MOVLW  07
-02E6:  MOVWF  FB4
-02E8:  MOVLW  3F
-02EA:  MOVWF  20
-02EC:  MOVLW  06
-02EE:  MOVWF  21
-02F0:  MOVLW  5B
-02F2:  MOVWF  22
-02F4:  MOVLW  4F
-02F6:  MOVWF  23
-02F8:  MOVLW  66
-02FA:  MOVWF  24
-02FC:  MOVLW  6D
-02FE:  MOVWF  25
-0300:  MOVLW  7D
-0302:  MOVWF  26
-0304:  MOVLW  07
-0306:  MOVWF  27
-0308:  MOVLW  7F
-030A:  MOVWF  28
-030C:  MOVLW  6F
-030E:  MOVWF  29
-0310:  MOVLW  77
-0312:  MOVWF  2A
-0314:  MOVLW  7C
-0316:  MOVWF  2B
-0318:  MOVLW  39
-031A:  MOVWF  2C
-031C:  MOVLW  5E
-031E:  MOVWF  2D
-0320:  MOVLW  79
-0322:  MOVWF  2E
-0324:  MOVLW  71
-0326:  MOVWF  2F
-0328:  MOVLW  01
-032A:  MOVWF  30
-032C:  MOVLW  02
-032E:  MOVWF  31
-0330:  MOVLW  04
-0332:  MOVWF  32
+02C0:  CLRF   FF8
+02C2:  BCF    FD0.7
+02C4:  BSF    07.7
+02C6:  CLRF   16
+02C8:  MOVLW  01
+02CA:  MOVWF  18
+02CC:  MOVLW  2C
+02CE:  MOVWF  17
+02D0:  CLRF   1A
+02D2:  MOVLW  C8
+02D4:  MOVWF  19
+02D6:  BCF    1B.0
+02D8:  BCF    1B.1
+02DA:  MOVLW  05
+02DC:  MOVWF  1C
+02DE:  MOVWF  1D
+02E0:  CLRF   1F
+02E2:  CLRF   1E
+02E4:  MOVF   FC1,W
+02E6:  ANDLW  C0
+02E8:  IORLW  0F
+02EA:  MOVWF  FC1
+02EC:  MOVLW  07
+02EE:  MOVWF  FB4
+02F0:  MOVLW  3F
+02F2:  MOVWF  20
+02F4:  MOVLW  06
+02F6:  MOVWF  21
+02F8:  MOVLW  5B
+02FA:  MOVWF  22
+02FC:  MOVLW  4F
+02FE:  MOVWF  23
+0300:  MOVLW  66
+0302:  MOVWF  24
+0304:  MOVLW  6D
+0306:  MOVWF  25
+0308:  MOVLW  7D
+030A:  MOVWF  26
+030C:  MOVLW  07
+030E:  MOVWF  27
+0310:  MOVLW  7F
+0312:  MOVWF  28
+0314:  MOVLW  6F
+0316:  MOVWF  29
+0318:  MOVLW  77
+031A:  MOVWF  2A
+031C:  MOVLW  7C
+031E:  MOVWF  2B
+0320:  MOVLW  39
+0322:  MOVWF  2C
+0324:  MOVLW  5E
+0326:  MOVWF  2D
+0328:  MOVLW  79
+032A:  MOVWF  2E
+032C:  MOVLW  71
+032E:  MOVWF  2F
+0330:  MOVLW  01
+0332:  MOVWF  30
+0334:  MOVLW  02
+0336:  MOVWF  31
+0338:  MOVLW  04
+033A:  MOVWF  32
 ....................    init(); 
-0334:  BRA    027E
+033C:  BRA    0282
 ....................    while (TRUE) { 
-....................       if (bit_test(PORTD,1)== 1){ 
-0336:  BTFSS  F83.1
-0338:  BRA    033E
+....................       if (bit_test(PORTD,1) == 1){ 
+033E:  BTFSS  F83.1
+0340:  BRA    0346
 ....................          flag1 = 1;  
-033A:  BSF    1B.0
+0342:  BSF    1B.0
 ....................       } 
-033C:  BRA    0340
+0344:  BRA    0348
 ....................       else { 
 ....................          flag1 = 0; 
-033E:  BCF    1B.0
+0346:  BCF    1B.0
 ....................       } 
 ....................       if (bit_test(PORTD,3) == 0) { 
-0340:  BTFSC  F83.3
-0342:  BRA    034C
+0348:  BTFSC  F83.3
+034A:  BRA    0354
 ....................          seconds = 300;  
-0344:  MOVLW  01
-0346:  MOVWF  18
-0348:  MOVLW  2C
-034A:  MOVWF  17
+034C:  MOVLW  01
+034E:  MOVWF  18
+0350:  MOVLW  2C
+0352:  MOVWF  17
 ....................       } 
 ....................       if (bit_test(PORTD,0) == 0) { 
-034C:  BTFSC  F83.0
-034E:  BRA    0358
+0354:  BTFSC  F83.0
+0356:  BRA    0364
 ....................          temp_var = seconds; 
-0350:  MOVFF  18,1F
-0354:  MOVFF  17,1E
+0358:  MOVFF  18,1F
+035C:  MOVFF  17,1E
+....................          output_high(PIN_D4); // Endeiksi sto LED sto PIN_D4 oti apothikeftike i timi tou xronometrou  
+0360:  BCF    F95.4
+0362:  BSF    F8C.4
 ....................       } 
-0358:  BRA    0336
+0364:  BRA    033E
 ....................    } 
 .................... }    
 ....................  
 .................... #INT_TIMER0 
 .................... void timer0_int(void) { 
-035A:  SLEEP 
+0366:  SLEEP 
 ....................    int16 mon, dec, eka; 
 ....................    counter--; // Kathe 200 * 5msec = 1sec 
 *
@@ -353,9 +356,9 @@ CCS PCH C Compiler, Version 5.011, 5967               06-Απρ-25 16:47
 0126:  DECF   19,F
 ....................    if ((counter == 0)) { 
 0128:  MOVF   19,F
-012A:  BNZ   0182
+012A:  BNZ   0186
 012C:  MOVF   1A,F
-012E:  BNZ   0182
+012E:  BNZ   0186
 ....................       counter = 200;//200 
 0130:  CLRF   1A
 0132:  MOVLW  C8
@@ -365,7 +368,7 @@ CCS PCH C Compiler, Version 5.011, 5967               06-Απρ-25 16:47
 0138:  BRA    0146
 013A:  BTFSC  1B.1
 013C:  BRA    0146
-....................          seconds--; // Μειώνει κάθε 1 sec 
+....................          seconds--; // Meionei kathe 1 sec 
 013E:  MOVF   17,W
 0140:  BTFSC  FD8.2
 0142:  DECF   18,F
@@ -400,7 +403,7 @@ CCS PCH C Compiler, Version 5.011, 5967               06-Απρ-25 16:47
 ....................       } 
 ....................       if (var_counter == 0) {  
 016E:  MOVF   1D,F
-0170:  BNZ   0182
+0170:  BNZ   0186
 ....................          aux_counter = 5; 
 0172:  MOVLW  05
 0174:  MOVWF  1C
@@ -413,174 +416,180 @@ CCS PCH C Compiler, Version 5.011, 5967               06-Απρ-25 16:47
 017C:  MOVWF  18
 017E:  MOVLW  2C
 0180:  MOVWF  17
+....................          output_low(PIN_D4); // Midenismos endeiksis LED sto PIN_D4 (Endeiksi oti apothikeftike i timi tou xronometrou) 
+0182:  BCF    F95.4
+0184:  BCF    F8C.4
 ....................       }                   
 ....................                                                      
 ....................    }                    
 ....................                       
 ....................    eka = (int8) (seconds / 100); 
-0182:  MOVFF  18,3D
-0186:  MOVFF  17,3C
-018A:  CLRF   3F
-018C:  MOVLW  64
-018E:  MOVWF  3E
-0190:  RCALL  0096
-0192:  MOVFF  02,39
-0196:  MOVFF  01,38
+0186:  MOVFF  18,3D
+018A:  MOVFF  17,3C
+018E:  CLRF   3F
+0190:  MOVLW  64
+0192:  MOVWF  3E
+0194:  RCALL  0096
+0196:  MOVFF  02,39
+019A:  MOVFF  01,38
 ....................    dec = (int8) ((seconds - (100 * eka)) / 10); 
-019A:  CLRF   3D
-019C:  MOVLW  64
-019E:  MOVWF  3C
-01A0:  MOVFF  39,3F
-01A4:  MOVFF  38,3E
-01A8:  RCALL  00D8
-01AA:  MOVFF  02,03
-01AE:  MOVF   01,W
-01B0:  SUBWF  17,W
-01B2:  MOVWF  3A
-01B4:  MOVF   02,W
-01B6:  SUBWFB 18,W
-01B8:  MOVWF  3B
-01BA:  MOVWF  3D
-01BC:  MOVFF  3A,3C
-01C0:  CLRF   3F
-01C2:  MOVLW  0A
-01C4:  MOVWF  3E
-01C6:  RCALL  0096
-01C8:  MOVFF  02,37
-01CC:  MOVFF  01,36
+019E:  CLRF   3D
+01A0:  MOVLW  64
+01A2:  MOVWF  3C
+01A4:  MOVFF  39,3F
+01A8:  MOVFF  38,3E
+01AC:  RCALL  00D8
+01AE:  MOVFF  02,03
+01B2:  MOVF   01,W
+01B4:  SUBWF  17,W
+01B6:  MOVWF  3A
+01B8:  MOVF   02,W
+01BA:  SUBWFB 18,W
+01BC:  MOVWF  3B
+01BE:  MOVWF  3D
+01C0:  MOVFF  3A,3C
+01C4:  CLRF   3F
+01C6:  MOVLW  0A
+01C8:  MOVWF  3E
+01CA:  RCALL  0096
+01CC:  MOVFF  02,37
+01D0:  MOVFF  01,36
 ....................    mon = (int8) (seconds - (100 * eka) - (10 * dec)); 
-01D0:  CLRF   3D
-01D2:  MOVLW  64
-01D4:  MOVWF  3C
-01D6:  MOVFF  39,3F
-01DA:  MOVFF  38,3E
-01DE:  RCALL  00D8
-01E0:  MOVFF  02,03
-01E4:  MOVF   01,W
-01E6:  SUBWF  17,W
-01E8:  MOVWF  3A
-01EA:  MOVF   02,W
-01EC:  SUBWFB 18,W
-01EE:  MOVWF  3B
-01F0:  CLRF   3D
-01F2:  MOVLW  0A
-01F4:  MOVWF  3C
-01F6:  MOVFF  37,3F
-01FA:  MOVFF  36,3E
-01FE:  RCALL  00D8
-0200:  MOVF   01,W
-0202:  SUBWF  3A,W
-0204:  MOVWF  00
-0206:  MOVF   02,W
-0208:  SUBWFB 3B,W
-020A:  MOVF   00,W
-020C:  CLRF   35
-020E:  MOVWF  34
-....................    set_timer0(5536); // αρχική τιμή του μετρητή 
-0210:  MOVLW  15
-0212:  MOVWF  FD7
-0214:  MOVLW  A0
-0216:  MOVWF  FD6
+01D4:  CLRF   3D
+01D6:  MOVLW  64
+01D8:  MOVWF  3C
+01DA:  MOVFF  39,3F
+01DE:  MOVFF  38,3E
+01E2:  RCALL  00D8
+01E4:  MOVFF  02,03
+01E8:  MOVF   01,W
+01EA:  SUBWF  17,W
+01EC:  MOVWF  3A
+01EE:  MOVF   02,W
+01F0:  SUBWFB 18,W
+01F2:  MOVWF  3B
+01F4:  CLRF   3D
+01F6:  MOVLW  0A
+01F8:  MOVWF  3C
+01FA:  MOVFF  37,3F
+01FE:  MOVFF  36,3E
+0202:  RCALL  00D8
+0204:  MOVF   01,W
+0206:  SUBWF  3A,W
+0208:  MOVWF  00
+020A:  MOVF   02,W
+020C:  SUBWFB 3B,W
+020E:  MOVF   00,W
+0210:  CLRF   35
+0212:  MOVWF  34
+....................    set_timer0(timer_start_value); // Arxiki timi tou metriti 
+0214:  MOVLW  15
+0216:  MOVWF  FD7
+0218:  MOVLW  A0
+021A:  MOVWF  FD6
 ....................    des = ++des%3; 
-0218:  INCF   16,F
-021A:  MOVFF  16,3A
-021E:  MOVLW  03
-0220:  MOVWF  3B
-0222:  BRA    00F6
-0224:  MOVFF  00,16
+021C:  INCF   16,F
+021E:  MOVFF  16,3A
+0222:  MOVLW  03
+0224:  MOVWF  3B
+0226:  BRA    00F6
+0228:  MOVFF  00,16
 ....................    PORTC = dig[des]; 
-0228:  CLRF   03
-022A:  MOVF   16,W
-022C:  ADDLW  30
-022E:  MOVWF  FE9
-0230:  MOVLW  00
-0232:  ADDWFC 03,W
-0234:  MOVWF  FEA
-0236:  MOVFF  FEF,F82
+022C:  CLRF   03
+022E:  MOVF   16,W
+0230:  ADDLW  30
+0232:  MOVWF  FE9
+0234:  MOVLW  00
+0236:  ADDWFC 03,W
+0238:  MOVWF  FEA
+023A:  MOVFF  FEF,F82
 ....................    if (des==0) { 
-023A:  MOVF   16,F
-023C:  BNZ   024E
+023E:  MOVF   16,F
+0240:  BNZ   0252
 ....................       PORTB = table[mon]; 
-023E:  MOVLW  20
-0240:  ADDWF  34,W
-0242:  MOVWF  FE9
-0244:  MOVLW  00
-0246:  ADDWFC 35,W
-0248:  MOVWF  FEA
-024A:  MOVFF  FEF,F81
+0242:  MOVLW  20
+0244:  ADDWF  34,W
+0246:  MOVWF  FE9
+0248:  MOVLW  00
+024A:  ADDWFC 35,W
+024C:  MOVWF  FEA
+024E:  MOVFF  FEF,F81
 ....................    }    
 ....................    if (des==1){ 
-024E:  DECFSZ 16,W
-0250:  BRA    0262
+0252:  DECFSZ 16,W
+0254:  BRA    0266
 ....................       PORTB = table[dec]; 
-0252:  MOVLW  20
-0254:  ADDWF  36,W
-0256:  MOVWF  FE9
-0258:  MOVLW  00
-025A:  ADDWFC 37,W
-025C:  MOVWF  FEA
-025E:  MOVFF  FEF,F81
+0256:  MOVLW  20
+0258:  ADDWF  36,W
+025A:  MOVWF  FE9
+025C:  MOVLW  00
+025E:  ADDWFC 37,W
+0260:  MOVWF  FEA
+0262:  MOVFF  FEF,F81
 ....................    }             
 ....................    if (des==2) { 
-0262:  MOVF   16,W
-0264:  SUBLW  02
-0266:  BNZ   0278
+0266:  MOVF   16,W
+0268:  SUBLW  02
+026A:  BNZ   027C
 ....................       PORTB = table[eka]; 
-0268:  MOVLW  20
-026A:  ADDWF  38,W
-026C:  MOVWF  FE9
-026E:  MOVLW  00
-0270:  ADDWFC 39,W
-0272:  MOVWF  FEA
-0274:  MOVFF  FEF,F81
+026C:  MOVLW  20
+026E:  ADDWF  38,W
+0270:  MOVWF  FE9
+0272:  MOVLW  00
+0274:  ADDWFC 39,W
+0276:  MOVWF  FEA
+0278:  MOVFF  FEF,F81
 ....................    } 
-0278:  BCF    FF2.2
-027A:  GOTO   0054
+027C:  BCF    FF2.2
+027E:  GOTO   0054
 .................... } 
 ....................  
 .................... void init(void) { 
 ....................    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0) 
-027E:  MOVLW  00
-0280:  MOVWF  F93
+0282:  MOVLW  00
+0284:  MOVWF  F93
 ....................    set_tris_c(0x00); // Orismos tou PORTBC PIN2 san eksodo (1) gia ti geiosi tou Endeikti 
-0282:  MOVWF  F94
-....................    set_tris_d(0xff); // Orismos tou PORTB san eisodo (1) 
-0284:  MOVLW  FF
-0286:  MOVWF  F95
+0286:  MOVWF  F94
+....................    set_tris_d(0x0f); // Orismos tou LSB tou PORTD san eisodo (1) kai tou MSB san eksodo  
+0288:  MOVLW  0F
+028A:  MOVWF  F95
 ....................    PORTB = 0; 
-0288:  CLRF   F81
+028C:  CLRF   F81
 ....................    PORTC = 0; 
-028A:  CLRF   F82
+028E:  CLRF   F82
+....................    output_low(PIN_D4); // Midenismos endeiksis LED sto PIN_D4 (Endeiksi oti apothikeftike i timi tou xronometrou)  
+0290:  BCF    F95.4
+0292:  BCF    F8C.4
 ....................    counter = 200; // Arxikopoiisi tou counter 
-028C:  CLRF   1A
-028E:  MOVLW  C8
-0290:  MOVWF  19
+0294:  CLRF   1A
+0296:  MOVLW  C8
+0298:  MOVWF  19
 ....................    seconds = 300; // Arxikopoiisi tou metriti xronou 
-0292:  MOVLW  01
-0294:  MOVWF  18
-0296:  MOVLW  2C
-0298:  MOVWF  17
+029A:  MOVLW  01
+029C:  MOVWF  18
+029E:  MOVLW  2C
+02A0:  MOVWF  17
 ....................    aux_counter = 5; 
-029A:  MOVLW  05
-029C:  MOVWF  1C
+02A2:  MOVLW  05
+02A4:  MOVWF  1C
 ....................    var_counter = 5; 
-029E:  MOVWF  1D
+02A6:  MOVWF  1D
 ....................    des = 0; // Arxikopoiisi tis epilogis psifiou 
-02A0:  CLRF   16
+02A8:  CLRF   16
 ....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1); 
-02A2:  MOVLW  88
-02A4:  MOVWF  FD5
+02AA:  MOVLW  88
+02AC:  MOVWF  FD5
 ....................    set_timer0(timer_start_value); 
-02A6:  MOVLW  15
-02A8:  MOVWF  FD7
-02AA:  MOVLW  A0
-02AC:  MOVWF  FD6
+02AE:  MOVLW  15
+02B0:  MOVWF  FD7
+02B2:  MOVLW  A0
+02B4:  MOVWF  FD6
 ....................    enable_interrupts(INT_TIMER0); 
-02AE:  BSF    FF2.5
+02B6:  BSF    FF2.5
 ....................    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon 
-02B0:  MOVLW  C0
-02B2:  IORWF  FF2,F
-02B4:  GOTO   0336 (RETURN)
+02B8:  MOVLW  C0
+02BA:  IORWF  FF2,F
+02BC:  GOTO   033E (RETURN)
 .................... } 
 ....................  
 

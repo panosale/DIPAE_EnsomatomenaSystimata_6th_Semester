@@ -27,7 +27,7 @@
 01A-029 table
 02A-02C dig
 02D-02E timer0_int.mon
-02F-030 timer0_int.dek
+02F-030 timer0_int.dec
 031-032 timer0_int.eka
 033     @DIV88.P1
 033     timer0_int.@SCRATCH1
@@ -74,14 +74,14 @@ ROM Allocation:
 000284  @cinit2
 
 Project Directory:
-    D:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\TestIndicator2\
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\TestIndicator2\
 
 Project Files:
-    testIndicator2.c                                        [05-Απρ-25 21:00  CRC=5FE9449F]
-    main_.h                                                 [23-Μαρ-25 13:44  CRC=51CBC36F]
+    testIndicator2.c                                        [08-Απρ-25 22:31  CRC=69C35C49]
+    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 14:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 16:40  CRC=A157EDDE]
 
-Source signature=F464E3CA
+Source signature=FE3EFB74
 
 Units:
     testIndicator2 (main)
