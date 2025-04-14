@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.011, 5967               08-Απρ-25 22:31
+CCS PCH C Compiler, Version 5.011, 5967               14-Απρ-25 23:47
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\TestIndicator2\testIndicator2.lst
 
@@ -383,7 +383,7 @@ CCS PCH C Compiler, Version 5.011, 5967               08-Απρ-25 22:31
 01CE:  MOVF   00,W
 01D0:  CLRF   2E
 01D2:  MOVWF  2D
-....................       set_timer0(5536); // Arxikopoiisi tou timer0; 
+....................       set_timer0(timer_start_value); // Arxikopoiisi tou timer0; 
 01D4:  MOVLW  15
 01D6:  MOVWF  FD7
 01D8:  MOVLW  A0
@@ -464,7 +464,7 @@ CCS PCH C Compiler, Version 5.011, 5967               08-Απρ-25 22:31
 ....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1); 
 0256:  MOVLW  88
 0258:  MOVWF  FD5
-....................    set_timer0(5536); 
+....................    set_timer0(timer_start_value); 
 025A:  MOVLW  15
 025C:  MOVWF  FD7
 025E:  MOVLW  A0

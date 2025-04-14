@@ -100,7 +100,7 @@ void timer0_int(void) {
       }                  
                                                     
    }                   
-   if ((temp_var != 0) && (seconds == 300)) {
+   if (temp_var != 0) {
       eka = (int8) (temp_var / 100);
       dec = (int8) ((temp_var - (100 * eka)) / 10);
       mon = (int8) (temp_var - (100 * eka) - (10 * dec));

@@ -65,7 +65,7 @@ void main() {
       if (bit_test(PORTD,3) == 0) {
          seconds = 300; 
       }
-      if ((bit_test(PORTD,0) == 0) && (temp_var == 0)) {
+      if (bit_test(PORTD,0) == 0) {
          temp_var = seconds;
          output_high(PIN_D4); // Endeiksi sto LED sto PIN_D4 oti apothikeftike i timi tou xronometrou 
       }
@@ -96,21 +96,13 @@ void timer0_int(void) {
          flag2 = 0;
          seconds = 300;
          output_low(PIN_D4); // Midenismos endeiksis LED sto PIN_D4 (Endeiksi oti apothikeftike i timi tou xronometrou)
-         
       }                  
                                                     
    }                   
-   if ((temp_var != 0) && (seconds == 300)) {
-      eka = (int8) (temp_var / 100);
-      dec = (int8) ((temp_var - (100 * eka)) / 10);
-      mon = (int8) (temp_var - (100 * eka) - (10 * dec));
-      temp_var = 0;
-   }
-   else {
-      eka = (int8) (seconds / 100);
-      dec = (int8) ((seconds - (100 * eka)) / 10);
-      mon = (int8) (seconds - (100 * eka) - (10 * dec));      
-   }
+                     
+   eka = (int8) (seconds / 100);
+   dec = (int8) ((seconds - (100 * eka)) / 10);
+   mon = (int8) (seconds - (100 * eka) - (10 * dec));
    set_timer0(timer_start_value); // Arxiki timi tou metriti
    des = ++des%3;
    PORTC = dig[des];

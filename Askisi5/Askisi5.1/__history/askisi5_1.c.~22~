@@ -56,18 +56,19 @@ void init(void);
 void main() {
    init();
    while (TRUE) {
-      if (bit_test(PORTD,1) == 1){
+      if (bit_test(PORTA,1) == 1){
          flag1 = 1; 
       }
       else {
          flag1 = 0;
       }
-      if (bit_test(PORTD,3) == 0) {
+      if (bit_test(PORTA,3) == 0) {
          seconds = 300; 
       }
-      if ((bit_test(PORTD,0) == 0) && (temp_var == 0)) {
+      if ((bit_test(PORTA,0) == 0) && (temp_var == 0)) {
          temp_var = seconds;
-         output_high(PIN_D4); // Endeiksi sto LED sto PIN_D4 oti apothikeftike i timi tou xronometrou 
+         PORTD = temp_var;
+         //output_high(PIN_D4); // Endeiksi sto LED sto PIN_D4 oti apothikeftike i timi tou xronometrou 
       }
    }
 }   
@@ -100,7 +101,7 @@ void timer0_int(void) {
       }                  
                                                     
    }                   
-   if ((temp_var != 0) && (seconds == 300)) {
+   if (temp_var != 0) {
       eka = (int8) (temp_var / 100);
       dec = (int8) ((temp_var - (100 * eka)) / 10);
       mon = (int8) (temp_var - (100 * eka) - (10 * dec));
@@ -126,9 +127,10 @@ void timer0_int(void) {
 }
 
 void init(void) {
+   set_tris_a(0x1); // Orismos tou PORTB san eksodo (0)
    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
    set_tris_c(0x00); // Orismos tou PORTBC PIN2 san eksodo (1) gia ti geiosi tou Endeikti
-   set_tris_d(0x0f); // Orismos tou LSB tou PORTD san eisodo (1) kai tou MSB san eksodo 
+   set_tris_d(0x00); // Orismos tou LSB tou PORTD san eisodo (1) kai tou MSB san eksodo 
    PORTB = 0;
    PORTC = 0;
    output_low(PIN_D4); // Midenismos endeiksis LED sto PIN_D4 (Endeiksi oti apothikeftike i timi tou xronometrou) 
