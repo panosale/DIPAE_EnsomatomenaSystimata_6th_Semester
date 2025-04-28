@@ -1,6 +1,6 @@
 #include <main_.h>
 
-// StandaEisodoi & Eksodoi
+// Standard Eisodoi & Eksodoi
 #use standard_io (A) 
 #use standard_io (B)
 #use standard_io (C)

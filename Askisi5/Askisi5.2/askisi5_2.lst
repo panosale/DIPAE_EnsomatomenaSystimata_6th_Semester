@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.011, 5967               27-Απρ-25 12:19
+CCS PCH C Compiler, Version 5.011, 5967               28-Απρ-25 23:25
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.2\askisi5_2.lst
 
@@ -157,7 +157,7 @@ CCS PCH C Compiler, Version 5.011, 5967               27-Απρ-25 12:19
 ....................  
 ....................  
 ....................  
-.................... // Standard Eisodoi & Eksodoi 
+.................... // StandaEisodoi & Eksodoi 
 .................... #use standard_io (A)  
 .................... #use standard_io (B) 
 .................... #use standard_io (C) 
