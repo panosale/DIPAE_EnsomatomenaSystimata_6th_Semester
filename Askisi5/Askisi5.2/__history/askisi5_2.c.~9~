@@ -59,9 +59,9 @@ void main() {
 void timer0_int(void) {
    int16 mon,dec,eka;
    set_timer0(timer_start_value); // Arxiki timi tou metriti
-//   sec_set_counter--;
-//   if ((sec_set_counter == 0)) {
-//      sec_set_counter = 1;
+   sec_set_counter--;
+   if ((sec_set_counter == 0)) {
+      sec_set_counter = 1;
       if((bit_test(PORTD,2) == 1) && (bit_test(PORTD,0) == 1)) {
          seconds++; // Afksanei kathe 1/10 sec
          if (seconds > 59) {
@@ -90,7 +90,7 @@ void timer0_int(void) {
             hour = 23;
          }               
       }   
-//   }
+   }
    counter--; // Kathe 200 * 5 msec  = 1 sec
    if (counter%100 == 0) {
       flag^=1;

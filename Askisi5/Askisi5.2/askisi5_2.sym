@@ -68,20 +68,20 @@ ROM Allocation:
 000096  @DIV88
 0000BE  @MUL1616
 0000DC  timer0_int
-00025C  init
-000294  @cinit1
-000294  main
-0002B6  @cinit2
+000252  init
+00028A  @cinit1
+00028A  main
+0002AC  @cinit2
 
 Project Directory:
     F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.2\
 
 Project Files:
-    askisi5_2.c                                             [28-Απρ-25 23:25  CRC=446E3769]
+    askisi5_2.c                                             [28-Απρ-25 23:38  CRC=A4F06C61]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 14:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 16:40  CRC=A157EDDE]
 
-Source signature=D8E9D694
+Source signature=396C0B8C
 
 Units:
     askisi5_2 (main)

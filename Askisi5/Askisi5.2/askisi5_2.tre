@@ -2,7 +2,7 @@
    ÃÄmain  0/116  Ram=0
    ³  ÃÄ@cinit1  (Inline)  Ram=0
    ³  ÀÄinit  0/56  Ram=0
-   ÀÄtimer0_int  0/384  Ram=8
+   ÀÄtimer0_int  0/374  Ram=8
       ÃÄ@DIV88  0/40  Ram=3
       ÃÄ@DIV88  0/40  Ram=3
       ÃÄ@MUL1616  0/30  Ram=5
