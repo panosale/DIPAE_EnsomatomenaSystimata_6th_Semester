@@ -1,0 +1,107 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     des
+017     seconds
+018     sec_set_counter
+019     minute
+01A     hour
+01B     counter
+01C.0   flag
+01D-02C table
+02D-02F dig
+030-031 timer0_int.mon
+032-033 timer0_int.dec
+034-035 timer0_int.eka
+036-037 @MUL1616.P1
+036     @DIV88.P2
+036     timer0_int.@SCRATCH1
+037     @DIV88.P1
+037     timer0_int.@SCRATCH2
+038-039 @MUL1616.P1
+038     @DIV88.@SCRATCH1
+03A     @MUL1616.@SCRATCH1
+F80     PORTA
+F81     PORTB
+F82     PORTC
+F83     PSP_DATA
+F83     PORTD
+F84     PORTE
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000096  @DIV88
+0000BE  @MUL1616
+0000DC  timer0_int
+00025E  init
+000296  main
+000296  @cinit1
+0002B8  @cinit2
+
+Project Directory:
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.2\
+
+Project Files:
+    ask5_2.c                                                [08-Απρ-25 21:51  CRC=A021B8E4]
+    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 14:55  CRC=51CBC36F]
+    C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 16:40  CRC=A157EDDE]
+
+Source signature=349D580F
+
+Units:
+    ask5_2 (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   ask5_2.xsym
+    Errors:      ask5_2.err
+    Ext Symbols: ask5_2.esym
+    INHX32:      ask5_2.hex
+    Symbols:     ask5_2.sym
+    List:        ask5_2.lst
+    Debug/COFF:  ask5_2.cof
+    Project:     ask5_2.ccspjt
+    Call Tree:   ask5_2.tre
+    Statistics:  ask5_2.STA

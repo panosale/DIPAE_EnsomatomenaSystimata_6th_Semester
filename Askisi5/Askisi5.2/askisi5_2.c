@@ -1,0 +1,155 @@
+#include <main_.h>
+
+// Standard Eisodoi & Eksodoi
+#use standard_io (A) 
+#use standard_io (B)
+#use standard_io (C)
+
+// Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTA         =0xF80    
+#byte PORTB         =0xF81
+#byte PORTC         =0xF82
+#byte PORTD         =0xF83
+#byte PORTE         =0xF84
+
+const int16 timer_start_value = 5536; // Orismos arxikis timis timer0;
+
+// Orismos global metavliton
+int8 des=0;
+int8 seconds=0;
+int8 sec_set_counter = 20;
+int8 minute=0;
+int8 hour=12;
+int8 counter;
+int1 flag=0;
+
+// Dilosi pinaka katastaseon Endeikti 7 tomeon koinis kathodou
+int8 table[16] = {0b00111111, //0
+                  0b00000110, //1
+                  0b01011011, //2
+                  0b01001111, //3
+                  0b01100110, //4
+                  0b01101101, //5
+                  0b01111101, //6
+                  0b00000111, //7
+                  0b01111111, //8
+                  0b01101111, //9
+                  0b01101011, //Ù
+                  0b00110111, //Ð
+                  0b00111001, 
+                  0b01011110, 
+                  0b01111001, 
+                  0b01110001 };  
+
+// Dilosi pinaka tranzistor gia energopoiisis tou PORTC
+int8 dig[3] = {1,2,4};
+
+// Dilosi sinartiseon eksipiretisis
+void timer0_int(void);
+void init (void);
+
+void main() {
+   init(); 
+   while (TRUE) {
+   }
+}
+
+// Orismos sinartiseon eksipiretisis
+#INT_TIMER0    // Diakopi me megali protereotita
+void timer0_int(void) {
+   int16 mon,dec,eka;
+   set_timer0(timer_start_value); // Arxiki timi tou metriti
+   sec_set_counter--;
+   if ((sec_set_counter == 0)) {
+      sec_set_counter = 1;
+      if((bit_test(PORTD,2) == 1) && (bit_test(PORTD,0) == 1)) {
+         seconds++; // Afksanei kathe 1/10 sec
+         if (seconds > 59) {
+            seconds = 0;
+            minute++;
+            if (minute > 59) {
+               minute = 0;
+               hour++;
+            }
+            if (hour >23) {
+               hour = 0;
+            }
+         }
+      }
+      if((bit_test(PORTD,2) == 1) && (bit_test(PORTD,1) == 1)) {
+         seconds--;
+         if (seconds > 59) {
+            seconds = 59;
+            minute--;
+         }
+         if (minute > 59) { // Meionei kathe 1 sec
+            minute = 59;
+            hour--;
+         }
+         if(hour > 23) {
+            hour = 23;
+         }               
+      }   
+   }
+   counter--; // Kathe 200 * 5 msec  = 1 sec
+   if (counter%100 == 0) {
+      flag^=1;
+   }
+   if (counter == 0) {
+      counter = 200;
+      if (bit_test(PORTD,2) == 0) {
+         seconds++; // Afksanei kathe 1 sec
+         if (seconds > 59) {
+            seconds = 0;
+            minute++;
+            if (minute > 59) {
+               minute = 0;
+               hour++;
+            }
+            if (hour >23) {
+               hour = 0;
+            }               
+         }              
+      }   
+   }                       
+   if (flag == 0) {
+      dec = (int8)minute / 10;
+      mon =  minute - dec * 10;
+      eka = 11;
+   }
+   if (flag == 1) {
+      dec = (int8)hour / 10;
+      mon =  hour - dec * 10;
+      eka = 10;
+   }
+   des = ++des%3;
+   PORTC = dig[des];
+   if (des==0) {
+      PORTB = table[mon];
+   }         
+   if (des==1) {
+      PORTB = table[dec];
+   }            
+   if (des==2) {
+      PORTB = table[eka];
+   }               
+}                     
+void init (void) {
+   set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
+   set_tris_c(0x00); // Orismos tou PORTBC PIN2 san eksodo (1) gia ti Vasi tou Endeikti
+   set_tris_d(0xff); // Orismos tou PORTD san eisodo (1)
+   PORTB = 0;
+   PORTC = 0;
+   counter = 200; // Arxikopoiisi tou counter
+   seconds = 0; // Midenismos ton defterolepton
+   sec_set_counter = 1;
+   minute =0;
+   hour = 12;
+   des =0;
+   flag = 0;
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1 );
+   set_timer0(timer_start_value); // Arxiki timi tou metriti 
+   enable_interrupts(INT_TIMER0); // Energopoiisi tis diakopis timer0
+   enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
+}
+

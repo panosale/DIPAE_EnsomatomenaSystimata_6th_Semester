@@ -67,7 +67,7 @@ void main() {
       }
       if ((bit_test(PORTD,0) == 0) && (temp_var == 0)) {
          temp_var = seconds;
-         output_high(PIN_D4); // Endeiksi sto LED sto PIN_D4 oti apothikeftike i timi tou xronometrou 
+         output_high(PIN_D4); // Added by: Alevr. Endeiksi sto LED sto PIN_D4 oti apothikeftike i timi tou xronometrou 
       }
    }
 }   
@@ -95,7 +95,7 @@ void timer0_int(void) {
          var_counter = 5;
          flag2 = 0;
          seconds = 300;
-         output_low(PIN_D4); // Midenismos endeiksis LED sto PIN_D4 (Endeiksi oti apothikeftike i timi tou xronometrou)
+         output_low(PIN_D4); // Added by: Alevr. Midenismos endeiksis LED sto PIN_D4 (Endeiksi oti apothikeftike i timi tou xronometrou)
          
       }                  
                                                     
@@ -127,19 +127,19 @@ void timer0_int(void) {
 
 void init(void) {
    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
-   set_tris_c(0x00); // Orismos tou PORTBC PIN2 san eksodo (1) gia ti geiosi tou Endeikti
+   set_tris_c(0x00); // Orismos tou PORTBC PIN2 san eksodo (1) gia ti Vasi tou Endeikti
    set_tris_d(0x0f); // Orismos tou LSB tou PORTD san eisodo (1) kai tou MSB san eksodo 
    PORTB = 0;
    PORTC = 0;
-   output_low(PIN_D4); // Midenismos endeiksis LED sto PIN_D4 (Endeiksi oti apothikeftike i timi tou xronometrou) 
+   output_low(PIN_D4); // Added by: Alevr. Midenismos endeiksis LED sto PIN_D4 (Endeiksi oti apothikeftike i timi tou xronometrou) 
    counter = 200; // Arxikopoiisi tou counter
    seconds = 300; // Arxikopoiisi tou metriti xronou
    aux_counter = 5;
    var_counter = 5;
    des = 0; // Arxikopoiisi tis epilogis psifiou
    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1);
-   set_timer0(timer_start_value);
-   enable_interrupts(INT_TIMER0);
+   set_timer0(timer_start_value); // Arxiki timi tou metriti
+   enable_interrupts(INT_TIMER0); // Energopoiisi tis diakopis timer0
    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
 }
 
