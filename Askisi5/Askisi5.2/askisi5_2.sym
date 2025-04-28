@@ -23,24 +23,23 @@
 015     @INTERRUPT_AREA
 016     des
 017     seconds
-018     sec_set_counter
-019     minute
-01A     hour
-01B     counter
-01C.0   flag
-01D-02C table
-02D-02F dig
-030-031 timer0_int.mon
-032-033 timer0_int.dec
-034-035 timer0_int.eka
-036-037 @MUL1616.P1
-036     @DIV88.P2
-036     timer0_int.@SCRATCH1
-037     @DIV88.P1
-037     timer0_int.@SCRATCH2
-038-039 @MUL1616.P1
-038     @DIV88.@SCRATCH1
-03A     @MUL1616.@SCRATCH1
+018     minute
+019     hour
+01A     counter
+01B.0   flag
+01C-02B table
+02C-02E dig
+02F-030 timer0_int.mon
+031-032 timer0_int.dec
+033-034 timer0_int.eka
+035-036 @MUL1616.P1
+035     @DIV88.P2
+035     timer0_int.@SCRATCH1
+036     @DIV88.P1
+036     timer0_int.@SCRATCH2
+037-038 @MUL1616.P1
+037     @DIV88.@SCRATCH1
+039     @MUL1616.@SCRATCH1
 F80     PORTA
 F81     PORTB
 F82     PORTC
@@ -58,8 +57,8 @@ FBF     CCP_1_HIGH
 FE1-FE2 @READ_PACKED_MEMORY.P1
 FE1-FE2 @WRITE_PACKED_MEMORY.P2
 FE9-FEA @WRITE_PROGRAM_MEMORY.P1
-FE9-FEA @READ_PACKED_MEMORY.P2
-FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
 FE9-FEA @WRITE_PACKED_MEMORY.P4
 FF6-FF8 @READ_PROGRAM_MEMORY.P1
 FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
@@ -69,19 +68,19 @@ ROM Allocation:
 0000BE  @MUL1616
 0000DC  timer0_int
 000252  init
-00028A  @cinit1
-00028A  main
-0002AC  @cinit2
+000286  @cinit1
+000286  main
+0002A4  @cinit2
 
 Project Directory:
     F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.2\
 
 Project Files:
-    askisi5_2.c                                             [28-Απρ-25 23:38  CRC=A4F06C61]
+    askisi5_2.c                                             [28-Απρ-25 23:43  CRC=F3515938]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 14:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 16:40  CRC=A157EDDE]
 
-Source signature=396C0B8C
+Source signature=87CCF863
 
 Units:
     askisi5_2 (main)

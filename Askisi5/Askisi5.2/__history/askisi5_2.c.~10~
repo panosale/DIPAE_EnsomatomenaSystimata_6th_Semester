@@ -17,7 +17,7 @@ const int16 timer_start_value = 5536; // Orismos arxikis timis timer0;
 // Orismos global metavliton
 int8 des=0;
 int8 seconds=0;
-//int8 sec_set_counter = 20;
+int8 sec_set_counter = 20;
 int8 minute=0;
 int8 hour=12;
 int8 counter;
@@ -142,7 +142,7 @@ void init (void) {
    PORTC = 0;
    counter = 200; // Arxikopoiisi tou counter
    seconds = 0; // Midenismos ton defterolepton
-//   sec_set_counter = 1;
+   sec_set_counter = 1;
    minute =0;
    hour = 12;
    des =0;

@@ -2,7 +2,7 @@ C L "init" 0 3 1 "FUNCTION"
 D G "__PCH__" 0 157 ""5.011""
 D G "__DEVICE__" 0 157 "4550"
 D G "__DATE__" 0 157 ""28-Απρ-25""
-D G "__TIME__" 0 157 ""23:38:01"" "Standard Header file for the PIC18F4550 device ////////////////"
+D G "__TIME__" 0 157 ""23:43:27"" "Standard Header file for the PIC18F4550 device ////////////////"
 c L "set_tris_a" 2 5 21 "FUNCTION"
 v L "value" 2 36 "int8" `54 
 f B "set_tris_a" 2 36 "void(int8 value)" `53 
@@ -907,15 +907,13 @@ V G "timer_start_value" 0 15 "int16" `639
 C L "jump_to_irs" 0 3 2 "FUNCTION"
 V G "des" 0 18 "int8" `641 
 V G "seconds" 0 19 "int8" `642 
-V G "sec_set_counter" 0 20 "int8" `643 
-V G "minute" 0 21 "int8" `644 
-V G "hour" 0 22 "int8" `645 
-V G "counter" 0 23 "int8" `646 
-V G "flag" 0 24 "int1" `647 
 C L "jump_to_irs" 0 3 1 "FUNCTION"
-V G "table" 0 27 "int8[16]" `648 
+V G "minute" 0 21 "int8" `643 
+V G "hour" 0 22 "int8" `644 
+V G "counter" 0 23 "int8" `645 
+V G "flag" 0 24 "int1" `646 
 C L "jump_to_irs" 0 3 1 "FUNCTION"
-C L "jump_to_irs" 0 3 1 "FUNCTION"
+V G "table" 0 27 "int8[16]" `647 
 C L "jump_to_irs" 0 3 1 "FUNCTION"
 C L "jump_to_irs" 0 3 1 "FUNCTION"
 C L "jump_to_irs" 0 3 1 "FUNCTION"
@@ -925,27 +923,29 @@ C L "jump_to_irs" 0 3 1 "FUNCTION"
 C L "jump_to_irs" 0 3 1 "FUNCTION"
 C L "jump_to_irs" 0 3 1 "FUNCTION"
 C L "jump_to_irs" 0 3 1 "FUNCTION"
-V G "dig" 0 45 "int8[3]" `649 
 C L "jump_to_irs" 0 3 1 "FUNCTION"
-f G "timer0_int" 0 48 "void()" `650 
-f G "init" 0 49 "void()" `651 
-F G "main" 0 51 "void()" `652 
+C L "jump_to_irs" 0 3 1 "FUNCTION"
+V G "dig" 0 45 "int8[3]" `648 
+C L "jump_to_irs" 0 3 1 "FUNCTION"
+f G "timer0_int" 0 48 "void()" `649 
+f G "init" 0 49 "void()" `650 
+F G "main" 0 51 "void()" `651 
 C L "timer0_int" 0 3 1 "FUNCTION"
-F G "timer0_int" 0 59 "void()" `650 
-V L "mon" 0 60 "int16" `655 
-V L "dec" 0 60 "int16" `656 
-V L "eka" 0 60 "int16" `657 
+F G "timer0_int" 0 59 "void()" `649 
+V L "mon" 0 60 "int16" `654 
+V L "dec" 0 60 "int16" `655 
+V L "eka" 0 60 "int16" `656 
 C L "timer0_int" 0 3 4 "FUNCTION"
 C L "timer0_int" 0 3 1 "FUNCTION"
 C L "timer0_int" 0 3 1 "FUNCTION"
 C L "timer0_int" 0 3 1 "FUNCTION"
 C L "timer0_int" 0 3 1 "FUNCTION"
-F G "init" 0 137 "void()" `651 
+F G "init" 0 137 "void()" `650 
 C L "init" 0 3 1 "FUNCTION"
 C L "init" 0 3 1 "FUNCTION"
 C L "init" 0 3 1 "FUNCTION"
 C L "init" 0 3 1 "FUNCTION"
-C L "init" 0 3 1 "FUNCTION"
+C L "init" 0 3 2 "FUNCTION"
 C L "init" 0 3 1 "FUNCTION"
 C L "init" 0 3 1 "FUNCTION"
 F B "reset_cpu" 0 0
