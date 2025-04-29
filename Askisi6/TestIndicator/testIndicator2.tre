@@ -1,0 +1,14 @@
+ÀÄtestIndicator2
+   ÃÄmain  0/190  Ram=1
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄinit  0/34  Ram=0
+   ³  ÃÄnumber  0/18  Ram=1
+   ³  ³  ÀÄ@delay_ms1  0/44  Ram=1
+   ³  ÃÄnumber  0/18  Ram=1
+   ³  ³  ÀÄ*
+   ³  ÃÄ@delay_ms1  0/44  Ram=1
+   ³  ÀÄ@delay_ms1  0/44  Ram=1
+   ÀÄtimer0_int  0/160  Ram=6
+      ÃÄ@DIV1616  0/66  Ram=5
+      ÃÄ@DIV1616  0/66  Ram=5
+      ÀÄ@DIV88  0/42  Ram=3

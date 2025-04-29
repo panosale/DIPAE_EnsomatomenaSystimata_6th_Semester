@@ -1,9 +1,8 @@
-d G "INT_USB" 2 818 "0x00A020"
-D G "__PCH__" 0 96 ""5.011""
-D G "__DEVICE__" 0 96 "4550"
-D G "__DATE__" 0 96 ""29-Απρ-25""
-D G "__TIME__" 0 96 ""23:16:00"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
-c L "set_tris_a" 0 0 3 "FUNCTION"
+D G "__PCH__" 0 108 ""5.011""
+D G "__DEVICE__" 0 108 "4550"
+D G "__DATE__" 0 108 ""29-Απρ-25""
+D G "__TIME__" 0 108 ""23:32:46"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
+c L "set_tris_a" 0 6 3 "FUNCTION"
 c L "set_tris_a" 2 1 22 "FUNCTION"
 v L "value" 2 36 "int8" `54 
 f B "set_tris_a" 2 36 "void(int8 value)" `53 
@@ -937,27 +936,29 @@ V G "dig" 0 43 "int8[3]" `646
 C L "jump_to_irs" 0 6 1 "FUNCTION"
 f G "timer0_int" 0 46 "void()" `647 
 f G "init" 0 47 "void()" `648 
-F G "main" 0 50 "void()" `649 
-F G "timer0_int" 0 57 "void()" `647 
-V L "mon" 0 58 "int16" `652 
-V L "dec" 0 58 "int16" `653 
-V L "eka" 0 58 "int16" `654 
+f G "number" 0 48 "int8()" `649 
+F G "main" 0 51 "void()" `650 
+C L "main" 0 6 1 "FUNCTION"
+C L "main" 0 6 1 "FUNCTION"
+F G "timer0_int" 0 70 "void()" `647 
+V L "mon" 0 71 "int16" `653 
+V L "dec" 0 71 "int16" `654 
+V L "eka" 0 71 "int16" `655 
+C L "timer0_int" 0 6 1 "FUNCTION"
+C L "timer0_int" 0 6 1 "FUNCTION"
+C L "timer0_int" 0 6 1 "FUNCTION"
+C L "timer0_int" 0 6 4 "FUNCTION"
 C L "timer0_int" 0 6 1 "FUNCTION"
 C L "timer0_int" 0 6 1 "FUNCTION"
 C L "timer0_int" 0 6 1 "FUNCTION"
 C L "timer0_int" 0 6 1 "FUNCTION"
-C L "timer0_int" 0 6 1 "FUNCTION"
-C L "timer0_int" 0 6 1 "FUNCTION"
-C L "timer0_int" 0 6 1 "FUNCTION"
-C L "timer0_int" 0 6 1 "FUNCTION"
-C L "timer0_int" 0 6 1 "FUNCTION"
-C L "timer0_int" 0 6 1 "FUNCTION"
-F G "init" 0 81 "void()" `648 
+F G "init" 0 89 "void()" `648 
 C L "init" 0 6 1 "FUNCTION"
 C L "init" 0 6 1 "FUNCTION"
 C L "init" 0 6 1 "FUNCTION"
 C L "init" 0 6 1 "FUNCTION"
-C L "init" 0 6 1 "FUNCTION"
+F G "number" 0 101 "int8()" `649 
+V L "temp" 0 102 "int8" `662 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

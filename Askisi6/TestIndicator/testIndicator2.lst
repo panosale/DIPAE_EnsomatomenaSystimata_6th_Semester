@@ -1,0 +1,500 @@
+CCS PCH C Compiler, Version 5.011, 5967               29-Απρ-25 23:32
+
+               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi6\TestIndicator\testIndicator2.lst
+
+               ROM used:   700 bytes (2%)
+                           Largest free fragment is 32064
+               RAM used:   47 (2%) at main() level
+                           59 (3%) worst case
+               Stack used: 4 locations (2 in main + 2 for interrupts)
+               Stack size: 31
+
+*
+0000:  GOTO   0202
+*
+0008:  MOVWF  04
+000A:  MOVFF  FD8,05
+000E:  MOVFF  FE0,06
+0012:  MOVLB  0
+0014:  MOVFF  FE9,0C
+0018:  MOVFF  FEA,07
+001C:  MOVFF  FE1,08
+0020:  MOVFF  FE2,09
+0024:  MOVFF  FD9,0A
+0028:  MOVFF  FDA,0B
+002C:  MOVFF  FF3,12
+0030:  MOVFF  FF4,13
+0034:  MOVFF  FFA,14
+0038:  MOVFF  00,0E
+003C:  MOVFF  01,0F
+0040:  MOVFF  02,10
+0044:  MOVFF  03,11
+0048:  BTFSS  FF2.5
+004A:  GOTO   0054
+004E:  BTFSC  FF2.2
+0050:  GOTO   0102
+0054:  MOVFF  0E,00
+0058:  MOVFF  0F,01
+005C:  MOVFF  10,02
+0060:  MOVFF  11,03
+0064:  MOVFF  0C,FE9
+0068:  MOVFF  07,FEA
+006C:  BSF    07.7
+006E:  MOVFF  08,FE1
+0072:  MOVFF  09,FE2
+0076:  MOVFF  0A,FD9
+007A:  MOVFF  0B,FDA
+007E:  MOVFF  12,FF3
+0082:  MOVFF  13,FF4
+0086:  MOVFF  14,FFA
+008A:  MOVF   04,W
+008C:  MOVFF  06,FE0
+0090:  MOVFF  05,FD8
+0094:  RETFIE 0
+.................... // DIPAE - Enosmatomena Systimata - 6o Eksamino 
+.................... // Alevropoulos Panagiotis 
+.................... // AM: 2022005 
+.................... // Askisi: Test endeikti 8 tomeon 
+.................... #include <main_.h> // Gia ektelesi se Proteus 
+.................... #include <18F4550.h> 
+.................... //////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... #device PIC18F4550 
+0096:  CLRF   01
+0098:  CLRF   02
+009A:  CLRF   00
+009C:  CLRF   03
+009E:  MOVF   39,W
+00A0:  BNZ   00A6
+00A2:  MOVF   38,W
+00A4:  BZ    00D6
+00A6:  MOVLW  10
+00A8:  MOVWF  3A
+00AA:  BCF    FD8.0
+00AC:  RLCF   36,F
+00AE:  RLCF   37,F
+00B0:  RLCF   00,F
+00B2:  RLCF   03,F
+00B4:  MOVF   39,W
+00B6:  SUBWF  03,W
+00B8:  BNZ   00BE
+00BA:  MOVF   38,W
+00BC:  SUBWF  00,W
+00BE:  BNC   00CE
+00C0:  MOVF   38,W
+00C2:  SUBWF  00,F
+00C4:  BTFSS  FD8.0
+00C6:  DECF   03,F
+00C8:  MOVF   39,W
+00CA:  SUBWF  03,F
+00CC:  BSF    FD8.0
+00CE:  RLCF   01,F
+00D0:  RLCF   02,F
+00D2:  DECFSZ 3A,F
+00D4:  BRA    00AA
+00D6:  RETURN 0
+00D8:  MOVF   37,W
+00DA:  CLRF   01
+00DC:  SUBWF  36,W
+00DE:  BC    00E6
+00E0:  MOVFF  36,00
+00E4:  BRA    00FE
+00E6:  CLRF   00
+00E8:  MOVLW  08
+00EA:  MOVWF  38
+00EC:  RLCF   36,F
+00EE:  RLCF   00,F
+00F0:  MOVF   37,W
+00F2:  SUBWF  00,W
+00F4:  BTFSC  FD8.0
+00F6:  MOVWF  00
+00F8:  RLCF   01,F
+00FA:  DECFSZ 38,F
+00FC:  BRA    00EC
+00FE:  GOTO   0148 (RETURN)
+....................  
+.................... #list 
+....................  
+.................... #device adc=10 
+....................  
+.................... #FUSES NOWDT                     //No Watch Dog Timer 
+.................... #FUSES WDT32768                    //Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES HSPLL                     //High Speed Crystal/Resonator with PLL enabled 
+.................... #FUSES NOPROTECT                 //Code not protected from reading 
+.................... #FUSES BROWNOUT                //No brownout reset 
+.................... //#FUSES BORV20                    //Brownout reset at 2.0V 
+.................... #FUSES NOPUT                     //No Power Up Timer 
+.................... #FUSES NOCPD                     //No EE protection 
+.................... #FUSES STVREN                    //Stack full/underflow will cause reset 
+.................... #FUSES NODEBUG                   //No Debug mode for ICD 
+.................... #FUSES NOLVP                     //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOWRT                     //Program memory not write protected 
+.................... #FUSES NOWRTD                    //Data EEPROM not write protected 
+.................... #FUSES NOIESO                      //Internal External Switch Over mode enabled 
+.................... #FUSES NOFCMEN                     //Fail-safe clock monitor enabled 
+.................... #FUSES NOPBADEN                 ///PORTB pins are configured as analog input channels on RESET 
+.................... #FUSES NOWRTC                    //configuration not registers write protected 
+.................... #FUSES NOWRTB                    //Boot block not write protected 
+.................... #FUSES NOEBTR                    //Memory not protected from table reads 
+.................... #FUSES NOEBTRB                   //Boot block not protected from table reads 
+.................... #FUSES NOCPB                     //No Boot Block code protection 
+.................... #FUSES MCLR                      //Master Clear pin enabled 
+.................... #FUSES NOLPT1OSC                   //Timer1 configured for low-power operation 
+.................... #FUSES NOXINST                   //Extended set extension and Indexed Addressing mode disabled (Legacy mode) 
+.................... #FUSES PLL5                      //Divide By 12(48MHz oscillator input) 
+.................... #FUSES CPUDIV1                   //System Clock by 2 
+.................... #FUSES USBDIV                    //USB clock source comes from PLL divide by 2 
+.................... #FUSES VREGEN                    //USB voltage regulator enabled 
+.................... //#FUSES ICPRT                     //ICPRT enabled 
+.................... #FUSES WRTB 
+.................... #FUSES NOICPRT  
+.................... #FUSES NOLPT1OSC 
+.................... #FUSES CCP2B3  
+.................... #FUSES NOCPB 
+.................... #FUSES NOCPD 
+.................... #FUSES NOWRTC 
+.................... #FUSES NOWRTD 
+.................... #FUSES NOEBTR 
+.................... #FUSES NOEBTRB               
+....................  
+.................... /* systm clock is 48 MHz */ 
+.................... #use delay(clock=48000000,RESTART_WDT) 
+*
+01C4:  CLRF   FEA
+01C6:  MOVLW  2F
+01C8:  MOVWF  FE9
+01CA:  MOVF   FEF,W
+01CC:  BZ    01EE
+01CE:  MOVLW  0F
+01D0:  MOVWF  01
+01D2:  MOVLW  BF
+01D4:  MOVWF  00
+01D6:  CLRWDT
+01D8:  DECFSZ 00,F
+01DA:  BRA    01D6
+01DC:  DECFSZ 01,F
+01DE:  BRA    01D2
+01E0:  MOVLW  8F
+01E2:  MOVWF  00
+01E4:  DECFSZ 00,F
+01E6:  BRA    01E4
+01E8:  CLRWDT
+01EA:  DECFSZ FEF,F
+01EC:  BRA    01CE
+01EE:  RETURN 0
+.................... /* --- BEGIN: changes required for bootloader ------------------------------ */ 
+....................  
+.................... /* ------------------------------------------------------------------------- */ 
+.................... /* map reset vector and interrupt vector                                     */ 
+.................... /* 0x000-0x7FF is used by the bootloader. The bootloader maps the original   */ 
+.................... /* reset vecotr (0x000) to 0x800 and the reset vector (0x008) to 0x800.      */ 
+.................... /* ------------------------------------------------------------------------- */ 
+.................... //#build (reset=0x800, interrupt=0x808) 
+....................  
+.................... /* ------------------------------------------------------------------------- */ 
+.................... /* reserve boot block area                                                   */ 
+.................... /* This memory range is used by the bootloader, so the application must not  */ 
+.................... /* use this area.                                                            */ 
+.................... /* ------------------------------------------------------------------------- */ 
+.................... //#org 0, 0x7FF {} 
+....................  
+.................... /* --- END: changes required for bootloader -------------------------------- */ 
+....................  
+....................  
+....................  
+....................  
+....................  
+.................... //#include <main.h> // Gia ektelesi se PIC 
+....................  
+.................... #use standard_io (A) // Standard Eisodoi & Eksodoi 
+.................... #use standard_io (B) // Standard Eisodoi & Eksodoi 
+.................... #use standard_io (C) // Standard Eisodoi & Eksodoi 
+.................... #byte PORTA =0xF80 // Orismos ton thiron me ti thesi tous sti mnimi 
+.................... #byte PORTB =0xF81 // Orismos ton thiron me ti thesi tous sti mnimi 
+.................... #byte PORTC =0xF82 // Orismos ton thiron me ti thesi tous sti mnimi 
+.................... #byte PORTD =0xF83 // Orismos ton thiron me ti thesi tous sti mnimi 
+.................... #byte PORTE =0xF84 // Orismos ton thiron me ti thesi tous sti mnimi 
+....................  
+.................... const int16 timer_start_value = 5536; // Orismos arxikis timis timer0; 
+....................  
+.................... int8 number1=0; 
+.................... int8 number2=0;  
+.................... int16 sum=0; 
+.................... int8 des=0; 
+....................  
+.................... // Dilosi pinaka katastaseon Endeikti 7 tomeon koinis kathodou 
+.................... int8 table[16] = {0x3f, // 0b00111111 -> 0 
+....................                   0x06, // 0b00000110 -> 1 
+....................                   0x5b, // 0b01011011 -> 2 
+....................                   0x4f, // 0b01001111 -> 3 
+....................                   0x66, // 0b01100110 -> 4 
+....................                   0x6d, // 0b01101101 -> 5 
+....................                   0x7d, // 0b01111101 -> 6 
+....................                   0x07, // 0b00000111 -> 7 
+....................                   0x7f, // 0b01111111 -> 8 
+....................                   0x6f, // 0b01101111 -> 9 
+....................                   0x77, // 0b01110111 -> A 
+....................                   0x7c, // 0b01111100 -> b 
+....................                   0x39, // 0b00111001 -> C 
+....................                   0x5e, // 0b01011110 -> d 
+....................                   0x79, // 0b01111001 -> E 
+....................                   0x71}; // 0b01110001 -> F 
+....................  
+.................... // Dilosi pinaka tranzistor gia energopoiisi tou PORTC ton 3 endikton kai tin emfanisi psifion 
+.................... int8 dig[3] = {1, 2, 4}; 
+....................  
+.................... // Dilosi sinartiseon eksipiretisis 
+.................... void timer0_int(void); 
+.................... void init(void); 
+.................... int8 number(void); 
+....................  
+.................... void main() 
+*
+0202:  CLRF   FF8
+0204:  BCF    FD0.7
+0206:  BSF    07.7
+0208:  CLRF   16
+020A:  CLRF   17
+020C:  CLRF   19
+020E:  CLRF   18
+0210:  CLRF   1A
+0212:  MOVF   FC1,W
+0214:  ANDLW  C0
+0216:  IORLW  0F
+0218:  MOVWF  FC1
+021A:  MOVLW  07
+021C:  MOVWF  FB4
+021E:  MOVLW  3F
+0220:  MOVWF  1B
+0222:  MOVLW  06
+0224:  MOVWF  1C
+0226:  MOVLW  5B
+0228:  MOVWF  1D
+022A:  MOVLW  4F
+022C:  MOVWF  1E
+022E:  MOVLW  66
+0230:  MOVWF  1F
+0232:  MOVLW  6D
+0234:  MOVWF  20
+0236:  MOVLW  7D
+0238:  MOVWF  21
+023A:  MOVLW  07
+023C:  MOVWF  22
+023E:  MOVLW  7F
+0240:  MOVWF  23
+0242:  MOVLW  6F
+0244:  MOVWF  24
+0246:  MOVLW  77
+0248:  MOVWF  25
+024A:  MOVLW  7C
+024C:  MOVWF  26
+024E:  MOVLW  39
+0250:  MOVWF  27
+0252:  MOVLW  5E
+0254:  MOVWF  28
+0256:  MOVLW  79
+0258:  MOVWF  29
+025A:  MOVLW  71
+025C:  MOVWF  2A
+025E:  MOVLW  01
+0260:  MOVWF  2B
+0262:  MOVLW  02
+0264:  MOVWF  2C
+0266:  MOVLW  04
+0268:  MOVWF  2D
+.................... { 
+....................    init(); 
+026A:  BRA    01A2
+....................    while (TRUE) { // 
+....................       while (input(PIN_D7) ==1) { // Elegxos tou RD1 gia logiko 1  
+026C:  BSF    F95.7
+026E:  BTFSS  F83.7
+0270:  BRA    0274
+0272:  BRA    026C
+....................       }  
+....................       number1 =  (int8) number();// Klisi tis function number() µe epistrofi int8 
+0274:  RCALL  01F0
+0276:  MOVFF  01,16
+....................       sum = number1;  
+027A:  CLRF   19
+027C:  MOVFF  16,18
+....................       while (input(PIN_D7) ==0) { 
+0280:  BSF    F95.7
+0282:  BTFSC  F83.7
+0284:  BRA    0288
+0286:  BRA    0280
+....................       } 
+....................       number2 = (int8) number();  
+0288:  RCALL  01F0
+028A:  MOVFF  01,17
+....................       sum = number2; 
+028E:  CLRF   19
+0290:  MOVFF  17,18
+....................       delay_ms(500);  
+0294:  MOVLW  02
+0296:  MOVWF  2E
+0298:  MOVLW  FA
+029A:  MOVWF  2F
+029C:  RCALL  01C4
+029E:  DECFSZ 2E,F
+02A0:  BRA    0298
+....................       sum = number1 + number2 ;  
+02A2:  MOVF   17,W
+02A4:  ADDWF  16,W
+02A6:  MOVWF  18
+02A8:  CLRF   19
+....................       delay_ms(2000); 
+02AA:  MOVLW  08
+02AC:  MOVWF  2E
+02AE:  MOVLW  FA
+02B0:  MOVWF  2F
+02B2:  RCALL  01C4
+02B4:  DECFSZ 2E,F
+02B6:  BRA    02AE
+....................       sum = 0; 
+02B8:  CLRF   19
+02BA:  CLRF   18
+02BC:  BRA    026C
+....................    } 
+.................... }    
+....................  
+.................... #INT_TIMER0 
+.................... void timer0_int(void) { 
+02BE:  SLEEP 
+....................    int16 mon, dec, eka; 
+....................    eka = 0; 
+*
+0102:  CLRF   35
+0104:  CLRF   34
+....................    dec = (int8) (sum / 10); // Dekades 
+0106:  MOVFF  19,37
+010A:  MOVFF  18,36
+010E:  CLRF   39
+0110:  MOVLW  0A
+0112:  MOVWF  38
+0114:  RCALL  0096
+0116:  MOVFF  02,33
+011A:  MOVFF  01,32
+....................    mon = (int8) (sum % 10); // Monades 
+011E:  MOVFF  19,37
+0122:  MOVFF  18,36
+0126:  CLRF   39
+0128:  MOVLW  0A
+012A:  MOVWF  38
+012C:  RCALL  0096
+012E:  MOVF   00,W
+0130:  CLRF   31
+0132:  MOVWF  30
+....................    set_timer0(timer_start_value); // Arxikopoiisi tou timer0; 
+0134:  MOVLW  15
+0136:  MOVWF  FD7
+0138:  MOVLW  A0
+013A:  MOVWF  FD6
+....................    des = ++des % 3; // Module 3 metritis  
+013C:  INCF   1A,F
+013E:  MOVFF  1A,36
+0142:  MOVLW  03
+0144:  MOVWF  37
+0146:  BRA    00D8
+0148:  MOVFF  00,1A
+....................                     // pou leitourgei os deiktis  
+....................                     // gia ton pinaka epilogis tou psifiou 
+....................                     // pou deixnei kathe stigmi. 
+....................    PORTC = dig[des]; // Epilogi enos apo ta 3 psifia 
+014C:  CLRF   03
+014E:  MOVF   1A,W
+0150:  ADDLW  2B
+0152:  MOVWF  FE9
+0154:  MOVLW  00
+0156:  ADDWFC 03,W
+0158:  MOVWF  FEA
+015A:  MOVFF  FEF,F82
+....................    if (des == 0) 
+015E:  MOVF   1A,F
+0160:  BNZ   0172
+....................       PORTB = table[mon]; // Deikse tis monades 
+0162:  MOVLW  1B
+0164:  ADDWF  30,W
+0166:  MOVWF  FE9
+0168:  MOVLW  00
+016A:  ADDWFC 31,W
+016C:  MOVWF  FEA
+016E:  MOVFF  FEF,F81
+....................    if (des == 1) 
+0172:  DECFSZ 1A,W
+0174:  BRA    0186
+....................       PORTB = table[dec]; // Deikse tis dekades 
+0176:  MOVLW  1B
+0178:  ADDWF  32,W
+017A:  MOVWF  FE9
+017C:  MOVLW  00
+017E:  ADDWFC 33,W
+0180:  MOVWF  FEA
+0182:  MOVFF  FEF,F81
+....................    if (des == 2) 
+0186:  MOVF   1A,W
+0188:  SUBLW  02
+018A:  BNZ   019C
+....................       PORTB = table[eka]; // Deikse tis ekatonades 
+018C:  MOVLW  1B
+018E:  ADDWF  34,W
+0190:  MOVWF  FE9
+0192:  MOVLW  00
+0194:  ADDWFC 35,W
+0196:  MOVWF  FEA
+0198:  MOVFF  FEF,F81
+019C:  BCF    FF2.2
+019E:  GOTO   0054
+.................... } 
+....................  
+.................... void init(void) { 
+....................    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0) 
+01A2:  MOVLW  00
+01A4:  MOVWF  F93
+....................    set_tris_c(0x00); // Orismos tou PORTBC san eksodo (0) 
+01A6:  MOVWF  F94
+....................    PORTB = 0; 
+01A8:  CLRF   F81
+....................    PORTC = 0; 
+01AA:  CLRF   F82
+....................    des = 0; // Arxikopoiisi tis epilogis psifiou 
+01AC:  CLRF   1A
+....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1); 
+01AE:  MOVLW  88
+01B0:  MOVWF  FD5
+....................    set_timer0(timer_start_value); 
+01B2:  MOVLW  15
+01B4:  MOVWF  FD7
+01B6:  MOVLW  A0
+01B8:  MOVWF  FD6
+....................    enable_interrupts(INT_TIMER0); 
+01BA:  BSF    FF2.5
+....................    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon 
+01BC:  MOVLW  C0
+01BE:  IORWF  FF2,F
+01C0:  GOTO   026C (RETURN)
+.................... } 
+....................  
+.................... int8 number(void) { 
+....................    int8 temp; 
+....................    delay_ms(30); 
+*
+01F0:  MOVLW  1E
+01F2:  MOVWF  2F
+01F4:  RCALL  01C4
+....................    temp = PORTD & 0x0f; 
+01F6:  MOVF   F83,W
+01F8:  ANDLW  0F
+01FA:  MOVWF  2E
+....................    return(temp); 
+01FC:  MOVFF  2E,01
+0200:  RETURN 0
+.................... } 
+
+Configuration Fuses:
+   Word  1: 0E24   PLL5 CPUDIV1 USBDIV HSPLL NOFCMEN NOIESO
+   Word  2: 1E3F   NOPUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8000   CCP2B3 NOPBADEN NOLPT1OSC MCLR
+   Word  4: 0081   STVREN NOLVP ICSP1 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: A00F   NOWRT NOWRTC WRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

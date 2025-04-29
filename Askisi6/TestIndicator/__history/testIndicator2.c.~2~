@@ -39,51 +39,43 @@ int8 table[16] = {0x3f, // 0b00111111 -> 0
                   0x79, // 0b01111001 -> E
                   0x71}; // 0b01110001 -> F
 
-// Dilosi pinaka tranzistor gia energopoiisi tou PORTC ton 3 endikton kai tin emfanisi psifion
+// Dilosi pinaka 3 endikton gia tin epilogi psifion
 int8 dig[3] = {1, 2, 4};
 
 // Dilosi sinartiseon eksipiretisis
 void timer0_int(void);
 void init(void);
-int8 number(void);
 
 void main()
 {
    init();
-   while (TRUE) { //
-      while (input(PIN_D7) ==1) { // Elegxos tou RD1 gia logiko 1 
-      } 
-      number1 =  (int8) number();// Klisi tis function number() µe epistrofi int8
-      sum = number1; 
-      while (input(PIN_D7) ==0) {
-      }
-      number2 = (int8) number(); 
-      sum = number2;
-      delay_ms(500); 
-      sum = number1 + number2 ; 
-      delay_ms(2000);
-      sum = 0;
+   while (TRUE) {
    }
 }   
 
 #INT_TIMER0
 void timer0_int(void) {
    int16 mon, dec, eka;
-   eka = 0;
-   dec = (int8) (sum / 10); // Dekades
-   mon = (int8) (sum % 10); // Monades
-   set_timer0(timer_start_value); // Arxikopoiisi tou timer0;
-   des = ++des % 3; // Module 3 metritis 
-                    // pou leitourgei os deiktis 
-                    // gia ton pinaka epilogis tou psifiou
-                    // pou deixnei kathe stigmi.
-   PORTC = dig[des]; // Epilogi enos apo ta 3 psifia
-   if (des == 0)
-      PORTB = table[mon]; // Deikse tis monades
-   if (des == 1)
-      PORTB = table[dec]; // Deikse tis dekades
-   if (des == 2)
-      PORTB = table[eka]; // Deikse tis ekatonades
+   counter--; // Kathe 200 * 5msec = 1sec
+   if (counter == 0) {
+      seconds++; // Afksani timi 1 kathe 1 sec
+      counter = 200; // Arxiki timi tou counter
+      if (seconds > 999) {
+         seconds = 0;
+      }
+      eka = (int8) (seconds / 100); // Ypologismos ekatontadon tou metriti...
+      dec = (int8) ((seconds - (100 * eka)) / 10); // ... ton dekadon...
+      mon = (int8) (seconds - (100 * eka) - (10 * dec)); // ... ton monadon.
+      set_timer0(timer_start_value); // Arxikopoiisi tou timer0;
+      des = ++des % 3;
+      PORTC = dig[des];
+      if (des == 0)
+         PORTB = table[mon]; // Deikse tis monades
+      if (des == 1)
+         PORTB = table[dec]; // Deikse tis dekades
+      if (des == 2)
+         PORTB = table[eka]; // Deikse tis ekatonades
+   }
 }
 
 void init(void) {
@@ -91,6 +83,8 @@ void init(void) {
    set_tris_c(0x00); // Orismos tou PORTBC san eksodo (0)
    PORTB = 0;
    PORTC = 0;
+   counter = 200; // Arxikopoiisi tou counter
+   seconds = 0; // Arxikopoiisi tou metriti xronou
    des = 0; // Arxikopoiisi tis epilogis psifiou
    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1);
    set_timer0(timer_start_value);
@@ -98,9 +92,3 @@ void init(void) {
    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
 }
 
-int8 number(void) {
-   int8 temp;
-   delay_ms(30);
-   temp = PORTD & 0x0f;
-   return(temp);
-}

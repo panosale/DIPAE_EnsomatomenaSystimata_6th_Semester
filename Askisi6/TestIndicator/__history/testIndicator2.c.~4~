@@ -53,11 +53,11 @@ void main()
    while (TRUE) { //
       while (input(PIN_D7) ==1) { // Elegxos tou RD1 gia logiko 1 
       } 
-      number1 =  (int8) number();// Klisi tis function number() µe epistrofi int8
+      number1 =  int8 number();// Klisi tis function number() µe epistrofi int8
       sum = number1; 
       while (input(PIN_D7) ==0) {
       }
-      number2 = (int8) number(); 
+      number2 = int8 number(); 
       sum = number2;
       delay_ms(500); 
       sum = number1 + number2 ; 
