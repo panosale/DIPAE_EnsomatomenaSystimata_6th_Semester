@@ -16,7 +16,7 @@
 #byte PORTD = 0xF83
 #byte PORTE = 0xF84
 
-const int16 timer_start_value = 5536; // Orismos arxikis timis timer0;
+#define int 16 timer_start_value = 5536; // Orismos arxikis timis timer0;
 
 //  Orismos metavliton
 int8  des=0;

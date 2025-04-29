@@ -1,0 +1,113 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     @INTERRUPT_AREA
+005     @INTERRUPT_AREA
+006     @INTERRUPT_AREA
+007     @INTERRUPT_AREA
+008     @INTERRUPT_AREA
+009     @INTERRUPT_AREA
+00A     @INTERRUPT_AREA
+00B     @INTERRUPT_AREA
+00C     @INTERRUPT_AREA
+00D     @INTERRUPT_AREA
+00E     @INTERRUPT_AREA
+00F     @INTERRUPT_AREA
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     number1
+018     number2
+019     number3
+01A-01B eka
+01C-01D sum
+01E     des
+01F     state
+020-02F table
+030-032 dig
+033     number.temp
+033     main.@SCRATCH1
+034     @delay_ms1.P1
+034     main.@SCRATCH2
+038-039 timer0_int.mon
+03A-03B timer0_int.dec
+03C-03D timer0_int.eka
+03E-03F @DIV1616.P1
+03E     @DIV88.P2
+03F     @DIV88.P1
+040-041 @DIV1616.P1
+040     @DIV88.@SCRATCH1
+042     @DIV1616.@SCRATCH1
+F80     PORTA
+F81     PORTB
+F82     PORTC
+F83     PORTD
+F83     PSP_DATA
+F84     PORTE
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @WRITE_PROGRAM_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000096  @DIV1616
+0000D8  @DIV88
+000100  timer0_int
+0001A0  init
+0001C6  @delay_ms1
+0001F2  number
+000204  main
+000204  @cinit1
+00022A  @cinit2
+0003C0  @goto10645
+
+Project Directory:
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi6\Askisi6.1\
+
+Project Files:
+    askisi6_1.c                                             [29-Απρ-25 23:55  CRC=75E88974]
+    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 14:55  CRC=51CBC36F]
+    C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 16:40  CRC=A157EDDE]
+
+Source signature=0A64289F
+
+Units:
+    askisi6_1 (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   askisi6_1.xsym
+    Errors:      askisi6_1.err
+    Ext Symbols: askisi6_1.esym
+    INHX32:      askisi6_1.hex
+    Symbols:     askisi6_1.sym
+    List:        askisi6_1.lst
+    Debug/COFF:  askisi6_1.cof
+    Project:     askisi6_1.ccspjt
+    Call Tree:   askisi6_1.tre
+    Statistics:  askisi6_1.STA

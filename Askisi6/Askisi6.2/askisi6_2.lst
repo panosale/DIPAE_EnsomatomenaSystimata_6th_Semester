@@ -1,0 +1,514 @@
+CCS PCH C Compiler, Version 5.011, 5967               30-Απρ-25 00:35
+
+               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi6\Askisi6.2\askisi6_2.lst
+
+               ROM used:   740 bytes (2%)
+                           Largest free fragment is 32024
+               RAM used:   44 (2%) at main() level
+                           57 (3%) worst case
+               Stack used: 3 locations (1 in main + 2 for interrupts)
+               Stack size: 31
+
+*
+0000:  GOTO   027E
+*
+0008:  MOVWF  04
+000A:  MOVFF  FD8,05
+000E:  MOVFF  FE0,06
+0012:  MOVLB  0
+0014:  MOVFF  FE9,0C
+0018:  MOVFF  FEA,07
+001C:  MOVFF  FE1,08
+0020:  MOVFF  FE2,09
+0024:  MOVFF  FD9,0A
+0028:  MOVFF  FDA,0B
+002C:  MOVFF  FF3,12
+0030:  MOVFF  FF4,13
+0034:  MOVFF  FFA,14
+0038:  MOVFF  00,0E
+003C:  MOVFF  01,0F
+0040:  MOVFF  02,10
+0044:  MOVFF  03,11
+0048:  BTFSS  FF2.5
+004A:  GOTO   0054
+004E:  BTFSC  FF2.2
+0050:  GOTO   013A
+0054:  BTFSS  FF0.3
+0056:  GOTO   0060
+005A:  BTFSC  FF0.0
+005C:  GOTO   00A2
+0060:  MOVFF  0E,00
+0064:  MOVFF  0F,01
+0068:  MOVFF  10,02
+006C:  MOVFF  11,03
+0070:  MOVFF  0C,FE9
+0074:  MOVFF  07,FEA
+0078:  BSF    07.7
+007A:  MOVFF  08,FE1
+007E:  MOVFF  09,FE2
+0082:  MOVFF  0A,FD9
+0086:  MOVFF  0B,FDA
+008A:  MOVFF  12,FF3
+008E:  MOVFF  13,FF4
+0092:  MOVFF  14,FFA
+0096:  MOVF   04,W
+0098:  MOVFF  06,FE0
+009C:  MOVFF  05,FD8
+00A0:  RETFIE 0
+.................... // DIPAE - Enosmatomena Systimata - 6o Eksamino 
+.................... // Alevropoulos Panagiotis 
+.................... // AM: 2022005 
+.................... // Askisi: 6.2 
+.................... #include <main_.h> 
+.................... #include <18F4550.h> 
+.................... //////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... #device PIC18F4550 
+*
+00B0:  CLRF   01
+00B2:  CLRF   02
+00B4:  CLRF   00
+00B6:  CLRF   03
+00B8:  MOVF   37,W
+00BA:  BNZ   00C0
+00BC:  MOVF   36,W
+00BE:  BZ    00F0
+00C0:  MOVLW  10
+00C2:  MOVWF  38
+00C4:  BCF    FD8.0
+00C6:  RLCF   34,F
+00C8:  RLCF   35,F
+00CA:  RLCF   00,F
+00CC:  RLCF   03,F
+00CE:  MOVF   37,W
+00D0:  SUBWF  03,W
+00D2:  BNZ   00D8
+00D4:  MOVF   36,W
+00D6:  SUBWF  00,W
+00D8:  BNC   00E8
+00DA:  MOVF   36,W
+00DC:  SUBWF  00,F
+00DE:  BTFSS  FD8.0
+00E0:  DECF   03,F
+00E2:  MOVF   37,W
+00E4:  SUBWF  03,F
+00E6:  BSF    FD8.0
+00E8:  RLCF   01,F
+00EA:  RLCF   02,F
+00EC:  DECFSZ 38,F
+00EE:  BRA    00C4
+00F0:  RETURN 0
+00F2:  MOVF   34,W
+00F4:  MULWF  36
+00F6:  MOVFF  FF3,01
+00FA:  MOVFF  FF4,00
+00FE:  MULWF  37
+0100:  MOVF   FF3,W
+0102:  ADDWF  00,F
+0104:  MOVF   35,W
+0106:  MULWF  36
+0108:  MOVF   FF3,W
+010A:  ADDWFC 00,W
+010C:  MOVWF  02
+010E:  RETURN 0
+0110:  MOVF   33,W
+0112:  CLRF   01
+0114:  SUBWF  32,W
+0116:  BC    011E
+0118:  MOVFF  32,00
+011C:  BRA    0136
+011E:  CLRF   00
+0120:  MOVLW  08
+0122:  MOVWF  34
+0124:  RLCF   32,F
+0126:  RLCF   00,F
+0128:  MOVF   33,W
+012A:  SUBWF  00,W
+012C:  BTFSC  FD8.0
+012E:  MOVWF  00
+0130:  RLCF   01,F
+0132:  DECFSZ 34,F
+0134:  BRA    0124
+0136:  GOTO   01F0 (RETURN)
+....................  
+.................... #list 
+....................  
+.................... #device adc=10 
+....................  
+.................... #FUSES NOWDT                     //No Watch Dog Timer 
+.................... #FUSES WDT32768                    //Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES HSPLL                     //High Speed Crystal/Resonator with PLL enabled 
+.................... #FUSES NOPROTECT                 //Code not protected from reading 
+.................... #FUSES BROWNOUT                //No brownout reset 
+.................... //#FUSES BORV20                    //Brownout reset at 2.0V 
+.................... #FUSES NOPUT                     //No Power Up Timer 
+.................... #FUSES NOCPD                     //No EE protection 
+.................... #FUSES STVREN                    //Stack full/underflow will cause reset 
+.................... #FUSES NODEBUG                   //No Debug mode for ICD 
+.................... #FUSES NOLVP                     //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOWRT                     //Program memory not write protected 
+.................... #FUSES NOWRTD                    //Data EEPROM not write protected 
+.................... #FUSES NOIESO                      //Internal External Switch Over mode enabled 
+.................... #FUSES NOFCMEN                     //Fail-safe clock monitor enabled 
+.................... #FUSES NOPBADEN                 ///PORTB pins are configured as analog input channels on RESET 
+.................... #FUSES NOWRTC                    //configuration not registers write protected 
+.................... #FUSES NOWRTB                    //Boot block not write protected 
+.................... #FUSES NOEBTR                    //Memory not protected from table reads 
+.................... #FUSES NOEBTRB                   //Boot block not protected from table reads 
+.................... #FUSES NOCPB                     //No Boot Block code protection 
+.................... #FUSES MCLR                      //Master Clear pin enabled 
+.................... #FUSES NOLPT1OSC                   //Timer1 configured for low-power operation 
+.................... #FUSES NOXINST                   //Extended set extension and Indexed Addressing mode disabled (Legacy mode) 
+.................... #FUSES PLL5                      //Divide By 12(48MHz oscillator input) 
+.................... #FUSES CPUDIV1                   //System Clock by 2 
+.................... #FUSES USBDIV                    //USB clock source comes from PLL divide by 2 
+.................... #FUSES VREGEN                    //USB voltage regulator enabled 
+.................... //#FUSES ICPRT                     //ICPRT enabled 
+.................... #FUSES WRTB 
+.................... #FUSES NOICPRT  
+.................... #FUSES NOLPT1OSC 
+.................... #FUSES CCP2B3  
+.................... #FUSES NOCPB 
+.................... #FUSES NOCPD 
+.................... #FUSES NOWRTC 
+.................... #FUSES NOWRTD 
+.................... #FUSES NOEBTR 
+.................... #FUSES NOEBTRB               
+....................  
+.................... /* systm clock is 48 MHz */ 
+.................... #use delay(clock=48000000,RESTART_WDT) 
+.................... /* --- BEGIN: changes required for bootloader ------------------------------ */ 
+....................  
+.................... /* ------------------------------------------------------------------------- */ 
+.................... /* map reset vector and interrupt vector                                     */ 
+.................... /* 0x000-0x7FF is used by the bootloader. The bootloader maps the original   */ 
+.................... /* reset vecotr (0x000) to 0x800 and the reset vector (0x008) to 0x800.      */ 
+.................... /* ------------------------------------------------------------------------- */ 
+.................... //#build (reset=0x800, interrupt=0x808) 
+....................  
+.................... /* ------------------------------------------------------------------------- */ 
+.................... /* reserve boot block area                                                   */ 
+.................... /* This memory range is used by the bootloader, so the application must not  */ 
+.................... /* use this area.                                                            */ 
+.................... /* ------------------------------------------------------------------------- */ 
+.................... //#org 0, 0x7FF {} 
+....................  
+.................... /* --- END: changes required for bootloader -------------------------------- */ 
+....................  
+....................  
+....................  
+....................  
+....................  
+....................  
+.................... // Standard Eisodoi & Eksodoi 
+.................... #use standard_io (A)    
+.................... #use standard_io (B) 
+.................... #use standard_io (C) 
+....................  
+.................... // Orismos ton thiron me ti thesi tous sti mnimi 
+.................... #byte PORTA = 0xF80 
+.................... #byte PORTB = 0xF81 
+.................... #byte PORTC = 0xF82 
+.................... #byte PORTD = 0xF83 
+.................... #byte PORTE = 0xF84 
+....................  
+.................... const int16 timer_start_value = 5536; // Orismos arxikis timis timer0; 
+....................  
+.................... //  Orismos metavliton 
+.................... int8  des=0; 
+.................... int16 seconds=0; 
+....................  
+.................... // Dilosi pinaka katastaseon Endeikti 7 tomeon koinis kathodou 
+.................... int8 table[16] = { 0b00111111,  
+....................                    0b00000110,  
+....................                    0b01011011,  
+....................                    0b01001111,  
+....................                    0b01100110,  
+....................                    0b01101101,  
+....................                    0b01111101,  
+....................                    0b00000111,  
+....................                    0b01111111,  
+....................                    0b01101111,  
+....................                    0b01110111,  
+....................                    0b01111100,  
+....................                    0b00111001,  
+....................                    0b01011110,  
+....................                    0b01111001,  
+....................                    0b01110001 };   
+....................  
+.................... // Dilosi pinaka tranzistor gia energopoiisi tou PORTC ton 3 endikton kai tin emfanisi psifion 
+.................... int8 dig[3] = {1,2,4}; 
+....................  
+.................... // Dilosi sinartiseon eksipiretisis 
+.................... void timer0_int(void); 
+.................... void init (void); 
+.................... void ext_int1(void); 
+....................  
+.................... // Kyrios programma 
+.................... void main() { 
+*
+027E:  CLRF   FF8
+0280:  BCF    FD0.7
+0282:  BSF    07.7
+0284:  CLRF   16
+0286:  CLRF   18
+0288:  CLRF   17
+028A:  MOVF   FC1,W
+028C:  ANDLW  C0
+028E:  IORLW  0F
+0290:  MOVWF  FC1
+0292:  MOVLW  07
+0294:  MOVWF  FB4
+0296:  MOVLW  3F
+0298:  MOVWF  19
+029A:  MOVLW  06
+029C:  MOVWF  1A
+029E:  MOVLW  5B
+02A0:  MOVWF  1B
+02A2:  MOVLW  4F
+02A4:  MOVWF  1C
+02A6:  MOVLW  66
+02A8:  MOVWF  1D
+02AA:  MOVLW  6D
+02AC:  MOVWF  1E
+02AE:  MOVLW  7D
+02B0:  MOVWF  1F
+02B2:  MOVLW  07
+02B4:  MOVWF  20
+02B6:  MOVLW  7F
+02B8:  MOVWF  21
+02BA:  MOVLW  6F
+02BC:  MOVWF  22
+02BE:  MOVLW  77
+02C0:  MOVWF  23
+02C2:  MOVLW  7C
+02C4:  MOVWF  24
+02C6:  MOVLW  39
+02C8:  MOVWF  25
+02CA:  MOVLW  5E
+02CC:  MOVWF  26
+02CE:  MOVLW  79
+02D0:  MOVWF  27
+02D2:  MOVLW  71
+02D4:  MOVWF  28
+02D6:  MOVLW  01
+02D8:  MOVWF  29
+02DA:  MOVLW  02
+02DC:  MOVWF  2A
+02DE:  MOVLW  04
+02E0:  MOVWF  2B
+....................    init();  
+02E2:  BRA    024E
+....................    while (TRUE) { 
+02E4:  BRA    02E4
+....................    } 
+.................... } 
+....................  
+.................... // Ορισμός συναρτήσεων  
+.................... #INT_EXT1  
+.................... void ext_int1(void){ 
+02E6:  SLEEP 
+....................    seconds++; 
+*
+00A2:  INCF   17,F
+00A4:  BTFSC  FD8.2
+00A6:  INCF   18,F
+....................    disable_interrupts(INT_EXT1);                                        
+00A8:  BCF    FF0.3
+.................... } 
+....................  
+.................... // Ylopoiisi synartiseon 
+00AA:  BCF    FF0.0
+00AC:  GOTO   0060
+.................... #INT_TIMER0 // Diakopi me megali protereotita 
+.................... void timer0_int(void) { 
+....................    int16 mon,dec,eka; 
+....................    if (seconds > 999) { 
+*
+013A:  MOVF   18,W
+013C:  SUBLW  02
+013E:  BC    014E
+0140:  XORLW  FF
+0142:  BNZ   014A
+0144:  MOVF   17,W
+0146:  SUBLW  E7
+0148:  BC    014E
+....................       seconds = 0; 
+014A:  CLRF   18
+014C:  CLRF   17
+....................    }               
+....................    eka = (int8) (seconds /100); // Ekatontades 
+014E:  MOVFF  18,35
+0152:  MOVFF  17,34
+0156:  CLRF   37
+0158:  MOVLW  64
+015A:  MOVWF  36
+015C:  RCALL  00B0
+015E:  MOVFF  02,31
+0162:  MOVFF  01,30
+....................    dec = (int8) ((seconds - (100*eka))/10); // Dekades 
+0166:  CLRF   35
+0168:  MOVLW  64
+016A:  MOVWF  34
+016C:  MOVFF  31,37
+0170:  MOVFF  30,36
+0174:  RCALL  00F2
+0176:  MOVFF  02,03
+017A:  MOVF   01,W
+017C:  SUBWF  17,W
+017E:  MOVWF  32
+0180:  MOVF   02,W
+0182:  SUBWFB 18,W
+0184:  MOVWF  33
+0186:  MOVWF  35
+0188:  MOVFF  32,34
+018C:  CLRF   37
+018E:  MOVLW  0A
+0190:  MOVWF  36
+0192:  RCALL  00B0
+0194:  MOVFF  02,2F
+0198:  MOVFF  01,2E
+....................    mon = (int8) (seconds - (100 * eka) -(10 * dec)); // Mondaes 
+019C:  CLRF   35
+019E:  MOVLW  64
+01A0:  MOVWF  34
+01A2:  MOVFF  31,37
+01A6:  MOVFF  30,36
+01AA:  RCALL  00F2
+01AC:  MOVFF  02,03
+01B0:  MOVF   01,W
+01B2:  SUBWF  17,W
+01B4:  MOVWF  32
+01B6:  MOVF   02,W
+01B8:  SUBWFB 18,W
+01BA:  MOVWF  33
+01BC:  CLRF   35
+01BE:  MOVLW  0A
+01C0:  MOVWF  34
+01C2:  MOVFF  2F,37
+01C6:  MOVFF  2E,36
+01CA:  RCALL  00F2
+01CC:  MOVF   01,W
+01CE:  SUBWF  32,W
+01D0:  MOVWF  00
+01D2:  MOVF   02,W
+01D4:  SUBWFB 33,W
+01D6:  MOVF   00,W
+01D8:  CLRF   2D
+01DA:  MOVWF  2C
+....................    set_timer0(timer_start_value); // αρχική τιμή του μετρητή 
+01DC:  MOVLW  15
+01DE:  MOVWF  FD7
+01E0:  MOVLW  A0
+01E2:  MOVWF  FD6
+....................    des = ++des % 3; // Module 3 metritis  
+01E4:  INCF   16,F
+01E6:  MOVFF  16,32
+01EA:  MOVLW  03
+01EC:  MOVWF  33
+01EE:  BRA    0110
+01F0:  MOVFF  00,16
+....................                     // pou leitourgei os deiktis  
+....................                     // gia ton pinaka epilogis tou psifiou 
+....................                     // pou deixnei kathe stigmi. 
+....................    PORTC = dig[des]; // Epilogi enos apo ta 3 psifia 
+01F4:  CLRF   03
+01F6:  MOVF   16,W
+01F8:  ADDLW  29
+01FA:  MOVWF  FE9
+01FC:  MOVLW  00
+01FE:  ADDWFC 03,W
+0200:  MOVWF  FEA
+0202:  MOVFF  FEF,F82
+....................    if (des == 0) { 
+0206:  MOVF   16,F
+0208:  BNZ   021E
+....................       PORTD = table[mon]; // Deikse tis monades 
+020A:  MOVLW  19
+020C:  ADDWF  2C,W
+020E:  MOVWF  FE9
+0210:  MOVLW  00
+0212:  ADDWFC 2D,W
+0214:  MOVWF  FEA
+0216:  MOVFF  FEF,F83
+....................       CLEAR_INTERRUPT(INT_EXT1); // Katharismos tou interrupt 1 
+021A:  BCF    FF0.0
+....................       enable_interrupts(INT_EXT1); // Epanenergopoiisi tou interrupt 1 
+021C:  BSF    FF0.3
+....................    }          
+....................    if (des == 1) { 
+021E:  DECFSZ 16,W
+0220:  BRA    0232
+....................       PORTD = table[dec]; // Deikse tis dekades 
+0222:  MOVLW  19
+0224:  ADDWF  2E,W
+0226:  MOVWF  FE9
+0228:  MOVLW  00
+022A:  ADDWFC 2F,W
+022C:  MOVWF  FEA
+022E:  MOVFF  FEF,F83
+....................    }             
+....................    if (des == 2) { 
+0232:  MOVF   16,W
+0234:  SUBLW  02
+0236:  BNZ   0248
+....................       PORTD = table[eka]; // Deikse tis ekatonades 
+0238:  MOVLW  19
+023A:  ADDWF  30,W
+023C:  MOVWF  FE9
+023E:  MOVLW  00
+0240:  ADDWFC 31,W
+0242:  MOVWF  FEA
+0244:  MOVFF  FEF,F83
+....................    }                
+0248:  BCF    FF2.2
+024A:  GOTO   0060
+.................... }                      
+.................... void init (void){ 
+....................    set_tris_b(0xff);  // Orismos tou PORTB san eisodo (1) 
+024E:  MOVLW  FF
+0250:  MOVWF  F93
+....................    set_tris_c(0x00);  // Orismos tou PORTC san eksodo (0) 
+0252:  MOVLW  00
+0254:  MOVWF  F94
+....................    set_tris_d(0x00);  // Orismos tou PORTD san eksodo (0) 
+0256:  MOVWF  F95
+....................    PORTD = 0; 
+0258:  CLRF   F83
+....................    PORTC = 0; 
+025A:  CLRF   F82
+....................    seconds = 0; 
+025C:  CLRF   18
+025E:  CLRF   17
+....................    des = 0; // Arxikopoiisi tis epilogis psifiou 
+0260:  CLRF   16
+....................    port_b_pullups(TRUE);  
+0262:  BCF    FF1.7
+....................    ext_int_edge(1, H_TO_L); 
+0264:  BCF    FF1.5
+....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1 ); // Prescaler 
+0266:  MOVLW  88
+0268:  MOVWF  FD5
+....................    set_timer0(timer_start_value); // Arxikopoiisi tou timer0; 
+026A:  MOVLW  15
+026C:  MOVWF  FD7
+026E:  MOVLW  A0
+0270:  MOVWF  FD6
+....................    enable_interrupts(INT_EXT1); // Arxikopoiisi tou interrupt 1; 
+0272:  BSF    FF0.3
+....................    enable_interrupts(INT_TIMER0); // Arxikopoiisi tou interrupt timer0 
+0274:  BSF    FF2.5
+....................    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon 
+0276:  MOVLW  C0
+0278:  IORWF  FF2,F
+027A:  GOTO   02E4 (RETURN)
+.................... } 
+....................  
+
+Configuration Fuses:
+   Word  1: 0E24   PLL5 CPUDIV1 USBDIV HSPLL NOFCMEN NOIESO
+   Word  2: 1E3F   NOPUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8000   CCP2B3 NOPBADEN NOLPT1OSC MCLR
+   Word  4: 0081   STVREN NOLVP ICSP1 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: A00F   NOWRT NOWRTC WRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

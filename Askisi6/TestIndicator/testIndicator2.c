@@ -89,12 +89,13 @@ void timer0_int(void) {
 void init(void) {
    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
    set_tris_c(0x00); // Orismos tou PORTBC san eksodo (0)
+   set_tris_d(0xff); // Orismos tou PORTBD san eisodo (1)
    PORTB = 0;
    PORTC = 0;
    des = 0; // Arxikopoiisi tis epilogis psifiou
-   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1);
-   set_timer0(timer_start_value);
-   enable_interrupts(INT_TIMER0);
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1); // Prescaler
+   set_timer0(timer_start_value); // Arxikopoiisi tou timer0;
+   enable_interrupts(INT_TIMER0); // Arxikopoiisi tou interrupt timer0;
    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
 }
 

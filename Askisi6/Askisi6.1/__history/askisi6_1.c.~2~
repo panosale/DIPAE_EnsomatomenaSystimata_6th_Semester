@@ -28,22 +28,22 @@ int8  des=0;
 char state = 1;
 
 // Dilosi pinaka katastaseon Endeikti 7 tomeon koinis kathodou
-int8 table[16] = { 0x3f,  // 0 
-                   0x06,  // 1
-                   0x5b,  // 2
-                   0x4f,  // 3
-                   0x66,  // 4
-                   0x6d,  // 5
-                   0x7d,  // 6
-                   0x07,  // 7
-                   0x7f,  // 8
-                   0x6f,  // 9
-                   0x40,  // -
-                   0x79,  // E
-                   0x39, 
-                   0x5e, 
-                   0x79, 
-                   0x71 };  
+int8 table[16] =   {         0x3f,  // 0 
+                             0x06,  // 1
+                             0x5b,  // 2
+                             0x4f,  // 3
+                             0x66,  // 4
+                             0x6d,  // 5
+                             0x7d,  // 6
+                             0x07,  // 7
+                             0x7f,  // 8
+                             0x6f,  // 9
+                             0x40,  // -
+                             0x79,  // E
+                             0x39, 
+                             0x5e, 
+                             0x79, 
+                             0x71};  
 
 // Dilosi pinaka tranzistor gia energopoiisi tou PORTC ton 3 endikton kai tin emfanisi psifion
 int8 dig[3] = {1, 2, 4};
@@ -53,7 +53,7 @@ void timer0_int(void);
 void init (void);
 int8 number(void);
 
-// Kyrios programma
+//   (Main program)
 void main() {
    init(); 
    while (true) { 
@@ -115,40 +115,41 @@ void main() {
     }   
 }
 
-// Ylopoiisi synartiseon
-#INT_TIMER0 // Diakopi me megali protereotita
+#INT_TIMER0
 void timer0_int(void) {
-   int16 mon, dec, eka;
-   eka = 0;
+   int16 mon,dec;
    dec = (int8) (sum / 10); // Dekades
    mon = (int8) (sum % 10); // Monades
-   set_timer0(timer_start_value); // Arxikopoiisi tou timer0;
-   des = ++des % 3; // Module 3 metritis 
-                    // pou leitourgei os deiktis 
-                    // gia ton pinaka epilogis tou psifiou
-                    // pou deixnei kathe stigmi.
-   PORTC = dig[des]; // Epilogi enos apo ta 3 psifia
-   if (des == 0)
-      PORTB = table[mon]; // Deikse tis monades
-   if (des == 1)
-      PORTB = table[dec]; // Deikse tis dekades
-   if (des == 2)
-      PORTB = table[eka]; // Deikse tis ekatonades
+         set_timer0(timer_start_value); // Arxikopoiisi tou timer0;
+         des = ++des%3;  // Modulo 3 µet??t?? p?? ?e?t????e? ??                      //  de??t?? ??a t?? p??a?a ep??????                         //  t?? ??f??? p?? de???e? ???e st??µ?
+         
+         PORTC = dig[des]; // ?p????? e??? ap? ta 3 ??f?a 
+         if (des==0){
+                   PORTB = table[mon];// ?e??e t?? µ???de?
+                     }         
+                        
+         if (des==1){
+               PORTB = table[dec];// ?e??e t?? de??de?
+                      }            
+         if (des==2){
+               PORTB = table[eka];// ?e??e t?? e?at??t?de?
+                      }               
                     }                     
 // Function arxikopoiisis
 void init (void){
    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
-   set_tris_c(0x00); // Orismos tou PORTC san eksodo (0)
-   set_tris_d(0xff); // Orismos tou PORTD san eisodo (1)
+   set_tris_c(0x00); // Orismos tou PORTBC san eksodo (0)
+   set_tris_d(0xff); // Orismos tou PORTBD san eisodo (1)
    PORTB = 0;
    PORTC = 0;
    des =0; // Arxikopoiisi tis epilogis psifiou
    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1 ); // Prescaler
    set_timer0(timer_start_value); // Arxikopoiisi tou timer0;
-   enable_interrupts(INT_TIMER0); // Arxikopoiisi tou interrupt timer0
+   enable_interrupts(INT_TIMER0); // ??e???p???s? t??                             // d?a??p?? t?? timer0
    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon
 }
 
+   
 int8 number(void){
    int8 temp;
    delay_ms(30);
