@@ -46,7 +46,7 @@ int8 table[16] = {0x3f, // 0b00111111 -> 0
                   0x79, // 0b01111001 -> E
                   0x71}; // 0b01110001 -> F
 
-// Dilosi pinaka tranzistor gia energopoiisi tou PORTC ton 3 endikton kai tin emfanisi psifion
+// Dilosi pinaka tranzistor gia energopoiisis tou PORTC ton 3 endikton gia tin emfanisi psifion
 int8 dig[3] = {1, 2, 4};
 
 // Dilosi sinartiseon eksipiretisis

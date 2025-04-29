@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.011, 5967               15-Απρ-25 00:41
+CCS PCH C Compiler, Version 5.011, 5967               29-Απρ-25 23:18
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.1\askisi5_1.lst
 
@@ -236,7 +236,7 @@ CCS PCH C Compiler, Version 5.011, 5967               15-Απρ-25 00:41
 ....................                   0x79, // 0b01111001 -> E 
 ....................                   0x71}; // 0b01110001 -> F 
 ....................  
-.................... // Dilosi pinaka tranzistor gia energopoiisis tou PORTC 
+.................... // Dilosi pinaka tranzistor gia energopoiisi tou PORTC ton 3 endikton kai tin emfanisi psifion 
 .................... int8 dig[3] = {1, 2, 4}; 
 ....................  
 .................... // Dilosi sinartiseon eksipiretisis 
@@ -340,7 +340,7 @@ CCS PCH C Compiler, Version 5.011, 5967               15-Απρ-25 00:41
 ....................          temp_var = seconds; 
 0406:  MOVFF  18,1F
 040A:  MOVFF  17,1E
-....................          output_high(PIN_D4); // Endeiksi sto LED sto PIN_D4 oti apothikeftike i timi tou xronometrou  
+....................          output_high(PIN_D4); // Added by: Alevr. Endeiksi sto LED sto PIN_D4 oti apothikeftike i timi tou xronometrou  
 040E:  BCF    F95.4
 0410:  BSF    F8C.4
 ....................       } 
@@ -420,7 +420,7 @@ CCS PCH C Compiler, Version 5.011, 5967               15-Απρ-25 00:41
 017C:  MOVWF  18
 017E:  MOVLW  2C
 0180:  MOVWF  17
-....................          output_low(PIN_D4); // Midenismos endeiksis LED sto PIN_D4 (Endeiksi oti apothikeftike i timi tou xronometrou) 
+....................          output_low(PIN_D4); // Added by: Alevr. Midenismos endeiksis LED sto PIN_D4 (Endeiksi oti apothikeftike i timi tou xronometrou) 
 0182:  BCF    F95.4
 0184:  BCF    F8C.4
 ....................           
@@ -628,7 +628,7 @@ CCS PCH C Compiler, Version 5.011, 5967               15-Απρ-25 00:41
 ....................    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0) 
 0328:  MOVLW  00
 032A:  MOVWF  F93
-....................    set_tris_c(0x00); // Orismos tou PORTBC PIN2 san eksodo (1) gia ti geiosi tou Endeikti 
+....................    set_tris_c(0x00); // Orismos tou PORTBC PIN2 san eksodo (1) gia ti Vasi tou Endeikti 
 032C:  MOVWF  F94
 ....................    set_tris_d(0x0f); // Orismos tou LSB tou PORTD san eisodo (1) kai tou MSB san eksodo  
 032E:  MOVLW  0F
@@ -637,7 +637,7 @@ CCS PCH C Compiler, Version 5.011, 5967               15-Απρ-25 00:41
 0332:  CLRF   F81
 ....................    PORTC = 0; 
 0334:  CLRF   F82
-....................    output_low(PIN_D4); // Midenismos endeiksis LED sto PIN_D4 (Endeiksi oti apothikeftike i timi tou xronometrou)  
+....................    output_low(PIN_D4); // Added by: Alevr. Midenismos endeiksis LED sto PIN_D4 (Endeiksi oti apothikeftike i timi tou xronometrou)  
 0336:  BCF    F95.4
 0338:  BCF    F8C.4
 ....................    counter = 200; // Arxikopoiisi tou counter 
@@ -659,12 +659,12 @@ CCS PCH C Compiler, Version 5.011, 5967               15-Απρ-25 00:41
 ....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1); 
 0350:  MOVLW  88
 0352:  MOVWF  FD5
-....................    set_timer0(timer_start_value); 
+....................    set_timer0(timer_start_value); // Arxiki timi tou metriti 
 0354:  MOVLW  15
 0356:  MOVWF  FD7
 0358:  MOVLW  A0
 035A:  MOVWF  FD6
-....................    enable_interrupts(INT_TIMER0); 
+....................    enable_interrupts(INT_TIMER0); // Energopoiisi tis diakopis timer0 
 035C:  BSF    FF2.5
 ....................    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon 
 035E:  MOVLW  C0

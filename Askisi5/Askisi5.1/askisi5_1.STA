@@ -25,21 +25,21 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0    520  25    8  1751  9.3  timer0_int
 0     66   3    5             @DIV1616
 0     30   1    5             @MUL1616
-0     42   2    3   318  2.3  @DIV88
+0     42   2    3             @DIV88
 0     62   3    0   344  2.4  init
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               4
+    Functions               3
     Statements              75
-    Comments                208
-    Volume (V)              3524
-    Difficulty (D)          18.4
-    Effort to implement (E) 64919
-    Time to implement (T)   1 hours, 0 minutes
-    Est Delivered Bugs (B)  1
+    Comments                210
+    Volume (V)              2951
+    Difficulty (D)          16.0
+    Effort to implement (E) 47226
+    Time to implement (T)   44 minutes
+    Est Delivered Bugs (B)  0
     Cyclomatic Complexity   12
-    Maintainability (MI)    38
+    Maintainability (MI)    101
 
  Segment     Used  Free
 -----------  ----  ----

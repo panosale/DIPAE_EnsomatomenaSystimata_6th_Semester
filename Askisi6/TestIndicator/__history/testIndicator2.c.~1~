@@ -16,10 +16,9 @@
 
 const int16 timer_start_value = 5536; // Orismos arxikis timis timer0;
 
-int8 number1=0;
-int8 number2=0; 
-int16 sum=0;
-int8 des=0;
+int8 des = 0;
+int16 seconds = 0;
+int8 counter;
 
 // Dilosi pinaka katastaseon Endeikti 7 tomeon koinis kathodou
 int8 table[16] = {0x3f, // 0b00111111 -> 0
@@ -38,8 +37,6 @@ int8 table[16] = {0x3f, // 0b00111111 -> 0
                   0x5e, // 0b01011110 -> d
                   0x79, // 0b01111001 -> E
                   0x71}; // 0b01110001 -> F
-
-// Dilosi pinaka 3 endikton gia tin epilogi psifion
 int8 dig[3] = {1, 2, 4};
 
 // Dilosi sinartiseon eksipiretisis

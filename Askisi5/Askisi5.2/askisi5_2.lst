@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.011, 5967               28-Απρ-25 23:45
+CCS PCH C Compiler, Version 5.011, 5967               29-Απρ-25 23:18
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.2\askisi5_2.lst
 
@@ -202,7 +202,7 @@ CCS PCH C Compiler, Version 5.011, 5967               28-Απρ-25 23:45
 ....................                   0b01111001,  
 ....................                   0b01110001 };   
 ....................  
-.................... // Dilosi pinaka tranzistor gia energopoiisis tou PORTC 
+.................... // Dilosi pinaka tranzistor gia energopoiisi tou PORTC ton 3 endikton kai tin emfanisi psifion 
 .................... int8 dig[3] = {1,2,4}; 
 ....................  
 .................... // Dilosi sinartiseon eksipiretisis 
