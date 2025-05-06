@@ -1,7 +1,8 @@
-D G "__PCH__" 0 159 ""5.011""
-D G "__DEVICE__" 0 159 "4550"
-D G "__DATE__" 0 159 ""29-Áנס-25""
-D G "__TIME__" 0 159 ""23:54:59"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
+d G "INT_USB" 2 818 "0x00A020"
+D G "__PCH__" 0 165 ""5.011""
+D G "__DEVICE__" 0 165 "4550"
+D G "__DATE__" 0 165 ""06-Ìבת-25""
+D G "__TIME__" 0 165 ""23:01:30"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
 c L "set_tris_a" 0 7 3 "FUNCTION"
 c L "set_tris_a" 2 1 22 "FUNCTION"
 v L "value" 2 36 "int8" `54 
@@ -919,12 +920,13 @@ V G "dig" 0 49 "int8[3]" `649
 C L "jump_to_irs" 0 7 1 "FUNCTION"
 f G "timer0_int" 0 52 "void()" `650 
 f G "init" 0 53 "void()" `651 
-f G "number" 0 54 "int8()" `652  "(Main program)"
+f G "number" 0 54 "int8()" `652  "Kyrios programma"
 F G "main" 0 57 "void()" `653 
-F G "timer0_int" 0 119 "void()" `650 
-V L "mon" 0 120 "int16" `660 
-V L "dec" 0 120 "int16" `661 
-V L "eka" 0 120 "int16" `662 
+C L "timer0_int" 0 7 1 "FUNCTION"
+F G "timer0_int" 0 120 "void()" `650 
+V L "mon" 0 121 "int16" `660 
+V L "dec" 0 121 "int16" `661 
+V L "eka" 0 121 "int16" `662 
 C L "timer0_int" 0 7 1 "FUNCTION"
 C L "timer0_int" 0 7 1 "FUNCTION"
 C L "timer0_int" 0 7 1 "FUNCTION"
@@ -934,7 +936,7 @@ C L "timer0_int" 0 7 1 "FUNCTION"
 C L "timer0_int" 0 7 1 "FUNCTION"
 C L "timer0_int" 0 7 1 "FUNCTION"
 C L "init" 0 7 1 "FUNCTION"
-F G "init" 0 138 "void()" `651 
+F G "init" 0 139 "void()" `651 
 C L "init" 0 7 1 "FUNCTION"
 C L "init" 0 7 1 "FUNCTION"
 C L "init" 0 7 1 "FUNCTION"
@@ -943,8 +945,8 @@ C L "init" 0 7 1 "FUNCTION"
 C L "init" 0 7 1 "FUNCTION"
 C L "init" 0 7 1 "FUNCTION"
 C L "init" 0 7 1 "FUNCTION"
-F G "number" 0 151 "int8()" `652 
-V L "temp" 0 152 "int8" `666 
+F G "number" 0 152 "int8()" `652 
+V L "temp" 0 153 "int8" `666 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.011, 5967               29-Απρ-25 23:54
+CCS PCH C Compiler, Version 5.011, 5967               06-Μαϊ-25 23:01
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi6\Askisi6.1\askisi6_1.lst
 
@@ -250,22 +250,22 @@ CCS PCH C Compiler, Version 5.011, 5967               29-Απρ-25 23:54
 .................... char state = 1; 
 ....................  
 .................... // Dilosi pinaka katastaseon Endeikti 7 tomeon koinis kathodou 
-.................... int8 table[16] =   {         0x3f,  // 0  
-....................                              0x06,  // 1 
-....................                              0x5b,  // 2 
-....................                              0x4f,  // 3 
-....................                              0x66,  // 4 
-....................                              0x6d,  // 5 
-....................                              0x7d,  // 6 
-....................                              0x07,  // 7 
-....................                              0x7f,  // 8 
-....................                              0x6f,  // 9 
-....................                              0x40,  // - 
-....................                              0x79,  // E 
-....................                              0x39,  
-....................                              0x5e,  
-....................                              0x79,  
-....................                              0x71};   
+.................... int8 table[16] = { 0x3f,  // 0  
+....................                    0x06,  // 1 
+....................                    0x5b,  // 2 
+....................                    0x4f,  // 3 
+....................                    0x66,  // 4 
+....................                    0x6d,  // 5 
+....................                    0x7d,  // 6 
+....................                    0x07,  // 7 
+....................                    0x7f,  // 8 
+....................                    0x6f,  // 9 
+....................                    0x40,  // - 
+....................                    0x79,  // E 
+....................                    0x39,  
+....................                    0x5e,  
+....................                    0x79,  
+....................                    0x71 };   
 ....................  
 .................... // Dilosi pinaka tranzistor gia energopoiisi tou PORTC ton 3 endikton kai tin emfanisi psifion 
 .................... int8 dig[3] = {1, 2, 4}; 
@@ -275,7 +275,7 @@ CCS PCH C Compiler, Version 5.011, 5967               29-Απρ-25 23:54
 .................... void init (void); 
 .................... int8 number(void); 
 ....................  
-.................... //   (Main program) 
+.................... // Kyrios programma 
 .................... void main() { 
 *
 0204:  CLRF   FF8
@@ -540,13 +540,14 @@ CCS PCH C Compiler, Version 5.011, 5967               29-Απρ-25 23:54
 ....................          state = 1; 
 03B8:  MOVLW  01
 03BA:  MOVWF  1F
-....................          break; 
+....................          break;     
 ....................       } 
 03BC:  BRA    0278
-....................     }    
+....................     } 
 .................... } 
 ....................  
-.................... #INT_TIMER0 
+.................... // Ylopoiisi synartiseon 
+.................... #INT_TIMER0 // Diakopi me megali protereotita 
 .................... void timer0_int(void) { 
 03BE:  SLEEP 
 ....................    int16 mon, dec, eka; 
@@ -639,9 +640,9 @@ CCS PCH C Compiler, Version 5.011, 5967               29-Απρ-25 23:54
 ....................    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0) 
 01A0:  MOVLW  00
 01A2:  MOVWF  F93
-....................    set_tris_c(0x00); // Orismos tou PORTBC san eksodo (0) 
+....................    set_tris_c(0x00); // Orismos tou PORTC san eksodo (0) 
 01A4:  MOVWF  F94
-....................    set_tris_d(0xff); // Orismos tou PORTBD san eisodo (1) 
+....................    set_tris_d(0xff); // Orismos tou PORTD san eisodo (1) 
 01A6:  MOVLW  FF
 01A8:  MOVWF  F95
 ....................    PORTB = 0; 
@@ -658,7 +659,7 @@ CCS PCH C Compiler, Version 5.011, 5967               29-Απρ-25 23:54
 01B6:  MOVWF  FD7
 01B8:  MOVLW  A0
 01BA:  MOVWF  FD6
-....................    enable_interrupts(INT_TIMER0); // Arxikopoiisi tou interrupt timer0; 
+....................    enable_interrupts(INT_TIMER0); // Arxikopoiisi tou interrupt timer0 
 01BC:  BSF    FF2.5
 ....................    enable_interrupts(GLOBAL); // Energopoiisi genikou diakopti diakopon 
 01BE:  MOVLW  C0

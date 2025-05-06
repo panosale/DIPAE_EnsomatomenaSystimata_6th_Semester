@@ -1,4 +1,4 @@
->>> Warning 216 "askisi6_1.c" Line 156(1,2): Interrupts disabled during call to prevent re-entrancy:  (@DIV88)
+>>> Warning 216 "askisi6_1.c" Line 157(1,2): Interrupts disabled during call to prevent re-entrancy:  (@DIV88)
       Memory usage:   ROM=3%      RAM=3% - 3%
       0 Errors,  1 Warnings.
 Build Successful.

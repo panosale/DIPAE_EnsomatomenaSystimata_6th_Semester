@@ -112,7 +112,7 @@ void main() {
          state = 1;
          break;    
       }
-    }
+   }
 }
 
 // Ylopoiisi synartiseon
