@@ -127,7 +127,7 @@ void timer0_int(void) {
 
 void init(void) {
    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0)
-   set_tris_c(0x00); // Orismos tou PORTBC PIN2 san eksodo (1) gia ti Vasi tou Endeikti
+   set_tris_c(0x00); // Orismos tou PORTBC PIN2 san eksodo (0) gia ti Vasi tou Endeikti
    set_tris_d(0x0f); // Orismos tou LSB tou PORTD san eisodo (1) kai tou MSB san eksodo 
    PORTB = 0;
    PORTC = 0;

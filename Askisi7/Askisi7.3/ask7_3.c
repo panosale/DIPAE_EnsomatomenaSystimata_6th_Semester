@@ -1,0 +1,180 @@
+#include <main_.h>
+#include <flex_lcd_sim.h>
+
+#define Greek_Gamma   0
+#define Greek_Delta   1
+#define Greek_thita   2
+#define Greek_Lamda   3
+#define Greek_Xi      4
+#define Greek_Pi      5
+#define Greek_Sigma   6
+#define Greek_omega   7
+const int8 Message[] = {'A','G','G','E','L','O','S'};
+void lcd_load_custom_chars(void);
+
+//==========================
+void main()
+{
+int i=0;
+lcd_init();
+lcd_load_custom_chars(); 
+
+// Octal numbers 000 to 007 must be used with the "escape"
+// backslash to display a custom char with printf.
+// The \f clears the LCD before displaying anything.
+
+lcd_putc(Greek_Gamma);
+printf(lcd_putc, "\001\002\003\004\005\006\007 \n");
+
+lcd_gotoxy(1,2);  //
+printf(lcd_putc, "A"); //Α
+lcd_putc(Greek_Gamma); //Γ
+lcd_putc(Greek_Gamma); //Γ
+printf(lcd_putc, "E\003O\006\n");//ΕΛΟΣ
+//                Ε  Λ Ο  Σ 
+delay_ms(2000);
+/*printf(lcd_putc,"\f");
+lcd_gotoxy(1,2);  //
+printf(lcd_putc, "test_message");
+lcd_gotoxy(16,1);
+for(i = 0; i < sizeof(Message); i++) // Send 64 bytes. 8 bytes for each character
+   {
+    lcd_putc(Message[i]);// Send Data bytes
+    lcd_send_byte(0, 0x07);// 1C //18    
+    delay_ms(200);
+   }
+   for (i=0;i<20;i++){
+	    lcd_putc(" ");
+        lcd_send_byte(0, 0x07);
+        delay_ms(200);
+   }  */   
+  while(1){
+//printf(lcd_putc, "\fTest Message");
+
+for (i=0;i<10;i++){
+lcd_send_byte(0, 0x1C);// 1C //18
+delay_ms(100);
+                   }
+for (i=0;i<10;i++){
+lcd_send_byte(0, 0x18);// 1C //18
+delay_ms(100); 
+                 }    
+  } //loop for ever
+}
+//=============================================
+// Functions
+
+// This table holds the data for the LCD custom chars.
+
+//Μπορείτε να χρησιμοποιήσετε όποιο από τους δύο τρόπους παράστασης των bytes
+
+//1ος Τροπος
+/*    const int8 lcd_custom_chars[] ={
+	0x1F,0x10,0x10,0x10,0x10,0x10,0x10,0x00, //Γ
+	0x04,0x0A,0x11,0x11,0x11,0x11,0x1F,0x00, //Δ
+	0x0E,0x11,0x11,0x1F,0x11,0x11,0x0E,0x00, //Θ
+	0x04,0x0C,0x11,0x11,0x11,0x11,0x11,0x00, //Λ
+	0x1F,0x00,0x00,0x0E,0x00,0x00,0x1F,0x00, //Ξ
+	0x1F,0x11,0x11,0x11,0x11,0x11,0x11,0x00, //Π
+	0x1F,0x08,0x04,0x02,0x04,0x08,0x1F,0x00, //Σ
+	0x1E,0x11,0x11,0x0E,0x00,0x00,0x1F,0x00};//Ω
+*/
+//2ος Τρόπος 	
+const int8 lcd_custom_chars[] =
+{
+// Char Number 0 -- Greek_Gamma
+0b00011111,  // ...ooooo 0x1F
+0b00010000,  // ...o.... 0x10
+0b00010000,  // ...o.... 0x10
+0b00010000,  // ...o.... 0x10
+0b00010000,  // ...o.... 0x10
+0b00010000,  // ...o.... 0x10
+0b00010000,  // ...o.... 0x10
+0b00000000,  // ........ 0x00
+
+// Char Number 1 -- Greek_Delta
+0b00000100,  // .....o.. 0x04
+0b00001010,  // ....o.o. 0x0A
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00011111,  // ...ooooo 0x1F
+0b00000000,  // ........ 0x00
+
+// Char Number 2 -- Greek_thita
+0b00001110,  // ....ooo. 0x0E
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00011111,  // ...ooooo 0x1F
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00001110,  // ....ooo. 0x0E
+0b00000000,  // ........ 0x00
+
+// Char Number 3 -- Greek_Lamda
+0b00000100,  // .....o.. 0x04
+0b00001010,  // ....o.o. 0x0C
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00000000,  // ........ 0x00
+
+// Char Number 4 -- Greek_Xi
+0b00011111,  // ...ooooo 0x1F
+0b00000000,  // ........ 0x00
+0b00000000,  // ........ 0x00
+0b00001110,  // ....ooo. 0x0E
+0b00000000,  // ........ 0x00
+0b00000000,  // ........ 0x00
+0b00011111,  // ...ooooo 0x1F
+0b00000000,  // ........ 0x00
+
+// Char Number 5 -- Greek_Pi
+0b00011111,  // ...ooooo 0x1F
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00000000,  // ........ 0x00
+
+// Char Number 6 -- Greek_Sigma
+0b00011111,  // ...ooooo 0x1F
+0b00001000,  // ....o... 0x08
+0b00000100,  // .....o.. 0x04
+0b00000010,  // ......o. 0x02
+0b00000100,  // .....o.. 0x04
+0b00001000,  // ....o... 0x08
+0b00011111,  // ...ooooo 0x1F
+0b00000000,  // ........ 0x00
+
+// Char Number 7 -- Greek_omega
+0b00001110,  // ....ooo. 0x0E
+0b00010001,  // ...o...o 0x11
+0b00010001,  // ...o...o 0x11
+0b00001110,  // ....ooo. 0x0E
+0b00000000,  // ........ 0x00
+0b00000000,  // ........ 0x00
+0b00011111,  // ...ooooo 0x1F
+0b00000000   // ........ 0x00
+};
+
+void lcd_load_custom_chars(void)
+{
+int8 i;
+
+// Set address counter pointing to CGRAM address 0.
+  lcd_send_byte(0, 0x40); // Send Command byte
+// Load custom lcd character data into CGRAM.
+// It can only hold a maximum of 8 custom characters.
+for(i = 0; i < sizeof(lcd_custom_chars); i++) // Send 64 bytes. 8 bytes for each character
+   {
+    lcd_send_byte(1, lcd_custom_chars[i]);// Send Data bytes
+   }
+// Set address counter pointing back to the DDRAM.
+lcd_send_byte(0, 0x80);  // Send Command byte
+}

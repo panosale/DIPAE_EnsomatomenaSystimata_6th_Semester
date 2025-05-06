@@ -1,0 +1,56 @@
+#include <main.h>
+//========================== 
+// flex_lcd.c
+//==========================
+#define LCD_DB4 PIN_B4 
+#define LCD_DB5 PIN_B5 
+#define LCD_DB6 PIN_B6 
+#define LCD_DB7 PIN_B7
+#define LCD_E PIN_B3 
+#define LCD_RS PIN_B2 
+#define LCD_RW PIN_B1
+//========================================
+#define lcd_type 2 // 0=5x7, 1=5x10, 2=2 lines 
+#define lcd_line_two 0x40 // LCD RAM address for the 2nd line
+
+int8 const LCD_INIT_STRING[4] = {
+0x20 | (lcd_type << 2), // Func set: 4-bit, 2 lines, 5x7 dots 
+0xc, // Display on
+1, // Clear display
+6 // Increment cursor
+}; 
+// Function definition
+void lcd_send_nibble(int8 nibble); 
+void lcd_send_byte(int8 address, int8 n); 
+void lcd_init(void);
+void lcd_gotoxy(int8 x, int8 y); 
+void lcd_putc(char c);
+
+//========================== 
+//Main program
+//==========================
+void main() {
+   int8 i=0;
+   lcd_init(); //
+   lcd_putc("\f MicroII Lab\n"); lcd_putc("LCD test program"); delay_ms(2000);
+   lcd_putc(" \n"); for(i=0;i<16;i++){
+      while(1);
+   }
+   delay_ms(200); 
+   lcd_putc(" \b"); }
+//------------------------------------
+//send a nibble to lcd
+//------------------------------------
+void lcd_send_nibble(int8 nibble) { 
+// Note: !! converts an integer expression
+// to a boolean (1 or 0). 
+   output_bit(LCD_DB4, !!(nibble & 1)); 
+   output_bit(LCD_DB5, !!(nibble & 2)); 
+   output_bit(LCD_DB6, !!(nibble & 4)); 
+   output_bit(LCD_DB7, !!(nibble & 8));
+   delay_cycles(20); 
+   output_high(LCD_E); 
+   delay_us(50);
+   output_low(LCD_E);
+}
+   
