@@ -1,0 +1,101 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     i
+005     LCD_SetPosition.cX
+005     LCD_PutCmd.cX
+005     main.@SCRATCH1
+005     @PSTRINGC_641.@SCRATCH1
+005     LCD_Init.@SCRATCH1
+005     lcd_message.@SCRATCH1
+006     @PSTRINGC_641.@SCRATCH2
+006     LCD_SetPosition.@SCRATCH1
+007     LCD_PutChar.cX
+008     LCD_SetData.cX
+008     @delay_ms1.P1
+F81     PORTB
+F83     PSP_DATA
+F83     PORTD
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  @const652.call
+00000C  @const654.call
+000016  @const655.call
+00001E  @const656.call
+000028  @const657.call
+000030  @const658.call
+00003A  @const659.call
+000042  @const660.call
+00004C  @const661.call
+000054  @const662.call
+00005E  @const663.call
+000066  @const664.call
+000070  @const665.call
+000078  @const666.call
+000082  @const667.call
+00008A  @const668.call
+000094  @const669.call
+0000A2  pic_init
+0000AE  LCD_SetData
+0000E0  @delay_ms1
+00010C  LCD_PulseEnable
+000128  LCD_PutCmd
+00013E  LCD_Init
+000184  LCD_SetPosition
+00019E  LCD_PutChar
+0001BC  @PSTRINGC_641
+0001DC  lcd_message
+000250  @cinit1
+000250  main
+000262  @cinit2
+
+Project Directory:
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi7\TestDisplay2\
+
+Project Files:
+    TestDisplay2.c                                          [08-Ã·˙-25 00:26  CRC=001332BF]
+    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Ã·Ò-20 14:55  CRC=51CBC36F]
+    C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-¡ı„-13 16:40  CRC=A157EDDE]
+
+Source signature=948ED1EA
+
+Units:
+    TestDisplay2 (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   TestDisplay2.xsym
+    Errors:      TestDisplay2.err
+    Ext Symbols: TestDisplay2.esym
+    INHX32:      TestDisplay2.hex
+    Symbols:     TestDisplay2.sym
+    List:        TestDisplay2.lst
+    Debug/COFF:  TestDisplay2.cof
+    Project:     TestDisplay2.ccspjt
+    Call Tree:   TestDisplay2.tre
+    Statistics:  TestDisplay2.STA

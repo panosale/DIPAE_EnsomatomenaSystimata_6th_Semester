@@ -1,0 +1,205 @@
+#include <main_.h>
+
+//------------------------------------
+// Standard Eisodoi & Eksodoi
+//#use standard_io (A)
+//#use standard_io (C)
+
+//------------------------------------
+// Orismos ton thiron me ti thesi tous sti mnimi
+#byte PORTB =0xF81
+#byte PORTD =0xF83
+
+//------------------------------------
+// INPUTS
+#define sw1 (PORTD & 0x01)
+#define sw2 ((PORTD & 0x02) > 1)
+#define sw3 ((PORTD & 0x04) > 1)
+#define sw4 ((PORTD & 0x08) > 1)
+#define sw5 ((PORTD & 0x10) > 1)
+#define sw6 ((PORTD & 0x20) > 1)
+#define sw7 ((PORTD & 0x40) > 1)
+#define sw8 ((PORTD & 0x80) > 1)
+
+//------------------------------------
+// LCD PIN definition
+#define LCD_RS PIN_B2
+#define LCD_EN PIN_B3
+#define LCD_D0 PIN_B4
+#define LCD_D1 PIN_B5 
+#define LCD_D2 PIN_B6 
+#define LCD_D3 PIN_B7
+
+//------------------------------------
+// LCD commands
+#define LINE_1 0x00 
+#define LINE_2 0x40 
+#define CLEAR_DISP 0x01
+
+//------------------------------------
+// Variables definition
+int i = 0;
+
+//------------------------------------
+// Function definition
+void LCD_Init(void); 
+void lcd_message(void); 
+void LCD_SetPosition(unsigned int cX);
+void LCD_PutChar(unsigned int cX);
+void LCD_PutCmd(unsigned int cX);
+void LCD_PulseEnable(void);
+void LCD_SetData(unsigned int cX);
+void pic_init(void);
+
+//------------------------------------
+// Main program
+void main() {
+   pic_init();
+   lcd_init();
+   lcd_message();
+   while(TRUE) {
+      if (sw1 == 0) {
+         LCD_SetPosition(LINE_1 + 1);
+         printf(LCD_PutChar, "SW1 ON ");
+      }
+      else {
+         LCD_SetPosition(LINE_1 + 1);
+         printf(LCD_PutChar, "SW1 OFF ");      
+      }
+      if (!(sw2)) {
+         LCD_SetPosition(LINE_1 + 9);
+         printf(LCD_PutChar, "SW2 ON ");
+      }
+      else {
+         LCD_SetPosition(LINE_1 + 9);
+         printf(LCD_PutChar, "SW2 OFF ");      
+      }
+      if (!(sw3)) {
+         LCD_SetPosition(LINE_2 + 1);
+         printf(LCD_PutChar, "SW3 ON ");
+      }
+      else {
+         LCD_SetPosition(LINE_2 + 1);
+         printf(LCD_PutChar, "SW3 OFF ");      
+      }
+      if (!(sw4)) {
+         LCD_SetPosition(LINE_2 + 9);
+         printf(LCD_PutChar, "SW4 ON ");
+      }
+      else {
+         LCD_SetPosition(LINE_2 + 9);
+         printf(LCD_PutChar, "SW4 OFF ");      
+      }
+      delay_ms(1000);
+      if (!(sw5)) {
+         LCD_SetPosition(LINE_1 + 1);
+         printf(LCD_PutChar, "SW5 ON ");
+      }
+      else {
+         LCD_SetPosition(LINE_1 + 1);
+         printf(LCD_PutChar, "SW5 OFF ");      
+      }
+      if (!(sw6)) {
+         LCD_SetPosition(LINE_1 + 9);
+         printf(LCD_PutChar, "SW6 ON ");
+      }
+      else {
+         LCD_SetPosition(LINE_1 + 9);
+         printf(LCD_PutChar, "SW6 OFF ");      
+      }
+      if (!(sw7)) {
+         LCD_SetPosition(LINE_2 + 1);
+         printf(LCD_PutChar, "SW7 ON ");
+      }
+      else {
+         LCD_SetPosition(LINE_2 + 1);
+         printf(LCD_PutChar, "SW7 OFF ");      
+      }
+      if (!(sw8)) {
+         LCD_SetPosition(LINE_2 + 9);
+         printf(LCD_PutChar, "SW8 ON ");
+      }
+      else {
+         LCD_SetPosition(LINE_2 + 9);
+         printf(LCD_PutChar, "SW8 OFF ");      
+      }
+      delay_ms(1000);
+   }
+}
+
+//------------------------------------
+// LCD functions
+void LCD_Init(void) {
+   LCD_SetData(0x00);
+   delay_ms(500); // Wait enough time after vdd rise
+   output_low(LCD_RS);
+   LCD_SetData(0x03); // Init with specific nibbles to start 4-bit mode
+   LCD_PulseEnable();
+   LCD_PulseEnable();
+   LCD_PulseEnable();
+   LCD_SetData(0x02); // Set 4-bit interface
+   LCD_PulseEnable();
+   LCD_PutCmd(0x2C); // Function set (all lines 5x7 characters)
+   LCD_PutCmd(0x0C); // Display ON, cursor OFF, no blink
+   LCD_PutCmd(0x01); // Clear display
+   LCD_PutCmd(0x06); // Entry mode set, increment
+}
+
+void lcd_message(void) {
+   // Scroll a message left
+   LCD_PutCmd(CLEAR_DISP);
+   LCD_SetPosition(LINE_1 + 1);
+   printf(LCD_PutChar, "MIKRO II LAB");
+   delay_ms(1000);
+   LCD_PutCmd(0x07);
+   for (i = 0; i < 13; i++) {
+      LCD_SetPosition(LINE_1 + 1);
+      printf(LCD_PutChar, " ");
+      delay_ms(400);
+   }
+   delay_ms(1000);
+   LCD_PutCmd(CLEAR_DISP);
+   LCD_PutCmd(0x06);
+   delay_ms(20);
+}
+
+void LCD_SetPosition(unsigned int cX) {
+   LCD_SetData(swap (cX) | 0x08);
+   LCD_PulseEnable();
+   LCD_SetData(swap (cX));
+   LCD_PulseEnable();
+}
+
+void LCD_PutChar(unsigned int cX) {
+   // Send data to LCD in nibbles
+   output_high(LCD_RS);
+   LCD_SetData(swap(cX)); // Send high nibble
+   LCD_PulseEnable();
+   LCD_SetData(swap(cX)); // Send low nibble
+   LCD_PulseEnable();
+}
+
+void LCD_PutCmd(unsigned int cX) {
+   LCD_SetData(swap(cX)); // Send high nibble
+   LCD_PulseEnable();
+   LCD_SetData(swap(cX)); // Send low nibble
+   LCD_PulseEnable();
+}
+
+void LCD_PulseEnable(void) {
+   output_high(LCD_EN);
+   elay_us(10);
+   output_low(LCD_EN);
+   delay_ms(5);
+}
+void LCD_SetData(unsigned int cX) {
+   output_bit(LCD_D0, cX & 0x01);
+   output_bit(LCD_D1, cX & 0x02);
+   output_bit(LCD_D2, cX & 0x04);
+   output_bit(LCD_D3, cX & 0x08);
+}
+void pic_init(void) {
+   set_tris_b(0x00); // Orismos tou PORT B san eksodo (0) 
+   set_tris_d(0xff); // Orismos tou PORT D san eisodo (1)
+}
+
