@@ -60,11 +60,11 @@ ROM Allocation:
 000214  @cinit2
 
 Project Directory:
-    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi7\TestDisplay1\
+    D:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi7\TestDisplay1\
 
 Project Files:
-    TestDisplay1.c                                          [07-Ìבת-25 00:37  CRC=3E57785C]
-    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Ìבס-20 14:55  CRC=51CBC36F]
+    TestDisplay1.c                                          [08-Ìבת-25 21:13  CRC=3E57785C]
+    main_.h                                                 [08-Ìבת-25 20:21  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Áץד-13 16:40  CRC=A157EDDE]
 
 Source signature=D2D31787
