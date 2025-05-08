@@ -1,7 +1,7 @@
 D G "__PCH__" 0 164 ""5.011""
 D G "__DEVICE__" 0 164 "4550"
 D G "__DATE__" 0 164 ""08-Ìבת-25""
-D G "__TIME__" 0 164 ""21:13:37"" "Standard Header file for the PIC18F4550 device ////////////////"
+D G "__TIME__" 0 164 ""21:36:32"" "Standard Header file for the PIC18F4550 device ////////////////"
 c L "set_tris_a" 2 5 21 "FUNCTION"
 v L "value" 2 36 "int8" `54 
 f B "set_tris_a" 2 36 "void(int8 value)" `53 
@@ -951,6 +951,7 @@ V L "address" 0 118 "int8" `662
 C L "lcd_putc" 0 3 1 "FUNCTION"
 V L "c" 0 130 "int8" `664 
 F G "lcd_putc" 0 130 "void(int8 c)" `650 
+C L "lcd_putc" 0 3 1 "FUNCTION"
 C L "lcd_putc" 0 3 1 "FUNCTION"
 C L "lcd_putc" 0 3 1 "FUNCTION"
 C L "lcd_putc" 0 3 1 "FUNCTION"

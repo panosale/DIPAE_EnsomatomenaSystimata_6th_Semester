@@ -54,20 +54,20 @@ ROM Allocation:
 0000FA  lcd_init
 000154  lcd_gotoxy
 000178  lcd_putc
-0001E4  @PSTRINGC_650
-000204  main
-000204  @cinit1
-000214  @cinit2
+0001E6  @PSTRINGC_650
+000206  main
+000206  @cinit1
+000216  @cinit2
 
 Project Directory:
     D:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi7\TestDisplay1\
 
 Project Files:
-    TestDisplay1.c                                          [08-Ìבת-25 21:13  CRC=3E57785C]
+    TestDisplay1.c                                          [08-Ìבת-25 21:36  CRC=D7302AA8]
     main_.h                                                 [08-Ìבת-25 20:21  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Áץד-13 16:40  CRC=A157EDDE]
 
-Source signature=D2D31787
+Source signature=6BABC9D3
 
 Units:
     TestDisplay1 (main)

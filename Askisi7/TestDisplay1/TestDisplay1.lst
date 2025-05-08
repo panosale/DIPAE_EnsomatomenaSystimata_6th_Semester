@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.011, 5967               08-Ìבת-25 21:13
+CCS PCH C Compiler, Version 5.011, 5967               08-Ìבת-25 21:36
 
                Filename:   D:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi7\TestDisplay1\TestDisplay1.lst
 
-               ROM used:   620 bytes (2%)
-                           Largest free fragment is 32148
+               ROM used:   622 bytes (2%)
+                           Largest free fragment is 32146
                RAM used:   5 (0%) at main() level
                            16 (1%) worst case
                Stack used: 5 locations
                Stack size: 31
 
 *
-0000:  GOTO   0204
+0000:  GOTO   0206
 .................... #include <main_.h> 
 .................... #include <18F4550.h> 
 .................... //////// Standard Header file for the PIC18F4550 device //////////////// 
@@ -47,17 +47,17 @@ CCS PCH C Compiler, Version 5.011, 5967               08-Ìבת-25 21:13
 003E:  DATA 20,08
 0040:  DATA 00,00
 *
-01E4:  TBLRD*+
-01E6:  MOVF   FF5,F
-01E8:  BZ    0202
-01EA:  MOVFF  FF6,06
-01EE:  MOVFF  FF7,07
-01F2:  MOVFF  FF5,08
-01F6:  BRA    0178
-01F8:  MOVFF  06,FF6
-01FC:  MOVFF  07,FF7
-0200:  BRA    01E4
-0202:  RETURN 0
+01E6:  TBLRD*+
+01E8:  MOVF   FF5,F
+01EA:  BZ    0204
+01EC:  MOVFF  FF6,06
+01F0:  MOVFF  FF7,07
+01F4:  MOVFF  FF5,08
+01F8:  BRA    0178
+01FA:  MOVFF  06,FF6
+01FE:  MOVFF  07,FF7
+0202:  BRA    01E6
+0204:  RETURN 0
 ....................  
 .................... #list 
 ....................  
@@ -196,76 +196,76 @@ CCS PCH C Compiler, Version 5.011, 5967               08-Ìבת-25 21:13
 .................... //========================== 
 .................... void main() { 
 *
-0204:  CLRF   FF8
-0206:  BCF    FD0.7
-0208:  MOVF   FC1,W
-020A:  ANDLW  C0
-020C:  IORLW  0F
-020E:  MOVWF  FC1
-0210:  MOVLW  07
-0212:  MOVWF  FB4
+0206:  CLRF   FF8
+0208:  BCF    FD0.7
+020A:  MOVF   FC1,W
+020C:  ANDLW  C0
+020E:  IORLW  0F
+0210:  MOVWF  FC1
+0212:  MOVLW  07
+0214:  MOVWF  FB4
 ....................    // Added by Alevr for tests - START 
 ....................    set_tris_d(0x00); // Orismos tou PORTD san eksodo (0) 
-0214:  MOVLW  00
-0216:  MOVWF  F95
+0216:  MOVLW  00
+0218:  MOVWF  F95
 ....................    PORTD = 7; 
-0218:  MOVLW  07
-021A:  MOVWF  F83
+021A:  MOVLW  07
+021C:  MOVWF  F83
 ....................    //delay_ms(10000); 
 ....................    // Added by Alevr for tests - END 
 ....................    int8 i=0; 
-021C:  CLRF   05
+021E:  CLRF   05
 ....................    lcd_init(); // 
-021E:  BRA    00FA
+0220:  BRA    00FA
 ....................    lcd_putc("\f MicroII Lab\n");  
-0220:  MOVLW  18
-0222:  MOVWF  FF6
-0224:  MOVLW  00
-0226:  MOVWF  FF7
-0228:  RCALL  01E4
+0222:  MOVLW  18
+0224:  MOVWF  FF6
+0226:  MOVLW  00
+0228:  MOVWF  FF7
+022A:  RCALL  01E6
 ....................    lcd_putc("LCD test program"); 
-022A:  MOVLW  28
-022C:  MOVWF  FF6
-022E:  MOVLW  00
-0230:  MOVWF  FF7
-0232:  RCALL  01E4
+022C:  MOVLW  28
+022E:  MOVWF  FF6
+0230:  MOVLW  00
+0232:  MOVWF  FF7
+0234:  RCALL  01E6
 ....................    delay_ms(2000); 
-0234:  MOVLW  08
-0236:  MOVWF  06
-0238:  MOVLW  FA
-023A:  MOVWF  09
-023C:  RCALL  0042
-023E:  DECFSZ 06,F
-0240:  BRA    0238
+0236:  MOVLW  08
+0238:  MOVWF  06
+023A:  MOVLW  FA
+023C:  MOVWF  09
+023E:  RCALL  0042
+0240:  DECFSZ 06,F
+0242:  BRA    023A
 ....................    lcd_putc(" \n");  
-0242:  MOVLW  3A
-0244:  MOVWF  FF6
-0246:  MOVLW  00
-0248:  MOVWF  FF7
-024A:  RCALL  01E4
+0244:  MOVLW  3A
+0246:  MOVWF  FF6
+0248:  MOVLW  00
+024A:  MOVWF  FF7
+024C:  RCALL  01E6
 ....................    for(i=0; i<16; i++) { 
-024C:  CLRF   05
-024E:  MOVF   05,W
-0250:  SUBLW  0F
-0252:  BNC   0268
+024E:  CLRF   05
+0250:  MOVF   05,W
+0252:  SUBLW  0F
+0254:  BNC   026A
 ....................       delay_ms(200);  
-0254:  MOVLW  C8
-0256:  MOVWF  09
-0258:  RCALL  0042
+0256:  MOVLW  C8
+0258:  MOVWF  09
+025A:  RCALL  0042
 ....................       lcd_putc(" \b");  
-025A:  MOVLW  3E
-025C:  MOVWF  FF6
-025E:  MOVLW  00
-0260:  MOVWF  FF7
-0262:  RCALL  01E4
-0264:  INCF   05,F
-0266:  BRA    024E
+025C:  MOVLW  3E
+025E:  MOVWF  FF6
+0260:  MOVLW  00
+0262:  MOVWF  FF7
+0264:  RCALL  01E6
+0266:  INCF   05,F
+0268:  BRA    0250
 ....................    } 
 ....................    while(TRUE); 
-0268:  BRA    0268
+026A:  BRA    026A
 .................... } 
 ....................  
-026A:  SLEEP 
+026C:  SLEEP 
 .................... //------------------------------------ 
 .................... //send a nibble to lcd 
 .................... //------------------------------------ 
@@ -425,7 +425,7 @@ CCS PCH C Compiler, Version 5.011, 5967               08-Ìבת-25 21:13
 014C:  INCF   06,F
 014E:  BRA    0128
 ....................    } 
-0150:  GOTO   0220 (RETURN)
+0150:  GOTO   0222 (RETURN)
 .................... } 
 ....................  
 .................... //-------------------------- 
@@ -455,7 +455,7 @@ CCS PCH C Compiler, Version 5.011, 5967               08-Ìבת-25 21:13
 016E:  CLRF   0D
 0170:  MOVWF  0E
 0172:  RCALL  00BE
-0174:  GOTO   01E0 (RETURN)
+0174:  GOTO   01E2 (RETURN)
 .................... } 
 ....................  
 .................... //---------------------------- 
@@ -470,7 +470,7 @@ CCS PCH C Compiler, Version 5.011, 5967               08-Ìבת-25 21:13
 0180:  BZ    01A2
 0182:  XORLW  02
 0184:  BZ    01B8
-0186:  BRA    01CC
+0186:  BRA    01CE
 ....................       case '\f': 
 ....................          // Added by Alevr for tests - START 
 ....................          PORTD = 0b00000001; 
@@ -491,7 +491,7 @@ CCS PCH C Compiler, Version 5.011, 5967               08-Ìבת-25 21:13
 019C:  MOVWF  09
 019E:  RCALL  0042
 ....................       break; 
-01A0:  BRA    01E0
+01A0:  BRA    01E2
 ....................       case '\n': 
 ....................          // Added by Alevr for tests - START 
 ....................          PORTD = 0b00000010; 
@@ -509,7 +509,7 @@ CCS PCH C Compiler, Version 5.011, 5967               08-Ìבת-25 21:13
 01B2:  MOVWF  0A
 01B4:  BRA    0154
 ....................       break; 
-01B6:  BRA    01E0
+01B6:  BRA    01E2
 ....................       case '\b': 
 ....................          // Added by Alevr for tests - START 
 ....................          PORTD = 0b00000100; 
@@ -520,31 +520,32 @@ CCS PCH C Compiler, Version 5.011, 5967               08-Ìבת-25 21:13
 01BE:  MOVWF  09
 01C0:  RCALL  0042
 ....................          // Added by Alevr for tests - END 
-....................          lcd_send_byte(0, 0x10); 
-01C2:  CLRF   0D
-01C4:  MOVLW  10
-01C6:  MOVWF  0E
-01C8:  RCALL  00BE
+....................          lcd_send_byte(1, 0x14);  // <--- Edo exei lathos i askisi tis diafaneias 
+01C2:  MOVLW  01
+01C4:  MOVWF  0D
+01C6:  MOVLW  14
+01C8:  MOVWF  0E
+01CA:  RCALL  00BE
 ....................       break; 
-01CA:  BRA    01E0
+01CC:  BRA    01E2
 ....................       default: 
 ....................          // Added by Alevr for tests - START 
 ....................          PORTD = 0b00001000; 
-01CC:  MOVLW  08
-01CE:  MOVWF  F83
+01CE:  MOVLW  08
+01D0:  MOVWF  F83
 ....................          delay_ms(100); 
-01D0:  MOVLW  64
-01D2:  MOVWF  09
-01D4:  RCALL  0042
+01D2:  MOVLW  64
+01D4:  MOVWF  09
+01D6:  RCALL  0042
 ....................          // Added by Alevr for tests - END 
 ....................          lcd_send_byte(1, c); 
-01D6:  MOVLW  01
-01D8:  MOVWF  0D
-01DA:  MOVFF  08,0E
-01DE:  RCALL  00BE
+01D8:  MOVLW  01
+01DA:  MOVWF  0D
+01DC:  MOVFF  08,0E
+01E0:  RCALL  00BE
 ....................       break; 
 ....................    } 
-01E0:  GOTO   01F8 (RETURN)
+01E2:  GOTO   01FA (RETURN)
 .................... } 
 
 Configuration Fuses:

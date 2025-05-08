@@ -12,7 +12,7 @@
       ³  ³  ÀÄlcd_send_nibble  0/80  Ram=1
       ³  ÀÄ@delay_ms1  0/44  Ram=1
       ÃÄ@PSTRINGC_650  0/32  Ram=2
-      ³  ÀÄlcd_putc  0/108  Ram=1
+      ³  ÀÄlcd_putc  0/110  Ram=1
       ³     ÃÄ@delay_ms1  0/44  Ram=1
       ³     ÃÄlcd_send_byte  0/60  Ram=3
       ³     ³  ÀÄ*

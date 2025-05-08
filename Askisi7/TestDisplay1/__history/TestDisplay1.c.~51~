@@ -149,7 +149,7 @@ void lcd_putc(char c) {
          PORTD = 0b00000100;
          delay_ms(100);
          // Added by Alevr for tests - END
-         lcd_send_byte(1, 0x14);  // <--- Edo exei lathos i askisi tis diafaneias
+         lcd_send_byte(1, 0x14);
       break;
       default:
          // Added by Alevr for tests - START
