@@ -1,46 +1,46 @@
 
-ROM used:   140/32768 (0%)
-            140/32768 (0%) including unused fragments
+ROM used:   132/32768 (0%)
+            132/32768 (0%) including unused fragments
 
-            0.2 Average locations per line
-            10.0 Average locations per statement
+            0.1 Average locations per line
+            5.1 Average locations per statement
 
 RAM used:   6/2048 (0%) at main() level
-            7/2048 (0%) worst case
+            8/2048 (0%) worst case
 
 Stack used: 1 worst case (1 in main + 0 for interrupts)
 Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-   41    14 100  TestPORTS.c
+   53    26 100  TestBUTTON.c
    67     0   0  C:\Program Files (x86)\PICC\Devices\main_.h
   821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
 ----- -----
-  929    14 Total
+  941    26 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
-0     44  16    1             @delay_ms1
-0     92  33    1   317  5.6  MAIN
+0     46  17    1             @delay_ms1
+0     82  31    1   377  6.1  MAIN
  Inline         0             @cinit1
 
 Program metrics:
     Functions               1
-    Statements              14
-    Comments                164
-    Volume (V)              321
-    Difficulty (D)          5.2
-    Effort to implement (E) 1663
+    Statements              26
+    Comments                169
+    Volume (V)              381
+    Difficulty (D)          5.7
+    Effort to implement (E) 2177
     Time to implement (T)   2 minutes
     Est Delivered Bugs (B)  0
-    Cyclomatic Complexity   2
-    Maintainability (MI)    140
+    Cyclomatic Complexity   3
+    Maintainability (MI)    135
 
  Segment     Used  Free
 -----------  ----  ----
 00000-00002     4  0  
-00004-07FFE   136  32628  
+00004-07FFE   128  32636  
 
 
 

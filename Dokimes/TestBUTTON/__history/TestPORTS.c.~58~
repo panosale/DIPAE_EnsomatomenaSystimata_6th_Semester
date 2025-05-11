@@ -25,12 +25,12 @@ void main()
    while(TRUE) {
       
       for (i = 1; i <= 7; i++) {      
-         delay_ms(500);
+         delay_ms(200);
          PORTB = PORTB / 2;
          //rotate_right(&PORTB, 1);
       }
       for (i = 7; i >= 1; i--) {      
-         delay_ms(500);
+         delay_ms(200);
          PORTB = PORTB * 2;
          //rotate_left(&PORTB, 1);
       }

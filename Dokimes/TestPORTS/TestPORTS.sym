@@ -4,7 +4,8 @@
 002     @SCRATCH
 003     @SCRATCH
 004     i
-005     @delay_ms1.P1
+005     MAIN.@SCRATCH1
+006     @delay_ms1.P1
 F80     PORTA
 F81     PORTB
 F82     PORTC
@@ -38,7 +39,7 @@ Project Directory:
     F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Dokimes\TestPORTS\
 
 Project Files:
-    TestPORTS.c                                             [11-Ìבת-25 10:39  CRC=DE9ACF4F]
+    TestPORTS.c                                             [11-Ìבת-25 22:56  CRC=DE9ACF4F]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Ìבס-20 14:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Áץד-13 16:40  CRC=A157EDDE]
 

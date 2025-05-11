@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.011, 5967               11-Μαϊ-25 22:56
+CCS PCH C Compiler, Version 5.011, 5967               12-Μαϊ-25 00:03
 
-               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Dokimes\TestPORTS\TestPORTS.lst
+               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Dokimes\TestBUTTON\TestBUTTON.lst
 
-               ROM used:   140 bytes (0%)
-                           Largest free fragment is 32628
+               ROM used:   132 bytes (0%)
+                           Largest free fragment is 32636
                RAM used:   6 (0%) at main() level
-                           7 (0%) worst case
+                           8 (0%) worst case
                Stack used: 1 locations
                Stack size: 31
 
 *
-0000:  GOTO   0030
+0000:  GOTO   0032
 .................... #include <main_.h> 
 .................... #include <18F4550.h> 
 .................... //////// Standard Header file for the PIC18F4550 device //////////////// 
@@ -63,7 +63,7 @@ CCS PCH C Compiler, Version 5.011, 5967               11-Μαϊ-25 22:56
 .................... /* systm clock is 48 MHz */ 
 .................... #use delay(clock=48000000,RESTART_WDT) 
 0004:  CLRF   FEA
-0006:  MOVLW  06
+0006:  MOVLW  07
 0008:  MOVWF  FE9
 000A:  MOVF   FEF,W
 000C:  BZ    002E
@@ -83,7 +83,7 @@ CCS PCH C Compiler, Version 5.011, 5967               11-Μαϊ-25 22:56
 0028:  CLRWDT
 002A:  DECFSZ FEF,F
 002C:  BRA    000E
-002E:  RETURN 0
+002E:  GOTO   007C (RETURN)
 .................... /* --- BEGIN: changes required for bootloader ------------------------------ */ 
 ....................  
 .................... /* ------------------------------------------------------------------------- */ 
@@ -106,7 +106,8 @@ CCS PCH C Compiler, Version 5.011, 5967               11-Μαϊ-25 22:56
 ....................  
 ....................  
 ....................  
-....................  
+.................... // Gia oso einai patimeno to BUTTON afksanei to PORTB kata 1 mexri na ftasei sto 0xff (255) 
+.................... // Molis afisoume to BUTTON meionei to PORTB kata 1 mexri na ftasei sto 0x0 (0) 
 .................... #use standard_io ( A ) 
 .................... //#use standard_io ( B ) 
 .................... #use standard_io ( C ) 
@@ -123,74 +124,80 @@ CCS PCH C Compiler, Version 5.011, 5967               11-Μαϊ-25 22:56
 ....................    #asm 
 ....................    #endasm 
 .................... } 
+.................... void push_button(void); 
 ....................  
 .................... void main() 
-0030:  CLRF   FF8
-0032:  BCF    FD0.7
-0034:  MOVF   FC1,W
-0036:  ANDLW  C0
-0038:  IORLW  0F
-003A:  MOVWF  FC1
-003C:  MOVLW  07
-003E:  MOVWF  FB4
+0032:  CLRF   FF8
+0034:  BCF    FD0.7
+0036:  MOVF   FC1,W
+0038:  ANDLW  C0
+003A:  IORLW  0F
+003C:  MOVWF  FC1
+003E:  MOVLW  07
+0040:  MOVWF  FB4
 .................... { 
 ....................    set_tris_b(0x00); // Ορίζουμε τη θύρα B σαν ΕΞΟΔΟ (0) 
-0040:  MOVLW  00
-0042:  MOVWF  F93
-.................... //   set_tris_D(0xf0); // Ορίζουμε τα MSB της θύρας D σαν ΕΙΣΟΔΟ(1) και τα LSB της σαν ΕΞΟΔΟ(0) 
-....................    PORTB = 0x80; 
-0044:  MOVLW  80
-0046:  MOVWF  F81
+0042:  MOVLW  00
+0044:  MOVWF  F93
+....................    set_tris_d(0xff); // Ορίζουμε τη θύρα D σαν ΕΙΣΟΔΟ(1) 
+0046:  MOVLW  FF
+0048:  MOVWF  F95
+....................    PORTB = 0;    
+004A:  CLRF   F81
+....................    int8 i = 0; 
+004C:  CLRF   05
 ....................    while(TRUE) { 
-....................        
-....................       for (i = 1; i <= 7; i++) {       
-0048:  MOVLW  01
-004A:  MOVWF  04
-004C:  MOVF   04,W
-004E:  SUBLW  07
-0050:  BNC   0068
-....................          delay_ms(500); 
-0052:  MOVLW  02
-0054:  MOVWF  05
-0056:  MOVLW  FA
-0058:  MOVWF  06
-005A:  RCALL  0004
-005C:  DECFSZ 05,F
-005E:  BRA    0056
-....................          PORTB = PORTB / 2; 
-0060:  BCF    FD8.0
-0062:  RRCF   F81,F
-0064:  INCF   04,F
-0066:  BRA    004C
-....................          //rotate_right(&PORTB, 1); 
+....................       if (bit_test(PORTD, 0)) { 
+004E:  BTFSS  F83.0
+0050:  BRA    0062
+....................          PORTB ^= i; 
+0052:  MOVF   05,W
+0054:  XORWF  F81,F
+....................          if (i>0) 
+0056:  MOVF   05,F
+0058:  BZ    005C
+....................             i--; 
+005A:  DECF   05,F
+....................          PORTB ^= i; 
+005C:  MOVF   05,W
+005E:  XORWF  F81,F
+....................          //output_low(PIN_B0);             
 ....................       } 
-....................       for (i = 7; i >= 1; i--) {       
-0068:  MOVLW  07
-006A:  MOVWF  04
-006C:  MOVF   04,W
-006E:  SUBLW  00
-0070:  BC    0088
-....................          delay_ms(500); 
-0072:  MOVLW  02
-0074:  MOVWF  05
+0060:  BRA    0072
+....................       else { 
+....................          PORTB ^= i; 
+0062:  MOVF   05,W
+0064:  XORWF  F81,F
+....................          if (i<255) 
+0066:  INCFSZ 05,W
+0068:  BRA    006C
+006A:  BRA    006E
+....................             i++; 
+006C:  INCF   05,F
+....................          PORTB ^= i; 
+006E:  MOVF   05,W
+0070:  XORWF  F81,F
+....................       } 
+....................          //output_high(PIN_B0); 
+....................       delay_ms(1000); 
+0072:  MOVLW  04
+0074:  MOVWF  06
 0076:  MOVLW  FA
-0078:  MOVWF  06
-007A:  RCALL  0004
-007C:  DECFSZ 05,F
+0078:  MOVWF  07
+007A:  BRA    0004
+007C:  DECFSZ 06,F
 007E:  BRA    0076
-....................          PORTB = PORTB * 2; 
-0080:  BCF    FD8.0
-0082:  RLCF   F81,F
-0084:  DECF   04,F
-0086:  BRA    006C
-....................          //rotate_left(&PORTB, 1); 
-....................       } 
-0088:  BRA    0048
+0080:  BRA    004E
 ....................    } 
 .................... } 
 ....................  
-008A:  SLEEP 
-....................  
+0082:  SLEEP 
+.................... void push_button(void { // Synartisi elegxou patimatos-apeleftherosis tou BUTTON 
+....................    while (input(PIN_B4) == 1) {} // To PORT kai to PIN mporoun na allaksoun analoga tin anagki 
+....................    delay_ms(50); 
+....................    while (input(PIN_B4) == 0) {} // To PORT kai to PIN mporoun na allaksoun analoga tin anagki 
+....................    delay_ms(50);    
+.................... } 
 
 Configuration Fuses:
    Word  1: 0E24   PLL5 CPUDIV1 USBDIV HSPLL NOFCMEN NOIESO

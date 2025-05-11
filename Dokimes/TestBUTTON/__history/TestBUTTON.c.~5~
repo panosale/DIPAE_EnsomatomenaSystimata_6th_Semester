@@ -1,0 +1,33 @@
+#include <main_.h>
+
+#use standard_io ( A )
+//#use standard_io ( B )
+#use standard_io ( C )
+#byte PORTA =0xF80
+#byte PORTB =0xF81
+#byte PORTC =0xF82
+#byte PORTD =0xF83
+#byte PORTE =0xF84
+
+int8 i;
+
+void testASM(int n) {
+   n = n /2;
+   #asm
+   #endasm
+}
+
+void main()
+{
+   set_tris_b(0x00); // Ορίζουμε τη θύρα B σαν ΕΞΟΔΟ (0)
+   set_tris_d(0x00); // Ορίζουμε τη θύρα D σαν ΕΙΣΟΔΟ(1)
+   PORTB = 0;   
+   while(TRUE) {
+      if (bit_test(PORTD, 0))
+         output_high(PIN_B0);
+      else
+         output_low(PIN_B0);
+   }
+}
+
+

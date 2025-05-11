@@ -1,8 +1,8 @@
-C L "MAIN" 0 4 1 "FUNCTION"
-D G "__PCH__" 0 42 ""5.011""
-D G "__DEVICE__" 0 42 "4550"
-D G "__DATE__" 0 42 ""11-Ìבת-25""
-D G "__TIME__" 0 42 ""22:56:35"" "Standard Header file for the PIC18F4550 device ////////////////"
+d G "INT_USB" 2 818 "0x00A020"
+D G "__PCH__" 0 54 ""5.011""
+D G "__DEVICE__" 0 54 "4550"
+D G "__DATE__" 0 54 ""12-Ìבת-25""
+D G "__TIME__" 0 54 ""00:03:45"" "Standard Header file for the PIC18F4550 device ////////////////"
 c L "set_tris_a" 2 5 21 "FUNCTION"
 v L "value" 2 36 "int8" `54 
 f B "set_tris_a" 2 36 "void(int8 value)" `53 
@@ -902,13 +902,20 @@ d G "INT_OSCF" 2 816 "0x00A080"
 d G "INT_SPP" 2 817 "0x009D80"
 d G "INT_USB" 2 818 "0x00A020"
 C L "jump_to_irs" 1 9 17 "FUNCTION"
-C L "jump_to_irs" 0 4 1 "FUNCTION"
-V G "i" 0 12 "int8" `639 
-V L "n" 0 14 "int8" `641 
-F G "testASM" 0 14 "void(int8 n)" `640 
-F G "MAIN" 0 21 "void()" `642 
-C L "MAIN" 0 4 2 "FUNCTION"
-C L "MAIN" 0 4 1 "FUNCTION"
+C L "jump_to_irs" 0 2 3 "FUNCTION"
+V G "i" 0 13 "int8" `639 
+V L "n" 0 15 "int8" `641 
+F G "testASM" 0 15 "void(int8 n)" `640 
+f G "push_button" 0 20 "void()" `642 
+F G "MAIN" 0 23 "void()" `643 
+C L "MAIN" 0 2 1 "FUNCTION"
+C L "MAIN" 0 2 1 "FUNCTION"
+V L "i" 0 27 "int8" `646 
+C L "MAIN" 0 2 1 "FUNCTION"
+C L "MAIN" 0 2 1 "FUNCTION"
+F G "push_button" 0 47 "void()" `642  "Synartisi elegxou patimatos-apeleftherosis tou BUTTON"
+C L "push_button" 0 2 1 "FUNCTION"
+C L "push_button" 0 2 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

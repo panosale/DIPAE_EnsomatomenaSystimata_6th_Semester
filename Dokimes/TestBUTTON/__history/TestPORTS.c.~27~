@@ -15,10 +15,10 @@
 void main()
 {
    set_tris_b(0x00); // Ορίζουμε τη θύρα B σαν ΕΞΟΔΟ (0)
-   PORTB = 0x80;
+   PORTB = 0x87;
    while(TRUE) {
-      delay_ms(100);
-      rotate_left(&PORTB, 1);
+//      delay_ms(200);
+//      rotate_left(&PORTB, 1);
    }
 }
 
