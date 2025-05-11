@@ -1,0 +1,68 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     i
+005     @delay_ms1.P1
+F80     PORTA
+F81     PORTB
+F82     PORTC
+F83     PORTD
+F83     PSP_DATA
+F84     PORTE
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2_LOW
+FBB     CCP_2
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PROGRAM_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  @delay_ms1
+000030  MAIN
+000030  @cinit1
+000040  @cinit2
+
+Project Directory:
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Dokimes\TestPORTS\
+
+Project Files:
+    TestPORTS.c                                             [11-Ã·˙-25 10:39  CRC=DE9ACF4F]
+    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Ã·Ò-20 14:55  CRC=51CBC36F]
+    C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-¡ı„-13 16:40  CRC=A157EDDE]
+
+Source signature=73166E7A
+
+Units:
+    TestPORTS (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   TestPORTS.xsym
+    Errors:      TestPORTS.err
+    Ext Symbols: TestPORTS.esym
+    INHX32:      TestPORTS.hex
+    Symbols:     TestPORTS.sym
+    List:        TestPORTS.lst
+    Debug/COFF:  TestPORTS.cof
+    Project:     TestPORTS.ccspjt
+    Call Tree:   TestPORTS.tre
+    Statistics:  TestPORTS.STA

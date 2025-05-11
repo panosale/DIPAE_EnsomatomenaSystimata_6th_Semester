@@ -1,0 +1,19 @@
+[PROJECT]
+Target=TestPORTS.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.011
+Compiler=PCH
+[Target Data]
+FileList=TestPORTS.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[TestPORTS.c]
+Type=4
+[mru-list]
+1=TestPORTS.c
+[Opened Files]
+1=TestPORTS.c
+2=
+[Units]
+Count=1
+1=TestPORTS (main)

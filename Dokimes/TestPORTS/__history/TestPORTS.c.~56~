@@ -1,0 +1,40 @@
+#include <main_.h>
+
+#use standard_io ( A )
+//#use standard_io ( B )
+#use standard_io ( C )
+#byte PORTA =0xF80
+#byte PORTB =0xF81
+#byte PORTC =0xF82
+#byte PORTD =0xF83
+#byte PORTE =0xF84
+
+int8 i;
+
+void testASM(int n) {
+   n = n /2;
+   #asm
+   #endasm
+}
+
+void main()
+{
+//   set_tris_b(0x00); // Ορίζουμε τη θύρα B σαν ΕΞΟΔΟ (0)
+//   set_tris_D(0xf0); // Ορίζουμε τα MSB της θύρας D σαν ΕΙΣΟΔΟ(1) και τα LSB της σαν ΕΞΟΔΟ(0)
+   PORTB = 0x80;
+   while(TRUE) {
+      
+      for (i = 1; i <= 7; i++) {      
+         delay_ms(200);
+         PORTB = PORTB / 2;
+         //rotate_right(&PORTB, 1);
+      }
+      for (i = 7; i >= 1; i--) {      
+         delay_ms(200);
+         PORTB = PORTB * 2;
+         //rotate_left(&PORTB, 1);
+      }
+   }
+}
+
+
