@@ -1,0 +1,49 @@
+
+ROM used:   236/32768 (1%)
+            236/32768 (1%) including unused fragments
+
+            0.2 Average locations per line
+            8.4 Average locations per statement
+
+RAM used:   23/2048 (1%) at main() level
+            23/2048 (1%) worst case
+
+Stack used: 2 worst case (1 in main + 1 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   67    28 100  TestBUTTON.c
+   67     0   0  C:\Program Files (x86)\PICC\Devices\main_.h
+  821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
+----- -----
+  955    28 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     36   8    0    82  2.0  MAIN
+0     12   3    0    65  1.6  init
+0     42   9    0   216  4.9  diakopi_ext_int1
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               3
+    Statements              28
+    Comments                169
+    Volume (V)              484
+    Difficulty (D)          8.3
+    Effort to implement (E) 3996
+    Time to implement (T)   4 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   3
+    Maintainability (MI)    68
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-00094   142  0  
+00096-07FFE    90  32528  
+
+
+
