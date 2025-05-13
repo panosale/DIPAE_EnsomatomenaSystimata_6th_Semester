@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.011, 5967               14-Μαϊ-25 00:10
+CCS PCH C Compiler, Version 5.011, 5967               14-Μαϊ-25 00:50
 
-               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Dokimes\TestBUTTONwINTERRUPTS\TestBUTTON.lst
+               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\AskisisTheorias\Askisi4b\Askisi4b.lst
 
-               ROM used:   236 bytes (1%)
-                           Largest free fragment is 32528
+               ROM used:   380 bytes (1%)
+                           Largest free fragment is 32384
                RAM used:   23 (1%) at main() level
-                           23 (1%) worst case
-               Stack used: 2 locations (1 in main + 1 for interrupts)
+                           28 (1%) worst case
+               Stack used: 3 locations (1 in main + 2 for interrupts)
                Stack size: 31
 
 *
-0000:  GOTO   00CC
+0000:  GOTO   0152
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -32,7 +32,7 @@ CCS PCH C Compiler, Version 5.011, 5967               14-Μαϊ-25 00:10
 0048:  BTFSS  FF0.3
 004A:  GOTO   0054
 004E:  BTFSC  FF0.0
-0050:  GOTO   0096
+0050:  GOTO   00C2
 0054:  MOVFF  0E,00
 0058:  MOVFF  0F,01
 005C:  MOVFF  10,02
@@ -51,6 +51,7 @@ CCS PCH C Compiler, Version 5.011, 5967               14-Μαϊ-25 00:10
 008C:  MOVFF  06,FE0
 0090:  MOVFF  05,FD8
 0094:  RETFIE 0
+.................... // Askisi theorias 4a 
 .................... #include <main_.h> 
 .................... #include <18F4550.h> 
 .................... //////// Standard Header file for the PIC18F4550 device //////////////// 
@@ -102,6 +103,28 @@ CCS PCH C Compiler, Version 5.011, 5967               14-Μαϊ-25 00:10
 ....................  
 .................... /* systm clock is 48 MHz */ 
 .................... #use delay(clock=48000000,RESTART_WDT) 
+0096:  CLRF   FEA
+0098:  MOVLW  1B
+009A:  MOVWF  FE9
+009C:  MOVF   FEF,W
+009E:  BZ    00C0
+00A0:  MOVLW  0F
+00A2:  MOVWF  01
+00A4:  MOVLW  BF
+00A6:  MOVWF  00
+00A8:  CLRWDT
+00AA:  DECFSZ 00,F
+00AC:  BRA    00A8
+00AE:  DECFSZ 01,F
+00B0:  BRA    00A4
+00B2:  MOVLW  8F
+00B4:  MOVWF  00
+00B6:  DECFSZ 00,F
+00B8:  BRA    00B6
+00BA:  CLRWDT
+00BC:  DECFSZ FEF,F
+00BE:  BRA    00A0
+00C0:  RETURN 0
 .................... /* --- BEGIN: changes required for bootloader ------------------------------ */ 
 ....................  
 .................... /* ------------------------------------------------------------------------- */ 
@@ -135,105 +158,161 @@ CCS PCH C Compiler, Version 5.011, 5967               14-Μαϊ-25 00:10
 .................... #byte PORTD =0xF83 
 .................... #byte PORTE =0xF84 
 ....................  
-.................... int8 i = 0; 
+.................... const int16 DEFAULT_DELAY = 500; 
 ....................  
-.................... void testASM(int n) { 
-....................    n = n /2; 
-....................    #asm 
-....................    #endasm 
-.................... } 
 .................... void push_button(void); 
 .................... // INTERRUPTS HANDLING 
 .................... void init(void); 
-.................... void diakopi_ext_int1(); 
+.................... void eksoteriki_diakopi1(); 
 ....................  
 .................... void main() 
 *
-00CC:  CLRF   FF8
-00CE:  BCF    FD0.7
-00D0:  BSF    07.7
-00D2:  CLRF   16
-00D4:  MOVF   FC1,W
-00D6:  ANDLW  C0
-00D8:  IORLW  0F
-00DA:  MOVWF  FC1
-00DC:  MOVLW  07
-00DE:  MOVWF  FB4
+0152:  CLRF   FF8
+0154:  BCF    FD0.7
+0156:  BSF    07.7
+0158:  MOVF   FC1,W
+015A:  ANDLW  C0
+015C:  IORLW  0F
+015E:  MOVWF  FC1
+0160:  MOVLW  07
+0162:  MOVWF  FB4
 .................... { 
-....................    set_tris_b(0xff); // Ορίζουμε τη θύρα B σαν ΕΙΣΟΔΟ (0) 
-00E0:  MOVLW  FF
-00E2:  MOVWF  F93
-....................    set_tris_d(0x00); // Ορίζουμε τη θύρα D σαν ΕΞΟΔΟ(1) 
-00E4:  MOVLW  00
-00E6:  MOVWF  F95
-....................    PORTB = 0;    
-00E8:  CLRF   F81
 ....................    init(); 
-00EA:  BRA    00C0
-....................    while(TRUE) {} 
-00EC:  BRA    00EC
+0164:  BRA    013C
+....................    while(TRUE) { 
+....................       PORTD = PORTD ^ 0xff; 
+0166:  MOVLW  FF
+0168:  XORWF  F83,F
+016A:  CLRF   16
+016C:  BTFSC  FF2.7
+016E:  BSF    16.7
+0170:  BCF    FF2.7
+....................       delay_ms(100); 
+0172:  MOVLW  64
+0174:  MOVWF  1B
+0176:  RCALL  0096
+0178:  BTFSC  16.7
+017A:  BSF    FF2.7
+017C:  BRA    0166
+....................    } 
 .................... } 
 ....................  
-00EE:  SLEEP 
+017E:  SLEEP 
 .................... void push_button(void { // Synartisi elegxou patimatos-apeleftherosis tou BUTTON 
 ....................    while (input(PIN_B4) == 1) {} // To PORT kai to PIN mporoun na allaksoun analoga tin anagki 
-....................    delay_ms(50); 
+....................    delay_ms(50); // Eksalipsi fainomenou anapidisis 
 ....................    while (input(PIN_B4) == 0) {} // To PORT kai to PIN mporoun na allaksoun analoga tin anagki 
-....................    delay_ms(50);    
+....................    delay_ms(50); // Eksalipsi fainomenou anapidisis   
 .................... } 
 ....................  
-.................... // INTERRUPTS HANDLING 
 .................... void init(void) { 
-....................    enable_interrupts(GLOBAL); 
+....................    set_tris_b(0xff); // Ορίζουμε τη θύρα B σαν ΕΙΣΟΔΟ (0) 
 *
-00C0:  MOVLW  C0
-00C2:  IORWF  FF2,F
+013C:  MOVLW  FF
+013E:  MOVWF  F93
+....................    set_tris_d(0x00); // Ορίζουμε τη θύρα D σαν ΕΞΟΔΟ (1) 
+0140:  MOVLW  00
+0142:  MOVWF  F95
+....................    PORTD = 0x0;    
+0144:  CLRF   F83
+....................    // Arxikopoiisi interrups 
+....................    enable_interrupts(GLOBAL); 
+0146:  MOVLW  C0
+0148:  IORWF  FF2,F
 ....................    enable_interrupts(INT_EXT1); 
-00C4:  BSF    FF0.3
-....................    ext_int_edge(1, L_TO_H); 
-00C6:  BSF    FF1.5
-00C8:  GOTO   00EC (RETURN)
+014A:  BSF    FF0.3
+....................    ext_int_edge(1, H_TO_L); 
+014C:  BCF    FF1.5
+014E:  GOTO   0166 (RETURN)
 ....................     
 .................... } 
 ....................  
+.................... // INTERRUPTS HANDLING 
 .................... #INT_EXT1 
-.................... void diakopi_ext_int1() { 
-....................    if (bit_test(PORTB, 0)) { 
+.................... void eksoteriki_diakopi1() { 
+....................    int i; 
+....................    PORTD = 0x0; 
 *
-0096:  BTFSS  F81.0
-0098:  BRA    00AA
-....................       PORTD ^= i; 
-009A:  MOVF   16,W
-009C:  XORWF  F83,F
-....................       if (i>0) 
-009E:  MOVF   16,F
-00A0:  BZ    00A4
-....................          i--; 
-00A2:  DECF   16,F
-....................       PORTD ^= i; 
-00A4:  MOVF   16,W
-00A6:  XORWF  F83,F
+00C2:  CLRF   F83
+....................    int8 dot_position = 0x80; 
+00C4:  MOVLW  80
+00C6:  MOVWF  19
+....................    for (i = 0; i < 8; i++) { 
+00C8:  CLRF   18
+00CA:  MOVF   18,W
+00CC:  SUBLW  07
+00CE:  BNC   00FC
+....................       PORTD = PORTD ^ dot_position; 
+00D0:  MOVF   19,W
+00D2:  XORWF  F83,F
+....................       delay_ms(DEFAULT_DELAY); 
+00D4:  MOVLW  02
+00D6:  MOVWF  1A
+00D8:  MOVLW  FA
+00DA:  MOVWF  1B
+00DC:  RCALL  0096
+00DE:  DECFSZ 1A,F
+00E0:  BRA    00D8
+....................       PORTD = PORTD ^ dot_position; 
+00E2:  MOVF   19,W
+00E4:  XORWF  F83,F
+....................       delay_ms(DEFAULT_DELAY); 
+00E6:  MOVLW  02
+00E8:  MOVWF  1A
+00EA:  MOVLW  FA
+00EC:  MOVWF  1B
+00EE:  RCALL  0096
+00F0:  DECFSZ 1A,F
+00F2:  BRA    00EA
+....................       dot_position = dot_position / 2; 
+00F4:  BCF    FD8.0
+00F6:  RRCF   19,F
+00F8:  INCF   18,F
+00FA:  BRA    00CA
 ....................    } 
-00A8:  BRA    00BA
-....................    else { 
-....................       PORTD ^= i; 
-00AA:  MOVF   16,W
-00AC:  XORWF  F83,F
-....................       if (i<255) 
-00AE:  INCFSZ 16,W
-00B0:  BRA    00B4
-00B2:  BRA    00B6
-....................          i++; 
-00B4:  INCF   16,F
-....................       PORTD ^= i; 
-00B6:  MOVF   16,W
-00B8:  XORWF  F83,F
+....................    dot_position = 1; 
+00FC:  MOVLW  01
+00FE:  MOVWF  19
+.................... //   PORTD = PORTD ^ dot_position; 
+.................... //   delay_ms(500); 
+....................    for (i = 0; i < 8; i++) { 
+0100:  CLRF   18
+0102:  MOVF   18,W
+0104:  SUBLW  07
+0106:  BNC   0134
+....................       PORTD = PORTD ^ dot_position; 
+0108:  MOVF   19,W
+010A:  XORWF  F83,F
+....................       delay_ms(DEFAULT_DELAY); 
+010C:  MOVLW  02
+010E:  MOVWF  1A
+0110:  MOVLW  FA
+0112:  MOVWF  1B
+0114:  RCALL  0096
+0116:  DECFSZ 1A,F
+0118:  BRA    0110
+....................       PORTD = PORTD ^ dot_position; 
+011A:  MOVF   19,W
+011C:  XORWF  F83,F
+....................       delay_ms(DEFAULT_DELAY); 
+011E:  MOVLW  02
+0120:  MOVWF  1A
+0122:  MOVLW  FA
+0124:  MOVWF  1B
+0126:  RCALL  0096
+0128:  DECFSZ 1A,F
+012A:  BRA    0122
+....................       dot_position = dot_position * 2; 
+012C:  BCF    FD8.0
+012E:  RLCF   19,F
+0130:  INCF   18,F
+0132:  BRA    0102
 ....................    } 
-00BA:  BCF    FF0.0
-00BC:  GOTO   0054
+....................    PORTD = 0x0; 
+0134:  CLRF   F83
+0136:  BCF    FF0.0
+0138:  GOTO   0054
 .................... } 
-....................  
-....................  
 ....................  
 
 Configuration Fuses:

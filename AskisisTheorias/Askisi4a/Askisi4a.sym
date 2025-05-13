@@ -21,7 +21,9 @@
 013     @INTERRUPT_AREA
 014     @INTERRUPT_AREA
 015     @INTERRUPT_AREA
-016     i
+016     eksoteriki_diakopi1.i
+017     eksoteriki_diakopi1.@SCRATCH1
+018     @delay_ms1.P1
 F80     PORTA
 F81     PORTB
 F82     PORTC
@@ -33,37 +35,38 @@ FB4.7   C2OUT
 FBB     CCP_2_LOW
 FBB     CCP_2
 FBC     CCP_2_HIGH
-FBE     CCP_1_LOW
 FBE     CCP_1
+FBE     CCP_1_LOW
 FBF     CCP_1_HIGH
-FE1-FE2 @READ_PACKED_MEMORY.P1
-FE1-FE2 @WRITE_PACKED_MEMORY.P2
-FE9-FEA @READ_PACKED_MEMORY.P1
-FE9-FEA @WRITE_PROGRAM_MEMORY.P2
-FE9-FEA @READ_PROGRAM_MEMORY.P3
-FE9-FEA @WRITE_PACKED_MEMORY.P4
-FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
-FF6-FF8 @READ_PROGRAM_MEMORY.P2
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @READ_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
 
 ROM Allocation:
-000096  diakopi_ext_int1
-0000C0  init
-0000CC  @cinit1
-0000CC  MAIN
-0000E0  @cinit2
+000096  @delay_ms1
+0000C2  eksoteriki_diakopi1
+0000F8  init
+00010E  main
+00010E  @cinit1
+000120  @cinit2
 
 Project Directory:
-    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Dokimes\TestBUTTONwINTERRUPTS\
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\AskisisTheorias\Askisi4a\
 
 Project Files:
-    TestBUTTON.c                                            [14-Ìבת-25 00:01  CRC=4A1CE859]
+    Askisi4a.c                                              [14-Ìבת-25 00:23  CRC=C0A55ADF]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Ìבס-20 14:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Áץד-13 16:40  CRC=A157EDDE]
 
-Source signature=DE988784
+Source signature=5520FA0A
 
 Units:
-    TestBUTTON (main)
+    Askisi4a (main)
 
 Compiler Settings:
     Processor:      PIC18F4550
@@ -74,13 +77,13 @@ Compiler Settings:
     Float,Double:   32,32
 
 Output Files:
-    XREF file:   TestBUTTON.xsym
-    Errors:      TestBUTTON.err
-    Ext Symbols: TestBUTTON.esym
-    INHX32:      TestBUTTON.hex
-    Symbols:     TestBUTTON.sym
-    List:        TestBUTTON.lst
-    Debug/COFF:  TestBUTTON.cof
-    Project:     TestBUTTON.ccspjt
-    Call Tree:   TestBUTTON.tre
-    Statistics:  TestBUTTON.STA
+    XREF file:   Askisi4a.xsym
+    Errors:      Askisi4a.err
+    Ext Symbols: Askisi4a.esym
+    INHX32:      Askisi4a.hex
+    Symbols:     Askisi4a.sym
+    List:        Askisi4a.lst
+    Debug/COFF:  Askisi4a.cof
+    Project:     Askisi4a.ccspjt
+    Call Tree:   Askisi4a.tre
+    Statistics:  Askisi4a.STA

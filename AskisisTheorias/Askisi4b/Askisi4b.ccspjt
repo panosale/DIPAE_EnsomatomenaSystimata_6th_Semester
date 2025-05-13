@@ -1,19 +1,19 @@
 [PROJECT]
-Target=TestBUTTON.hex
+Target=Askisi4b.hex
 Processor_Text=PIC18F4550
 CCSVersion=5.011
 Compiler=PCH
 [Target Data]
-FileList=TestBUTTON.c
+FileList=Askisi4b.c
 [Directories]
 Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
-[TestBUTTON.c]
+[Askisi4b.c]
 Type=4
 [mru-list]
-1=TestBUTTON.c
+1=Askisi4b.c
 [Opened Files]
-1=..\..\AskisisTheorias\Askisi4a\Askisi4a.c
+1=Askisi4b.c
 2=
 [Units]
 Count=1
-1=TestBUTTON (main)
+1=Askisi4b (main)
