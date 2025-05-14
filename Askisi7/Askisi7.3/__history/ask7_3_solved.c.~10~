@@ -7,13 +7,13 @@
 
 #define Greek_Gamma   0
 #define Greek_Delta   1
-#define Greek_Thita   2
+#define Greek_thita   2
 #define Greek_Lamda   3
 #define Greek_Xi      4
 #define Greek_Pi      5
 #define Greek_Sigma   6
 #define Greek_Omega   7
-//const int8 Message[] = {'P','A','N','A','G','I','O','T','I','S'};
+const int8 Message[] = {'P','A','N','A','G','I','O','T','I','S'};
 void lcd_load_custom_chars(void);
 
 //==========================
@@ -27,7 +27,8 @@ void main()
 // backslash to display a custom char with printf.
 // The \f clears the LCD before displaying anything.
 
-   printf(lcd_putc, "A\003EYPO\005OY\003O\006 \n");
+   lcd_putc(Greek_Gamma);
+   printf(lcd_putc, "\001\002\003\004\005\006\007 \n");
 
    lcd_gotoxy(1,2);  //
    lcd_putc(Greek_Pi); //Ð
@@ -58,7 +59,7 @@ void main()
            lcd_send_byte(0, 0x07);
            delay_ms(200);
       }  */   
-   while(TRUE) {
+   while(1){
    //printf(lcd_putc, "\fTest Message");
    for (i=0;i<10;i++) {
       lcd_send_byte(0, 0x1C);// 1C //18
@@ -110,7 +111,7 @@ const int8 lcd_custom_chars[] = {
    0b00011111,  // ...ooooo 0x1F
    0b00000000,  // ........ 0x00
    
-   // Char Number 2 -- Greek_Thita
+   // Char Number 2 -- Greek_thita
    0b00001110,  // ....ooo. 0x0E
    0b00010001,  // ...o...o 0x11
    0b00010001,  // ...o...o 0x11
@@ -160,7 +161,7 @@ const int8 lcd_custom_chars[] = {
    0b00011111,  // ...ooooo 0x1F
    0b00000000,  // ........ 0x00
    
-   // Char Number 7 -- Greek_Omega
+   // Char Number 7 -- Greek_omega
    0b00001110,  // ....ooo. 0x0E
    0b00010001,  // ...o...o 0x11
    0b00010001,  // ...o...o 0x11

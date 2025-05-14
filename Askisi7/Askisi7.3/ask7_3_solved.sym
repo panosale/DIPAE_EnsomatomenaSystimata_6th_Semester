@@ -1,0 +1,92 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+005     MAIN.i
+006     lcd_load_custom_chars.i
+006     lcd_init.i
+006     MAIN.@SCRATCH1
+006     @PSTRINGC_646.@SCRATCH1
+007     lcd_init.@SCRATCH1
+007     @PSTRINGC_646.@SCRATCH2
+007     lcd_load_custom_chars.@SCRATCH1
+008     lcd_putc.c
+009     @delay_ms1.P1
+009     lcd_gotoxy.x
+00A     lcd_gotoxy.y
+00B     lcd_gotoxy.address
+00C     lcd_gotoxy.@SCRATCH1
+00D     lcd_send_byte.address
+00E     lcd_send_byte.n
+00F     lcd_send_byte.@SCRATCH1
+010     lcd_send_nibble.nibble
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @WRITE_PACKED_MEMORY.P1
+FE1-FE2 @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FF6-FF8 @READ_PROGRAM_MEMORY.P1
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  LCD_INIT_STRING.call
+000014  LCD_INIT_STRING.data
+000018  lcd_custom_chars.call
+000028  lcd_custom_chars.data
+000068  @const655.call
+000078  @delay_ms1
+0000A4  lcd_send_nibble
+0000F4  lcd_send_byte
+000130  lcd_init
+00018E  lcd_load_custom_chars
+0001CA  lcd_gotoxy
+0001EC  lcd_putc
+00022E  @PSTRINGC_646
+000250  MAIN
+000250  @cinit1
+000260  @cinit2
+
+Project Directory:
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi7\Askisi7.3\
+
+Project Files:
+    ask7_3_solved.c                                         [15-Μαϊ-25 00:12  CRC=1085829B]
+    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 14:55  CRC=51CBC36F]
+    C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 16:40  CRC=A157EDDE]
+    flex_lcd_sim.h                                          [15-Απρ-20 20:47  CRC=DB6A762E]
+
+Source signature=BA7E2044
+
+Units:
+    ask7_3_solved (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   ask7_3_solved.xsym
+    Errors:      ask7_3_solved.err
+    Ext Symbols: ask7_3_solved.esym
+    INHX32:      ask7_3_solved.hex
+    Symbols:     ask7_3_solved.sym
+    List:        ask7_3_solved.lst
+    Debug/COFF:  ask7_3_solved.cof
+    Project:     ask7_3_solved.ccspjt
+    Call Tree:   ask7_3_solved.tre
+    Statistics:  ask7_3_solved.STA

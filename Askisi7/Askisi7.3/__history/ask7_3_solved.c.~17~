@@ -27,7 +27,8 @@ void main()
 // backslash to display a custom char with printf.
 // The \f clears the LCD before displaying anything.
 
-   printf(lcd_putc, "A\003EYPO\005OY\003O\006 \n");
+   lcd_putc(Greek_Gamma);
+   printf(lcd_putc, "\001\002\003\004\005\006\007 \n");
 
    lcd_gotoxy(1,2);  //
    lcd_putc(Greek_Pi); //Ð
