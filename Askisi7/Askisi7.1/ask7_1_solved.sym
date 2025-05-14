@@ -18,8 +18,8 @@
 0A6     lcd_init.@SCRATCH1
 0A6     @PSTRINGC_646.@SCRATCH2
 0A7     lcd_putc.c
-0A8     lcd_gotoxy.x
 0A8     @delay_ms1.P1
+0A8     lcd_gotoxy.x
 0A9     lcd_gotoxy.y
 0AA     lcd_gotoxy.address
 0AB     lcd_gotoxy.@SCRATCH1
@@ -27,30 +27,35 @@
 0AD     lcd_send_byte.n
 0AE     lcd_send_byte.@SCRATCH1
 0AF     lcd_send_nibble.nibble
+F80     PORTA
+F81     PORTB
+F82     PORTC
 F83     PSP_DATA
+F83     PORTD
+F84     PORTE
 FB4.6   C1OUT
 FB4.7   C2OUT
-FBB     CCP_2_LOW
 FBB     CCP_2
+FBB     CCP_2_LOW
 FBC     CCP_2_HIGH
-FBE     CCP_1_LOW
 FBE     CCP_1
+FBE     CCP_1_LOW
 FBF     CCP_1_HIGH
 FE1-FE2 @WRITE_PACKED_MEMORY.P1
 FE1-FE2 @READ_PACKED_MEMORY.P2
-FE9-FEA @READ_PROGRAM_MEMORY.P1
-FE9-FEA @READ_PACKED_MEMORY.P2
-FE9-FEA @WRITE_PROGRAM_MEMORY.P3
-FE9-FEA @WRITE_PACKED_MEMORY.P4
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @WRITE_PACKED_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
+FE9-FEA @READ_PROGRAM_MEMORY.P4
 FF6-FF8 @READ_PROGRAM_MEMORY.P1
 FF6-FF8 @WRITE_PROGRAM_MEMORY.P2
 
 ROM Allocation:
 000004  LCD_INIT_STRING.call
 000014  LCD_INIT_STRING.data
-000018  @const665.call
-00001A  @const667.call
-00001C  @const668.call
+000018  @const670.call
+00001A  @const672.call
+00001C  @const673.call
 00001E  @delay_ms1
 00004A  lcd_send_nibble
 00009A  lcd_send_byte
@@ -66,12 +71,12 @@ Project Directory:
     F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi7\Askisi7.1\
 
 Project Files:
-    ask7_1_solved.c                                         [08-Ìבת-25 23:03  CRC=BD68DC80]
+    ask7_1_solved.c                                         [14-Ìבת-25 23:29  CRC=348809D9]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Ìבס-20 14:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Áץד-13 16:40  CRC=A157EDDE]
     flex_lcd_sim.h                                          [08-Áנס-20 01:05  CRC=DB6A762E]
 
-Source signature=67617A29
+Source signature=DE80A782
 
 Units:
     ask7_1_solved (main)

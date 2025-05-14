@@ -46,7 +46,7 @@ void main() {
    flag = 1;
    counter = 0;
    while(TRUE){
-      while (input(PIN_D1) == 1) {
+      while (bit_test(PIN_D1)) {
       }
       while(i < sizeof(Message)) {
          while((Message[i]!=32) && (i < sizeof(Message))) {

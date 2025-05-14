@@ -1,16 +1,20 @@
-CCS PCH C Compiler, Version 5.011, 5967               08-Ìבת-25 23:03
+CCS PCH C Compiler, Version 5.011, 5967               14-Ìבת-25 23:29
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi7\Askisi7.1\ask7_1_solved.lst
 
-               ROM used:   1058 bytes (3%)
-                           Largest free fragment is 31710
-               RAM used:   166 (8%) at main() level
+               ROM used:   1070 bytes (3%)
+                           Largest free fragment is 31698
+               RAM used:   165 (8%) at main() level
                            176 (9%) worst case
                Stack used: 5 locations
                Stack size: 31
 
 *
 0000:  GOTO   01B6
+.................... // DIPAE - Enosmatomena Systimata - 6o Eksamino 
+.................... // Alevropoulos Panagiotis 
+.................... // AM: 2022005 
+.................... // Askisi: 7.1 
 .................... #include <main_.h> 
 .................... #include <18F4550.h> 
 .................... //////// Standard Header file for the PIC18F4550 device //////////////// 
@@ -440,6 +444,19 @@ CCS PCH C Compiler, Version 5.011, 5967               08-Ìבת-25 23:03
 .................... //------------------------------ 
 ....................  
 ....................  
+....................  
+.................... // Standard Eisodoi & Eksodoi 
+.................... #use standard_io (A)    
+.................... #use standard_io (B) 
+.................... #use standard_io (C) 
+....................  
+.................... // Orismos ton thiron me ti thesi tous sti mnimi 
+.................... #byte PORTA = 0xF80 
+.................... #byte PORTB = 0xF81 
+.................... #byte PORTC = 0xF82 
+.................... #byte PORTD = 0xF83 
+.................... #byte PORTE = 0xF84 
+....................  
 .................... int8 flag=1; 
 .................... int8 k=0; 
 .................... int8 j=0; 
@@ -583,242 +600,251 @@ CCS PCH C Compiler, Version 5.011, 5967               08-Ìבת-25 23:03
 02A4:  BRA    0278
 02A6:  BRA    029A
 02A8:  CLRF   FF8
-02AA:  CLRF   xA4
+....................    set_tris_d(0xff); // Orismos PORTD san EISODO (1) 
+02AA:  MOVLW  FF
+02AC:  MOVWF  F95
 ....................    int8 i=0; 
+02AE:  CLRF   xA4
 ....................    lcd_init(); 
-02AC:  RCALL  00D6
+02B0:  RCALL  00D6
 ....................    printf(lcd_putc,"\f"); 
-02AE:  MOVLW  0C
-02B0:  MOVWF  xA7
-02B2:  RCALL  0154
+02B2:  MOVLW  0C
+02B4:  MOVWF  xA7
+02B6:  RCALL  0154
 ....................    flag = 1; 
-02B4:  MOVLW  01
-02B6:  MOVWF  04
+02B8:  MOVLW  01
+02BA:  MOVWF  04
 ....................    counter = 0; 
-02B8:  CLRF   0A
+02BC:  CLRF   0A
 ....................    while(TRUE){ 
+....................       while (input(PIN_D1) == 1) { 
+02BE:  BSF    F95.1
+02C0:  BTFSS  F83.1
+02C2:  BRA    02C6
+02C4:  BRA    02BE
+....................       } 
 ....................       while(i < sizeof(Message)) { 
-02BA:  MOVF   xA4,W
-02BC:  SUBLW  98
-02BE:  BTFSS  FD8.0
-02C0:  BRA    040C
+02C6:  MOVF   xA4,W
+02C8:  SUBLW  98
+02CA:  BTFSS  FD8.0
+02CC:  BRA    0418
 ....................          while((Message[i]!=32) && (i < sizeof(Message))) { 
-02C2:  CLRF   03
-02C4:  MOVF   xA4,W
-02C6:  ADDLW  0B
-02C8:  MOVWF  FE9
-02CA:  MOVLW  00
-02CC:  ADDWFC 03,W
-02CE:  MOVWF  FEA
-02D0:  MOVF   FEF,W
-02D2:  SUBLW  20
-02D4:  BZ    02E0
-02D6:  MOVF   xA4,W
-02D8:  SUBLW  98
-02DA:  BNC   02E0
+02CE:  CLRF   03
+02D0:  MOVF   xA4,W
+02D2:  ADDLW  0B
+02D4:  MOVWF  FE9
+02D6:  MOVLW  00
+02D8:  ADDWFC 03,W
+02DA:  MOVWF  FEA
+02DC:  MOVF   FEF,W
+02DE:  SUBLW  20
+02E0:  BZ    02EC
+02E2:  MOVF   xA4,W
+02E4:  SUBLW  98
+02E6:  BNC   02EC
 ....................             i++; 
-02DC:  INCF   xA4,F
-02DE:  BRA    02C2
+02E8:  INCF   xA4,F
+02EA:  BRA    02CE
 ....................          }    
 ....................          if ((i-k) < 16) { 
-02E0:  MOVF   05,W
-02E2:  SUBWF  xA4,W
-02E4:  SUBLW  0F
-02E6:  BNC   02F0
+02EC:  MOVF   05,W
+02EE:  SUBWF  xA4,W
+02F0:  SUBLW  0F
+02F2:  BNC   02FC
 ....................             i++;    
-02E8:  INCF   xA4,F
+02F4:  INCF   xA4,F
 ....................             j=i; 
-02EA:  MOVFF  A4,06
+02F6:  MOVFF  A4,06
 ....................          } 
-02EE:  BRA    040A
+02FA:  BRA    0416
 ....................          else { 
 ....................             if (counter < 2) { // Oi protes dyo grammes tou keimenou 
-02F0:  MOVF   0A,W
-02F2:  SUBLW  01
-02F4:  BNC   035C
+02FC:  MOVF   0A,W
+02FE:  SUBLW  01
+0300:  BNC   0368
 ....................                counter++; 
-02F6:  INCF   0A,F
+0302:  INCF   0A,F
 ....................                lcd_gotoxy(1,flag); 
-02F8:  MOVLW  01
-02FA:  MOVWF  xA8
-02FC:  MOVFF  04,A9
-0300:  RCALL  0132
+0304:  MOVLW  01
+0306:  MOVWF  xA8
+0308:  MOVFF  04,A9
+030C:  RCALL  0132
 ....................                for(g = k; g < j; g++) { 
-0302:  MOVFF  05,07
-0306:  MOVF   06,W
-0308:  SUBWF  07,W
-030A:  BC    0328
+030E:  MOVFF  05,07
+0312:  MOVF   06,W
+0314:  SUBWF  07,W
+0316:  BC    0334
 ....................                   lcd_putc(Message[g]); 
-030C:  CLRF   03
-030E:  MOVF   07,W
-0310:  ADDLW  0B
-0312:  MOVWF  FE9
-0314:  MOVLW  00
-0316:  ADDWFC 03,W
-0318:  MOVWF  FEA
-031A:  MOVFF  FEF,A5
-031E:  MOVFF  A5,A7
-0322:  RCALL  0154
-0324:  INCF   07,F
-0326:  BRA    0306
+0318:  CLRF   03
+031A:  MOVF   07,W
+031C:  ADDLW  0B
+031E:  MOVWF  FE9
+0320:  MOVLW  00
+0322:  ADDWFC 03,W
+0324:  MOVWF  FEA
+0326:  MOVFF  FEF,A5
+032A:  MOVFF  A5,A7
+032E:  RCALL  0154
+0330:  INCF   07,F
+0332:  BRA    0312
 ....................                } 
 ....................                for(g = 0; g < (16-(j-k)); g++) { 
-0328:  CLRF   07
-032A:  MOVF   05,W
-032C:  SUBWF  06,W
-032E:  XORLW  FF
-0330:  ADDLW  11
-0332:  SUBWF  07,W
-0334:  BC    0344
+0334:  CLRF   07
+0336:  MOVF   05,W
+0338:  SUBWF  06,W
+033A:  XORLW  FF
+033C:  ADDLW  11
+033E:  SUBWF  07,W
+0340:  BC    0350
 ....................                 lcd_putc(" "); 
-0336:  MOVLW  18
-0338:  MOVWF  FF6
-033A:  MOVLW  00
-033C:  MOVWF  FF7
-033E:  RCALL  0196
-0340:  INCF   07,F
-0342:  BRA    032A
+0342:  MOVLW  18
+0344:  MOVWF  FF6
+0346:  MOVLW  00
+0348:  MOVWF  FF7
+034A:  RCALL  0196
+034C:  INCF   07,F
+034E:  BRA    0336
 ....................                } 
 ....................                flag=2; 
-0344:  MOVLW  02
-0346:  MOVWF  04
+0350:  MOVLW  02
+0352:  MOVWF  04
 ....................                s=k; 
-0348:  MOVFF  05,08
+0354:  MOVFF  05,08
 ....................                f=j; 
-034C:  MOVFF  06,09
+0358:  MOVFF  06,09
 ....................                k=j; 
-0350:  MOVFF  06,05
+035C:  MOVFF  06,05
 ....................                delay_ms(MESSAGE_SCROLL_DELAY); 
-0354:  MOVLW  C8
-0356:  MOVWF  xA8
-0358:  RCALL  001E
+0360:  MOVLW  C8
+0362:  MOVWF  xA8
+0364:  RCALL  001E
 ....................             } 
-035A:  BRA    040A
+0366:  BRA    0416
 ....................             else { // Oi ypoloipes grammes tou keimenou 
 ....................                lcd_gotoxy(1,1); 
-035C:  MOVLW  01
-035E:  MOVWF  xA8
-0360:  MOVWF  xA9
-0362:  RCALL  0132
+0368:  MOVLW  01
+036A:  MOVWF  xA8
+036C:  MOVWF  xA9
+036E:  RCALL  0132
 ....................                for (g = s; g < f; g++) { 
-0364:  MOVFF  08,07
-0368:  MOVF   09,W
-036A:  SUBWF  07,W
-036C:  BC    038A
+0370:  MOVFF  08,07
+0374:  MOVF   09,W
+0376:  SUBWF  07,W
+0378:  BC    0396
 ....................                   lcd_putc(Message[g]); 
-036E:  CLRF   03
-0370:  MOVF   07,W
-0372:  ADDLW  0B
-0374:  MOVWF  FE9
-0376:  MOVLW  00
-0378:  ADDWFC 03,W
-037A:  MOVWF  FEA
-037C:  MOVFF  FEF,A5
-0380:  MOVFF  A5,A7
-0384:  RCALL  0154
-0386:  INCF   07,F
-0388:  BRA    0368
+037A:  CLRF   03
+037C:  MOVF   07,W
+037E:  ADDLW  0B
+0380:  MOVWF  FE9
+0382:  MOVLW  00
+0384:  ADDWFC 03,W
+0386:  MOVWF  FEA
+0388:  MOVFF  FEF,A5
+038C:  MOVFF  A5,A7
+0390:  RCALL  0154
+0392:  INCF   07,F
+0394:  BRA    0374
 ....................                } 
 ....................                for(g = 0; g <(16-(f-s)); g++) { 
-038A:  CLRF   07
-038C:  MOVF   08,W
-038E:  SUBWF  09,W
-0390:  XORLW  FF
-0392:  ADDLW  11
-0394:  SUBWF  07,W
-0396:  BC    03A6
+0396:  CLRF   07
+0398:  MOVF   08,W
+039A:  SUBWF  09,W
+039C:  XORLW  FF
+039E:  ADDLW  11
+03A0:  SUBWF  07,W
+03A2:  BC    03B2
 ....................                   lcd_putc(" "); 
-0398:  MOVLW  1A
-039A:  MOVWF  FF6
-039C:  MOVLW  00
-039E:  MOVWF  FF7
-03A0:  RCALL  0196
-03A2:  INCF   07,F
-03A4:  BRA    038C
+03A4:  MOVLW  1A
+03A6:  MOVWF  FF6
+03A8:  MOVLW  00
+03AA:  MOVWF  FF7
+03AC:  RCALL  0196
+03AE:  INCF   07,F
+03B0:  BRA    0398
 ....................                } 
 ....................                delay_ms(10); 
-03A6:  MOVLW  0A
-03A8:  MOVWF  xA8
-03AA:  RCALL  001E
+03B2:  MOVLW  0A
+03B4:  MOVWF  xA8
+03B6:  RCALL  001E
 ....................                lcd_gotoxy(1,2); 
-03AC:  MOVLW  01
-03AE:  MOVWF  xA8
-03B0:  MOVLW  02
-03B2:  MOVWF  xA9
-03B4:  RCALL  0132
+03B8:  MOVLW  01
+03BA:  MOVWF  xA8
+03BC:  MOVLW  02
+03BE:  MOVWF  xA9
+03C0:  RCALL  0132
 ....................                for (g = k; g < j; g++) { 
-03B6:  MOVFF  05,07
-03BA:  MOVF   06,W
-03BC:  SUBWF  07,W
-03BE:  BC    03DC
+03C2:  MOVFF  05,07
+03C6:  MOVF   06,W
+03C8:  SUBWF  07,W
+03CA:  BC    03E8
 ....................                   lcd_putc(Message[g]); 
-03C0:  CLRF   03
-03C2:  MOVF   07,W
-03C4:  ADDLW  0B
-03C6:  MOVWF  FE9
-03C8:  MOVLW  00
-03CA:  ADDWFC 03,W
-03CC:  MOVWF  FEA
-03CE:  MOVFF  FEF,A5
-03D2:  MOVFF  A5,A7
-03D6:  RCALL  0154
-03D8:  INCF   07,F
-03DA:  BRA    03BA
+03CC:  CLRF   03
+03CE:  MOVF   07,W
+03D0:  ADDLW  0B
+03D2:  MOVWF  FE9
+03D4:  MOVLW  00
+03D6:  ADDWFC 03,W
+03D8:  MOVWF  FEA
+03DA:  MOVFF  FEF,A5
+03DE:  MOVFF  A5,A7
+03E2:  RCALL  0154
+03E4:  INCF   07,F
+03E6:  BRA    03C6
 ....................                } 
 ....................                for(g = 0; g <(16-(j-k)); g++){ 
-03DC:  CLRF   07
-03DE:  MOVF   05,W
-03E0:  SUBWF  06,W
-03E2:  XORLW  FF
-03E4:  ADDLW  11
-03E6:  SUBWF  07,W
-03E8:  BC    03F8
+03E8:  CLRF   07
+03EA:  MOVF   05,W
+03EC:  SUBWF  06,W
+03EE:  XORLW  FF
+03F0:  ADDLW  11
+03F2:  SUBWF  07,W
+03F4:  BC    0404
 ....................                   lcd_putc(" "); 
-03EA:  MOVLW  1C
-03EC:  MOVWF  FF6
-03EE:  MOVLW  00
-03F0:  MOVWF  FF7
-03F2:  RCALL  0196
-03F4:  INCF   07,F
-03F6:  BRA    03DE
+03F6:  MOVLW  1C
+03F8:  MOVWF  FF6
+03FA:  MOVLW  00
+03FC:  MOVWF  FF7
+03FE:  RCALL  0196
+0400:  INCF   07,F
+0402:  BRA    03EA
 ....................                } 
 ....................                s=k; 
-03F8:  MOVFF  05,08
+0404:  MOVFF  05,08
 ....................                f=j; 
-03FC:  MOVFF  06,09
+0408:  MOVFF  06,09
 ....................                k=j; 
-0400:  MOVFF  06,05
+040C:  MOVFF  06,05
 ....................                delay_ms(MESSAGE_SCROLL_DELAY); 
-0404:  MOVLW  C8
-0406:  MOVWF  xA8
-0408:  RCALL  001E
+0410:  MOVLW  C8
+0412:  MOVWF  xA8
+0414:  RCALL  001E
 ....................             } 
 ....................          }    
-040A:  BRA    02BA
+0416:  BRA    02C6
 ....................       }       
 ....................       // Arxikopoiisi gia epanalipsi tou minimatos 
 ....................       k=0; 
-040C:  CLRF   05
+0418:  CLRF   05
 ....................       j=0; 
-040E:  CLRF   06
+041A:  CLRF   06
 ....................       s=0; 
-0410:  CLRF   08
+041C:  CLRF   08
 ....................       f=0; 
-0412:  CLRF   09
+041E:  CLRF   09
 ....................       counter=0; 
-0414:  CLRF   0A
+0420:  CLRF   0A
 ....................       flag=1; 
-0416:  MOVLW  01
-0418:  MOVWF  04
+0422:  MOVLW  01
+0424:  MOVWF  04
 ....................       i=0; 
-041A:  CLRF   xA4
+0426:  CLRF   xA4
 ....................       lcd_init(); 
-041C:  RCALL  00D6
-041E:  BRA    02BA
+0428:  RCALL  00D6
+042A:  BRA    02BE
 ....................    } 
 .................... } 
 ....................  
-0420:  SLEEP 
+042C:  SLEEP 
 
 Configuration Fuses:
    Word  1: 0E24   PLL5 CPUDIV1 USBDIV HSPLL NOFCMEN NOIESO

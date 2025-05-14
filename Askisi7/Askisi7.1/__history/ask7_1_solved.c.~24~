@@ -1,22 +1,5 @@
-// DIPAE - Enosmatomena Systimata - 6o Eksamino
-// Alevropoulos Panagiotis
-// AM: 2022005
-// Askisi: 7.1
 #include <main_.h>
 #include <flex_lcd_sim.h>
-
-// Standard Eisodoi & Eksodoi
-#use standard_io (A)   
-#use standard_io (B)
-#use standard_io (C)
-
-// Orismos ton thiron me ti thesi tous sti mnimi
-#byte PORTA = 0xF80
-#byte PORTB = 0xF81
-#byte PORTC = 0xF82
-#byte PORTD = 0xF83
-#byte PORTE = 0xF84
-
 int8 flag=1;
 int8 k=0;
 int8 j=0;
@@ -39,15 +22,12 @@ char Message[] = {'T','H','I','S',' ','I','S',' ','A',' ','T','E','S','T',' ',
 const int16 MESSAGE_SCROLL_DELAY = 200;
 //==========================
 void main() {
-   set_tris_d(0xff); // Orismos PORTD san EISODO (1)
    int8 i=0;
    lcd_init();
    printf(lcd_putc,"\f");
    flag = 1;
    counter = 0;
    while(TRUE){
-      while (input(PIN_D1) == 1) {
-      }
       while(i < sizeof(Message)) {
          while((Message[i]!=32) && (i < sizeof(Message))) {
             i++;
