@@ -84,7 +84,7 @@ void timer0_int(void){
    counter--; // Kathe 200 * 5 msec = 1 sec
    if (counter == 0) {
       counter = 200;
-      if (bit_test(PORTD,3) == 0) {
+      if (bit_test(PORTD,2) == 0) {
          seconds++; // Afksanei kathe 1 sec
          flag = 1;
          if (seconds > 59) {

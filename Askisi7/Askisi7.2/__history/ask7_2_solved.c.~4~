@@ -32,8 +32,8 @@ void init (void);
 void main()
 {
    init();
-   lcd_gotoxy(1,1);
-   lcd_putc("Timer:");
+   lcd_gotoxy(6,1);
+   lcd_putc("Clock");
    while (1) { 
       if (flag) {
          lcd_gotoxy(4,2);
@@ -50,8 +50,8 @@ void timer0_int(void){
    sec_set_counter--;
    if ((sec_set_counter == 0)){
       sec_set_counter = 1;
-      if ((bit_test(PORTD,3) == 1) && (bit_test(PORTD,2) == 1)) {
-         seconds++; // Afksanei kathe 1/10 sec
+      if ((bit_test(PORTD,2) == 1) && (bit_test(PORTD,0) == 1)) {
+         seconds++; // Αυξάνει κάθε 1/10 sec
          flag = 1;
          if (seconds > 59) {
             seconds = 0;
@@ -65,14 +65,14 @@ void timer0_int(void){
             }
          }
       }
-      if((bit_test(PORTD,3) == 1) && (bit_test(PORTD,1) == 1)) {
+      if((bit_test(PORTD,2) == 1) && (bit_test(PORTD,1) == 1)) {
          seconds--;
          flag = 1;
          if (seconds > 59) {
             seconds = 59;
             minute--;
          }
-         if (minute > 59) { // Meionei kathe 1 sec
+         if (minute > 59) { // Μειώνει κάθε 1 sec
             minute = 59;
             hour--;
          }
@@ -81,11 +81,11 @@ void timer0_int(void){
          }               
       }   
    }
-   counter--; // Kathe 200 * 5 msec = 1 sec
+   counter--; // Κάθε 200 * 5 msec  = 1 sec
    if (counter == 0) {
       counter = 200;
-      if (bit_test(PORTD,3) == 0) {
-         seconds++; // Afksanei kathe 1 sec
+      if (bit_test(PORTD,2) == 0) {
+         seconds++; // Αυξάνει κάθε 1 sec
          flag = 1;
          if (seconds > 59) {
             seconds = 0;
@@ -113,8 +113,8 @@ void init (void) {
    des =0;
    flag = 0;
    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_1 );
-   set_timer0(5536);   //  Arxiki timi tou hardware metriti 
-   enable_interrupts(GLOBAL); // Energopoiisi ton interrupts genika
-   enable_interrupts(INT_TIMER0);
+   set_timer0(5536);   //  Αρχική τιμή του  hardware μετρητή 
+   enable_interrupts(INT_TIMER0); // Ενεργοποίηση της                             // διακοπής του timer0
+   enable_interrupts(GLOBAL);       // Ενεργοποίηση του γενικού                         // διακόπτη των διακοπών
 }
 

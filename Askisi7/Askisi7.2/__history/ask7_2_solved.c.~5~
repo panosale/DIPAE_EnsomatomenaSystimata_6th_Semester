@@ -50,8 +50,8 @@ void timer0_int(void){
    sec_set_counter--;
    if ((sec_set_counter == 0)){
       sec_set_counter = 1;
-      if ((bit_test(PORTD,3) == 1) && (bit_test(PORTD,2) == 1)) {
-         seconds++; // Afksanei kathe 1/10 sec
+      if ((bit_test(PORTD,2) == 1) && (bit_test(PORTD,0) == 1)) {
+         seconds++; // Αυξάνει κάθε 1/10 sec
          flag = 1;
          if (seconds > 59) {
             seconds = 0;
@@ -65,7 +65,7 @@ void timer0_int(void){
             }
          }
       }
-      if((bit_test(PORTD,3) == 1) && (bit_test(PORTD,1) == 1)) {
+      if((bit_test(PORTD,2) == 1) && (bit_test(PORTD,1) == 1)) {
          seconds--;
          flag = 1;
          if (seconds > 59) {
@@ -84,7 +84,7 @@ void timer0_int(void){
    counter--; // Kathe 200 * 5 msec = 1 sec
    if (counter == 0) {
       counter = 200;
-      if (bit_test(PORTD,3) == 0) {
+      if (bit_test(PORTD,2) == 0) {
          seconds++; // Afksanei kathe 1 sec
          flag = 1;
          if (seconds > 59) {
