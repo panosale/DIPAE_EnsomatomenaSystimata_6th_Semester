@@ -13,12 +13,12 @@ Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  188    30  41  ask7_3_solved.c
+  186    30  41  ask7_3_solved.c
    67     0   0  C:\Program Files (x86)\PICC\Devices\main_.h
   821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
   144    44  59  flex_lcd_sim.h
 ----- -----
- 1220    74 Total
+ 1218    74 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
@@ -30,23 +30,23 @@ Page ROM  %  RAM   Vol Diff  Functions:
 0     34   2    4   186  5.5  lcd_gotoxy
 0     66   4    1   291  3.0  lcd_putc
 0    170  11    2   808  4.3  MAIN
-0     16   1    0   838  4.3  @const655
+0     16   1    0             @const655
 0     34   2    2             @PSTRINGC_646
-0     80   5    0   201  4.5  @const663
+0     80   5    0             @const663
 0     60   4    2   201  4.5  lcd_load_custom_chars
- Inline         0   201  4.5  @cinit1
+ Inline         0             @cinit1
 
 Program metrics:
-    Functions               10
+    Functions               7
     Statements              74
-    Comments                338
-    Volume (V)              5771
-    Difficulty (D)          41.8
-    Effort to implement (E) 240948
-    Time to implement (T)   3 hours, 43 minutes
+    Comments                336
+    Volume (V)              3639
+    Difficulty (D)          27.8
+    Effort to implement (E) 101272
+    Time to implement (T)   1 hours, 34 minutes
     Est Delivered Bugs (B)  1
-    Cyclomatic Complexity   15
-    Maintainability (MI)    125
+    Cyclomatic Complexity   11
+    Maintainability (MI)    52
 
  Segment     Used  Free
 -----------  ----  ----

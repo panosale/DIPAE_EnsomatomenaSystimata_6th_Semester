@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.011, 5967               15-Ìבת-25 00:12
+CCS PCH C Compiler, Version 5.011, 5967               15-Ìבת-25 00:16
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi7\Askisi7.3\ask7_3_solved.lst
 
@@ -525,8 +525,6 @@ CCS PCH C Compiler, Version 5.011, 5967               15-Ìבת-25 00:12
 .................... // backslash to display a custom char with printf. 
 .................... // The \f clears the LCD before displaying anything. 
 ....................  
-....................    //lcd_putc(Greek_Gamma); 
-....................    //printf(lcd_putc, "\001\002\003\004\005\006\007 \n"); 
 ....................    printf(lcd_putc, "A\003EYPO\005OY\003O\006 \n"); 
 0266:  MOVLW  68
 0268:  MOVWF  FF6

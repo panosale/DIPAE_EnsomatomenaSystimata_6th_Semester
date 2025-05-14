@@ -1,9 +1,8 @@
-C L "lcd_load_custom_chars" 0 16 1 "FUNCTION"
-D G "__PCH__" 0 189 ""5.011""
-D G "__DEVICE__" 0 189 "4550"
-D G "__DATE__" 0 189 ""15-Ìבת-25""
-D G "__TIME__" 0 189 ""00:12:10"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
-c L "set_tris_a" 0 16 3 "FUNCTION"
+D G "__PCH__" 0 0 ""5.011""
+D G "__DEVICE__" 0 0 ""
+D G "__DATE__" 0 0 ""15-Ìבת-25""
+D G "__TIME__" 0 0 ""00:16:44"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
+c L "set_tris_a" 0 0 3 "FUNCTION"
 c L "set_tris_a" 2 1 22 "FUNCTION"
 v L "value" 2 36 "int8" `54 
 f B "set_tris_a" 2 36 "void(int8 value)" `53 
@@ -957,7 +956,7 @@ C L "lcd_load_custom_chars" 0 16 1 "FUNCTION"
 f G "lcd_load_custom_chars" 0 17 "void(int8 c)" `650  ""
 F G "MAIN" 0 21 "void()" `651 
 V L "i" 0 22 "int8" `652 
-C L "MAIN" 0 16 5 "FUNCTION"
+C L "MAIN" 0 16 3 "FUNCTION"
 C L "MAIN" 0 16 1 "FUNCTION"
 C L "MAIN" 0 16 1 "FUNCTION"
 C L "MAIN" 0 16 1 "FUNCTION"
@@ -968,9 +967,9 @@ C L "MAIN" 0 16 1 "FUNCTION"
 C L "MAIN" 0 16 1 "FUNCTION"
 C L "MAIN" 0 16 1 "FUNCTION"
 C L "MAIN" 0 16 1 "FUNCTION"
-V G "lcd_custom_chars" 0 94 "[1]" `663  "Char Number 0 -- Greek_Gamma"
-F G "lcd_load_custom_chars" 0 176 "void()" `650 
-V L "i" 0 177 "int8" `666  "Set address counter pointing to CGRAM address 0."
+V G "lcd_custom_chars" 0 92 "[1]" `663  "Char Number 0 -- Greek_Gamma"
+F G "lcd_load_custom_chars" 0 174 "void()" `650 
+V L "i" 0 175 "int8" `666  "Set address counter pointing to CGRAM address 0."
 C L "lcd_load_custom_chars" 0 16 3 "FUNCTION"
 C L "lcd_load_custom_chars" 0 16 1 "FUNCTION"
 C L "lcd_load_custom_chars" 0 16 1 "FUNCTION"
