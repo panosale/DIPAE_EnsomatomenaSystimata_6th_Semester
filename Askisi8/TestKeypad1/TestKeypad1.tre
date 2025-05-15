@@ -1,0 +1,10 @@
+ÀÄTestKeypad1
+   ÀÄMAIN  0/50  Ram=1
+      ÃÄ@cinit1  (Inline)  Ram=0
+      ÃÄinit  0/10  Ram=0
+      ÃÄkbd_init  0/14  Ram=0
+      ÀÄkbd_getc  0/226  Ram=4
+         ÃÄ@goto10597  0/34  Ram=0
+         ÃÄALL_ROWS  0/56  Ram=1
+         ÃÄALL_ROWS  0/56  Ram=1
+         ÀÄ@const634  0/32  Ram=0

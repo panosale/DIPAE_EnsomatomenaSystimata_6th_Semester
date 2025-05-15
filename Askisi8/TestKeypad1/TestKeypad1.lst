@@ -1,0 +1,476 @@
+CCS PCH C Compiler, Version 5.011, 5967               15-Ìבת-25 21:06
+
+               Filename:   D:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi8\TestKeypad1\TestKeypad1.lst
+
+               ROM used:   426 bytes (1%)
+                           Largest free fragment is 32342
+               RAM used:   9 (0%) at main() level
+                           13 (1%) worst case
+               Stack used: 2 locations
+               Stack size: 31
+
+*
+0000:  GOTO   0178
+.................... #include <main_.h> 
+.................... #include <18F4550.h> 
+.................... //////// Standard Header file for the PIC18F4550 device //////////////// 
+.................... #device PIC18F4550 
+0004:  CLRF   FF7
+0006:  ADDLW  14
+0008:  MOVWF  FF6
+000A:  MOVLW  00
+000C:  ADDWFC FF7,F
+000E:  TBLRD*+
+0010:  MOVF   FF5,W
+0012:  RETURN 0
+0014:  DATA 37,38
+0016:  DATA 39,43
+0018:  DATA 34,35
+001A:  DATA 36,42
+001C:  DATA 31,32
+001E:  DATA 33,41
+0020:  DATA 2A,30
+0022:  DATA 3D,44
+*
+0156:  ADDWF  FE8,W
+0158:  CLRF   FF7
+015A:  RLCF   FF7,F
+015C:  ADDLW  71
+015E:  MOVWF  FF6
+0160:  MOVLW  01
+0162:  ADDWFC FF7,F
+0164:  TBLRD*-
+0166:  MOVF   FF5,W
+0168:  MOVWF  FFA
+016A:  TBLRD*
+016C:  MOVF   FF5,W
+016E:  MOVWF  FF9
+0170:  DATA 8C,00
+0172:  DATA 9E,00
+0174:  DATA B0,00
+0176:  DATA C2,00
+....................  
+.................... #list 
+....................  
+.................... #device adc=10 
+....................  
+.................... #FUSES NOWDT                     //No Watch Dog Timer 
+.................... #FUSES WDT32768                    //Watch Dog Timer uses 1:128 Postscale 
+.................... #FUSES HSPLL                     //High Speed Crystal/Resonator with PLL enabled 
+.................... #FUSES NOPROTECT                 //Code not protected from reading 
+.................... #FUSES BROWNOUT                //No brownout reset 
+.................... //#FUSES BORV20                    //Brownout reset at 2.0V 
+.................... #FUSES NOPUT                     //No Power Up Timer 
+.................... #FUSES NOCPD                     //No EE protection 
+.................... #FUSES STVREN                    //Stack full/underflow will cause reset 
+.................... #FUSES NODEBUG                   //No Debug mode for ICD 
+.................... #FUSES NOLVP                     //No low voltage prgming, B3(PIC16) or B5(PIC18) used for I/O 
+.................... #FUSES NOWRT                     //Program memory not write protected 
+.................... #FUSES NOWRTD                    //Data EEPROM not write protected 
+.................... #FUSES NOIESO                      //Internal External Switch Over mode enabled 
+.................... #FUSES NOFCMEN                     //Fail-safe clock monitor enabled 
+.................... #FUSES NOPBADEN                 ///PORTB pins are configured as analog input channels on RESET 
+.................... #FUSES NOWRTC                    //configuration not registers write protected 
+.................... #FUSES NOWRTB                    //Boot block not write protected 
+.................... #FUSES NOEBTR                    //Memory not protected from table reads 
+.................... #FUSES NOEBTRB                   //Boot block not protected from table reads 
+.................... #FUSES NOCPB                     //No Boot Block code protection 
+.................... #FUSES MCLR                      //Master Clear pin enabled 
+.................... #FUSES NOLPT1OSC                   //Timer1 configured for low-power operation 
+.................... #FUSES NOXINST                   //Extended set extension and Indexed Addressing mode disabled (Legacy mode) 
+.................... #FUSES PLL5                      //Divide By 12(48MHz oscillator input) 
+.................... #FUSES CPUDIV1                   //System Clock by 2 
+.................... #FUSES USBDIV                    //USB clock source comes from PLL divide by 2 
+.................... #FUSES VREGEN                    //USB voltage regulator enabled 
+.................... //#FUSES ICPRT                     //ICPRT enabled 
+.................... #FUSES WRTB 
+.................... #FUSES NOICPRT  
+.................... #FUSES NOLPT1OSC 
+.................... #FUSES CCP2B3  
+.................... #FUSES NOCPB 
+.................... #FUSES NOCPD 
+.................... #FUSES NOWRTC 
+.................... #FUSES NOWRTD 
+.................... #FUSES NOEBTR 
+.................... #FUSES NOEBTRB               
+....................  
+.................... /* systm clock is 48 MHz */ 
+.................... #use delay(clock=48000000,RESTART_WDT) 
+.................... /* --- BEGIN: changes required for bootloader ------------------------------ */ 
+....................  
+.................... /* ------------------------------------------------------------------------- */ 
+.................... /* map reset vector and interrupt vector                                     */ 
+.................... /* 0x000-0x7FF is used by the bootloader. The bootloader maps the original   */ 
+.................... /* reset vecotr (0x000) to 0x800 and the reset vector (0x008) to 0x800.      */ 
+.................... /* ------------------------------------------------------------------------- */ 
+.................... //#build (reset=0x800, interrupt=0x808) 
+....................  
+.................... /* ------------------------------------------------------------------------- */ 
+.................... /* reserve boot block area                                                   */ 
+.................... /* This memory range is used by the bootloader, so the application must not  */ 
+.................... /* use this area.                                                            */ 
+.................... /* ------------------------------------------------------------------------- */ 
+.................... //#org 0, 0x7FF {} 
+....................  
+.................... /* --- END: changes required for bootloader -------------------------------- */ 
+....................  
+....................  
+....................  
+....................  
+....................  
+.................... #include <keypad_sim.h> 
+.................... //Keypad connection: 
+.................... #define row0 PIN_B4 
+.................... #define row1 PIN_B5 
+.................... #define row2 PIN_B6 
+.................... #define row3 PIN_B7 
+.................... #define col0 PIN_B0 
+.................... #define col1 PIN_B1 
+.................... #define col2 PIN_B2 
+.................... #define col3 PIN_B3 
+....................  
+.................... //------------------- Variable definition---------------------------- 
+.................... char const KEYS[4][4] = 
+.................... {{'7','8','9','C'}, 
+....................  {'4','5','6','B'}, 
+....................  {'1','2','3','A'}, 
+....................  {'*','0','=','D'}}; 
+....................  
+....................  
+.................... #define KBD_DEBOUNCE_FACTOR 200// Set this number to apx n/333 where 
+.................... // n is the number of times you expect 
+.................... // to call kbd_getc each second 
+....................  
+.................... //------------------Function Definition------------------------------ 
+.................... short int ALL_ROWS (void); 
+.................... void kbd_init(void); 
+.................... char kbd_getc(void); 
+.................... //------------------------------------------------------------------- 
+.................... void kbd_init(void) 
+.................... { 
+.................... set_tris_b(0xF0); 
+*
+002E:  MOVLW  F0
+0030:  MOVWF  F93
+.................... output_b(0x0F); 
+0032:  CLRF   F93
+0034:  MOVLW  0F
+0036:  MOVWF  F8A
+0038:  GOTO   0196 (RETURN)
+.................... } 
+.................... //----------------------------------------------------------- 
+.................... short int ALL_ROWS (void) 
+.................... { 
+.................... if(input (row0) & input (row1) & input (row2) & input (row3)) 
+003C:  BSF    F93.4
+003E:  MOVLW  00
+0040:  BTFSC  F81.4
+0042:  MOVLW  01
+0044:  MOVWF  0B
+0046:  BSF    F93.5
+0048:  MOVLW  00
+004A:  BTFSC  F81.5
+004C:  MOVLW  01
+004E:  ANDWF  0B,F
+0050:  BSF    F93.6
+0052:  MOVLW  00
+0054:  BTFSC  F81.6
+0056:  MOVLW  01
+0058:  ANDWF  0B,F
+005A:  BSF    F93.7
+005C:  MOVLW  00
+005E:  BTFSC  F81.7
+0060:  MOVLW  01
+0062:  ANDWF  0B,W
+0064:  BZ    006E
+.................... return (0); 
+0066:  MOVLW  00
+0068:  MOVWF  01
+006A:  BRA    0072
+006C:  BRA    0072
+.................... else 
+.................... return (1); 
+006E:  MOVLW  01
+0070:  MOVWF  01
+0072:  RETURN 0
+.................... } 
+....................  
+.................... //----------------------------------------------------------- 
+....................  
+.................... char kbd_getc(void) 
+.................... { 
+.................... static byte kbd_call_count; 
+.................... static short int kbd_down; 
+.................... static char last_key; 
+.................... static byte col; 
+....................  
+.................... byte kchar; 
+.................... byte row; 
+....................  
+.................... kchar='\0'; 
+0074:  CLRF   09
+....................  
+.................... if(++kbd_call_count>KBD_DEBOUNCE_FACTOR) 
+0076:  INCF   04,F
+0078:  MOVF   04,W
+007A:  SUBLW  C8
+007C:  BTFSC  FD8.0
+007E:  BRA    014E
+....................   { 
+....................       switch (col) 
+0080:  MOVF   07,W
+0082:  ADDLW  FC
+0084:  BC    00D2
+0086:  ADDLW  04
+0088:  GOTO   0156
+....................               { 
+....................                case 0: 
+....................               output_low(col0); 
+008C:  BCF    F93.0
+008E:  BCF    F8A.0
+.................... 	//delay_us(1); 
+....................               output_high(col1); 
+0090:  BCF    F93.1
+0092:  BSF    F8A.1
+.................... 	//delay_us(1); 
+....................               output_high(col2); 
+0094:  BCF    F93.2
+0096:  BSF    F8A.2
+.................... 	//delay_us(1); 
+....................               output_high(col3); 
+0098:  BCF    F93.3
+009A:  BSF    F8A.3
+.................... 	//delay_us(1); 
+....................               break; 
+009C:  BRA    00D2
+....................     
+....................               case 1: 
+....................               output_high(col0); 
+009E:  BCF    F93.0
+00A0:  BSF    F8A.0
+.................... 	//delay_us(1); 
+....................               output_low(col1); 
+00A2:  BCF    F93.1
+00A4:  BCF    F8A.1
+.................... 	//delay_us(1); 
+....................               output_high(col2); 
+00A6:  BCF    F93.2
+00A8:  BSF    F8A.2
+.................... 	//delay_us(1); 
+....................               output_high(col3); 
+00AA:  BCF    F93.3
+00AC:  BSF    F8A.3
+.................... 	//delay_us(1); 
+....................               break; 
+00AE:  BRA    00D2
+....................  
+....................                case 2: 
+....................               output_high(col0); 
+00B0:  BCF    F93.0
+00B2:  BSF    F8A.0
+.................... 	//delay_us(1); 
+....................               output_high(col1); 
+00B4:  BCF    F93.1
+00B6:  BSF    F8A.1
+.................... 	//delay_us(1); 
+....................               output_low(col2); 
+00B8:  BCF    F93.2
+00BA:  BCF    F8A.2
+.................... 	//delay_us(1); 
+....................               output_high(col3); 
+00BC:  BCF    F93.3
+00BE:  BSF    F8A.3
+.................... 	//delay_us(1); 
+....................               break; 
+00C0:  BRA    00D2
+....................  
+....................                case 3: 
+....................               output_high(col0); 
+00C2:  BCF    F93.0
+00C4:  BSF    F8A.0
+.................... 	//delay_us(1); 
+....................               output_high(col1); 
+00C6:  BCF    F93.1
+00C8:  BSF    F8A.1
+.................... 	//delay_us(1); 
+....................               output_high(col2); 
+00CA:  BCF    F93.2
+00CC:  BSF    F8A.2
+.................... 	//delay_us(1); 
+....................               output_low(col3); 
+00CE:  BCF    F93.3
+00D0:  BCF    F8A.3
+.................... 	//delay_us(1); 
+....................               break; 
+....................                } 
+....................  
+....................             if(kbd_down) 
+00D2:  BTFSS  05.0
+00D4:  BRA    00E6
+....................                  { 
+....................                   if(!ALL_ROWS()) 
+00D6:  RCALL  003C
+00D8:  MOVF   01,F
+00DA:  BNZ   00E4
+....................                        { 
+....................                        kbd_down=false; 
+00DC:  BCF    05.0
+....................                        kchar=last_key; 
+00DE:  MOVFF  06,09
+....................                        last_key='\0'; 
+00E2:  CLRF   06
+....................                           } 
+....................                  } 
+00E4:  BRA    014C
+....................          else 
+....................               { 
+....................                if(ALL_ROWS()) 
+00E6:  RCALL  003C
+00E8:  MOVF   01,F
+00EA:  BZ    0142
+....................                  { 
+....................                   if(!input (row0)) 
+00EC:  BSF    F93.4
+00EE:  BTFSC  F81.4
+00F0:  BRA    00F6
+....................                        row=0; 
+00F2:  CLRF   0A
+00F4:  BRA    0118
+....................                   else if(!input (row1)) 
+00F6:  BSF    F93.5
+00F8:  BTFSC  F81.5
+00FA:  BRA    0102
+....................                        row=1; 
+00FC:  MOVLW  01
+00FE:  MOVWF  0A
+0100:  BRA    0118
+....................                   else if(!input (row2)) 
+0102:  BSF    F93.6
+0104:  BTFSC  F81.6
+0106:  BRA    010E
+....................                        row=2; 
+0108:  MOVLW  02
+010A:  MOVWF  0A
+010C:  BRA    0118
+....................                   else if(!input (row3)) 
+010E:  BSF    F93.7
+0110:  BTFSC  F81.7
+0112:  BRA    0118
+....................                        row=3; 
+0114:  MOVLW  03
+0116:  MOVWF  0A
+....................  
+....................                   last_key =KEYS[row][col]; 
+0118:  MOVF   0A,W
+011A:  MULLW  04
+011C:  MOVF   FF3,W
+011E:  CLRF   0C
+0120:  MOVWF  0B
+0122:  CLRF   03
+0124:  MOVF   07,W
+0126:  ADDWF  0B,W
+0128:  MOVWF  01
+012A:  MOVF   0C,W
+012C:  ADDWFC 03,F
+012E:  MOVF   01,W
+0130:  MOVFF  FF2,0B
+0134:  BCF    FF2.7
+0136:  RCALL  0004
+0138:  BTFSC  0B.7
+013A:  BSF    FF2.7
+013C:  MOVWF  06
+....................                   kbd_down = true; 
+013E:  BSF    05.0
+....................                  } 
+0140:  BRA    014C
+....................             else 
+....................                     { 
+....................                ++col; 
+0142:  INCF   07,F
+....................                //delay_ms(3); 
+....................                if(col==4) 
+0144:  MOVF   07,W
+0146:  SUBLW  04
+0148:  BNZ   014C
+....................                      col=0; 
+014A:  CLRF   07
+....................                     } 
+....................              } 
+....................             kbd_call_count=0; 
+014C:  CLRF   04
+....................      } 
+....................          return(kchar); 
+014E:  MOVFF  09,01
+0152:  GOTO   0198 (RETURN)
+.................... } 
+....................  
+.................... //------------------------------------------------------------- 
+....................  
+....................  
+.................... #byte PORTB=0xf81 
+.................... #byte PORTD=0xf83 
+....................  
+.................... //------------------Function Definition------------------------------ 
+.................... void init (void); 
+.................... //------------------------------------------------------------------- 
+.................... void main() { 
+*
+0178:  CLRF   FF8
+017A:  BCF    FD0.7
+017C:  MOVF   FC1,W
+017E:  ANDLW  C0
+0180:  IORLW  0F
+0182:  MOVWF  FC1
+0184:  MOVLW  07
+0186:  MOVWF  FB4
+0188:  BCF    05.0
+018A:  CLRF   04
+018C:  BCF    05.0
+018E:  CLRF   06
+0190:  CLRF   07
+....................    char k; 
+....................    init(); 
+0192:  BRA    0024
+....................    kbd_init(); 
+0194:  BRA    002E
+....................    while(TRUE) { 
+....................       k=kbd_getc(); 
+0196:  BRA    0074
+0198:  MOVFF  01,08
+....................       if(k!=0) { // Check if key press 
+019C:  MOVF   08,F
+019E:  BZ    01A6
+....................          PORTD = k & 0x0f; 
+01A0:  MOVF   08,W
+01A2:  ANDLW  0F
+01A4:  MOVWF  F83
+....................       } 
+01A6:  BRA    0196
+....................    } 
+.................... } 
+....................  
+01A8:  SLEEP 
+.................... //----------------------------------------------------------- 
+.................... //------------------Function declaration-------------- 
+.................... //----------------------------------------------------------- 
+....................  
+.................... void init (void) { 
+....................    set_tris_d(0x00); 
+*
+0024:  MOVLW  00
+0026:  MOVWF  F95
+....................    PORTD = 0; 
+0028:  CLRF   F83
+002A:  GOTO   0194 (RETURN)
+.................... } 
+.................... //----------------------------------------------------------- 
+....................  
+
+Configuration Fuses:
+   Word  1: 0E24   PLL5 CPUDIV1 USBDIV HSPLL NOFCMEN NOIESO
+   Word  2: 1E3F   NOPUT BROWNOUT BORV21 VREGEN NOWDT WDT32768
+   Word  3: 8000   CCP2B3 NOPBADEN NOLPT1OSC MCLR
+   Word  4: 0081   STVREN NOLVP ICSP1 NOXINST NODEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: A00F   NOWRT NOWRTC WRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB

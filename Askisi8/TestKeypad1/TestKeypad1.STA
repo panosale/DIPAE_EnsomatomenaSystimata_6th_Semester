@@ -1,0 +1,52 @@
+
+ROM used:   426/32768 (1%)
+            426/32768 (1%) including unused fragments
+
+            0.4 Average locations per line
+            6.6 Average locations per statement
+
+RAM used:   9/2048 (0%) at main() level
+            13/2048 (1%) worst case
+
+Stack used: 2 worst case (2 in main + 0 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   32    10  15  TestKeypad1.c
+   67     0   0  main_.h
+  821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
+  144    55  85  keypad_sim.h
+----- -----
+ 1064    65 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     32   4    0             @const634
+0     14   2    0    37  1.1  kbd_init
+0     56   7    1   125  3.0  ALL_ROWS
+0    226  27    4  1563  8.4  kbd_getc
+0     34   4    0             @goto10597
+0     50   6    1   143  3.4  MAIN
+0     10   1    0    38  1.4  init
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               5
+    Statements              65
+    Comments                192
+    Volume (V)              2340
+    Difficulty (D)          18.2
+    Effort to implement (E) 42507
+    Time to implement (T)   39 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   15
+    Maintainability (MI)    88
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07FFE   422  32342  
+
+
+

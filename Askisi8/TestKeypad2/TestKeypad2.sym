@@ -1,0 +1,116 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     kbd_getc.kbd_call_count
+005.0   kbd_getc.kbd_down
+006     kbd_getc.last_key
+007     kbd_getc.col
+008     state
+009     N1
+00A     N2
+00B     MAIN.k
+00C     lcd_init.i
+00C     kbd_getc.kchar
+00C     @PRINTF_D_660.P1
+00C     MAIN.@SCRATCH1
+00D     @PRINTF_D_660.P1
+00D     kbd_getc.row
+00D     lcd_init.@SCRATCH1
+00E     ALL_ROWS.@SCRATCH1
+00E     kbd_getc.@SCRATCH1
+00E     @PRINTF_D_660.@SCRATCH1
+00F     kbd_getc.@SCRATCH2
+00F     @PRINTF_D_660.@SCRATCH2
+010     @PRINTF_D_660.@SCRATCH3
+011     @PRINTF_D_660.@SCRATCH4
+012     @DIV88.P1
+012     lcd_putc.c
+013     lcd_gotoxy.x
+013     @DIV88.P1
+013     @delay_ms1.P2
+014     lcd_gotoxy.y
+014     @DIV88.@SCRATCH1
+015     lcd_gotoxy.address
+016     lcd_gotoxy.@SCRATCH1
+017     lcd_send_byte.address
+018     lcd_send_byte.n
+019     lcd_send_byte.@SCRATCH1
+01A     lcd_send_nibble.nibble
+F81     PORTB
+F83     PSP_DATA
+F83     PORTD
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P1
+FE9-FEA @READ_PACKED_MEMORY.P2
+FE9-FEA @READ_PROGRAM_MEMORY.P3
+FE9-FEA @WRITE_PROGRAM_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  KEYS.call
+000014  KEYS.data
+000024  LCD_INIT_STRING.call
+000034  LCD_INIT_STRING.data
+000038  init
+000040  @delay_ms1
+00006C  lcd_send_nibble
+0000BC  lcd_send_byte
+0000F8  lcd_init
+000156  kbd_init
+000164  ALL_ROWS
+00019C  kbd_getc
+00027C  @goto10597
+00029E  @DIV88
+0002C6  lcd_gotoxy
+0002EA  lcd_putc
+00032C  @PRINTF_D_660
+0003D6  MAIN
+0003D6  @cinit1
+0003EE  @cinit2
+
+Project Directory:
+    D:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi8\TestKeypad2\
+
+Project Files:
+    TestKeypad2.c                                           [15-Ìבת-25 21:38  CRC=BE633EB8]
+    main_.h                                                 [15-Ìבת-25 20:29  CRC=51CBC36F]
+    C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Áץד-13 16:40  CRC=A157EDDE]
+    keypad_sim.h                                            [15-Ìבת-25 20:29  CRC=5F3E3A59]
+    flex_lcd_sim.h                                          [15-Ìבת-25 21:39  CRC=DB6A762E]
+
+Source signature=C79A16BA
+
+Units:
+    TestKeypad2 (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   TestKeypad2.xsym
+    Errors:      TestKeypad2.err
+    Ext Symbols: TestKeypad2.esym
+    INHX32:      TestKeypad2.hex
+    Symbols:     TestKeypad2.sym
+    List:        TestKeypad2.lst
+    Debug/COFF:  TestKeypad2.cof
+    Project:     TestKeypad2.ccspjt
+    Call Tree:   TestKeypad2.tre
+    Statistics:  TestKeypad2.STA
