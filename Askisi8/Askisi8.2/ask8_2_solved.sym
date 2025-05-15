@@ -1,0 +1,131 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     kbd_getc.kbd_call_count
+005.0   kbd_getc.kbd_down
+006     kbd_getc.last_key
+007     kbd_getc.col
+008     state
+009     N1
+00A-00D password
+00E     error_number
+00F     MAIN.k
+010     kbd_getc.kchar
+010     lcd_init.i
+010     MAIN.@SCRATCH1
+010     @PSTRINGC_660.@SCRATCH1
+011     kbd_getc.row
+011     lcd_init.@SCRATCH1
+011     @PSTRINGC_660.@SCRATCH2
+012     lcd_putc.c
+012     ALL_ROWS.@SCRATCH1
+012     kbd_getc.@SCRATCH1
+013     @delay_ms1.P1
+013     lcd_gotoxy.x
+013     kbd_getc.@SCRATCH2
+014     lcd_gotoxy.y
+015     lcd_gotoxy.address
+016     lcd_gotoxy.@SCRATCH1
+017     lcd_send_byte.address
+018     lcd_send_byte.n
+019     lcd_send_byte.@SCRATCH1
+01A     lcd_send_nibble.nibble
+F81     PORTB
+F83     PSP_DATA
+F83     PORTD
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1
+FBE     CCP_1_LOW
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PACKED_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
+FE9-FEA @WRITE_PROGRAM_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  KEYS.call
+000014  KEYS.data
+000024  LCD_INIT_STRING.call
+000034  LCD_INIT_STRING.data
+000038  @const675.call
+00004A  @const677.call
+00004C  @const678.call
+00005C  @const679.call
+00005E  @const680.call
+000070  @const681.call
+000072  @const682.call
+000082  @const683.call
+000084  @const684.call
+000096  @const685.call
+000098  @const686.call
+0000A8  @const687.call
+0000AA  @const688.call
+0000BC  @const689.call
+0000BE  @const690.call
+0000C0  @const691.call
+0000D2  @const692.call
+0000D4  @const693.call
+0000E6  @const694.call
+0000F6  @const695.call
+0000F8  @const696.call
+00010A  init
+000122  @delay_ms1
+00014E  lcd_send_nibble
+00019E  lcd_send_byte
+0001DA  lcd_init
+000238  kbd_init
+000246  lcd_gotoxy
+000268  lcd_putc
+0002AA  @PSTRINGC_660
+0002CA  ALL_ROWS
+000302  kbd_getc
+0003E2  @goto10597
+000404  @cinit1
+000404  MAIN
+00041C  @cinit2
+000734  @goto10839
+
+Project Directory:
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi8\Askisi8.2\
+
+Project Files:
+    ask8_2_solved.c                                         [15-Μαϊ-25 23:52  CRC=0B1B7B20]
+    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 14:55  CRC=51CBC36F]
+    C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 16:40  CRC=A157EDDE]
+    keypad_sim.h                                            [08-Απρ-20 00:49  CRC=5F3E3A59]
+    flex_lcd_sim.h                                          [29-Απρ-20 16:04  CRC=DB6A762E]
+
+Source signature=14525322
+
+Units:
+    ask8_2_solved (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   ask8_2_solved.xsym
+    Errors:      ask8_2_solved.err
+    Ext Symbols: ask8_2_solved.esym
+    INHX32:      ask8_2_solved.hex
+    Symbols:     ask8_2_solved.sym
+    List:        ask8_2_solved.lst
+    Debug/COFF:  ask8_2_solved.cof
+    Project:     ask8_2_solved.ccspjt
+    Call Tree:   ask8_2_solved.tre
+    Statistics:  ask8_2_solved.STA

@@ -1,0 +1,54 @@
+
+ROM used:   796/32768 (2%)
+            796/32768 (2%) including unused fragments
+
+            0.7 Average locations per line
+            8.1 Average locations per statement
+
+RAM used:   19/2048 (1%) at main() level
+            24/2048 (1%) worst case
+
+Stack used: 2 worst case (2 in main + 0 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   79    43  44  ask8_1_solved.c
+   67     0   0  C:\Program Files (x86)\PICC\Devices\main_.h
+  821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
+  144    55  56  keypad_sim.h
+----- -----
+ 1111    98 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     44   3    1             @delay_ms1
+0     32   2    0             @const634
+0     14   1    0    37  1.1  kbd_init
+0     56   4    1   125  3.0  ALL_ROWS
+0    224  14    4  1563  8.4  kbd_getc
+0     34   2    0             @goto10597
+0    348  22    5  1252  8.0  MAIN
+0     30   2    5             @MUL1616
+0     10   1    0    38  1.4  init
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               5
+    Statements              98
+    Comments                217
+    Volume (V)              3765
+    Difficulty (D)          22.3
+    Effort to implement (E) 84037
+    Time to implement (T)   1 hours, 18 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   18
+    Maintainability (MI)    52
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-07FFE   792  31972  
+
+
+

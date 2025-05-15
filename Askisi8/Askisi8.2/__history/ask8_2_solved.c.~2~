@@ -1,0 +1,162 @@
+// DIPAE - Enosmatomena Systimata - 6o Eksamino
+// Alevropoulos Panagiotis
+// AM: 2022005
+// Askisi: 8.2
+#include <main_.h>
+#include <keypad_sim.h> // Driver to read from the 4x4 keypad
+#include <flex_lcd_sim.h> //Driver to display on a two lines LCD display
+#byte PORTB=0xf81
+#byte PORTD=0xf83
+//---------------------------------------------------
+//------------------- Variable definition------------------------------
+char state = 1;
+char N1 =0;
+char password[4]={1,2,3,4};
+int8 error_number=0;
+//------------------Function Definition--------------------------------
+void init (void);
+//---------------------------------------------------------------------
+void main() {
+   char k;
+   init();
+   lcd_init(); //Initialization function of the LCD display
+   kbd_init(); // Initialization of the function that reads from the keypad
+   lcd_gotoxy(1,1);
+   lcd_putc("Please enter Pas");
+   lcd_gotoxy(1,2);
+   while(TRUE) {
+      switch(state) {
+      case 1:
+         k=kbd_getc();
+         while (k!=0) {
+            lcd_putc(k);
+            delay_ms(30);
+            lcd_send_byte(0, 0x10);
+            lcd_putc("*"); // The ASCII code of the button that was 
+            N1= k & 0b00001111;
+            if (N1 == password[0]) {// check 1 number
+               state = 2;
+            }
+            else {
+               error_number++;
+               if(error_number>2) {
+                  error_number = 0;
+                  output_low(PIN_E0);
+                  delay_ms(3000);
+                  output_high(PIN_E0);
+                  lcd_putc("\f");
+                  lcd_gotoxy(1,1);
+                  lcd_putc("Please enter Pas");
+                  lcd_gotoxy(1,2);
+               }
+               state = 1;
+            }               
+            break;
+         }
+         break;
+      case 2:
+         k=kbd_getc();
+         while (k!=0) {
+            lcd_putc(k);
+            delay_ms(30);
+            lcd_send_byte(0, 0x10);
+            lcd_putc("*"); // The ASCII code of the button that was 
+            N1= k & 0b00001111;
+            if (N1 == password[1]) {// check 2 number
+               state = 3;
+            }
+            else {
+               error_number++;
+               if(error_number>2) {
+                  error_number = 0;
+                  output_low(PIN_E0);
+                  delay_ms(3000);
+                  output_high(PIN_E0);
+                  lcd_putc("\f");
+                  lcd_gotoxy(1,1);
+                  lcd_putc("Please enter Pas");
+                  lcd_gotoxy(1,2);
+               }
+               state = 1;
+            }
+            break;
+         }
+         break;
+      case 3:
+         k=kbd_getc();
+         while (k!=0) {
+            lcd_putc(k);
+            delay_ms(30);
+            lcd_send_byte(0, 0x10);
+            lcd_putc("*"); // The ASCII code of the button that was  
+            N1= k & 0b00001111;
+            if (N1 == password[2]) {// check 3 number
+               state = 4;
+            }
+            else {
+               error_number++;
+               if(error_number>2) {
+                  error_number = 0;
+                  output_low(PIN_E0);
+                  delay_ms(3000);
+                  output_high(PIN_E0);
+                  lcd_putc("\f");
+                  lcd_gotoxy(1,1);
+                  lcd_putc("Please enter Pas");
+                  lcd_gotoxy(1,2);
+               }
+               state = 1;
+            }              
+            break;
+         }
+         break;   
+      case 4:
+         k=kbd_getc();
+         while (k!=0) {
+            lcd_putc(k);
+            delay_ms(30);
+            lcd_send_byte(0, 0x10);
+            lcd_putc("*"); // The ASCII code of the button that was  
+            N1= k & 0b00001111;
+            if (N1 == password[3]) { //check 4 number
+               output_high(PIN_E1);
+               delay_ms(3000);
+               output_low(PIN_E1);              
+               state = 1;
+               lcd_putc("\f");
+               lcd_gotoxy(1,1);
+               lcd_putc("Please enter Pas");
+               lcd_gotoxy(1,2);
+            }
+            else {
+               error_number++;
+               if(error_number>2) {
+                  error_number = 0;
+                  output_low(PIN_E0);
+                  delay_ms(3000);
+                  output_high(PIN_E0);
+                  lcd_putc("\f");
+                  lcd_gotoxy(1,1);
+                  lcd_putc("Please enter Pas");
+                  lcd_gotoxy(1,2);
+               }
+               state = 1;
+            }       
+            break;
+         }
+         break;
+      }
+   }
+}
+//-----------------------------------------------------------
+//------------------Function declaration-------------
+//-----------------------------------------------------------
+void init (void) {
+   set_tris_b(0xf0);
+   set_tris_d(0x00);
+   set_tris_e(0x00);
+   output_low(PIN_E1);
+   output_high(PIN_E0);
+   PORTD = 0;
+}
+//-----------------------------------------------------------

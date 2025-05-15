@@ -1,0 +1,78 @@
+// DIPAE - Enosmatomena Systimata - 6o Eksamino
+// Alevropoulos Panagiotis
+// AM: 2022005
+// Askisi: 8.1
+
+#include <main_.h>
+#include <keypad_sim.h>
+#byte PORTB=0xf81
+#byte PORTD=0xf83
+//---------------------------------------------------
+//------------------- Variable definition------------------------------
+char state = 1;
+char N1,N2,N3;
+int16 time=0;
+//------------------Function Definition--------------------------------
+void init (void);
+//---------------------------------------------------------------------
+void main() {
+   char k;
+   init();
+   kbd_init();
+   while(TRUE) {
+      //  output_bit(PIN_D2,!(input(PIN_D1)));
+      output_bit(PIN_D2,(input(PIN_D1)));
+      switch(state) {
+         case 1:
+            k = kbd_getc();
+            while (k!=0) {
+               N1= k & 0b00001111;
+               state = 2;
+               output_high(PIN_D3);
+               delay_ms(50);
+               output_low(PIN_D3);          
+               break;
+            }
+         break;
+         case 2:
+            k = kbd_getc();
+            while (k!=0) {
+               N2= k & 0b00001111;
+               state = 3;
+               output_high(PIN_D3);
+               delay_ms(100);
+               output_low(PIN_D3);
+               break;
+            }
+         break;
+         case 3:
+            k = kbd_getc();
+            while (k!=0) {
+               N3= k & 0b00001111;
+               state = 1;
+               output_high(PIN_D3);
+               delay_ms(50);
+               output_low(PIN_D3);
+               //N1=0;
+               //N2=0;
+               //N3=0;
+               //time = 0;
+               break;
+             }
+      }  
+      time = (((int16)N1 * 100 + (int16)N2 * 10 + (int16)N3) * 1);
+      if (time > 65500) {
+         time = 65500;
+      }
+      delay_ms(time); 
+      output_bit(PIN_D2,(input(PIN_D1)));
+   }
+}
+//-----------------------------------------------------------
+//------------------Function declaration-------------
+//-----------------------------------------------------------
+void init (void) {
+   set_tris_d(0x03);
+   PORTD = 0;
+}
+//-----------------------------------------------------------

@@ -1,0 +1,19 @@
+[PROJECT]
+Target=ask8_1_solved.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.011
+Compiler=PCH
+[Target Data]
+FileList=ask8_1_solved.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[ask8_1_solved.c]
+Type=4
+[mru-list]
+1=ask8_1_solved.c
+[Opened Files]
+1=ask8_1_solved.c
+2=
+[Units]
+Count=1
+1=ask8_1_solved (main)

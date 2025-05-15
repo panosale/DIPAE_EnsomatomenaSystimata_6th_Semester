@@ -1,0 +1,95 @@
+000     @SCRATCH
+001     @SCRATCH
+001     _RETURN_
+002     @SCRATCH
+003     @SCRATCH
+004     kbd_getc.kbd_call_count
+005.0   kbd_getc.kbd_down
+006     kbd_getc.last_key
+007     kbd_getc.col
+008     state
+009     N1
+00A     N2
+00B     N3
+00C-00D time
+00E     MAIN.k
+00F     kbd_getc.kchar
+00F     MAIN.@SCRATCH1
+010     kbd_getc.row
+010     @delay_ms1.P1
+010     MAIN.@SCRATCH2
+011     ALL_ROWS.@SCRATCH1
+011     kbd_getc.@SCRATCH1
+011     MAIN.@SCRATCH3
+012     kbd_getc.@SCRATCH2
+012     MAIN.@SCRATCH4
+013-014 @MUL1616.P1
+015-016 @MUL1616.P1
+017     @MUL1616.@SCRATCH1
+F81     PORTB
+F83     PORTD
+F83     PSP_DATA
+FB4.6   C1OUT
+FB4.7   C2OUT
+FBB     CCP_2
+FBB     CCP_2_LOW
+FBC     CCP_2_HIGH
+FBE     CCP_1_LOW
+FBE     CCP_1
+FBF     CCP_1_HIGH
+FE1-FE2 @READ_PACKED_MEMORY.P1
+FE1-FE2 @WRITE_PACKED_MEMORY.P2
+FE9-FEA @WRITE_PROGRAM_MEMORY.P1
+FE9-FEA @READ_PROGRAM_MEMORY.P2
+FE9-FEA @READ_PACKED_MEMORY.P3
+FE9-FEA @WRITE_PACKED_MEMORY.P4
+FF6-FF8 @WRITE_PROGRAM_MEMORY.P1
+FF6-FF8 @READ_PROGRAM_MEMORY.P2
+
+ROM Allocation:
+000004  KEYS.call
+000014  KEYS.data
+000024  init
+00002E  kbd_init
+00003C  ALL_ROWS
+000074  kbd_getc
+000154  @goto10597
+000176  @delay_ms1
+0001A2  @MUL1616
+0001C0  MAIN
+0001C0  @cinit1
+0001D8  @cinit2
+
+Project Directory:
+    F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi8\Askisi8.1\
+
+Project Files:
+    ask8_1_solved.c                                         [15-Μαϊ-25 23:16  CRC=BE480D88]
+    C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 14:55  CRC=51CBC36F]
+    C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 16:40  CRC=A157EDDE]
+    keypad_sim.h                                            [08-Απρ-20 00:49  CRC=5F3E3A59]
+
+Source signature=6FE83387
+
+Units:
+    ask8_1_solved (main)
+
+Compiler Settings:
+    Processor:      PIC18F4550
+    Pointer Size:   16
+    ADC Range:      0-1023
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   ask8_1_solved.xsym
+    Errors:      ask8_1_solved.err
+    Ext Symbols: ask8_1_solved.esym
+    INHX32:      ask8_1_solved.hex
+    Symbols:     ask8_1_solved.sym
+    List:        ask8_1_solved.lst
+    Debug/COFF:  ask8_1_solved.cof
+    Project:     ask8_1_solved.ccspjt
+    Call Tree:   ask8_1_solved.tre
+    Statistics:  ask8_1_solved.STA
