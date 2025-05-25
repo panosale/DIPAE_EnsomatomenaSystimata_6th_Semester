@@ -1,0 +1,37 @@
+// Askisi theorias gia timer0
+#include <main_.h>
+#use standard_io ( A )
+#use standard_io ( B )
+#use standard_io ( C )
+#byte PORTA =0xF80
+#byte PORTB =0xF81
+#byte PORTC =0xF82
+#byte PORTD =0xF83
+#byte PORTE =0xF84
+
+// INTERRUPTS HANDLING
+void init(void);
+void timer0_int(void);
+
+void main()
+{
+   init();
+   while(TRUE) {
+   }
+}
+
+void init(void) {
+   set_tris_b(0x00); // Ορίζουμε τη θύρα B σαν ΕΞΟΔΟ (0)
+   PORTB = 0x00;   
+   // Arxikopoiisi interrupts
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_256);
+   enable_interrupts(GLOBAL);
+   enable_interrupts(INT_TIMER0);
+}
+
+// INTERRUPTS HANDLING
+#INT_TIMER0
+void timer0_int() {
+   PORTB = PORTB + 1;
+}
+

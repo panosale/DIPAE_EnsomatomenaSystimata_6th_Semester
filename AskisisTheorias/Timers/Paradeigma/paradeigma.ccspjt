@@ -1,0 +1,19 @@
+[PROJECT]
+Target=paradeigma.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.011
+Compiler=PCH
+[Target Data]
+FileList=paradeigma.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[paradeigma.c]
+Type=4
+[mru-list]
+1=paradeigma.c
+[Opened Files]
+1=paradeigma.c
+2=
+[Units]
+Count=1
+1=paradeigma (main)

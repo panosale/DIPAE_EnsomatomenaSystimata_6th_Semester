@@ -1,0 +1,49 @@
+
+ROM used:   200/32768 (1%)
+            200/32768 (1%) including unused fragments
+
+            0.2 Average locations per line
+            22.2 Average locations per statement
+
+RAM used:   22/2048 (1%) at main() level
+            22/2048 (1%) worst case
+
+Stack used: 2 worst case (1 in main + 1 for interrupts)
+Stack size: 31
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   38     9 100  paradeigma.c
+   67     0   0  C:\Program Files (x86)\PICC\Devices\main_.h
+  821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
+----- -----
+  926     9 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     24   6    0    27  1.0  main
+0     20   5    0   106  2.1  init
+0     10   2    0    27  1.5  timer0_int
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               3
+    Statements              9
+    Comments                166
+    Volume (V)              220
+    Difficulty (D)          5.0
+    Effort to implement (E) 1093
+    Time to implement (T)   1 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    88
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-00094   142  0  
+00096-07FFE    54  32564  
+
+
+

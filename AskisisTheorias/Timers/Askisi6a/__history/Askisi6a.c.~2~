@@ -1,0 +1,46 @@
+// Askisi 6a theorias gia timer0
+// Anavoun ta led sto PORTB kathe 200ms (20 * 10ms)
+#include <main_.h>
+#use standard_io ( A )
+#use standard_io ( B )
+#use standard_io ( C )
+#byte PORTA =0xF80
+#byte PORTB =0xF81
+#byte PORTC =0xF82
+#byte PORTD =0xF83
+#byte PORTE =0xF84
+
+// Ypologizoume me logo 1/64 tin periodo stin eisodo tou timer0
+// 10ms = 10000μσ
+// 64 * 83.33ns = 5333.12ns = 5.3312μs
+// (65536 - y) * 5.3312μs = 10000 => 65536 - y = 10000 / 5.3312 =>
+// 65536 - y = 1875 => y = 63661
+#define TIMER_INITIAL_VALUE = 63661
+// INTERRUPTS HANDLING
+void init(void);
+void timer0_int(void);
+int counter1 = 20; // Epeidi 200 = counter1 * 10
+
+void main()
+{
+   init();
+   while(TRUE) {
+   }
+}
+
+void init(void) {
+   set_tris_b(0x00); // Ορίζουμε τη θύρα B σαν ΕΞΟΔΟ (0)
+   PORTB = 0x00;   
+   // Arxikopoiisi interrupts
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_16);
+   enable_interrupts(GLOBAL);
+   enable_interrupts(INT_TIMER0);
+   set_timer0(TIMER_INITIAL_VALUE);
+}
+
+// INTERRUPTS HANDLING
+#INT_TIMER0
+void timer0_int() {
+   
+}
+

@@ -30,8 +30,8 @@ void push_button(void { // Synartisi elegxou patimatos-apeleftherosis tou BUTTON
 }
 
 void init(void) {
-   set_tris_b(0xff); // Ορίζουμε τη θύρα B σαν ΕΙΣΟΔΟ (0)
-   set_tris_d(0x00); // Ορίζουμε τη θύρα D σαν ΕΞΟΔΟ (1)
+   set_tris_b(0xff); // Ορίζουμε τη θύρα B σαν ΕΙΣΟΔΟ (1)
+   set_tris_d(0x00); // Ορίζουμε τη θύρα D σαν ΕΞΟΔΟ (0)
    PORTD = 0;   
    // Arxikopoiisi interrups
    enable_interrupts(GLOBAL);
