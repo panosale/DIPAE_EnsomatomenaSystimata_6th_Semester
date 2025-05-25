@@ -16,15 +16,15 @@ LDFLAGS=-J -D +ES -P -Z +O8 +CC +FH
 ## Processing Tools
 CC=ccsc.exe
 LD=ccsc.exe
-#  F:/Common/Programming/GitHub/DIPAE_EnsomatomenaSystimata_6th_Term/AskisisTheorias/Timers/Askisi6b/PIC18F4550/Release.hex: TOOL=LD
-#     F:/Common/Programming/GitHub/DIPAE_EnsomatomenaSystimata_6th_Term/AskisisTheorias/Timers/Askisi6b/PIC18F4550/./main.o: TOOL=CC
-#        F:/Common/Programming/GitHub/DIPAE_EnsomatomenaSystimata_6th_Term/AskisisTheorias/Timers/Askisi6b/PIC18F4550/main.c
+#  F:/Common/Programming/GitHub/DIPAE_EnsomatomenaSystimata_6th_Term/AskisisTheorias/Timers/Askisi6c/PIC18F4550/Release.hex: TOOL=LD
+#     F:/Common/Programming/GitHub/DIPAE_EnsomatomenaSystimata_6th_Term/AskisisTheorias/Timers/Askisi6c/PIC18F4550/./main.o: TOOL=CC
+#        F:/Common/Programming/GitHub/DIPAE_EnsomatomenaSystimata_6th_Term/AskisisTheorias/Timers/Askisi6c/PIC18F4550/main.c
 
 # Build tree:
 all:	Release
 
 Release:	Release.hex
-	cp "Release.hex" "F:/Common/Programming/GitHub/DIPAE_EnsomatomenaSystimata_6th_Term/AskisisTheorias/Timers/Askisi6b/PIC18F4550.hex"
+	cp "Release.hex" "F:/Common/Programming/GitHub/DIPAE_EnsomatomenaSystimata_6th_Term/AskisisTheorias/Timers/Askisi6c/PIC18F4550.hex"
 
 Release.hex:	main.o 
 	$(LD) $(LDFLAGS)  LINK="Release.hex=main.o"

@@ -1,19 +1,19 @@
 [PROJECT]
-Target=Askisi6a.hex
+Target=Askisi6c.hex
 Processor_Text=PIC18F4550
 CCSVersion=5.011
 Compiler=PCH
 [Target Data]
-FileList=Askisi6a.c
+FileList=Askisi6c.c
 [Directories]
 Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
-[Askisi6a.c]
+[Askisi6c.c]
 Type=4
 [mru-list]
-1=Askisi6a.c
+1=Askisi6c.c
 [Opened Files]
-1=Askisi6a.c
+1=Askisi6c.c
 2=
 [Units]
 Count=1
-1=Askisi6a (main)
+1=Askisi6c (main)

@@ -1,0 +1,74 @@
+// Askisi 6c theorias gia timer0
+// Allagi katastasis ton LED0, 1, 2 & kathe 100ms, 150ms, 200ms & 300ms antistoixa
+#include <main_.h>
+#use standard_io ( A )
+#use standard_io ( B )
+#use standard_io ( C )
+#byte PORTA =0xF80
+#byte PORTB =0xF81
+#byte PORTC =0xF82
+#byte PORTD =0xF83
+#byte PORTE =0xF84
+
+// Ypologizoume me logo 1/64 tin periodo stin eisodo tou timer0
+// 10ms = 10000ìó
+// 32 * 83.33ns = 2666.56ns = 2.66656ìs
+// (65536 - y) * 2.66656ìs = 50000 => 65536 - y = 50000 / 2.66656 =>
+// 65536 - y = 18750 => y = 46786
+#define TIMER_INITIAL_VALUE 46786 // H ypologismeni periodos apo ton parapano typo. 
+#define COUNTER1_VALUE 2 // Timi tou counter1 prokeimenou na ftasoume sta 100ms. 
+#define COUNTER2_VALUE 3 // Timi tou counter1 prokeimenou na ftasoume sta 150ms. 
+#define COUNTER3_VALUE 4 // Timi tou counter1 prokeimenou na ftasoume sta 200ms. 
+#define COUNTER4_VALUE 6 // Timi tou counter1 prokeimenou na ftasoume sta 300ms. 
+// INTERRUPTS HANDLING
+void init(void);
+void timer0_int(void);
+int8 counter1, counter2, counter3, counter4;
+
+void main()
+{
+   init();
+   while(TRUE) {
+   }
+}
+
+void init(void) {
+   set_tris_b(0x00); // Ïñßæïõìå ôç èýñá B óáí ÅÎÏÄÏ (0)
+   PORTB = 0x00;   
+   counter1 = COUNTER1_VALUE; // Epeidi 100 = counter1 * 10 ara counter1 = 10
+   counter2 = COUNTER1_VALUE; // Epeidi 150 = counter2 * 10 ara counter2 = 15
+   counter3 = COUNTER1_VALUE; // Epeidi 200 = counter3 * 10 ara counter3 = 20
+   counter4 = COUNTER1_VALUE; // Epeidi 300 = counter4 * 10 ara counter4 = 30
+   // Arxikopoiisi interrupts
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_64);
+   enable_interrupts(GLOBAL);
+   enable_interrupts(INT_TIMER0);
+   set_timer0(TIMER_INITIAL_VALUE);
+}
+
+// INTERRUPTS HANDLING
+#INT_TIMER0
+void timer0_int() {
+   set_timer0(TIMER_INITIAL_VALUE); // Arxikopoiisi panta tou timer0 me tin arxiki timi poy ypologisame
+   counter1--; // Meiosi to counter mexri na ginei 0 oste na ftasoume ta 200ms (20 * 10 = 200ms)
+   if (counter1 == 0) { // Otan o counter1 ginei 0, ara eftase sta 200ms
+      counter1 = COUNTER1_VALUE; // arxikopoiisi tou pali sto 20
+      PORTB = PORTB ^ 0b1; // Allagi katastasis tou led0 sto PORTB
+   }
+   counter2--; // Meiosi to counter mexri na ginei 0 oste na ftasoume ta 200ms (20 * 10 = 200ms)
+   if (counter2 == 0) { // Otan o counter1 ginei 0, ara eftase sta 200ms
+      counter2 = COUNTER2_VALUE; // arxikopoiisi tou pali sto 20
+      PORTB = PORTB ^ 0b10; // Allagi katastasis tou led1 sto PORTB
+   }
+   counter3--; // Meiosi to counter mexri na ginei 0 oste na ftasoume ta 200ms (20 * 10 = 200ms)
+   if (counter3 == 0) { // Otan o counter1 ginei 0, ara eftase sta 200ms
+      counter3 = COUNTER3_VALUE; // arxikopoiisi tou pali sto 20
+      PORTB = PORTB ^ 0b100; // Allagi katastasis tou led2 sto PORTB
+   }
+   counter4--; // Meiosi to counter mexri na ginei 0 oste na ftasoume ta 200ms (20 * 10 = 200ms)
+   if (counter4 == 0) { // Otan o counter1 ginei 0, ara eftase sta 200ms
+      counter4 = COUNTER4_VALUE; // arxikopoiisi tou pali sto 20
+      PORTB = PORTB ^ 0b1000; // Allagi katastasis tou led3 sto PORTB
+   }
+}
+

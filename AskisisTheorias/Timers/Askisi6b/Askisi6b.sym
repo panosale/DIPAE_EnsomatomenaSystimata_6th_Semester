@@ -56,14 +56,14 @@ Project Directory:
     F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\AskisisTheorias\Timers\Askisi6b\
 
 Project Files:
-    Askisi6a.c                                              [25-Ìבת-25 18:27  CRC=F5D657EE]
+    Askisi6b.c                                              [25-Ìבת-25 18:27  CRC=F5D657EE]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Ìבס-20 14:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Áץד-13 16:40  CRC=A157EDDE]
 
 Source signature=8A51F719
 
 Units:
-    Askisi6a (main)
+    Askisi6b (main)
 
 Compiler Settings:
     Processor:      PIC18F4550
@@ -74,13 +74,13 @@ Compiler Settings:
     Float,Double:   32,32
 
 Output Files:
-    XREF file:   Askisi6a.xsym
-    Errors:      Askisi6a.err
-    Ext Symbols: Askisi6a.esym
-    INHX32:      Askisi6a.hex
-    Symbols:     Askisi6a.sym
-    List:        Askisi6a.lst
-    Debug/COFF:  Askisi6a.cof
-    Project:     Askisi6a.ccspjt
-    Call Tree:   Askisi6a.tre
-    Statistics:  Askisi6a.STA
+    XREF file:   Askisi6b.xsym
+    Errors:      Askisi6b.err
+    Ext Symbols: Askisi6b.esym
+    INHX32:      Askisi6b.hex
+    Symbols:     Askisi6b.sym
+    List:        Askisi6b.lst
+    Debug/COFF:  Askisi6b.cof
+    Project:     Askisi6b.ccspjt
+    Call Tree:   Askisi6b.tre
+    Statistics:  Askisi6b.STA

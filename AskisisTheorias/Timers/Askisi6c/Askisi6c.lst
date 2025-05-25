@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.011, 5967               25-Ìáú-25 18:27
+CCS PCH C Compiler, Version 5.011, 5967               25-Ìáú-25 18:45
 
-               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\AskisisTheorias\Timers\Askisi6b\Askisi6a.lst
+               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\AskisisTheorias\Timers\Askisi6c\Askisi6c.lst
 
-               ROM used:   230 bytes (1%)
-                           Largest free fragment is 32534
-               RAM used:   23 (1%) at main() level
-                           23 (1%) worst case
+               ROM used:   276 bytes (1%)
+                           Largest free fragment is 32488
+               RAM used:   26 (1%) at main() level
+                           26 (1%) worst case
                Stack used: 2 locations (1 in main + 1 for interrupts)
                Stack size: 31
 
 *
-0000:  GOTO   00D2
+0000:  GOTO   0100
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -51,8 +51,8 @@ CCS PCH C Compiler, Version 5.011, 5967               25-Ìáú-25 18:27
 008C:  MOVFF  06,FE0
 0090:  MOVFF  05,FD8
 0094:  RETFIE 0
-.................... // Askisi 6b theorias gia timer0 
-.................... // Prostithete 1 sto PORTB kathe 200ms (20 * 10ms) 
+.................... // Askisi 6c theorias gia timer0 
+.................... // Allagi katastasis ton LED0, 1, 2 & kathe 100ms, 150ms, 200ms & 300ms antistoixa 
 .................... #include <main_.h> 
 .................... #include <18F4550.h> 
 .................... //////// Standard Header file for the PIC18F4550 device //////////////// 
@@ -137,61 +137,70 @@ CCS PCH C Compiler, Version 5.011, 5967               25-Ìáú-25 18:27
 ....................  
 .................... // Ypologizoume me logo 1/64 tin periodo stin eisodo tou timer0 
 .................... // 10ms = 10000ìó 
-.................... // 64 * 83.33ns = 5333.12ns = 5.3312ìs 
-.................... // (65536 - y) * 5.3312ìs = 10000 => 65536 - y = 10000 / 5.3312 => 
-.................... // 65536 - y = 1875 => y = 63661 
-.................... #define TIMER_INITIAL_VALUE 63661 // H ypologismeni periodos apo ton parapano typo.  
-.................... #define COUNTER1_VALUE 20 // Timi tou counter prokeimenou na ftasoume sta 200ms.  
+.................... // 32 * 83.33ns = 2666.56ns = 2.66656ìs 
+.................... // (65536 - y) * 2.66656ìs = 50000 => 65536 - y = 50000 / 2.66656 => 
+.................... // 65536 - y = 18750 => y = 46786 
+.................... #define TIMER_INITIAL_VALUE 46786 // H ypologismeni periodos apo ton parapano typo.  
+.................... #define COUNTER1_VALUE 2 // Timi tou counter1 prokeimenou na ftasoume sta 100ms.  
+.................... #define COUNTER2_VALUE 3 // Timi tou counter1 prokeimenou na ftasoume sta 150ms.  
+.................... #define COUNTER3_VALUE 4 // Timi tou counter1 prokeimenou na ftasoume sta 200ms.  
+.................... #define COUNTER4_VALUE 6 // Timi tou counter1 prokeimenou na ftasoume sta 300ms.  
 .................... // INTERRUPTS HANDLING 
 .................... void init(void); 
 .................... void timer0_int(void); 
-.................... int8 counter1; 
+.................... int8 counter1, counter2, counter3, counter4; 
 ....................  
 .................... void main() 
 *
-00D2:  CLRF   FF8
-00D4:  BCF    FD0.7
-00D6:  BSF    07.7
-00D8:  MOVF   FC1,W
-00DA:  ANDLW  C0
-00DC:  IORLW  0F
-00DE:  MOVWF  FC1
-00E0:  MOVLW  07
-00E2:  MOVWF  FB4
+0100:  CLRF   FF8
+0102:  BCF    FD0.7
+0104:  BSF    07.7
+0106:  MOVF   FC1,W
+0108:  ANDLW  C0
+010A:  IORLW  0F
+010C:  MOVWF  FC1
+010E:  MOVLW  07
+0110:  MOVWF  FB4
 .................... { 
 ....................    init(); 
-00E4:  BRA    00B2
+0112:  BRA    00DA
 ....................    while(TRUE) { 
-00E6:  BRA    00E6
+0114:  BRA    0114
 ....................    } 
 .................... } 
 ....................  
-00E8:  SLEEP 
+0116:  SLEEP 
 .................... void init(void) { 
 ....................    set_tris_b(0x00); // Ïñßæïõìå ôç èýñá B óáí ÅÎÏÄÏ (0) 
 *
-00B2:  MOVLW  00
-00B4:  MOVWF  F93
+00DA:  MOVLW  00
+00DC:  MOVWF  F93
 ....................    PORTB = 0x00;    
-00B6:  CLRF   F81
-....................    counter1 = COUNTER1_VALUE; // Epeidi 200 = counter1 * 10 ara counter1 = 20 
-00B8:  MOVLW  14
-00BA:  MOVWF  16
+00DE:  CLRF   F81
+....................    counter1 = COUNTER1_VALUE; // Epeidi 100 = counter1 * 10 ara counter1 = 10 
+00E0:  MOVLW  02
+00E2:  MOVWF  16
+....................    counter2 = COUNTER1_VALUE; // Epeidi 150 = counter2 * 10 ara counter2 = 15 
+00E4:  MOVWF  17
+....................    counter3 = COUNTER1_VALUE; // Epeidi 200 = counter3 * 10 ara counter3 = 20 
+00E6:  MOVWF  18
+....................    counter4 = COUNTER1_VALUE; // Epeidi 300 = counter4 * 10 ara counter4 = 30 
+00E8:  MOVWF  19
 ....................    // Arxikopoiisi interrupts 
 ....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_64); 
-00BC:  MOVLW  85
-00BE:  MOVWF  FD5
+00EA:  MOVLW  85
+00EC:  MOVWF  FD5
 ....................    enable_interrupts(GLOBAL); 
-00C0:  MOVLW  C0
-00C2:  IORWF  FF2,F
+00EE:  MOVLW  C0
+00F0:  IORWF  FF2,F
 ....................    enable_interrupts(INT_TIMER0); 
-00C4:  BSF    FF2.5
+00F2:  BSF    FF2.5
 ....................    set_timer0(TIMER_INITIAL_VALUE); 
-00C6:  MOVLW  F8
-00C8:  MOVWF  FD7
-00CA:  MOVLW  AD
-00CC:  MOVWF  FD6
-00CE:  GOTO   00E6 (RETURN)
+00F4:  MOVLW  B6
+00F6:  MOVWF  FD7
+00F8:  MOVLW  C2
+00FA:  MOVWF  FD6
+00FC:  GOTO   0114 (RETURN)
 .................... } 
 ....................  
 .................... // INTERRUPTS HANDLING 
@@ -199,9 +208,9 @@ CCS PCH C Compiler, Version 5.011, 5967               25-Ìáú-25 18:27
 .................... void timer0_int() { 
 ....................    set_timer0(TIMER_INITIAL_VALUE); // Arxikopoiisi panta tou timer0 me tin arxiki timi poy ypologisame 
 *
-0096:  MOVLW  F8
+0096:  MOVLW  B6
 0098:  MOVWF  FD7
-009A:  MOVLW  AD
+009A:  MOVLW  C2
 009C:  MOVWF  FD6
 ....................    counter1--; // Meiosi to counter mexri na ginei 0 oste na ftasoume ta 200ms (20 * 10 = 200ms) 
 009E:  DECF   16,F
@@ -209,14 +218,49 @@ CCS PCH C Compiler, Version 5.011, 5967               25-Ìáú-25 18:27
 00A0:  MOVF   16,F
 00A2:  BNZ   00AC
 ....................       counter1 = COUNTER1_VALUE; // arxikopoiisi tou pali sto 20 
-00A4:  MOVLW  14
+00A4:  MOVLW  02
 00A6:  MOVWF  16
-....................       PORTB = PORTB + 1; // Allagi katastasis ton led sto PORTB 
+....................       PORTB = PORTB ^ 0b1; // Allagi katastasis tou led0 sto PORTB 
 00A8:  MOVLW  01
-00AA:  ADDWF  F81,F
+00AA:  XORWF  F81,F
 ....................    } 
-00AC:  BCF    FF2.2
-00AE:  GOTO   0054
+....................    counter2--; // Meiosi to counter mexri na ginei 0 oste na ftasoume ta 200ms (20 * 10 = 200ms) 
+00AC:  DECF   17,F
+....................    if (counter2 == 0) { // Otan o counter1 ginei 0, ara eftase sta 200ms 
+00AE:  MOVF   17,F
+00B0:  BNZ   00BA
+....................       counter2 = COUNTER2_VALUE; // arxikopoiisi tou pali sto 20 
+00B2:  MOVLW  03
+00B4:  MOVWF  17
+....................       PORTB = PORTB ^ 0b10; // Allagi katastasis tou led1 sto PORTB 
+00B6:  MOVLW  02
+00B8:  XORWF  F81,F
+....................    } 
+....................    counter3--; // Meiosi to counter mexri na ginei 0 oste na ftasoume ta 200ms (20 * 10 = 200ms) 
+00BA:  DECF   18,F
+....................    if (counter3 == 0) { // Otan o counter1 ginei 0, ara eftase sta 200ms 
+00BC:  MOVF   18,F
+00BE:  BNZ   00C6
+....................       counter3 = COUNTER3_VALUE; // arxikopoiisi tou pali sto 20 
+00C0:  MOVLW  04
+00C2:  MOVWF  18
+....................       PORTB = PORTB ^ 0b100; // Allagi katastasis tou led2 sto PORTB 
+00C4:  XORWF  F81,F
+....................    } 
+....................    counter4--; // Meiosi to counter mexri na ginei 0 oste na ftasoume ta 200ms (20 * 10 = 200ms) 
+00C6:  DECF   19,F
+....................    if (counter4 == 0) { // Otan o counter1 ginei 0, ara eftase sta 200ms 
+00C8:  MOVF   19,F
+00CA:  BNZ   00D4
+....................       counter4 = COUNTER4_VALUE; // arxikopoiisi tou pali sto 20 
+00CC:  MOVLW  06
+00CE:  MOVWF  19
+....................       PORTB = PORTB ^ 0b1000; // Allagi katastasis tou led3 sto PORTB 
+00D0:  MOVLW  08
+00D2:  XORWF  F81,F
+....................    } 
+00D4:  BCF    FF2.2
+00D6:  GOTO   0054
 .................... } 
 ....................  
 

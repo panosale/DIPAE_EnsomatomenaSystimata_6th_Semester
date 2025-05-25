@@ -1,5 +1,5 @@
-// Askisi 6a theorias gia timer0
-// Anavosvinoun ta led sto PORTB kathe 200ms (20 * 10ms)
+// Askisi 6b theorias gia timer0
+// Prostithete 1 sto PORTB kathe 200ms (20 * 10ms)
 #include <main_.h>
 #use standard_io ( A )
 #use standard_io ( B )
@@ -47,7 +47,7 @@ void timer0_int() {
    counter1--; // Meiosi to counter mexri na ginei 0 oste na ftasoume ta 200ms (20 * 10 = 200ms)
    if (counter1 == 0) { // Otan o counter1 ginei 0, ara eftase sta 200ms
       counter1 = COUNTER1_VALUE; // arxikopoiisi tou pali sto 20
-      PORTB = PORTB ^ 0b11111111; // Allagi katastasis ton led sto PORTB
+      PORTB = PORTB + 1; // Allagi katastasis ton led sto PORTB
    }
 }
 

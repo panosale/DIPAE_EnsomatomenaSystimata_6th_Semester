@@ -1,0 +1,16 @@
+[PROJECT]
+Target=Askisi6b.hex
+Processor_Text=PIC18F4550
+CCSVersion=5.011
+Compiler=PCH
+[Target Data]
+FileList=Askisi6b.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[Askisi6b.c]
+Type=4
+[mru-list]
+1=Askisi6b.c
+[Units]
+Count=1
+1=Askisi6b (main)
