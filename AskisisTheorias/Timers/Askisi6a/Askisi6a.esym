@@ -1,7 +1,8 @@
-D G "__PCH__" 0 53 ""5.011""
-D G "__DEVICE__" 0 53 "4550"
-D G "__DATE__" 0 53 ""25-Ìבת-25""
-D G "__TIME__" 0 53 ""18:00:16"" "Askisi 6a theorias gia timer0"
+C L "timer0_int" 0 13 1 "FUNCTION"
+D G "__PCH__" 0 54 ""5.011""
+D G "__DEVICE__" 0 54 "4550"
+D G "__DATE__" 0 54 ""25-Ìבת-25""
+D G "__TIME__" 0 54 ""18:18:04"" "Askisi 6a theorias gia timer0"
 c L "set_tris_a" 0 13 1 "FUNCTION"
 c L "set_tris_a" 2 1 22 "FUNCTION"
 v L "value" 2 36 "int8" `54 
@@ -902,17 +903,21 @@ d G "INT_OSCF" 2 816 "0x00A080"
 d G "INT_SPP" 2 817 "0x009D80"
 d G "INT_USB" 2 818 "0x00A020"
 C L "jump_to_irs" 1 9 17 "FUNCTION"
-D G "TIMER_INITIAL_VALUE" 0 18 "63661"
+D G "TIMER_INITIAL_VALUE" 0 18 "63661" "H ypologismeni periodos apo ton parapano typo."
 C L "jump_to_irs" 0 13 1 "FUNCTION"
 f G "init" 0 20 "void()" `639 
 f G "timer0_int" 0 21 "void()" `640 
-V G "counter1" 0 22 "int8" `641  "Epeidi 200 = counter1 * 10"
+V G "counter1" 0 22 "int8" `641 
 F G "main" 0 25 "void()" `642 
 F G "init" 0 31 "void()" `639 
 C L "init" 0 13 1 "FUNCTION"
-C L "init" 0 13 1 "FUNCTION"
+C L "init" 0 13 2 "FUNCTION"
 C L "timer0_int" 0 13 1 "FUNCTION"
 F G "timer0_int" 0 44 "void()" `640 
+C L "timer0_int" 0 13 1 "FUNCTION"
+C L "timer0_int" 0 13 1 "FUNCTION"
+C L "timer0_int" 0 13 1 "FUNCTION"
+C L "timer0_int" 0 13 1 "FUNCTION"
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 1

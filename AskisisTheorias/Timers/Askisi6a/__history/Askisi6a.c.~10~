@@ -15,11 +15,11 @@
 // 64 * 83.33ns = 5333.12ns = 5.3312μs
 // (65536 - y) * 5.3312μs = 10000 => 65536 - y = 10000 / 5.3312 =>
 // 65536 - y = 1875 => y = 63661
-#define TIMER_INITIAL_VALUE 63661 // H ypologismeni periodos apo ton parapano typo. 
+#define TIMER_INITIAL_VALUE 63661
 // INTERRUPTS HANDLING
 void init(void);
 void timer0_int(void);
-int8 counter1;
+int8 counter1; // Epeidi 200 = counter1 * 10
 
 void main()
 {
@@ -31,7 +31,7 @@ void main()
 void init(void) {
    set_tris_b(0x00); // Ορίζουμε τη θύρα B σαν ΕΞΟΔΟ (0)
    PORTB = 0x00;   
-   counter1 = 20; // Epeidi 200 = counter1 * 10 ara counter1 = 20
+   counter1 = 20;
    // Arxikopoiisi interrupts
    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_64);
    enable_interrupts(GLOBAL);
@@ -42,11 +42,10 @@ void init(void) {
 // INTERRUPTS HANDLING
 #INT_TIMER0
 void timer0_int() {
-   set_timer0(TIMER_INITIAL_VALUE); // Arxikopoiisi panta tou timer0 me tin arxiki timi poy ypologisame
-   counter1--; // Meiosi to counter mexri na ginei 0 oste na ftasoume ta 200ms (20 * 10 = 200ms)
-   if (counter1 == 0) { // Otan o counter1 ginei 0, ara eftase sta 200ms
-      counter1 = 20; // arxikopoiisi tou pali sto 20
-      PORTB = PORTB + 1; // Prosthesi to 1 ston PORTB
+   counter1--;
+   if (counter1 ==0) {
+      counter1 = 20;
+      PORTB = PORTB + 1;
    }
 }
 

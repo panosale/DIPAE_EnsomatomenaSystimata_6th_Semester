@@ -1,16 +1,16 @@
-CCS PCH C Compiler, Version 5.011, 5967               25-Ìáú-25 18:00
+CCS PCH C Compiler, Version 5.011, 5967               25-Ìáú-25 18:18
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\AskisisTheorias\Timers\Askisi6a\Askisi6a.lst
 
-               ROM used:   222 bytes (1%)
-                           Largest free fragment is 32542
+               ROM used:   230 bytes (1%)
+                           Largest free fragment is 32534
                RAM used:   23 (1%) at main() level
                            23 (1%) worst case
                Stack used: 2 locations (1 in main + 1 for interrupts)
                Stack size: 31
 
 *
-0000:  GOTO   00CA
+0000:  GOTO   00D2
 *
 0008:  MOVWF  04
 000A:  MOVFF  FD8,05
@@ -140,77 +140,82 @@ CCS PCH C Compiler, Version 5.011, 5967               25-Ìáú-25 18:00
 .................... // 64 * 83.33ns = 5333.12ns = 5.3312ìs 
 .................... // (65536 - y) * 5.3312ìs = 10000 => 65536 - y = 10000 / 5.3312 => 
 .................... // 65536 - y = 1875 => y = 63661 
-.................... #define TIMER_INITIAL_VALUE 63661 
+.................... #define TIMER_INITIAL_VALUE 63661 // H ypologismeni periodos apo ton parapano typo.  
 .................... // INTERRUPTS HANDLING 
 .................... void init(void); 
 .................... void timer0_int(void); 
-.................... int8 counter1; // Epeidi 200 = counter1 * 10 
+.................... int8 counter1; 
 ....................  
 .................... void main() 
 *
-00CA:  CLRF   FF8
-00CC:  BCF    FD0.7
-00CE:  BSF    07.7
-00D0:  MOVF   FC1,W
-00D2:  ANDLW  C0
-00D4:  IORLW  0F
-00D6:  MOVWF  FC1
-00D8:  MOVLW  07
-00DA:  MOVWF  FB4
+00D2:  CLRF   FF8
+00D4:  BCF    FD0.7
+00D6:  BSF    07.7
+00D8:  MOVF   FC1,W
+00DA:  ANDLW  C0
+00DC:  IORLW  0F
+00DE:  MOVWF  FC1
+00E0:  MOVLW  07
+00E2:  MOVWF  FB4
 .................... { 
 ....................    init(); 
-00DC:  BRA    00AA
+00E4:  BRA    00B2
 ....................    while(TRUE) { 
-00DE:  BRA    00DE
+00E6:  BRA    00E6
 ....................    } 
 .................... } 
 ....................  
-00E0:  SLEEP 
+00E8:  SLEEP 
 .................... void init(void) { 
 ....................    set_tris_b(0x00); // Ïñßæïõìå ôç èýñá B óáí ÅÎÏÄÏ (0) 
 *
-00AA:  MOVLW  00
-00AC:  MOVWF  F93
+00B2:  MOVLW  00
+00B4:  MOVWF  F93
 ....................    PORTB = 0x00;    
-00AE:  CLRF   F81
-....................    counter1 = 20; 
-00B0:  MOVLW  14
-00B2:  MOVWF  16
+00B6:  CLRF   F81
+....................    counter1 = 20; // Epeidi 200 = counter1 * 10 ara counter1 = 20 
+00B8:  MOVLW  14
+00BA:  MOVWF  16
 ....................    // Arxikopoiisi interrupts 
 ....................    SETUP_TIMER_0(T0_INTERNAL | T0_DIV_64); 
-00B4:  MOVLW  85
-00B6:  MOVWF  FD5
+00BC:  MOVLW  85
+00BE:  MOVWF  FD5
 ....................    enable_interrupts(GLOBAL); 
-00B8:  MOVLW  C0
-00BA:  IORWF  FF2,F
+00C0:  MOVLW  C0
+00C2:  IORWF  FF2,F
 ....................    enable_interrupts(INT_TIMER0); 
-00BC:  BSF    FF2.5
+00C4:  BSF    FF2.5
 ....................    set_timer0(TIMER_INITIAL_VALUE); 
-00BE:  MOVLW  F8
-00C0:  MOVWF  FD7
-00C2:  MOVLW  AD
-00C4:  MOVWF  FD6
-00C6:  GOTO   00DE (RETURN)
+00C6:  MOVLW  F8
+00C8:  MOVWF  FD7
+00CA:  MOVLW  AD
+00CC:  MOVWF  FD6
+00CE:  GOTO   00E6 (RETURN)
 .................... } 
 ....................  
 .................... // INTERRUPTS HANDLING 
 .................... #INT_TIMER0 
 .................... void timer0_int() { 
-....................    counter1--; 
+....................    set_timer0(TIMER_INITIAL_VALUE); // Arxikopoiisi panta tou timer0 me tin arxiki timi poy ypologisame 
 *
-0096:  DECF   16,F
-....................    if (counter1 ==0) { 
-0098:  MOVF   16,F
-009A:  BNZ   00A4
-....................       counter1 = 20; 
-009C:  MOVLW  14
-009E:  MOVWF  16
-....................       PORTB = PORTB + 1; 
-00A0:  MOVLW  01
-00A2:  ADDWF  F81,F
+0096:  MOVLW  F8
+0098:  MOVWF  FD7
+009A:  MOVLW  AD
+009C:  MOVWF  FD6
+....................    counter1--; // Meiosi to counter mexri na ginei 0 oste na ftasoume ta 200ms (20 * 10 = 200ms) 
+009E:  DECF   16,F
+....................    if (counter1 == 0) { // Otan o counter1 ginei 0, ara eftase sta 200ms 
+00A0:  MOVF   16,F
+00A2:  BNZ   00AC
+....................       counter1 = 20; // arxikopoiisi tou pali sto 20 
+00A4:  MOVLW  14
+00A6:  MOVWF  16
+....................       PORTB = PORTB + 1; // Prosthesi to 1 ston PORTB 
+00A8:  MOVLW  01
+00AA:  ADDWF  F81,F
 ....................    } 
-00A4:  BCF    FF2.2
-00A6:  GOTO   0054
+00AC:  BCF    FF2.2
+00AE:  GOTO   0054
 .................... } 
 ....................  
 
