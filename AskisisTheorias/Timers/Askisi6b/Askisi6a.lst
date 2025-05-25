@@ -1,6 +1,6 @@
-CCS PCH C Compiler, Version 5.011, 5967               25-Ìבת-25 18:25
+CCS PCH C Compiler, Version 5.011, 5967               25-Ìבת-25 18:27
 
-               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\AskisisTheorias\Timers\Askisi6a\Askisi6a.lst
+               Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\AskisisTheorias\Timers\Askisi6b\Askisi6a.lst
 
                ROM used:   230 bytes (1%)
                            Largest free fragment is 32534
@@ -51,8 +51,8 @@ CCS PCH C Compiler, Version 5.011, 5967               25-Ìבת-25 18:25
 008C:  MOVFF  06,FE0
 0090:  MOVFF  05,FD8
 0094:  RETFIE 0
-.................... // Askisi 6a theorias gia timer0 
-.................... // Anavosvinoun ta led sto PORTB kathe 200ms (20 * 10ms) 
+.................... // Askisi 6b theorias gia timer0 
+.................... // Prostithete 1 sto PORTB kathe 200ms (20 * 10ms) 
 .................... #include <main_.h> 
 .................... #include <18F4550.h> 
 .................... //////// Standard Header file for the PIC18F4550 device //////////////// 
@@ -211,9 +211,9 @@ CCS PCH C Compiler, Version 5.011, 5967               25-Ìבת-25 18:25
 ....................       counter1 = COUNTER1_VALUE; // arxikopoiisi tou pali sto 20 
 00A4:  MOVLW  14
 00A6:  MOVWF  16
-....................       PORTB = PORTB ^ 0b11111111; // Allagi katastasis ton led sto PORTB 
-00A8:  MOVLW  FF
-00AA:  XORWF  F81,F
+....................       PORTB = PORTB + 1; // Allagi katastasis ton led sto PORTB 
+00A8:  MOVLW  01
+00AA:  ADDWF  F81,F
 ....................    } 
 00AC:  BCF    FF2.2
 00AE:  GOTO   0054

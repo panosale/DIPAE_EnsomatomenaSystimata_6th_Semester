@@ -16,7 +16,7 @@
 // (65536 - y) * 5.3312ìs = 10000 => 65536 - y = 10000 / 5.3312 =>
 // 65536 - y = 1875 => y = 63661
 #define TIMER_INITIAL_VALUE 63661 // H ypologismeni periodos apo ton parapano typo. 
-#define COUNTER1_VALUE 20 // Timi tou counter prokeimenou na ftasoume sta 200ms. 
+#define COUNTER1_VALUE 20 // H ypologismeni periodos apo ton parapano typo. 
 // INTERRUPTS HANDLING
 void init(void);
 void timer0_int(void);
