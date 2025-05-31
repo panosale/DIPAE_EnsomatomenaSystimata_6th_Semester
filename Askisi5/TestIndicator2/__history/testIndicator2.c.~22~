@@ -61,8 +61,8 @@ void timer0_int(void) {
          seconds = 0;
       }
       ekatontades = (int8) (seconds / 100); // Ypologismos ekatontadon tou metriti...
-      dekades = (int8) ((seconds - (100 * ekatontades)) / 10); // ... ton dekadon...
-      monades = (int8) (seconds - (100 * ekatontades) - (10 * dekades)); // ... ton monadon.
+      dekades = (int8) ((seconds - (100 * eka)) / 10); // ... ton dekadon...
+      monades = (int8) (seconds - (100 * eka) - (10 * dec)); // ... ton monadon.
       set_timer0(timer_start_value); // Arxikopoiisi tou timer0;
       des = ++des % 3;
       PORTC = dig[des];

@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.011, 5967               14-Απρ-25 23:47
+CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 02:08
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\TestIndicator2\testIndicator2.lst
 
@@ -296,7 +296,7 @@ CCS PCH C Compiler, Version 5.011, 5967               14-Απρ-25 23:47
 .................... #INT_TIMER0 
 .................... void timer0_int(void) { 
 02D4:  SLEEP 
-....................    int16 mon, dec, eka; 
+....................    int16 monades, dekades, ekatontades; 
 ....................    counter--; // Kathe 200 * 5msec = 1sec 
 *
 0120:  DECF   19,F
@@ -324,7 +324,7 @@ CCS PCH C Compiler, Version 5.011, 5967               14-Απρ-25 23:47
 0142:  CLRF   18
 0144:  CLRF   17
 ....................       } 
-....................       eka = (int8) (seconds / 100); // Ypologismos ekatontadon tou metriti... 
+....................       ekatontades = (int8) (seconds / 100); // Ypologismos ekatontadon tou metriti... 
 0146:  MOVFF  18,36
 014A:  MOVFF  17,35
 014E:  CLRF   38
@@ -333,7 +333,7 @@ CCS PCH C Compiler, Version 5.011, 5967               14-Απρ-25 23:47
 0154:  RCALL  0096
 0156:  MOVFF  02,32
 015A:  MOVFF  01,31
-....................       dec = (int8) ((seconds - (100 * eka)) / 10); // ... ton dekadon... 
+....................       dekades = (int8) ((seconds - (100 * ekatontades)) / 10); // ... ton dekadon... 
 015E:  CLRF   36
 0160:  MOVLW  64
 0162:  MOVWF  35
@@ -355,7 +355,7 @@ CCS PCH C Compiler, Version 5.011, 5967               14-Απρ-25 23:47
 018A:  RCALL  0096
 018C:  MOVFF  02,30
 0190:  MOVFF  01,2F
-....................       mon = (int8) (seconds - (100 * eka) - (10 * dec)); // ... ton monadon. 
+....................       monades = (int8) (seconds - (100 * ekatontades) - (10 * dekades)); // ... ton monadon. 
 0194:  CLRF   36
 0196:  MOVLW  64
 0198:  MOVWF  35
@@ -407,7 +407,7 @@ CCS PCH C Compiler, Version 5.011, 5967               14-Απρ-25 23:47
 ....................       if (des == 0) 
 01FE:  MOVF   16,F
 0200:  BNZ   0212
-....................          PORTB = table[mon]; // Deikse tis monades 
+....................          PORTB = table[monades]; // Deikse tis monades 
 0202:  MOVLW  1A
 0204:  ADDWF  2D,W
 0206:  MOVWF  FE9
@@ -418,7 +418,7 @@ CCS PCH C Compiler, Version 5.011, 5967               14-Απρ-25 23:47
 ....................       if (des == 1) 
 0212:  DECFSZ 16,W
 0214:  BRA    0226
-....................          PORTB = table[dec]; // Deikse tis dekades 
+....................          PORTB = table[dekades]; // Deikse tis dekades 
 0216:  MOVLW  1A
 0218:  ADDWF  2F,W
 021A:  MOVWF  FE9
@@ -430,7 +430,7 @@ CCS PCH C Compiler, Version 5.011, 5967               14-Απρ-25 23:47
 0226:  MOVF   16,W
 0228:  SUBLW  02
 022A:  BNZ   023C
-....................          PORTB = table[eka]; // Deikse tis ekatonades 
+....................          PORTB = table[ekatontades]; // Deikse tis ekatonades 
 022C:  MOVLW  1A
 022E:  ADDWF  31,W
 0230:  MOVWF  FE9

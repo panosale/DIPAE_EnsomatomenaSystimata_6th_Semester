@@ -26,9 +26,9 @@
 019     counter
 01A-029 table
 02A-02C dig
-02D-02E timer0_int.mon
-02F-030 timer0_int.dec
-031-032 timer0_int.eka
+02D-02E timer0_int.monades
+02F-030 timer0_int.dekades
+031-032 timer0_int.ekatontades
 033     @DIV88.P1
 033     timer0_int.@SCRATCH1
 034     @DIV88.P1
@@ -77,11 +77,11 @@ Project Directory:
     F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\TestIndicator2\
 
 Project Files:
-    testIndicator2.c                                        [14-Απρ-25 23:47  CRC=13B32C8E]
+    testIndicator2.c                                        [01-Ιουν-25 02:08  CRC=22928750]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 14:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 16:40  CRC=A157EDDE]
 
-Source signature=A82ECBB9
+Source signature=B70E267B
 
 Units:
     testIndicator2 (main)
