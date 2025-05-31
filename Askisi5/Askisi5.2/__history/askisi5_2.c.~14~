@@ -61,7 +61,7 @@ void main() {
 // Orismos sinartiseon eksipiretisis
 #INT_TIMER0    // Diakopi me megali protereotita
 void timer0_int(void) {
-   int16 monades,dekades,ekatontades;
+   int16 mon,dec,eka;
    set_timer0(timer_start_value); // Arxiki timi tou metriti
 //   sec_set_counter--;
 //   if ((sec_set_counter == 0)) {
@@ -117,25 +117,25 @@ void timer0_int(void) {
       }   
    }                       
    if (flag == 0) {
-      dekades = (int8)minute / 10;
-      monades =  minute - dekades * 10;
-      ekatontades = 11;
+      dec = (int8)minute / 10;
+      mon =  minute - dec * 10;
+      eka = 11;
    }
    if (flag == 1) {
-      dekades = (int8)hour / 10;
-      monades =  hour - dekades * 10;
-      ekatontades = 10;
+      dec = (int8)hour / 10;
+      mon =  hour - dec * 10;
+      eka = 10;
    }
    des = ++des%3;
    PORTC = dig[des];
    if (des==0) {
-      PORTB = table[monades];
+      PORTB = table[mon];
    }         
    if (des==1) {
-      PORTB = table[dekades];
+      PORTB = table[dec];
    }            
    if (des==2) {
-      PORTB = table[ekatontades];
+      PORTB = table[eka];
    }               
 }                     
 void init (void) {

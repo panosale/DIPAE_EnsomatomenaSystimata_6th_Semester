@@ -1,8 +1,8 @@
 C L "init" 0 7 1 "FUNCTION"
 D G "__PCH__" 0 161 ""5.011""
 D G "__DEVICE__" 0 161 "4550"
-D G "__DATE__" 0 161 ""29-Απρ-25""
-D G "__TIME__" 0 161 ""23:18:18"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
+D G "__DATE__" 0 161 ""01-Ιουν-25""
+D G "__TIME__" 0 161 ""02:12:04"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
 c L "set_tris_a" 0 7 3 "FUNCTION"
 c L "set_tris_a" 2 1 22 "FUNCTION"
 v L "value" 2 36 "int8" `54 
@@ -933,9 +933,9 @@ f G "init" 0 53 "void()" `650
 F G "main" 0 55 "void()" `651 
 C L "timer0_int" 0 7 1 "FUNCTION"
 F G "timer0_int" 0 63 "void()" `649 
-V L "mon" 0 64 "int16" `654 
-V L "dec" 0 64 "int16" `655 
-V L "eka" 0 64 "int16" `656 
+V L "monades" 0 64 "int16" `654 
+V L "dekades" 0 64 "int16" `655 
+V L "ekatontades" 0 64 "int16" `656 
 C L "timer0_int" 0 7 4 "FUNCTION"
 C L "timer0_int" 0 7 1 "FUNCTION"
 C L "timer0_int" 0 7 1 "FUNCTION"

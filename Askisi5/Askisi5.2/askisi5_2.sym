@@ -29,9 +29,9 @@
 01B.0   flag
 01C-02B table
 02C-02E dig
-02F-030 timer0_int.mon
-031-032 timer0_int.dec
-033-034 timer0_int.eka
+02F-030 timer0_int.monades
+031-032 timer0_int.dekades
+033-034 timer0_int.ekatontades
 035-036 @MUL1616.P1
 035     @DIV88.P2
 035     timer0_int.@SCRATCH1
@@ -76,11 +76,11 @@ Project Directory:
     F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.2\
 
 Project Files:
-    askisi5_2.c                                             [29-Απρ-25 23:17  CRC=EBFEE5A7]
+    askisi5_2.c                                             [01-Ιουν-25 02:10  CRC=5D22C9BF]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 14:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 16:40  CRC=A157EDDE]
 
-Source signature=807A84D2
+Source signature=F19E68EA
 
 Units:
     askisi5_2 (main)

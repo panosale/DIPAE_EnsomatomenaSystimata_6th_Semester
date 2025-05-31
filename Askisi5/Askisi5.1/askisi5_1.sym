@@ -32,9 +32,9 @@
 020-02F table
 030-032 dig
 033     main.@SCRATCH1
-034-035 timer0_int.mon
-036-037 timer0_int.dec
-038-039 timer0_int.eka
+034-035 timer0_int.monades
+036-037 timer0_int.dekades
+038-039 timer0_int.ekatontades
 03A     @DIV88.P1
 03A     timer0_int.@SCRATCH1
 03B     @DIV88.P1
@@ -74,20 +74,20 @@ ROM Allocation:
 0000D8  @MUL1616
 0000F6  @DIV88
 000120  timer0_int
-000328  init
-000366  main
-000366  @cinit1
-000396  @cinit2
+000324  init
+00035E  main
+00035E  @cinit1
+00038E  @cinit2
 
 Project Directory:
     F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.1\
 
 Project Files:
-    askisi5_1.c                                             [29-Απρ-25 23:16  CRC=F99346E2]
+    askisi5_1.c                                             [01-Ιουν-25 02:18  CRC=0CC293CD]
     C:\Program Files (x86)\PICC\Devices\main_.h             [21-Μαρ-20 14:55  CRC=51CBC36F]
     C:\Program Files (x86)\PICC\Devices\18F4550.h           [09-Αυγ-13 16:40  CRC=A157EDDE]
 
-Source signature=8E0EE60D
+Source signature=A13E32F8
 
 Units:
     askisi5_1 (main)
