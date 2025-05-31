@@ -1,8 +1,9 @@
-D G "__PCH__" 0 0 ""5.011""
-D G "__DEVICE__" 0 0 ""
-D G "__DATE__" 0 0 ""01-Ιουν-25""
-D G "__TIME__" 0 0 ""02:18:37"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
-c L "set_tris_a" 0 0 3 "FUNCTION"
+d G "INT_USB" 2 818 "0x00A020"
+D G "__PCH__" 0 99 ""5.011""
+D G "__DEVICE__" 0 99 "4550"
+D G "__DATE__" 0 99 ""01-Ιουν-25""
+D G "__TIME__" 0 99 ""02:39:29"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
+c L "set_tris_a" 0 6 3 "FUNCTION"
 c L "set_tris_a" 2 1 22 "FUNCTION"
 v L "value" 2 36 "int8" `54 
 f B "set_tris_a" 2 36 "void(int8 value)" `53 
@@ -941,6 +942,7 @@ F G "timer0_int" 0 76 "void()" `651
 V L "monades" 0 77 "int16" `656 
 V L "dekades" 0 77 "int16" `657 
 V L "ekatontades" 0 77 "int16" `658 
+C L "timer0_int" 0 6 1 "FUNCTION"
 C L "timer0_int" 0 6 1 "FUNCTION"
 C L "timer0_int" 0 6 1 "FUNCTION"
 C L "timer0_int" 0 6 1 "FUNCTION"

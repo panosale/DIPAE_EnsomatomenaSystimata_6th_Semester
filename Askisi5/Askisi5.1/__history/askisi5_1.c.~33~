@@ -112,7 +112,7 @@ void timer0_int(void) {
       monades = (int8) (seconds - (100 * ekatontades) - (10 * dekades));      
    }
    set_timer0(timer_start_value); // Arxiki timi tou metriti
-   des = ++des%3; // Pairnei panta times 0, 1, 2 afou ypologizei to modulo 3 (ypoloipo diairesis me to 3)
+   des = ++des%3;
    PORTC = dig[des];
    if (des==0) {
       PORTB = table[monades];
