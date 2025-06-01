@@ -2,7 +2,7 @@ d G "INT_USB" 2 818 "0x00A020"
 D G "__PCH__" 0 123 ""5.011""
 D G "__DEVICE__" 0 123 "4550"
 D G "__DATE__" 0 123 ""01-Ιουν-25""
-D G "__TIME__" 0 123 ""22:59:43"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
+D G "__TIME__" 0 123 ""23:04:10"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
 c L "set_tris_a" 0 7 3 "FUNCTION"
 c L "set_tris_a" 2 1 22 "FUNCTION"
 v L "value" 2 36 "int8" `54 
@@ -941,6 +941,7 @@ V L "monades" 0 64 "int16" `656
 V L "dekades" 0 64 "int16" `657 
 V L "ekatontades" 0 64 "int16" `658  "H metavltiti ekatontades edo xrisimevei gia tin emfanisi tou symvolou oron/lepton"
 C L "timer0_int" 0 7 4 "FUNCTION"
+C L "timer0_int" 0 7 1 "FUNCTION"
 C L "timer0_int" 0 7 1 "FUNCTION"
 C L "timer0_int" 0 7 1 "FUNCTION"
 C L "timer0_int" 0 7 1 "FUNCTION"

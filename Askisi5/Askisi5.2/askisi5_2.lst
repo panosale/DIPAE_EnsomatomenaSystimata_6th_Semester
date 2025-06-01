@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:59
+CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 23:04
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.2\askisi5_2.lst
 
@@ -468,7 +468,7 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:59
 01E8:  MOVLW  0A
 01EA:  MOVWF  33
 ....................    } 
-....................    des = ++des%3; 
+....................    des = ++des%3; // H des afksanei kata 1 kai meta pairnoume to ypoloipo tis diairesis me to 3 opote panta tha pairnei times 0, 1, 2 
 01EC:  INCF   16,F
 01EE:  MOVFF  16,35
 01F2:  MOVLW  03

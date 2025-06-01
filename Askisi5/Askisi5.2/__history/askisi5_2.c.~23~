@@ -126,7 +126,7 @@ void timer0_int(void) {
       monades =  hour - dekades * 10;
       ekatontades = 10; // Emfanisi tou symvolou Ù (Ores) - H metavltiti ekatontades edo xrisimevei gia tin emfanisi tou symvolou oron/lepton
    }
-   des = ++des%3; // H des afksanei kata 1 kai meta pairnoume to ypoloipo tis diairesis me to 3 opote panta tha pairnei times 0, 1, 2
+   des = ++des%3; // H des afksanete kata 1 alla kai pairnoume to ypoloipos tiw diairesis me to 3 opote panta tha pairnei times 0, 1, 2
    PORTC = dig[des];
    if (des==0) {
       PORTB = table[monades];
