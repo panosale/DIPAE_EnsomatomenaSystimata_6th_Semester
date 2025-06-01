@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 02:12
+CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:42
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.2\askisi5_2.lst
 
@@ -173,7 +173,8 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 02:12
 .................... #byte PORTD         =0xF83 
 .................... #byte PORTE         =0xF84 
 ....................  
-.................... const int16 timer_start_value = 5536; // Orismos arxikis timis timer0; 
+.................... const int16 timer_start_value = 5536; // Orismos arxikis timis timer0. Gia timer 5ms me DIV_1. 
+.................... const int8 default_counter = 200; // 200 * 5ms = 1000ms = 1sec 
 ....................  
 .................... // Orismos global metavliton 
 .................... int8 des=0; 
@@ -377,7 +378,7 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 02:12
 ....................    if (counter == 0) { 
 0156:  MOVF   1A,F
 0158:  BNZ   0180
-....................       counter = 200; 
+....................       counter = default_counter; 
 015A:  MOVLW  C8
 015C:  MOVWF  1A
 ....................       if (bit_test(PORTD,2) == 0) { 
@@ -537,7 +538,7 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 02:12
 025C:  CLRF   F81
 ....................    PORTC = 0; 
 025E:  CLRF   F82
-....................    counter = 200; // Arxikopoiisi tou counter 
+....................    counter = default_counter; // Arxikopoiisi tou counter 
 0260:  MOVLW  C8
 0262:  MOVWF  1A
 ....................    seconds = 0; // Midenismos ton defterolepton 

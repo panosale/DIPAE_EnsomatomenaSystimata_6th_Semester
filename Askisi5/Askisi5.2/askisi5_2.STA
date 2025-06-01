@@ -13,32 +13,32 @@ Stack size: 31
 
 Lines Stmts  %   Files
 ----- ----- ---  -----
-  160    89 100  askisi5_2.c
+  161    89 100  askisi5_2.c
    67     0   0  C:\Program Files (x86)\PICC\Devices\main_.h
   821     0   0  C:\Program Files (x86)\PICC\Devices\18F4550.h
 ----- -----
- 1048    89 Total
+ 1049    89 Total
 
 Page ROM  %  RAM   Vol Diff  Functions:
 ---- --- --- ---   --- ----  ----------
 0    112   7    0    27  1.0  main
 0    374  25    8  2204  8.4  timer0_int
-0     40   3    3             @DIV88
-0     30   2    5             @MUL1616
+0     40   3    3   349  2.4  @DIV88
+0     30   2    5   349  2.4  @MUL1616
 0     52   3    0   344  2.4  init
  Inline         0             @cinit1
 
 Program metrics:
-    Functions               3
+    Functions               5
     Statements              89
-    Comments                210
-    Volume (V)              2898
-    Difficulty (D)          12.4
-    Effort to implement (E) 35895
-    Time to implement (T)   33 minutes
-    Est Delivered Bugs (B)  0
+    Comments                211
+    Volume (V)              4146
+    Difficulty (D)          17.2
+    Effort to implement (E) 71455
+    Time to implement (T)   1 hours, 6 minutes
+    Est Delivered Bugs (B)  1
     Cyclomatic Complexity   19
-    Maintainability (MI)    98
+    Maintainability (MI)    59
 
  Segment     Used  Free
 -----------  ----  ----

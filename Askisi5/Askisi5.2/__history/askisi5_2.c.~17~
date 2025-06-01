@@ -16,8 +16,7 @@
 #byte PORTD         =0xF83
 #byte PORTE         =0xF84
 
-const int16 timer_start_value = 5536; // Orismos arxikis timis timer0. Gia timer 5ms me DIV_1.
-const int8 default_counter = 200; // 200 * 5ms = 1000ms = 1sec
+#define timer_start_value 5536; // Orismos arxikis timis timer0. Gia timer 5ms me DIV_1.
 
 // Orismos global metavliton
 int8 des=0;
@@ -101,7 +100,7 @@ void timer0_int(void) {
       flag^=1;
    }
    if (counter == 0) {
-      counter = default_counter;
+      counter = 200;
       if (bit_test(PORTD,2) == 0) {
          seconds++; // Afksanei kathe 1 sec
          if (seconds > 59) {
@@ -145,7 +144,7 @@ void init (void) {
    set_tris_d(0xff); // Orismos tou PORTD san eisodo (1)
    PORTB = 0;
    PORTC = 0;
-   counter = default_counter; // Arxikopoiisi tou counter
+   counter = 200; // Arxikopoiisi tou counter
    seconds = 0; // Midenismos ton defterolepton
 //   sec_set_counter = 1;
    minute =0;
