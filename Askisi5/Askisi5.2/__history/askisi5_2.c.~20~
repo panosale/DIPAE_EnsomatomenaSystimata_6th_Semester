@@ -119,12 +119,12 @@ void timer0_int(void) {
    if (flag == 0) {
       dekades = (int8)minute / 10;
       monades =  minute - dekades * 10;
-      ekatontades = 11; // Emfanisi tou symvolou Ð (lepta) - H metavltiti ekatontades edo xrisimevei gia tin emfanisi tou symvolou oron/lepton
+      ekatontades = 11; // Emfanisi tou symvolou Ð (lepta)
    }
    if (flag == 1) {
       dekades = (int8)hour / 10;
       monades =  hour - dekades * 10;
-      ekatontades = 10; // Emfanisi tou symvolou Ù (Ores) - H metavltiti ekatontades edo xrisimevei gia tin emfanisi tou symvolou oron/lepton
+      ekatontades = 10; // Emfanisi tou symvolou Ù (Ores)
    }
    des = ++des%3;
    PORTC = dig[des];

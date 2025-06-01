@@ -1,8 +1,8 @@
 d G "INT_USB" 2 818 "0x00A020"
-D G "__PCH__" 0 162 ""5.011""
-D G "__DEVICE__" 0 162 "4550"
-D G "__DATE__" 0 162 ""01-Ιουν-25""
-D G "__TIME__" 0 162 ""22:42:40"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
+D G "__PCH__" 0 123 ""5.011""
+D G "__DEVICE__" 0 123 "4550"
+D G "__DATE__" 0 123 ""01-Ιουν-25""
+D G "__TIME__" 0 123 ""22:58:33"" "DIPAE - Enosmatomena Systimata - 6o Eksamino"
 c L "set_tris_a" 0 7 3 "FUNCTION"
 c L "set_tris_a" 2 1 22 "FUNCTION"
 v L "value" 2 36 "int8" `54 
@@ -909,15 +909,14 @@ C L "jump_to_irs" 0 7 1 "FUNCTION"
 V G "default_counter" 0 20 "int8" `641 
 C L "jump_to_irs" 0 7 2 "FUNCTION"
 V G "des" 0 23 "int8" `643 
+C L "jump_to_irs" 0 7 1 "FUNCTION"
 V G "seconds" 0 24 "int8" `644 
-C L "jump_to_irs" 0 7 1 "FUNCTION"
-V G "minute" 0 26 "int8" `645 
-V G "hour" 0 27 "int8" `646 
-V G "counter" 0 28 "int8" `647 
-V G "flag" 0 29 "int1" `648 
-C L "jump_to_irs" 0 7 1 "FUNCTION"
-V G "table" 0 32 "int8[16]" `649 
-C L "jump_to_irs" 0 7 1 "FUNCTION"
+V G "minute" 0 25 "int8" `645 
+V G "hour" 0 26 "int8" `646 
+V G "counter" 0 27 "int8" `647 
+V G "flag" 0 28 "int1" `648 
+C L "jump_to_irs" 0 7 2 "FUNCTION"
+V G "table" 0 31 "int8[16]" `649 
 C L "jump_to_irs" 0 7 1 "FUNCTION"
 C L "jump_to_irs" 0 7 1 "FUNCTION"
 C L "jump_to_irs" 0 7 1 "FUNCTION"
@@ -928,22 +927,28 @@ C L "jump_to_irs" 0 7 1 "FUNCTION"
 C L "jump_to_irs" 0 7 1 "FUNCTION"
 C L "jump_to_irs" 0 7 1 "FUNCTION"
 C L "jump_to_irs" 0 7 1 "FUNCTION"
-V G "dig" 0 50 "int8[3]" `650 
 C L "jump_to_irs" 0 7 1 "FUNCTION"
-f G "timer0_int" 0 53 "void()" `651 
-f G "init" 0 54 "void()" `652 
-F G "main" 0 56 "void()" `653 
+C L "jump_to_irs" 0 7 1 "FUNCTION"
+C L "jump_to_irs" 0 7 1 "FUNCTION"
+V G "dig" 0 49 "int8[3]" `650 
+C L "jump_to_irs" 0 7 1 "FUNCTION"
+f G "timer0_int" 0 52 "void()" `651 
+f G "init" 0 53 "void()" `652 
+F G "main" 0 55 "void()" `653 
 C L "timer0_int" 0 7 1 "FUNCTION"
-F G "timer0_int" 0 64 "void()" `651 
-V L "monades" 0 65 "int16" `656 
-V L "dekades" 0 65 "int16" `657 
-V L "ekatontades" 0 65 "int16" `658 
+F G "timer0_int" 0 63 "void()" `651 
+V L "monades" 0 64 "int16" `656 
+V L "dekades" 0 64 "int16" `657 
+V L "ekatontades" 0 64 "int16" `658  "H metavltiti ekatontades edo xrisimevei gia tin emfanisi tou symvolou oron/lepton"
 C L "timer0_int" 0 7 4 "FUNCTION"
 C L "timer0_int" 0 7 1 "FUNCTION"
 C L "timer0_int" 0 7 1 "FUNCTION"
 C L "timer0_int" 0 7 1 "FUNCTION"
 C L "timer0_int" 0 7 1 "FUNCTION"
-F G "init" 0 142 "void()" `652 
+C L "timer0_int" 0 7 1 "FUNCTION"
+C L "timer0_int" 0 7 1 "FUNCTION"
+C L "timer0_int" 0 7 1 "FUNCTION"
+F G "init" 0 141 "void()" `652 
 C L "init" 0 7 1 "FUNCTION"
 C L "init" 0 7 1 "FUNCTION"
 C L "init" 0 7 1 "FUNCTION"

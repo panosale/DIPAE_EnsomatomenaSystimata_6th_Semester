@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:42
+CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:58
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.2\askisi5_2.lst
 
@@ -177,13 +177,12 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:42
 .................... const int8 default_counter = 200; // 200 * 5ms = 1000ms = 1sec 
 ....................  
 .................... // Orismos global metavliton 
-.................... int8 des=0; 
+.................... int8 des=0; // Metavliti gia tin epilogi tou endeikti 7 tomeon pou tha emfanizetai (allazei kathe 5ms) 
 .................... int8 seconds=0; 
-.................... //int8 sec_set_counter = 20; 
 .................... int8 minute=0; 
 .................... int8 hour=12; 
 .................... int8 counter; 
-.................... int1 flag=0; 
+.................... int1 flag=0; // Metavliti gia tin epilogi emfanisis oron h lepton 
 ....................  
 .................... // Dilosi pinaka katastaseon Endeikti 7 tomeon koinis kathodou 
 .................... int8 table[16] = {0b00111111, //0 
@@ -196,8 +195,8 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:42
 ....................                   0b00000111, //7 
 ....................                   0b01111111, //8 
 ....................                   0b01101111, //9 
-....................                   0b01101011, //Ω 
-....................                   0b00110111, //Π 
+....................                   0b01101011, //Ω - Ores 
+....................                   0b00110111, //Π - Lepta 
 ....................                   0b00111001,  
 ....................                   0b01011110,  
 ....................                   0b01111001,  
@@ -276,7 +275,7 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:42
 .................... #INT_TIMER0    // Diakopi me megali protereotita 
 .................... void timer0_int(void) { 
 02F4:  SLEEP 
-....................    int16 monades,dekades,ekatontades; 
+....................    int16 monades,dekades,ekatontades; // H metavltiti ekatontades edo xrisimevei gia tin emfanisi tou symvolou oron/lepton 
 ....................    set_timer0(timer_start_value); // Arxiki timi tou metriti 
 *
 00DC:  MOVLW  15
@@ -356,7 +355,7 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:42
 ....................          }                
 ....................       }    
 .................... //   } 
-....................    counter--; // Kathe 200 * 5 msec  = 1 sec 
+....................    counter--; // Kathe 200 * 5 msec  = 1 sec...  
 0136:  DECF   1A,F
 ....................    if (counter%100 == 0) { 
 0138:  MOVFF  1A,35
@@ -365,7 +364,7 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:42
 0140:  RCALL  0096
 0142:  MOVF   00,F
 0144:  BNZ   0156
-....................       flag^=1; 
+....................       flag^=1; // ...enallagi tis provolis apo ores se defterolepta kai to antistrofo 
 0146:  CLRF   00
 0148:  BTFSC  1B.0
 014A:  INCF   00,F
@@ -436,7 +435,7 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:42
 01AA:  MOVLW  00
 01AC:  SUBFWB 02,W
 01AE:  MOVWF  30
-....................       ekatontades = 11; 
+....................       ekatontades = 11; // Emfanisi tou symvolou Π (lepta) - H metavltiti ekatontades edo xrisimevei gia tin emfanisi tou symvolou oron/lepton 
 01B0:  CLRF   34
 01B2:  MOVLW  0B
 01B4:  MOVWF  33
@@ -464,7 +463,7 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:42
 01E0:  MOVLW  00
 01E2:  SUBFWB 02,W
 01E4:  MOVWF  30
-....................       ekatontades = 10; 
+....................       ekatontades = 10; // Emfanisi tou symvolou Ω (Ores) - H metavltiti ekatontades edo xrisimevei gia tin emfanisi tou symvolou oron/lepton 
 01E6:  CLRF   34
 01E8:  MOVLW  0A
 01EA:  MOVWF  33

@@ -38,8 +38,8 @@ int8 table[16] = {0b00111111, //0
                   0b00000111, //7
                   0b01111111, //8
                   0b01101111, //9
-                  0b01101011, //Ù - Ores
-                  0b00110111, //Ð - Lepta
+                  0b01101011, //Ù
+                  0b00110111, //Ð
                   0b00111001, 
                   0b01011110, 
                   0b01111001, 
@@ -61,7 +61,7 @@ void main() {
 // Orismos sinartiseon eksipiretisis
 #INT_TIMER0    // Diakopi me megali protereotita
 void timer0_int(void) {
-   int16 monades,dekades,ekatontades; // H metavltiti ekatontades edo xrisimevei gia tin emfanisi tou symvolou oron/lepton
+   int16 monades,dekades,ekatontades;
    set_timer0(timer_start_value); // Arxiki timi tou metriti
 //   sec_set_counter--;
 //   if ((sec_set_counter == 0)) {
@@ -95,9 +95,9 @@ void timer0_int(void) {
          }               
       }   
 //   }
-   counter--; // Kathe 200 * 5 msec  = 1 sec... 
+   counter--; // Kathe 200 * 5 msec  = 1 sec
    if (counter%100 == 0) {
-      flag^=1; // ...enallagi tis provolis apo ores se defterolepta kai to antistrofo
+      flag^=1;
    }
    if (counter == 0) {
       counter = default_counter;
@@ -119,12 +119,12 @@ void timer0_int(void) {
    if (flag == 0) {
       dekades = (int8)minute / 10;
       monades =  minute - dekades * 10;
-      ekatontades = 11; // Emfanisi tou symvolou Ð (lepta) - H metavltiti ekatontades edo xrisimevei gia tin emfanisi tou symvolou oron/lepton
+      ekatontades = 11;
    }
    if (flag == 1) {
       dekades = (int8)hour / 10;
       monades =  hour - dekades * 10;
-      ekatontades = 10; // Emfanisi tou symvolou Ù (Ores) - H metavltiti ekatontades edo xrisimevei gia tin emfanisi tou symvolou oron/lepton
+      ekatontades = 10;
    }
    des = ++des%3;
    PORTC = dig[des];
