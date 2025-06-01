@@ -1,4 +1,4 @@
-CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:58
+CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:59
 
                Filename:   F:\Common\Programming\GitHub\DIPAE_EnsomatomenaSystimata_6th_Term\Askisi5\Askisi5.2\askisi5_2.lst
 
@@ -528,7 +528,7 @@ CCS PCH C Compiler, Version 5.011, 5967               01-Ιουν-25 22:58
 ....................    set_tris_b(0x00); // Orismos tou PORTB san eksodo (0) 
 0252:  MOVLW  00
 0254:  MOVWF  F93
-....................    set_tris_c(0x00); // Orismos tou PORTBC PIN2 san eksodo (1) gia ti Vasi tou Endeikti 
+....................    set_tris_c(0x00); // Orismos tou PORTC san eksodo (0) gia tis Vasis ton 3x tranzistors ton Endeikton 
 0256:  MOVWF  F94
 ....................    set_tris_d(0xff); // Orismos tou PORTD san eisodo (1) 
 0258:  MOVLW  FF
