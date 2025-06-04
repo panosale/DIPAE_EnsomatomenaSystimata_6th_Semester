@@ -17,6 +17,7 @@ main() {
 	printf("Bitwise OR operation: %d | %d = %d\n", i, k, i | k);
 	printf("Bitwise XOR operation: %d ^ %d = %d\n", i, k, i ^ k);
 	printf("Logical NOT operation: !%d = %d\n", i, !i);
+	printf("Shift left: %d << %d = %d\n", 5, 2, 5 << 2);
 	
 	char last_b = 163;
 	char port_b = 227;
